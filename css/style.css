@@ -140,7 +140,8 @@ td{
 .painel{
 	display: none;
 }
-#criar_orcamento{
+#criar_orcamento,
+#btnSalvaOrcamento{
 	display: none;
 }
 @media screen and (max-width: 1024px){
