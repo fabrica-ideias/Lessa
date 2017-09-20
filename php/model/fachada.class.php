@@ -38,12 +38,26 @@ class Fachada{
 			echo "0";
 		}
 	}
+	function getFuncionarios(){
+		include("conexao.php");
+		$result = mysqli_query($con,"select * from usuario where tipo='FUNCIONARIO'");
+		if( mysqli_num_rows($result)){
+			$clientes = array();
+			while($dados= mysqli_fetch_array($result)){
+				$clientes[] = $dados;
+			}
+			echo json_encode($clientes);
+		}else{
+			echo "0";
+		}
+	}
 
 	function salvaUsuario($usuario){
 		include("conexao.php");
-		mysqli_query($con,"insert into usuario (nome,email,senha,perfil) values ('".$usuario->getNome()."','".$usuario->getEmail()."','".$usuario->getSenha()."','".$usuario->getPerfil()."')");
-		$fachada = new Fachada();
-		$fachada->startSession('false','idusuario',mysqli_insert_id($con));
+		if(!mysqli_query($con,"insert into usuario (nome,email,senha,perfil,cpf,telefone,tipo) values ('".$usuario->getNome()."','".$usuario->getEmail()."','".$usuario->getSenha()."','".$usuario->getPerfil()."','".$usuario->getCpf()."','".$usuario->getTelefone()."','".$usuario->getTipo()."')")){
+
+			echo "Error :".mysqli_error($con);
+		}
 		echo "0";
 	}
 	function salvaConfiguracao($config){
@@ -68,13 +82,42 @@ class Fachada{
 			setcookie($session, $_SESSION[$session], PHP_INT_MAX);
 		}
 	}
-
 	function getProdutos(){	
 		include("conexao.php");
 		$produtos = array();
 		$query = mysqli_query($con,"SELECT * FROM produto");
 		while($dados= mysqli_fetch_array($query)){
 			$produtos[] = $dados;
+		}
+		echo json_encode($produtos);
+	}
+
+	function getProdutosOrcamentos(){	
+		include("conexao.php");
+		$produtos = array();
+		$query = mysqli_query($con,"SELECT * FROM produto ORDER BY descricao");
+		while($dados= mysqli_fetch_array($query)){
+			$produto = array();
+			$produto['idproduto'] = $dados['idproduto'];
+			$produto['descricao'] = $dados['descricao'];
+			$produto['quantidade'] = $dados['quantidade'];
+			$produto['qtdePedido'] = 0; 
+			$itens = mysqli_query($con,"SELECT * FROM itemorcamento WHERE idproduto='".$dados['idproduto']."'");
+			$orcamentos = array();
+			while($item = mysqli_fetch_array($itens)){
+				$orcamento = mysqli_fetch_array(mysqli_query($con,"SELECT * FROM orcamento WHERE idorcamento='".$item['idorcamento']."'"));
+				$usuario = mysqli_fetch_array(mysqli_query($con,"SELECT * FROM usuario WHERE idusuario='".$orcamento['idusuario']."'"));
+
+				$item['idorcamento'] = $orcamento['idorcamento'];
+				$item['usuario'] = $usuario['nome'];
+				$produto['qtdePedido'] += $item['qtde'];
+				$produto['id'] = $item['iditem'];
+				$orcamentos[] = $item; 
+			}
+			$produto['orcamentos'] = $orcamentos;
+ 			if($produto['qtdePedido'] > 0){
+				$produtos[] = $produto;
+			}
 		}
 		echo json_encode($produtos);
 	}
@@ -103,6 +146,17 @@ class Fachada{
 			$produtos[] = $produto;
 		}
 		echo json_encode($produtos);
+	}
+	function getOrcamentos(){
+		include("conexao.php");
+		$result = mysqli_query($con,"SELECT * FROM orcamento");
+		$orcamentos = array();
+		while($dados= mysqli_fetch_array($result)){
+			$usuario = mysqli_fetch_array(mysqli_query($con,"SELECT * FROM usuario WHERE idusuario='".$dados['idusuario']."'"));
+			$dados['nome'] = $usuario['nome'];
+			$orcamentos[] = $dados;
+		}
+		echo json_encode($orcamentos);
 	}
 }
 ?>

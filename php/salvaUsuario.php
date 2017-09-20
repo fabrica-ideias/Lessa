@@ -9,6 +9,8 @@
   	}
   	$usuario->setNome($_POST['nome']);
 	$usuario->setEmail($_POST['email']);
-	$usuario->setSenha($_POST['senha']);
+	$usuario->setCpf($_POST['cpf']);
+	$usuario->setTelefone($_POST['telefone']);
+	$usuario->setTipo($_POST['tipoUsuario']);
 	$fachada->salvaUsuario($usuario);
 ?>

@@ -5,6 +5,9 @@ class Usuario{
     var $email;
     var $senha;
     var $perfil;
+    var $cpf;
+    var $telefone;
+    var $tipo;
 
     function setUsuario($dados){
     	$this->idusuario = $dados['idusuario'];
@@ -12,7 +15,7 @@ class Usuario{
     	$this->email = $dados['email'];
     	$this->senha = $dados['senha'];
         $this->perfil = $dados['perfil'];
-
+        $this->tipo = $dados['tipo'];
     }
 
     function setIdusuario($idusurio){
@@ -45,6 +48,24 @@ class Usuario{
     }
     function getPerfil(){
         return $this->perfil;
+    }
+    function setTipo($tipo){
+        $this->tipo = $tipo;
+    }
+    function getTipo(){
+        return $this->tipo;
+    }
+    function setCpf($cpf){
+        $this->cpf = $cpf;
+    }
+    function getCpf(){
+        return $this->cpf;
+    }
+    function setTelefone($telefone){
+        $this->telefone = $telefone;
+    }
+    function getTelefone(){
+        return $this->telefone;
     }
 }
 ?>

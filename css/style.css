@@ -141,7 +141,12 @@ td{
 	display: none;
 }
 #criar_orcamento,
-#btnSalvaOrcamento{
+#btnSalvaOrcamento,
+#cadastro_users,
+#btnConfiguracao,
+#btnConfiguracaoMobile,
+#permissoes_users,
+#menu_cadastros,#menu_pedidos,#menu_negociacao,#menu_configuracao{
 	display: none;
 }
 @media screen and (max-width: 1024px){

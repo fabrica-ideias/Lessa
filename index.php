@@ -48,10 +48,10 @@
 				<div class="row">
 					<div class="col s12" id="checkConect" style="margin-bottom: 5px"></div>
 					<a  class="s12 btn" id="logar" style="margin-bottom: 5px">PRÓXIMO</a>
-					<div class="col s12"><a  id="cadastro" style="margin-bottom: 5px">Cadastre-se</a></div>
+					<!-- <div class="col s12"><a  id="cadastro" style="margin-bottom: 5px">Cadastre-se</a></div> -->
 				</div>		
 			</form>
-			<?php require_once("cadastro.php");?>
+			<?php// require_once("cadastro.php");?>
 		</div>
 		<div class="col s12 m4 l4"></div>
 	</div>
@@ -73,10 +73,10 @@
 			</div>
 			<ul class="tabs tabs-transparent">
 				<li class="tab"><a class="active" href="#home">HOME</a></li>
-				<li class="tab"><a href="#taxis">PEDIDOS</a></li>
-				<li class="tab"><a href="#cadastros">CADASTRO/PERMISSÕES</a></li>
-				<li class="tab"><a href="#negociacao">NEGOCIAÇÃO</a></li>
-				<li class="tab"><a href="#configuracoes">CONFIGURAÇÕES</a></li>
+				<li class="tab" id="menu_pedidos"><a href="#pedidos">PEDIDOS</a></li>
+				<li class="tab" id="menu_cadastros"><a href="#cadastros">CADASTRO/PERMISSÕES</a></li>
+				<li class="tab" id="menu_negociacao"><a href="#negociacao">NEGOCIAÇÃO</a></li>
+				<li class="tab" id="menu_configuracao"><a href="#configuracoes">CONFIGURAÇÕES</a></li>
 			</ul>
 		</nav>	
 		<div class="row">
@@ -84,24 +84,40 @@
 			<div class="col s12 l10" id="conteudo_painel">
 				<!-- HOME PRODUTOS -->
 				<div id="home" class="col s12">
-					<div class="row" id="produtos">         
+					<div class="row">
+						<div class="col s12 m4 l4"></div>
+						<div class="col s12 m4 l4 collection" id="produtos"></div>
+						<div class="col s12 m4 l4"></div>
 					</div>
 				</div>
 				<!-- PEDIDOS -->
-				<div id="taxis" class="col s12">
+				<div id="pedidos" class="col s12">
 					<!-- CRIAR Orcamento -->
 					<div class="row">
-						<ul class="col s6 l2 collapsible" data-collapsible="accordion">
+						<ul class="col s12 l2 collapsible" data-collapsible="accordion">
 							<li><div class="collapsible-header" id="btnOrcamento">ORCAMENTO</div></li>
-							<li><div class="collapsible-header">VER ORCAMENTOS</div></li>
+							<li><div class="collapsible-header" id="verOrcamentos">VER ORCAMENTOS</div></li>
 						</ul>
+					</div>
+					<div class="row">
 						<div class="col s1"></div>
 						<form id="criar_orcamento" class="col l9">
 							<div class="row">
 								<div class="col s12">
-									<select id="clientes">
-
-									</select>
+									<div class="row">
+										<div class="input-field col s12">
+											<input type="text" id="autocomplete-input" class="autocliente">
+											<label for="autocomplete-input">Cliente</label>
+										</div>
+									</div>
+								</div>
+								<div class="col s12">
+									<div class="row">
+										<div class="input-field col s12">
+											<input type="text" id="autocomplete-input" class="autocomplete">
+											<label for="autocomplete-input">Funcionario</label>
+										</div>
+									</div>
 								</div>
 								<div class="input-field col s12">
 									<select id="produtos_pedido">
@@ -110,20 +126,22 @@
 									<label>Produtos</label>
 								</div>
 								<div class="row">
-									<div class="input-field col s4 l2" style="margin-right: 5px;">
-										<input type="number" id="qtde" class="validate">
+									<div class="input-field col s6 l2" >
+										<input type="number" id="qtde" style="font-size: 2em;text-align: right;" class="validate">
 										<label for="qtde">Quantidade</label>
 									</div>
-									<div class="input-field col s4 l2">
-										<input id="preconegociado" type="text" style="text-align: right;" disabled>
+									<div class="input-field col s6 l2">
+										<input id="preconegociado" type="text" style="text-align: right;text-align: right;background-color: #efc33e;font-size: 2em;" disabled>
 									</div>
-									<div class="input-field col s4 l4">
-									</div>
-									<div class="input-field col s4 l2">
-										<input id="totalpedido" style="text-align: right;" disabled>
-									</div>
+									
 								</div>
-								<a class="btn" id="btnAdicionarItem" >ADICIONAR ITEM</a>
+								<div class="row">
+									<div class="col s4"></div>
+									<div class="col s4">
+										<a class="btn" id="btnAdicionarItem" >ADICIONAR ITEM</a>
+									</div>
+									<div class="col s4"></div>
+								</div>
 								<table class="striped">
 									<thead>
 										<tr>
@@ -138,30 +156,127 @@
 									</tbody>
 								</table>
 								<div class="row">
-									<div class="col s4"></div>
-									<a class="col s4 btn" id="btnSalvaOrcamento">FINALIZAR ORCAMENTO</a>
-									<div class="col s4"></div>
+									<div class="col l4"></div>
+									<a class="col s12 l4 btn" id="btnSalvaOrcamento">FINALIZAR ORCAMENTO</a>
+									<div class="col l4"></div>
+								</div>
+								<div class="row">
+								<div class="input-field col s12 l2">
+										<input id="totalpedido" style="text-align: right;text-align: right;background-color: #f74848;font-size: 2em; " disabled>
+									</div>
 								</div>
 							</div>
 						</form>
+						<div class="row" id="todosOrcamento">
+
+						</div>
 					</div>
 				</div>
+
+
 				<!-- Cadastro -->
 				<div id="cadastros" class="col s12">
 					<div class="row">
-						<ul class="col s6 l2 collapsible" data-collapsible="accordion">
-							<li><div class="collapsible-header">USUARIO</div></li>
-							<li><div class="collapsible-header">PERMISSÕES</div></li>
+						<ul class="col s12 l2 collapsible" data-collapsible="accordion">
+							<li><div class="collapsible-header" id="btnUsuario">USUARIO</div></li>
+							<li><div class="collapsible-header" id="btnPermissoes">PERMISSÕES</div></li>
 						</ul>
+						<!-- CADASTRO DE USUARIO  -->
+						<div class="col s12" id="cadastro_users">
+							<div class="row">
+								<div class="col l2"></div>
+								<div class="col s12 l8">
+									<div class="row">
+										<div class="row">
+											<div class="input-field col s12 l5">
+												<select id="tipoUsuario">
+													<option value="" disabled selected>SELECIONE O TIPO DO USUARIO</option>
+													<option value="FUNCIONARIO">FUNCIONARIO</option>
+													<option value="CLIENTE">CLIENTE</option>
+												</select>
+											</div>
+											<div class="input-field col l1"></div>
+											<div class="input-field col s12 l6">
+												<input id="nome" type="text" class="validate">
+												<label for="nome">Nome Completo</label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="input-field col s12 l4">
+												<input id="emailUserNovo" type="email" class="validate">
+												<label for="emailUserNovo">Email</label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="input-field col s5 l4">
+												<input id="cpf" type="text" class="validate">
+												<label for="cpf">CPF</label>
+											</div>
+											<div class="col s2 l1"></div>
+											<div class="input-field col s5 l4">
+												<input id="telefone" type="text" class="validate">
+												<label for="telefone">TELEFONE</label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col l4"></div>
+											<button class="col s12 l4 btn" id="btnSalvaUsuario">SALVA USUARIO</button>
+											<div class="col l4"></div>
+										</div>									
+									</div>
+								</div>
+								<div class="col l2"></div>
+							</div>
+						</div>
+						<!-- PERMISSÕES -->
+						<div class="col s12" id="permissoes_users">
+							<div class="row">
+								<div class="col l2"></div>
+								<div class="col s12 l8">
+									<div class="row">
+										<div class="input-field col s12">										
+											<input type="text" id="autocomplete-input" class="autocomplete">
+											<label for="autocomplete-input">Nome do Funcionario</label>
+										</div>
+										<form action="#">
+											<p>
+												<input type="checkbox" id="chpedido">
+												<label for="chpedido">PEDIDOS</label>
+											</p>
+											<p>
+												<input type="checkbox" id="chcadasto"/>
+												<label for="chcadasto">CADASTRO</label>
+											</p>
+											<p>
+												<input type="checkbox" id="chnegoc"/>
+												<label for="chnegoc">NEGOCIACAO</label>
+											</p>
+											<p>
+												<input type="checkbox" id="chconfi"/>
+												<label for="chconfi">CONFIGURACAO</label>
+											</p>
+										</form>
+										<div class="row">
+											<div class="col s5 l3"></div>
+											<button class="col s12 l2 btn" id="salvaPermissoes">SALVAR</button>
+											<div class="col s5 l3"></div>
+										</div>
+									</div>
+								</div>
+								<div class="col l2"></div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div id="negociacao" class="col s12">
 					<div class="row">					
-						<div class="input-field col s12">
-							<select id="clientes_negociacao">
-								<option value="" disabled selected>SELECIONE UM CLIENTE</option>
-							</select>
-							<label>Cliente</label>
+						<div class="col s12">
+							<div class="row">
+								<div class="input-field col s12">
+									<input type="text" id="autocomplete-input" class="autoclientenegociacao">
+									<label for="autocomplete-input">Cliente</label>
+								</div>
+							</div>
 						</div>
 						<div class="input-field col s12">
 							<select id="produtos_negociacao">
@@ -170,14 +285,12 @@
 							<label>Produtos</label>
 						</div>
 						<div class="row">
-							<div class="input-field col s2">
+							<div class="input-field col s6 l2">
 								<input id="precoproduto" type="text" maxlength="10"  class="validate" style="text-align: right;">
 								<label for="precoproduto">PREÇO NEGOCIADO</label>
 							</div>
-							<div class="input-field col s1"></div>
-							<div class="input-field col s4">
-								<button class="btn" id="btnSalvaNegociacao">SALVAR</button>
-							</div>
+							<div class="input-field col l1"></div>
+							<button class=" col s12 l2 btn" id="btnSalvaNegociacao">SALVAR</button>
 						</div>
 						<table class="striped">
 							<thead>
@@ -227,6 +340,25 @@
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
+	<div id="tabelapedido" class="modal" style="overflow-x: hidden;">
+		<div class="modal-content">
+			<table class="striped centered">
+				<thead>
+					<tr>
+						<th>ORCAMENTO</th>
+						<th>CLIENTE</th>
+						<th>PRODUTO</th>
+						<th>QUANTIDADE</th>
+					</tr>
+				</thead>
+				<tbody id="produtos_orcamentos">
+				</tbody>
+			</table>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">OK</a>
 		</div>
 	</div>
 </div>
