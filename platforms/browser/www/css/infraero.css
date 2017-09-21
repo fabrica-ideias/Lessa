@@ -1,0 +1,40 @@
+*{
+	padding: 0px;
+	margin:0px;
+}
+#tabelavoos>tbody>tr{
+	background: #5a5a5a;
+	color: #d9ca30;
+} 
+#tabelavoos>thead>tr{
+	background-color:#373737;
+	color:#d9d426;
+}	
+#tabelavoos.striped>tbody>tr:nth-child(odd) {
+	background-color: #373737;
+	color:#d9d426;
+}
+#tabelavoos{
+	height:100%;
+}
+#consultavoos{
+	position: fixed;
+	width: 100%;
+	bottom: 0px;
+	max-height: 30%;
+	overflow-y: scroll;
+}
+#consultavoos::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+}
+#consultavoos::-webkit-scrollbar {
+    width: 6px;
+    background: #F4F4F4;
+}
+#consultavoos::-webkit-scrollbar-thumb {
+    background: #dad7d7;
+}
+.logoairline{
+	width: 50px;
+    height: 20px;
+}
