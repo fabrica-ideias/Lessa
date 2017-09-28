@@ -31,26 +31,26 @@ label.active{
 }
 .iconPerson{
 	border: 1px solid #000;
-    border-radius: 100%;
-    padding: 5px
+	border-radius: 100%;
+	padding: 5px
 }
 .namePerson{
 	font-size: 18pt;
-    margin-left: 10px;
-    color: #000;
+	margin-left: 10px;
+	color: #000;
 }
 .error{
 	border-color: red !important;
 }
 #dialogError{
-    width: 50%;
-    max-width: 400px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    margin: auto;
-    font-size: 14pt;
-    text-align: center;
-    padding: 10px;
+	width: 50%;
+	max-width: 400px;
+	border-radius: 4px;
+	border: 1px solid #ccc;
+	margin: auto;
+	font-size: 14pt;
+	text-align: center;
+	padding: 10px;
 }
 .menu {
 	list-style:none; 
@@ -70,15 +70,15 @@ label.active{
 	right: 10px;
 }
 .tabs .tab a {
-    color: rgba(91, 121, 128, 0.7);
+	color: rgba(91, 121, 128, 0.7);
 }
 .tabs .tab a:hover, .tabs .tab a.active{
 	color: #fff;
 }
 #imgUser{
 	background-color: #ddd;
-	max-width: 200px;
-	height: 130px;
+	width: 100px;
+	height: 100px;
 	border-radius: 100%;	
 	background-image: url("../assets/icon/default.png");
 	background-size: 100% 100%;
@@ -94,11 +94,11 @@ label.active{
 }
 .fileImg{
 	width: 100%;
-    background-color: #000;
-    height: 100%;
-    position: relative;
-    bottom: 0px;
-    opacity: 0;
+	background-color: #000;
+	height: 100%;
+	position: relative;
+	bottom: 0px;
+	opacity: 0;
 	overflow: hidden;
 }
 .fileImg:hover{
@@ -115,14 +115,14 @@ label.active{
 }
 #nameUser{
 	margin: 10px;
-    font-size: 14pt;
+	font-size: 14pt;
 }
 #search{
 	position: relative;
 	width: 50%;
 	margin: 0px;
-    max-width: 50%;
-    float: left;
+	max-width: 50%;
+	float: left;
 }
 nav{
 	background-color:#607fcc;
@@ -148,4 +148,15 @@ a{
 	padding: 0px !important;
 	width: 100% !important;
 	height: 100% !important;
+}
+#logar{
+	background-color: #f55f5f;
+}
+@media only screen and (max-width: 600px) {
+	#nameLogin h4{
+		font-size: 2em;
+	}
+	#containerLogin{
+		margin-top: 20%;
+	}
 }

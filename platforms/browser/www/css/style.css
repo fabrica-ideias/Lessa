@@ -1,7 +1,7 @@
 *{margin:0;padding:0;}
 body{	
 	font-family: 'Roboto', sans-serif;
-	background-color: #ccc;	
+	background-color: #e9e9e9;	
 }
 .row{
 	margin: 0;
@@ -140,15 +140,37 @@ td{
 .painel{
 	display: none;
 }
+#btnAddItem{
+	position: absolute;
+	bottom: 0px;
+	margin-bottom: 10px;
+	right: 10px;
+}
+#addItens p{
+	text-align: center;
+	color: #a2a2a2;
+	font-size: 1.3em;
+}
 #criar_orcamento,
+#criar_cliente_orca,
 #btnSalvaOrcamento,
 #cadastro_users,
 #btnConfiguracao,
 #btnConfiguracaoMobile,
 #permissoes_users,
-#menu_cadastros,#menu_pedidos,#menu_negociacao,#menu_configuracao{
+#menu_cadastros,
+#menu_pedidos,
+#selectCliente,
+#menu_negociacao,
+#menu_configuracao,
+#addItens{
 	display: none;
 }
+#todosOrcamento,#criar_orcamento,
+#cadastro_users,#criar_cliente_orca{
+	margin-bottom: 50px;
+}
+
 .modalpreloader{
 	top: 45% !important;
 	display: none;
@@ -207,6 +229,19 @@ td{
 .menu_mobile{
 	display: none;
 }
+#submenu{
+	background-color: rgb(226, 82, 82);
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+#btnFinalizaOrcamento{
+	position: absolute;
+    top: 10px;
+    right: 2px;
+    background-color: #e28c52;
+}
 @media screen and (max-width: 920px){
 	.fila li{
 		float: left;
@@ -259,5 +294,15 @@ td{
 	}
 	.collapsible{
 		margin:0 !important;
+	}
+	.modal {
+		width: 95%;
+		padding: 5px;
+	}
+	#todosOrcamento{
+		position: relative;
+		display: block;
+		max-height: 500px;
+		overflow-y: scroll;
 	}
 }

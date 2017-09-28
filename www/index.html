@@ -25,9 +25,9 @@
 		<div class="col s12 m12 l4" id="form">
 			<form method="POST" class="col s12 m12 l12" id="fLogin">
 				<div class="row">
-					<div class="col s4 m5 l4"></div>
-					<div class="col s4 m2 l4 z-depth-4" id="imgUser"></div>
-					<div class="col s4 m5 l4"></div>
+					<div class="col s4 m5 l5"></div>
+					<div class="col s4 m2 l2 z-depth-4" id="imgUser"></div>
+					<div class="col s4 m5 l5"></div>
 				</div>	
 				<div id="nameLogin"></div>
 				<div class="progress" id="progress">
@@ -47,7 +47,7 @@
 				</div>
 				<div class="row">
 					<div class="col s12" id="checkConect" style="margin-bottom: 5px"></div>
-					<a  class="s12 btn" id="logar" style="margin-bottom: 5px">PRÓXIMO</a>
+					<a  class="col s12 m4 l4 btn" id="logar" style="margin-bottom: 5px">PRÓXIMO</a>
 					<!-- <div class="col s12"><a  id="cadastro" style="margin-bottom: 5px">Cadastre-se</a></div> -->
 				</div>		
 			</form>
@@ -71,8 +71,8 @@
 					<li><a id="logoutMobile" href="#">Sair</a></li>
 				</ul>
 			</div>
-			<ul id="tabs-swipe-demo" class="tabs tabs-fixed-width tabs-transparent tabs-fixed-width">
-				<li class="tab"><a class="active" href="#home">HOME</a></li>
+			<ul id="tabs-menu" class="tabs tabs-fixed-width tabs-transparent tabs-fixed-width">
+				<li class="tab"><a href="#home">HOME</a></li>
 				<li class="tab" id="menu_pedidos"><a href="#pedidos">PEDIDOS</a></li>
 				<li class="tab" id="menu_cadastros"><a href="#cadastros">CADASTRO</a></li>
 				<li class="tab" id="menu_negociacao"><a href="#negociacao">NEGOCIAÇÃO</a></li>
@@ -88,11 +88,6 @@
 						<div class="col s12 m12 l12"></div>
 						<div class="col s12 m12 l12" >
 							<ul class="collapsible" data-collapsible="accordion" id="produtos">
-								<li>
-									<div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-									<div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-								</li>
-								
 							</ul>
 						</div>
 						<div class="col s12 m4 l4"></div>
@@ -109,7 +104,7 @@
 						</ul>
 					</div>
 					<div class="row menu_mobile" id="mobile-demo">
-						<ul class="col s12 collapsible" data-collapsible="accordion" >
+						<ul class="col s12 collapsible" id="menu_pedido" data-collapsible="accordion" >
 							<li class="col s2">
 								<div class=" collapsible-header" id="btnOrcamentoMobile"><i class="material-icons">create</i></div>
 							</li>
@@ -120,71 +115,106 @@
 					</div>
 					<div class="row">
 						<div class="col s1"></div>
-						<form id="criar_orcamento" class="col s12 l12 ">
-							<div class="row">
+						<form class="col s12 l12 ">
+							<div id="criar_orcamento">
 								<div class="row">
-									<div class="input-field col s12">
-										<input type="text" id="autocomplete-input" class="autocliente" autocomplete="off">
-										<label for="autocomplete-input">Cliente</label>
+									<div class="row">
+										<div class="input-field col s12">
+											<input type="text" id="autocomplete-input" class="autocliente" autocomplete="off">
+											<label for="autocomplete-input">Cliente</label>
+										</div>
 									</div>
-								</div>
-								<div class="row">
-									<div class="input-field col s12">
-										<input type="text" id="autocomplete-input" class="autocomplete">
-										<label for="autocomplete-input">Funcionario</label>
+									<div class="row">
+										<div class="input-field col s12">
+											<input type="text" id="autocomplete-input" class="autocomplete">
+											<label for="autocomplete-input">Funcionario</label>
+										</div>
 									</div>
-								</div>
-								<div class="row">
-									<div class="input-field col s12">
-										<select id="produtos_pedido">
-											<option value="" disabled selected>SELECIONE UM PRODUTO</option>
-										</select>
-										<label>Produtos</label>
+									<div class="row">
+										<div class="input-field col s12">
+											<select id="produtos_pedido">
+												<option value="" disabled selected>SELECIONE UM PRODUTO</option>
+											</select>
+											<label>Produtos</label>
+										</div>
 									</div>
-								</div>
-								<div class="row">
-									<div class="input-field col s5 l2" >
-										<input type="number" id="qtde" style="font-size: 2em;text-align: right;" class="validate">
-										<label for="qtde">Quantidade</label>
+									<div class="row">
+										<div class="input-field col s5 l2" >
+											<input type="number" id="qtde" style="font-size: 2em;text-align: right;" class="validate">
+											<label for="qtde">Quantidade</label>
+										</div>
+										<div class="input-field col s1 l1"></div>
+										<div class="input-field col s5 l2">
+											<input id="preconegociado" placeholder="" type="text" style="text-align: right;text-align: right;background-color: #efc33e;font-size: 2em;" disabled>
+											<label for="preconegociado">Valor do Produto</label>
+										</div>
 									</div>
-									<div class="input-field col s1 l1"></div>
-									<div class="input-field col s5 l2">
-										<input id="preconegociado" placeholder="" type="text" style="text-align: right;text-align: right;background-color: #efc33e;font-size: 2em;" disabled>
-										<label for="preconegociado">Valor do Produto</label>
+									<div class="row">
+										<div class="col l4"></div>
+										<div class="col s12 l4">
+											<a class="col s12 btn" id="btnAdicionarItem" >ADICIONAR ITEM</a>
+										</div>
+										<div class="col l4"></div>
 									</div>
-								</div>
-								<div class="row">
-									<div class="col l4"></div>
-									<div class="col s12 l4">
-										<a class="col s12 btn" id="btnAdicionarItem" >ADICIONAR ITEM</a>
+									<table class="striped">
+										<thead>
+											<tr>
+												<th>PRODUTO</th>
+												<th>QTDES</th>
+												<th>PRECO</th>
+												<th>TOTAL</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody id="detalhe_pedido">
+										</tbody>
+									</table>
+									<div class="row">
+										<div class="col l4"></div>
+										<a class="col s12 l4 btn" id="btnSalvaOrcamento">FINALIZAR ORCAMENTO</a>
+										<div class="col l4"></div>
 									</div>
-									<div class="col l4"></div>
-								</div>
-								<table class="striped">
-									<thead>
-										<tr>
-											<th>PRODUTO</th>
-											<th>QTDES</th>
-											<th>PRECO</th>
-											<th>TOTAL</th>
-											<th></th>
-										</tr>
-									</thead>
-									<tbody id="detalhe_pedido">
-									</tbody>
-								</table>
-								<div class="row">
-									<div class="col l4"></div>
-									<a class="col s12 l4 btn" id="btnSalvaOrcamento">FINALIZAR ORCAMENTO</a>
-									<div class="col l4"></div>
-								</div>
-								<div class="row">
-									<div class="input-field col s12 l2">
-										<input id="totalpedido" style="text-align: right;text-align: right;background-color: #f74848;font-size: 2em; " disabled>
+									<div class="row">
+										<div class="input-field col s12 l2">
+											<input id="totalpedido" style="text-align: right;text-align: right;background-color: #f74848;font-size: 2em; " disabled>
+										</div>
 									</div>
 								</div>
 							</div>
+
+							<!-- Orcamento do funcionario -->
+							<div id="funcionario_orcamento">
+								<div class="row" id="selectCliente">
+									<div class="row">
+										<div class="input-field col s12">
+											<input type="text" id="autocomplete-input" class="autocliente" autocomplete="off">
+											<label for="autocomplete-input" data-error="SELECIONE O CLIENTE">Cliente</label>
+										</div>
+										<button type="button" class="col s12 l4 btn" id="btnOrcaProximo" style="margin-top: 20px;margin-bottom: 0px;background: #e25252;">Proximo</button>
+									</div>
+								</div>
+								<div class="row" id="addItens">
+									<nav id="submenu">
+										<div class="nav-wrapper">
+											<div class="col s12">
+												<a href="#!" style="padding-left: 5px;" class="breadcrumb" id="retornaOrcamento">CLIENTE</a>
+												<a href="#!" class="breadcrumb">ITENS</a>
+												<button class="btn" id="btnFinalizaOrcamento"> <i class="material-icons" style="height: 0;line-height: 0;">check</i></button>
+											</div>
+										</div>
+										<div class="row">
+											<p id="observacaoItem">Adicionar Item</p>
+											<table style="background-color: #fff;color: #000;border: 1px solid #ccc;">
+
+												<tbody id="datelhe_item"></tbody>
+											</table>
+										</div>
+									</nav>
+									<a class="btn-floating btn-large waves-effect waves-light red modal-trigger" id="btnAddItem" href="#modalSelecionaProduto"><i class="material-icons">add</i></a>	
+								</div>
+							</div>
 						</form>
+
 						<div class="col s12" id="todosOrcamento"  style="position: relative;">
 
 						</div>
@@ -237,8 +267,8 @@
 										</div>
 										<div class="row">
 											<div class="input-field col s5 l4">
-												<input id="cpf" type="text" class="validate">
-												<label for="cpf">CPF</label>
+												<input id="cpf" type="text" class="validate" maxlength="14">
+												<label for="cpf" data-error="Cpf Invalido" data-success="" data-success="ok">CPF</label>
 											</div>
 											<div class="col s2 l1"></div>
 											<div class="input-field col s5 l4">
@@ -262,7 +292,7 @@
 								<div class="col l2"></div>
 								<div class="col s12 l8">
 									<div class="row">
-										<div class="input-field col s12">										
+										<div class="input-field col s12">	
 											<input type="text" id="autocomplete-input" class="autocomplete">
 											<label for="autocomplete-input">Nome do Funcionario</label>
 										</div>
@@ -395,7 +425,26 @@
 			<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
 		</div>
 	</div>
-
+	<div id="modalSelecionaProduto" class="modal">
+		<div class="modal-content">
+			<div class="row">
+				<div class="input-field col s12">
+					<select id="produto_orcamento">
+						<option value="" disabled selected>SELECIONE O PRODUTO</option>
+					</select>
+					<label>Selecione o produto</label>
+				</div>
+				<div class="input-field col s4">
+					<input type="number" name="qtdeProduto" id="qtdeProduto" />
+					<label for="qtdeProduto" style="text-align: right;font-size: 1.2em;padding-right: 5px;">Quantidade</label>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+			<a href="#!" id="addItemOrca" class="modal-action modal-close waves-effect waves-green btn-flat">Adicionar</a>
+		</div>
+	</div>
 </div>
 </body> 
 </html>
