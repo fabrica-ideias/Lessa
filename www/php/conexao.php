@@ -1,5 +1,5 @@
 <?php
-$con = mysqli_connect("localhost", "id2990907_root", "fera123fera", "id2990907_lessa");
+$con = mysqli_connect("179.185.44.137", "root", "fi2108", "lessa");
 if (!$con) {
     die('Erro ao conectar ao banco: ' . mysql_error());
 }

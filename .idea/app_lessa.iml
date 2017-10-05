@@ -4,5 +4,21 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="PHARS">
+        <CLASSES>
+          <root url="phar://$MODULE_DIR$/www/composer.phar/" />
+          <root url="phar://$MODULE_DIR$/platforms/browser/www/composer.phar/" />
+          <root url="phar://$MODULE_DIR$/platforms/windows/www/composer.phar/" />
+          <root url="phar://$MODULE_DIR$/platforms/android/assets/www/composer.phar/" />
+        </CLASSES>
+        <SOURCES>
+          <root url="phar://$MODULE_DIR$/www/composer.phar/" />
+          <root url="phar://$MODULE_DIR$/platforms/browser/www/composer.phar/" />
+          <root url="phar://$MODULE_DIR$/platforms/windows/www/composer.phar/" />
+          <root url="phar://$MODULE_DIR$/platforms/android/assets/www/composer.phar/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>

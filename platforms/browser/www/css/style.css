@@ -116,8 +116,8 @@ td{
 	background-color: #1a1a1a;
 }
 #conteudo_painel{
-	margin-top: 10px;
-	padding: 10px;
+	/*margin-top: 10px;
+	padding: 10px;*/
 	height: 80%;
 }
 .configuracao{
@@ -184,12 +184,12 @@ td{
 	font-family: 'Material Icons';
 	font-style: normal;
 	font-weight: 400;
-	src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+	src: url(fonts/MaterialIcons-Regular.eot); /* For IE6-8 */
 	src: local('Material Icons'),
 	local('MaterialIcons-Regular'),
-	url(MaterialIcons-Regular.woff2) format('woff2'),
-	url(MaterialIcons-Regular.woff) format('woff'),
-	url(MaterialIcons-Regular.ttf) format('truetype');
+	url(fonts/MaterialIcons-Regular.woff2) format('woff2'),
+	url(fonts/MaterialIcons-Regular.woff) format('woff'),
+	url(fonts/MaterialIcons-Regular.ttf) format('truetype');
 }
 .material-icons {
 	font-family: 'Material Icons';
@@ -232,7 +232,6 @@ td{
 #submenu{
 	background-color: rgb(226, 82, 82);
 	position: absolute;
-	top: 0;
 	left: 0;
 	right: 0;
 }

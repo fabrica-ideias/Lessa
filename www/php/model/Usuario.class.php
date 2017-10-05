@@ -2,23 +2,19 @@
 class Usuario{
     var $idusuario;
     var $nome;
-    var $email;
-    var $senha;
     var $perfil;
     var $cpf;
     var $telefone;
     var $tipo;
 
     function setUsuario($dados){
-    	$this->idusuario = $dados['idusuario'];
-    	$this->nome = $dados['nome'];
-    	$this->email = $dados['email'];
-    	$this->senha = $dados['senha'];
-        $this->perfil = $dados['perfil'];
-        $this->tipo = $dados['tipo'];
+    	$this->idusuario = $dados['FUN_PKN_CODIGO'];
+    	$this->nome = $dados['FUN_A_NOME'];
+        $this->cpf = $dados['FUN_A_CPF'];
+        $this->tipo = $dados['FUN_A_TIPOFUNCIONARIO'];
     }
 
-    function setIdusuario($idusurio){
+    function setIdusuario($idusuario){
     	$this->idusuario = $idusuario;
     }
     function getIdusuario(){
@@ -30,18 +26,6 @@ class Usuario{
     }
     function getNome(){
     	return $this->nome;
-    }
-    function setEmail($email){
-    	$this->email = $email;
-    }
-    function getEmail(){
-        return  $this->email;
-    }
-    function setSenha($senha){
-    	$this->senha = $senha;
-    }
-    function getSenha(){
-        return $this->senha;
     }
     function setPerfil($perfil){
         $this->perfil = $perfil;

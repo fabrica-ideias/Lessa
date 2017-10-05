@@ -555,7 +555,6 @@ function initLogin(){
 		 		if(cliente != null){
 		 			document.getElementById("selectCliente").style.display = "none";
 		 			document.getElementById("addItens").style.display = "block";	
-		 			document.getElementById("menu_painel").style.display = "none";	
 		 			document.getElementById("menu_pedido").style.display = "none";
 		 			selectProdutoCliente(cliente,"produto_orcamento");
 		 		}else{
@@ -767,7 +766,7 @@ function inicarClientesNegociacao(){
 				clientes = result;
 				var nomes = {};
 				for (var i = 0;i < result.length; i++) {
-					nomes[result[i].nome.toUpperCase()] = result[i].idusuario;
+					nomes[result[i].PAR_A_RAZAOSOCIAL.toUpperCase()] = result[i].PAR_PKN_CODIGO;
 				}
 				$('input.autoclientenegociacao').autocomplete({
 					data: nomes,
@@ -821,7 +820,7 @@ function inicarClientesNegociacao(){
 				clientes = result;
 				var nomes = {};
 				for (var i = 0;i < result.length; i++) {
-					nomes[result[i].nome.toUpperCase()] = result[i].idusuario;
+					nomes[result[i].PAR_A_RAZAOSOCIAL.toUpperCase()] = result[i].PAR_PKN_CODIGO;
 				}
 				$('input.autocliente').autocomplete({
 					data: nomes,

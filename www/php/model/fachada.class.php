@@ -1,23 +1,24 @@
-<?php 
-require_once("model/Usuario.php");
+<?php
+require_once("model/Usuario.class.php");
+require_once("model/Login.class.php");
 require_once("model/Configuracao.class.php");
 require_once("model/Negociacao.class.php");
-class Fachada{	
-		//Usuario
+class Fachada{
+
 	function getUsuarioPorId($idusuario){
 		include("conexao.php");
-		$result = mysqli_query($con,"select * from usuario where idusuario='$idusuario'");
+		$result = mysqli_query($con,"select * from login where idlogin='$idusuario'");
 		if( mysqli_num_rows($result) > 0){
 			$dados =  mysqli_fetch_array($result);
-			$usuario = new Usuario();
-			$usuario-> setUsuario($dados);
-			return $usuario;
+			$login = new Login();
+			$login->setLogin($dados);
+			return $login;
 		}
 		return null;
 	}
 	function getUsuarioEmail($email){
 		include("conexao.php");
-		$result = mysqli_query($con,"select * from usuario where email='$email'");
+		$result = mysqli_query($con,"select * from login where email='$email'");
 		if( mysqli_num_rows($result)){
 			$dados =  mysqli_fetch_array($result);
 			echo json_encode($dados);
@@ -27,26 +28,23 @@ class Fachada{
 	}
 	function getClientes(){
 		include("conexao.php");
-		$result = mysqli_query($con,"select * from usuario where tipo='CLIENTE'");
-		if( mysqli_num_rows($result)){
-			$clientes = array();
-			while($dados= mysqli_fetch_array($result)){
-				$clientes[] = $dados;
-			}
-			echo json_encode($clientes);
-		}else{
-			echo "0";
+		mysqli_query($con,"SET NAMES 'utf8'");
+		$result = mysqli_query($con,"SELECT * FROM TB_PAR_PARTICIPANTE ORDER BY PAR_A_RAZAOSOCIAL ASC") ;
+		$clientes = [];
+		while($dados= mysqli_fetch_array($result)){
+			$clientes[] = $dados;
 		}
+		echo json_encode($clientes, JSON_UNESCAPED_UNICODE);
 	}
 	function getFuncionarios(){
 		include("conexao.php");
-		$result = mysqli_query($con,"select * from usuario where tipo='FUNCIONARIO'");
+		$result = mysqli_query($con,"select * from TB_PAR_PARTICIPANTE");
 		if( mysqli_num_rows($result)){
-			$clientes = array();
+			$funcionario = array();
 			while($dados= mysqli_fetch_array($result)){
-				$clientes[] = $dados;
+				$funcionario[] = $dados;
 			}
-			echo json_encode($clientes);
+			echo json_encode($funcionario, JSON_UNESCAPED_UNICODE);
 		}else{
 			echo "0";
 		}
@@ -75,24 +73,24 @@ class Fachada{
 		return null;
 	}
 
-	function startSession($manterConectado,$session,$valor){	
+	function startSession($manterConectado,$session,$valor){
 		session_start();
 		$_SESSION[$session] = $valor;
 		if($manterConectado == "true"){
 			setcookie($session, $_SESSION[$session], PHP_INT_MAX);
 		}
 	}
-	function getProdutos(){	
+	function getProdutos(){
 		include("conexao.php");
 		$produtos = array();
-		$query = mysqli_query($con,"SELECT * FROM produto");
+		$query = mysqli_query($con,"SELECT * FROM TB_PRO_PRODUTO");
 		while($dados= mysqli_fetch_array($query)){
 			$produtos[] = $dados;
 		}
-		echo json_encode($produtos);
+		echo json_encode($produtos, JSON_UNESCAPED_UNICODE);
 	}
 
-	function getProdutosOrcamentos(){	
+	function getProdutosOrcamentos(){
 		include("conexao.php");
 		$produtos = array();
 		$query = mysqli_query($con,"SELECT * FROM produto ORDER BY descricao");
@@ -101,7 +99,7 @@ class Fachada{
 			$produto['idproduto'] = $dados['idproduto'];
 			$produto['descricao'] = $dados['descricao'];
 			$produto['quantidade'] = $dados['quantidade'];
-			$produto['qtdePedido'] = 0; 
+			$produto['qtdePedido'] = 0;
 			$itens = mysqli_query($con,"SELECT * FROM itemorcamento WHERE idproduto='".$dados['idproduto']."'");
 			$orcamentos = array();
 			while($item = mysqli_fetch_array($itens)){
@@ -112,10 +110,10 @@ class Fachada{
 				$item['usuario'] = $usuario['nome'];
 				$produto['qtdePedido'] += $item['qtde'];
 				$produto['id'] = $item['iditem'];
-				$orcamentos[] = $item; 
+				$orcamentos[] = $item;
 			}
 			$produto['orcamentos'] = $orcamentos;
- 			if($produto['qtdePedido'] > 0){
+			if($produto['qtdePedido'] > 0){
 				$produtos[] = $produto;
 			}
 		}
@@ -133,19 +131,18 @@ class Fachada{
 			echo "0";
 		}
 	}
-	function getProdutoCliente($idusuario){
+	function getProdutoCliente($codigo){
 		include("conexao.php");
-		$result = mysqli_query($con,"SELECT * FROM negociacao WHERE idusuario='$idusuario'");
+		$result = mysqli_query($con,"SELECT DISTINCT TB_PRO_PRODUTO.PRO_A_DESCRICAO, TB_PRO_PRODUTO.PRO_PKN_CODIGO, TB_ITB_PRECO_PAR.PRO_N_PRECO_VENDA_01_ITB FROM TB_PRO_PRODUTO,TB_ITB_PRECO_PAR WHERE  TB_ITB_PRECO_PAR.ITB_PKN_CODIGO = '$codigo' AND TB_PRO_PRODUTO.PRO_PKN_CODIGO = TB_ITB_PRECO_PAR.PRO_PKN_CODIGO");
 		$produtos = array();
 		while($dados= mysqli_fetch_array($result)){
-			$dadoproduto = mysqli_fetch_array(mysqli_query($con,"SELECT * FROM produto WHERE idproduto = '".$dados['idproduto']."'"));
 			$produto = [];
-			$produto['idproduto'] = $dados['idproduto'];
-			$produto['descricao'] = $dadoproduto['descricao'];
-			$produto['valor'] = $dados['valor'];
+			$produto['idproduto'] = $dados['PRO_PKN_CODIGO'];
+			$produto['descricao'] = $dados['PRO_A_DESCRICAO'];
+			$produto['valor'] = $dados['PRO_N_PRECO_VENDA_01_ITB'];
 			$produtos[] = $produto;
 		}
-		echo json_encode($produtos);
+		echo json_encode($produtos, JSON_UNESCAPED_UNICODE);
 	}
 	function getOrcamentos(){
 		include("conexao.php");

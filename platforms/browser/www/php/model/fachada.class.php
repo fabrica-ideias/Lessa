@@ -27,16 +27,13 @@ class Fachada{
 	}
 	function getClientes(){
 		include("conexao.php");
-		$result = mysqli_query($con,"select * from usuario where tipo='CLIENTE'");
-		if( mysqli_num_rows($result)){
-			$clientes = array();
-			while($dados= mysqli_fetch_array($result)){
-				$clientes[] = $dados;
-			}
-			echo json_encode($clientes);
-		}else{
-			echo "0";
+		mysqli_query($con,"SET NAMES 'utf8'");
+		$result = mysqli_query($con,"SELECT * FROM tb_par_participante WHERE PAR_A_TIPO like '%Cliente%'  ORDER BY PAR_A_RAZAOSOCIAL ASC") ;
+		$clientes = [];
+		while($dados= mysqli_fetch_array($result)){
+			$clientes[] = $dados;
 		}
+		echo json_encode($clientes, JSON_UNESCAPED_UNICODE);
 	}
 	function getFuncionarios(){
 		include("conexao.php");
@@ -115,7 +112,7 @@ class Fachada{
 				$orcamentos[] = $item; 
 			}
 			$produto['orcamentos'] = $orcamentos;
- 			if($produto['qtdePedido'] > 0){
+			if($produto['qtdePedido'] > 0){
 				$produtos[] = $produto;
 			}
 		}
