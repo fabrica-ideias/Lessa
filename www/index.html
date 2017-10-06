@@ -19,6 +19,7 @@
 	<script src="js/jquery-ui.js"></script>
 	<script type="text/javascript" src="js/jquery.maskMoney.min.js" ></script>
 	<script src="materialize/js/materialize.min.js"></script>
+	<script src="js/util.js" type="text/javascript"></script>
 	<script src="js/login.js" type="text/javascript"></script>
 </head>
 <body onload="initLogin()">
@@ -76,9 +77,7 @@
 			<ul id="tabs-menu" class="tabs tabs-fixed-width tabs-transparent tabs-fixed-width">
 				<li class="tab"><a href="#home">HOME</a></li>
 				<li class="tab" id="menu_pedidos"><a href="#pedidos">PEDIDOS</a></li>
-				<li class="tab" id="menu_cadastros"><a href="#cadastros">CADASTRO</a></li>
-				<li class="tab" id="menu_negociacao"><a href="#negociacao">NEGOCIAÇÃO</a></li>
-				<li class="tab" id="menu_configuracao"><a href="#configuracoes">CONFIGURAÇÕES</a></li>
+				<li class="tab" id="menu_cadastros"><a href="#cadastros">USUARIO</a></li>
 			</ul>
 		</nav>	
 		<div class="row" >
@@ -190,83 +189,65 @@
 									<div class="row">
 										<div class="input-field col s12">
 											<input type="text" id="autocomplete-input" class="autocliente" autocomplete="off">
-											<label for="autocomplete-input" data-error="SELECIONE O CLIENTE">RAZÃO SOCIAL</label>
+											<label for="autocomplete-input" autocomplete="off" data-error="SELECIONE O CLIENTE">RAZÃO SOCIAL</label>
 										</div>
 									</div>
 									<div class="row">
 										<div class="input-field col s12">
-											<input type="text" id="autocomplete-fantasia" class="autofantasia" autocomplete="off">
-											<label for="autocomplete-input">NOME FANTASIA</label>
+											<input type="text" placeholder=" "  autocomplete="off"id="autocomplete-fantasia" class="autofantasia" autocomplete="off">
+											<label for="autocomplete-fantasia">NOME FANTASIA</label>
 										</div>
 									</div>
 									<div class="row">
 										<div class="input-field col12">
-											<input type="text" id="cpfcnpj" class="validate" autocomplete="off" maxlength="14">
+											<input type="text" placeholder=" " id="cpfcnpj" autocomplete="off" class="validate" autocomplete="off" maxlength="14">
 											<label for="cpfcnpj" data-error="Digite o cpf ou cnpj do cliente">CPF/CNPJ</label>
 										</div>
 									</div>
 									<div class="row">
-										<button type="button" class="col s12 l4 btn" id="btnOrcaProximo" style="margin-top: 20px;margin-bottom: 0px;background: #e25252;">Proximo</button>
+										<button type="button" class="col s12 l4 btn" id="btnOrcaProximo" style="margin-top: 20px;margin-bottom: 0px;background: #5ea1ce;">Proximo</button>
 									</div>
 								</div>
 								<div class="row" id="addItens">
+									<div class="row informatacaoCliente">
+										<label class="col s12" id="infoNome">RAZAO SOCIAL:</label>
+										<label class="col s12" id="infoCpfCnpj">CNPJ/CPF:</label>
+										<label class="col s12" id="infoEndereco">ENDERECO:</label>
+									</div>
 									<nav id="submenu">
 										<div class="nav-wrapper">
-											<div class="col s12">
-												<a href="#!" style="padding-left: 5px;" class="breadcrumb" id="retornaOrcamento">CLIENTE</a>
-												<a href="#!" class="breadcrumb">ITENS</a>
-												<button type="button" class="btn" id="btnFinalizaOrcamento"> <i class="material-icons" style="height: 0;line-height: 0;">check</i></button>
+											<div class="row">
+												<div class="col s7">
+													<button type="button" class="btn" id="btnFinalizaOrcamento">Finalizar</button>
+												</div>
+												<div class="col s4">
+													<input type="text" id="totalOrcamento" value="0,00" disabled />
+												</div>
 											</div>
+											<a class="btn-floating btn-large waves-effect waves-light blue modal-trigger" id="btnAddItem" href="#modalSelecionaProduto"><i class="material-icons">add</i></a>	
 										</div>
-
-											<ul id="datelhe_item" style="color: #000;" class="row collapsible" data-collapsible="accordion">
-
-											</ul>
-
 									</nav>
-									<a class="btn-floating btn-large waves-effect waves-light red modal-trigger" id="btnAddItem" href="#modalSelecionaProduto"><i class="material-icons">add</i></a>	
+									<ul id="datelhe_item" style="color: #000;" class="row collapsible" data-collapsible="accordion">
+									</ul>
 								</div>
 							</div>
 						</form>
 
-						<div class="col s12" id="todosOrcamento"  style="position: relative;">
+						<!-- <div class="col s12" id="todosOrcamento"  style="position: relative;">
 
-						</div>
+						</div> -->
 					</div>
 				</div>
-
-
 				<!-- Cadastro -->
 				<div id="cadastros" class="col s12">
 					<div class="row">
-						<ul class="col s12 l2 collapsible hide-on-med-and-down""  data-collapsible="accordion">
-							<li><div class="collapsible-header" id="btnUsuario">USUARIO</div></li>
-							<li><div class="collapsible-header" id="btnPermissoes">PERMISSÕES</div></li>
-						</ul>
-						<div class="row menu_mobile" id="mobile-demo">
-							<ul class="col s12 collapsible" data-collapsible="accordion" >
-								<li class="col s2">
-									<div class=" collapsible-header" id="btnUsuarioMobile"><i class="material-icons">person_add</i></div>
-								</li>
-								<li class="col s2 ">
-									<div class="collapsible-header" id="btnPermissoesMobile"><i class="material-icons">lock_open</i></div>
-								</li>
-							</ul>
-						</div>
 						<!-- CADASTRO DE USUARIO  -->
-						<div class="col s12" id="cadastro_users">
+						<div class="col s12" style="padding: 10px;">
 							<div class="row">
 								<div class="col l2"></div>
 								<div class="col s12 l8">
 									<div class="row">
 										<div class="row">
-											<div class="input-field col s12 l5">
-												<select id="tipoUsuario">
-													<option value="" disabled selected>SELECIONE O TIPO DO USUARIO</option>
-													<option value="FUNCIONARIO">FUNCIONARIO</option>
-													<option value="CLIENTE">CLIENTE</option>
-												</select>
-											</div>
 											<div class="input-field col l1"></div>
 											<div class="input-field col s12 l6">
 												<input id="nome" type="text" class="validate">
@@ -280,14 +261,25 @@
 											</div>
 										</div>
 										<div class="row">
-											<div class="input-field col s5 l4">
-												<input id="cpf" type="text" class="validate" maxlength="14">
-												<label for="cpf" data-error="Cpf Invalido" data-success="" data-success="ok">CPF</label>
+											<div class="input-field col s12 l4">
+												<input id="senhaUserNovo" type="password" class="validate">
+												<label for="senhaUserNovo">Senha</label>
 											</div>
-											<div class="col s2 l1"></div>
-											<div class="input-field col s5 l4">
-												<input id="telefone" type="text" class="validate">
-												<label for="telefone">TELEFONE</label>
+										</div>
+										<div class="input-field col s12 l5">
+											<select id="tipoUsuario">
+												<option value="" disabled selected>SELECIONE O TIPO DO USUARIO</option>
+												<option value="2">GERENTE</option>
+												<option value="3">VENDEDOR</option>
+												<option value="4">CLIENTE</option>
+											</select>
+										</div>
+										<div class="input-field col s12 l5">
+											<div class="row">
+												<div class="input-field col s12" id="selecioneCliente">
+													<input type="text" id="autocomplete-input" class="autocliente" autocomplete="off">
+													<label for="autocomplete-input">Cliente</label>
+												</div>
 											</div>
 										</div>
 										<div class="row">
@@ -340,9 +332,6 @@
 						</div>
 					</div>
 				</div>
-				<div id="negociacao" class="col s12">
-				</div>
-				<div id="configuracoes" class="col s12">CONFIGURAÇÕES</div>
 			</div>
 			<div class="col l1"></div>
 		</div>
@@ -409,14 +398,24 @@
 		<div class="modal-content">
 			<div class="row">
 				<div class="input-field col s12">
-					<select id="produto_orcamento">
-						<option value="" disabled selected>SELECIONE O PRODUTO</option>
-					</select>
-					<label>Selecione o produto</label>
+					<div class="row">
+						<div class="col s12">
+							<div class="row">
+								<div class="input-field col s12">
+									<input type="text" id="produto_orcamento" class="autoproduto">
+									<label for="produto_orcamento">Descricao do produto</label>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="input-field col s4">
 					<input type="number" name="qtdeProduto" id="qtdeProduto" />
 					<label for="qtdeProduto" style="text-align: right;font-size: 1.2em;padding-right: 5px;">Quantidade</label>
+				</div>
+				<div class="input-field col s4" style="margin-left: 50px;">
+					<input disabled type="text" placeholder=" " name="precoProduto" id="precoProduto" style="text-align: right;background-color: #4c79a6;color: #fff;padding: 0px 5px;border-radius: 10px;" />
+					<label for="precoProduto" class="labelPreco">Preço</label>
 				</div>
 			</div>
 		</div>

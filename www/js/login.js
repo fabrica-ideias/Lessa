@@ -5,6 +5,7 @@ function initLogin() {
     var validaEmail = false;
     var produtos = [];
     var produtoCliente = [];
+    var produtoSelecionado = null;
     var clientes = [];
     var itensOrcamento = [];
     var funcionario = null;
@@ -52,7 +53,7 @@ function initLogin() {
                 console.error(
                     "The following error occurred: " +
                     textStatus, errorThrown
-                );
+                    );
             });
         } else {
             document.getElementById("email").focus();
@@ -85,7 +86,7 @@ function initLogin() {
                 console.error(
                     "The following error occurred: " +
                     textStatus, errorThrown
-                );
+                    );
             });
         } else {
             document.getElementById("emailUser").focus();
@@ -127,20 +128,20 @@ function initLogin() {
         }
         switch (result) {
             case 0:
-                document.getElementById("emailUser").focus();
-                document.getElementById("lEmailUser").setAttribute("data-error", "Possivel erro de digitação: hotmail,yahoo,gmail");
-                document.getElementById("emailUser").setAttribute("class", "validate invalid");
-                break;
+            document.getElementById("emailUser").focus();
+            document.getElementById("lEmailUser").setAttribute("data-error", "Possivel erro de digitação: hotmail,yahoo,gmail");
+            document.getElementById("emailUser").setAttribute("class", "validate invalid");
+            break;
             case 1:
-                document.getElementById("emailUser").focus();
-                document.getElementById("lEmailUser").setAttribute("data-error", "Possivel erro de digitação: com");
-                document.getElementById("emailUser").setAttribute("class", "validate invalid");
-                break;
+            document.getElementById("emailUser").focus();
+            document.getElementById("lEmailUser").setAttribute("data-error", "Possivel erro de digitação: com");
+            document.getElementById("emailUser").setAttribute("class", "validate invalid");
+            break;
             case 2:
-                document.getElementById("emailUser").focus();
-                document.getElementById("lEmailUser").setAttribute("data-error", "Possivel erro de digitação: br,org");
-                document.getElementById("emailUser").setAttribute("class", "validate invalid");
-                break;
+            document.getElementById("emailUser").focus();
+            document.getElementById("lEmailUser").setAttribute("data-error", "Possivel erro de digitação: br,org");
+            document.getElementById("emailUser").setAttribute("class", "validate invalid");
+            break;
         }
 
     }
@@ -161,7 +162,7 @@ function initLogin() {
             console.error(
                 "The following error occurred: " +
                 textStatus, errorThrown
-            );
+                );
         });
     }
 
@@ -172,7 +173,6 @@ function initLogin() {
             type: "post"
         });
         request.done(function (response, textStatus, jqXHR) {
-            console.log(response);
             usuario = JSON.parse(response);
             if (usuario != "0") {
                 document.getElementById("containerLogin").style.display = "none";
@@ -204,7 +204,7 @@ function initLogin() {
             console.error(
                 "The following error occurred: " +
                 textStatus, errorThrown
-            );
+                );
         });
     }
 
@@ -242,11 +242,13 @@ function initLogin() {
         var file_data = x.files[0];
         var form_data = new FormData();
         // form_data.append('file', file_data);
-        form_data.append('tipoUsuario', $('#tipoUsuario').val());
         form_data.append('nome', $('#nome').val());
         form_data.append('email', $('#emailUserNovo').val());
-        form_data.append('cpf', $('#cpf').val());
-        form_data.append('telefone', $('#telefone').val());
+        form_data.append('senha', $('#senhaUserNovo').val());
+        form_data.append('permissao', $('#tipoUsuario').val());
+        if(cliente != null){
+            form_data.append('codparticipante', cliente.PAR_PKN_CODIGO);
+        }
         $.ajax({
             type: "POST",
             url: url + "php/salvaUsuario.php",
@@ -255,16 +257,18 @@ function initLogin() {
             cache: false,             // To unable request pages to be cached
             processData: false,    	// Data sent to server, a set of key/value pairs (i.e. form fields and values)
             success: function (data) {
+                console.log(data);
                 document.getElementById('nome').value = "";
                 document.getElementById('emailUserNovo').value = "";
-                document.getElementById('cpf').value = "";
-                document.getElementById('telefone').value = "";
-                document.getElementById("titleModal").innerHTML = "Resultado:";
+                document.getElementById('senhaUserNovo').value = "";
+                document.getElementById("titleModal").innerHTML = "";
                 document.getElementById("msgModal").innerHTML = "Usuario salvo com sucesso";
+                document.getElementById("autocomplete-input").value = "";
                 $('#modalpreload').modal('close');
+                $('#modalInfo').modal('open');
                 preencheClientes();
                 //todosFuncionarios();
-                inicarClientesNegociacao();
+                //inicarClientesNegociacao();
             }
         });
 
@@ -310,11 +314,12 @@ function initLogin() {
     }
 
     function incluirPainel() {
-        document.getElementById("container").style.display = "block";
-        $(document).ready(function () {
-            $('.collapsible').collapsible();
-            $('.modal').modal();
-            $('.modalpreloader').modal({
+
+     document.getElementById("container").style.display = "block";
+     $(document).ready(function () {
+        $('.collapsible').collapsible();
+        $('.modal').modal();
+        $('.modalpreloader').modal({
                     dismissible: false, // Modal can be dismissed by clicking outside of the modal
                     opacity: .5, // Opacity of modal background
                     inDuration: 300, // Transition in duration
@@ -324,83 +329,85 @@ function initLogin() {
                     ready: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
                     },
                     complete: function () {
-                        $('#modalInfo').modal('open');
+                        //$('#modalInfo').modal('open');
                     } // Callback for Modal close
                 }
-            );
-            $(".button-collapse").sideNav();
-            $('select').material_select();
+                );
+        $('#modalSelecionaProduto').modal({
+                    dismissible: false, // Modal can be dismissed by clicking outside of the modal
+                    opacity: .5, // Opacity of modal background
+                    inDuration: 300, // Transition in duration
+                    outDuration: 200, // Transition out duration
+                    startingTop: '50%', // Starting top style attribute
+                    endingTop: '10%', // Ending top style attribute
+                    ready: function (modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+                    },
+                    complete: function () {
+                        //$('#modalInfo').modal('open');
+                    } // Callback for Modal close
+                }
+                );
+        $(".button-collapse").sideNav();
+        $('select').material_select();
+        $('#modalpreload').modal('open');
 
-        });
-        initConfiguracao();
+    });
+     initConfiguracao();
 
-    }
+ }
 
-    verificaLogin();
+ verificaLogin();
 
-    function consultaPermissoes() {
-        document.getElementById("tabs-menu").style.display = "none";
-        $('ul.tabs').tabs('select_tab', 'pedidos');
-        document.getElementById("funcionario_orcamento").style.display = "block";
-        document.getElementById("selectCliente").style.display = "block";
-        /*
-         if(usuario.tipo == "GERENTE"){
+ function consultaPermissoes() {
+
+    console.log(usuario.idpermissao);
+    if(usuario.idpermissao == 1 ||  usuario.idpermissao == 2){
          document.getElementById("tabs-menu").style.display = "block"
          $('ul.tabs').tabs('select_tab', 'home');
          document.getElementById("menu_cadastros").style.display = "block";
          document.getElementById("menu_pedidos").style.display = "block";
-         document.getElementById("menu_negociacao").style.display = "block";
-         document.getElementById("menu_configuracao").style.display = "block";
          document.getElementById("btnConfiguracao").style.display = "block";
          document.getElementById("btnConfiguracaoMobile").style.display = "block";
-         mostraProdutos();
-         }else{
-         /*$.ajax({
-         url: url+"php/getPermissoes.php",
-         type:"POST",
-         data:{"idusuario": usuario.idusuario},
-         success: function (json){
-         var permissoes = JSON.parse(json);
-         for(var i = 0; i < permissoes.length; i++){
-         if(permissoes[i].idpermissao == 1){
-         document.getElementById("menu_pedidos").style.display = "block";
-         }
-         if(permissoes[i].idpermissao == 2){
-         document.getElementById("menu_cadastros").style.display = "block";
-         }
-         if(permissoes[i].idpermissao == 3){
-         document.getElementById("menu_negociacao").style.display = "block";
-         }
-         if(permissoes[i].idpermissao == 4){
-         document.getElementById("menu_configuracao").style.display = "block";
-         }
-         console.log(i);
-         }
-
-         }
-         });
-         document.getElementById("produtos").style.display = "none";
-         }*/
-
-
     }
+    if(usuario.idpermissao == 3){
+        document.getElementById("tabs-menu").style.display = "none";
+        $('ul.tabs').tabs('select_tab', 'pedidos');
+        document.getElementById("funcionario_orcamento").style.display = "block";
+        document.getElementById("selectCliente").style.display = "block";
+    }
+    // if(usuario.idpermissao == 4){
+    //     document.getElementById("tabs-menu").style.display = "none";
+    //     $('ul.tabs').tabs('select_tab', 'pedidos');
+    //     document.getElementById("funcionario_orcamento").style.display = "block";
+    //     document.getElementById("selectCliente").style.display = "block";
+    //     document.getElementById("selectCliente").style.display = "none";
+    //     document.getElementById("addItens").style.display = "block";
+    //     document.getElementById("menu_pedido").style.display = "none";
 
-    function todosProdutos() {
-        $.ajax({
-            url: url + "php/todosProdutos.php",
-            type: "POST",
-            success: function (json) {
-                var result = JSON.parse(json);
-                produtos = result;
-                var selects = "<option value='' disabled selected>SELECIONE UM PRODUTO</option>";
-                for (var i = 0; i < result.length; i++) {
-                    selects += "<option value='" + result[i].PRO_PKN_CODIGO + "' >" + result[i].PRO_A_DESCRICAO_REDUZIDA.toUpperCase() + "</option>";
-                }
-                document.getElementById("produtos_negociacao").innerHTML = selects;
-                $('select').material_select();
+    //     document.getElementById("infoNome").innerHTML = "RAZAO SOCIAL: "+usuario.user.PAR_A_RAZAOSOCIAL;
+    //     document.getElementById("infoCpfCnpj").innerHTML = "CNPJ/CPF: "+usuario.user.PAR_A_CNPJ_CPF;
+    //     document.getElementById("infoEndereco").innerHTML = "ENDERECO: "+usuario.user.PAR_A_LOGRADOURO+" "+usuario.user.PAR_A_ENDERECO+" "+cliente.PAR_A_NUMERO;
+    //     selectProdutoCliente(, "produto_orcamento");
+    // }
+
+}
+
+function todosProdutos() {
+    $.ajax({
+        url: url + "php/todosProdutos.php",
+        type: "POST",
+        success: function (json) {
+            var result = JSON.parse(json);
+            produtos = result;
+            var selects = "<option value='' disabled selected>SELECIONE UM PRODUTO</option>";
+            for (var i = 0; i < result.length; i++) {
+                selects += "<option value='" + result[i].PRO_PKN_CODIGO + "' >" + result[i].PRO_A_DESCRICAO_REDUZIDA.toUpperCase() + "</option>";
             }
-        });
-    }
+            document.getElementById("produtos_negociacao").innerHTML = selects;
+            $('select').material_select();
+        }
+    });
+}
 
     //tras todos os produtos
     function mostraProdutos() {
@@ -458,27 +465,40 @@ function initLogin() {
     }
 
     //Incluir os produtos do cliente dentro do select
-    function selectProdutoCliente(codigo, select) {
+    function selectProdutoCliente(cliente, select) {
+        $('#modalpreload').modal('open');
         $.ajax({
             url: url + "php/getProdutosCliente.php",
             type: "POST",
-            data: {"codigo": codigo.PAR_PKN_CODIGO},
+            data: {"codigo": cliente.TAB_PKN_CODIGO},
             success: function (json) {
-                console.log(json);
+                document.getElementById("autocomplete-fantasia").placeholder = " ";
+                document.getElementById("autocomplete-fantasia").value = cliente.PAR_A_NOME_FANTASIA;
+                document.getElementById("cpfcnpj").placeholder = " ";
+                document.getElementById("cpfcnpj").value = cliente.PAR_A_CNPJ_CPF;
                 var result = JSON.parse(json);
                 produtoCliente = result;
-                var selects = "<option value='' disabled selected>SELECIONE UM PRODUTO</option>";
+                var nomes = {};
                 for (var i = 0; i < result.length; i++) {
-                    selects += "<option value='" + i + "' >" + result[i].descricao.toUpperCase() + "</option>";
-                }
-                document.getElementById(select).innerHTML = selects;
-                $('select').material_select();
-            }
-        });
+                   nomes[result[i].descricao] =  i ;
+               }
+               $('input.autoproduto').autocomplete({
+                 data: nomes,
+                    limit: 5, // The max amount of results that can be shown at once. Default: Infinity.
+                    onAutocomplete: function (val) {
+                        produtoSelecionado = produtoCliente[nomes[val]];
+                        document.getElementById("precoProduto").value = numberToReal( produtoSelecionado.valor);
+                    },
+                    minLength: 1,
+                });
+               $('#modalpreload').modal('close');
+           }
+       });
     }
 
     //Inicia a Configuração de Layout e Eventos
     function initConfiguracao() {
+
         request = $.ajax({
             url: url + "php/configuracao.php",
             type: "POST"
@@ -514,24 +534,6 @@ function initLogin() {
                 logout();
             });
 
-            //CADASTRO E PERMISSÕES
-            document.getElementById("btnPermissoes").addEventListener("click", function () {
-                document.getElementById("permissoes_users").style.display = "block";
-                document.getElementById("cadastro_users").style.display = "none";
-            });
-            document.getElementById("btnPermissoesMobile").addEventListener("click", function () {
-                document.getElementById("permissoes_users").style.display = "block";
-                document.getElementById("cadastro_users").style.display = "none";
-            });
-            document.getElementById("btnUsuario").addEventListener("click", function () {
-                document.getElementById("cadastro_users").style.display = "block";
-                document.getElementById("permissoes_users").style.display = "none";
-            });
-            document.getElementById("btnUsuarioMobile").addEventListener("click", function () {
-                document.getElementById("cadastro_users").style.display = "block";
-                document.getElementById("permissoes_users").style.display = "none";
-            });
-
             // Salva o Usuario
             document.getElementById("btnSalvaUsuario").addEventListener("click", function () {
                 salvaUsuario();
@@ -564,6 +566,10 @@ function initLogin() {
                     document.getElementById("selectCliente").style.display = "none";
                     document.getElementById("addItens").style.display = "block";
                     document.getElementById("menu_pedido").style.display = "none";
+
+                    document.getElementById("infoNome").innerHTML = "RAZAO SOCIAL: "+cliente.PAR_A_RAZAOSOCIAL;
+                    document.getElementById("infoCpfCnpj").innerHTML = "CNPJ/CPF: "+cliente.PAR_A_CNPJ_CPF;
+                    document.getElementById("infoEndereco").innerHTML = "ENDERECO: "+cliente.PAR_A_LOGRADOURO+" "+cliente.PAR_A_ENDERECO+" "+cliente.PAR_A_NUMERO;
                     selectProdutoCliente(cliente, "produto_orcamento");
                 } else {
                     Materialize.Toast.removeAll();
@@ -572,18 +578,17 @@ function initLogin() {
 
             });
 
-            document.getElementById("retornaOrcamento").addEventListener("click", function () {
-                document.getElementById("selectCliente").style.display = "block";
-                document.getElementById("addItens").style.display = "none";
-                document.getElementById("menu_painel").style.display = "block";
-                document.getElementById("menu_pedido").style.display = "block";
-                document.getElementById("datelhe_item").innerHTML = "";
-                itensOrcamento = [];
-            });
-
+            // document.getElementById("retornaOrcamento").addEventListener("click", function () {
+            //     document.getElementById("selectCliente").style.display = "block";
+            //     document.getElementById("addItens").style.display = "none";
+            //     document.getElementById("menu_painel").style.display = "block";
+            //     document.getElementById("menu_pedido").style.display = "block";
+            //     document.getElementById("datelhe_item").innerHTML = "";
+            //     itensOrcamento = [];
+            // });
             document.getElementById("addItemOrca").addEventListener("click", function () {
                 var item = new Object();
-                item.produto = produtoCliente[$("#produto_orcamento").val()];
+                item.produto = produtoSelecionado;
                 if (item.produto != null) {
                     item.qtde = $("#qtdeProduto").val();
                     item.total = item.produto.valor * item.qtde;
@@ -622,6 +627,8 @@ function initLogin() {
                             total = total + parseFloat(itensOrcamento[i].total);
                         }
                     }
+                    document.getElementById("totalOrcamento").value = numberToReal(total);
+                    document.getElementById("produto_orcamento").value = "";
                     $("#qtdeProduto").val("");
                 }
             });
@@ -642,8 +649,28 @@ function initLogin() {
                     type: "POST",
                     data: {"dado": dado},
                     success: function (json) {
-                        console.log(json);
+                        $(".autocliente").val("");
+                        $(".autocomplete").val("");
+                        document.getElementById("detalhe_pedido").innerHTML = "";
+                        document.getElementById("preconegociado").value = "";
+                        document.getElementById("totalpedido").value = "";
+                        document.getElementById("totalOrcamento").value = "0,00";
+                        document.getElementById("autocomplete-fantasia").value = "";
+                        document.getElementById("cpfcnpj").value = "";
+                        document.getElementById("totalOrcamento").value = "0,00";
+                        $("#qtde").val("");
+                        document.getElementById("produtos_pedido").innerHTML = "<option value='' disabled selected>SELECIONE UM PRODUTO</option>";
+                        document.getElementById("titleModal").innerHTML = "Resultado:";
+                        document.getElementById("msgModal").innerHTML = "Orcamento enviado com sucesso";
+                        document.getElementById("btnSalvaOrcamento").style.display = "none";
+                        document.getElementById("selectCliente").style.display = "block";
+                        document.getElementById("addItens").style.display = "none";
+                        document.getElementById("menu_painel").style.display = "block";
+                        document.getElementById("menu_pedido").style.display = "block";
+                        document.getElementById("datelhe_item").innerHTML = "";
+                        itensOrcamento = [];
                         $('#modalpreload').modal('close');
+                        $('#modalInfo').modal('close');
                     }
                 });
             });
@@ -691,22 +718,8 @@ function initLogin() {
                 }
             });
 
-            // formata mascara
-            document.getElementById("cpf").addEventListener("keypress", function (event) {
-                return formataCampo(document.getElementById("cpf"), "000.000.000-00", event);
-            });
-            document.getElementById("cpf").addEventListener("keyup", function () {
-                if (document.getElementById("cpf").value.length == 14) {
-                    ValidarCPF(document.getElementById("cpf"));
-                }
-            });
-            document.getElementById("cpf").addEventListener("blur", function () {
-                if (document.getElementById("cpf").value.length == 14) {
-                    ValidarCPF(document.getElementById("cpf"));
-                }
-            })
-            //salva o orcamento
-            document.getElementById("btnSalvaOrcamento").addEventListener("click", function () {
+               //salva o orcamento
+               document.getElementById("btnSalvaOrcamento").addEventListener("click", function () {
                 $('#modalpreload').modal('open');
                 var orcamento = new Object();
                 orcamento.usuario = cliente;
@@ -732,85 +745,34 @@ function initLogin() {
                         document.getElementById("titleModal").innerHTML = "Resultado:";
                         document.getElementById("msgModal").innerHTML = "Orcamento enviado com sucesso";
                         document.getElementById("btnSalvaOrcamento").style.display = "none";
+                        document.getElementById("selectCliente").style.display = "block";
+                        document.getElementById("addItens").style.display = "none";
+                        document.getElementById("menu_painel").style.display = "block";
+                        document.getElementById("menu_pedido").style.display = "block";
+                        document.getElementById("datelhe_item").innerHTML = "";
+                        itensOrcamento = [];
                         $('#modalpreload').modal('close');
+                        $('#modalInfo').modal('close');
                     }
                 });
-
-
             });
 
-            document.getElementById("verOrcamentos").addEventListener("click", listaOrcamentos);
-            document.getElementById("verOrcamentosMobile").addEventListener("click", listaOrcamentos);
-
+               document.getElementById("verOrcamentos").addEventListener("click", listaOrcamentos);
+               document.getElementById("verOrcamentosMobile").addEventListener("click", listaOrcamentos);
+               $("#tipoUsuario").change(function(){
+                if($(this).val() == 4){
+                    document.getElementById("selecioneCliente").style.display = 'block';
+                }else{
+                    document.getElementById("selecioneCliente").style.display = 'none';
+                }
+            });
             //Mascara Moeda no Campo
             $("input#precoproduto").maskMoney({showSymbol: true, symbol: "R$", decimal: ",", thousands: "."});
-            
-            inicarClientesNegociacao();
             consultaPermissoes();
             //todosProdutos();
-
-            document.getElementById("salvaPermissoes").addEventListener("click", function () {
-                $('#modalpreload').modal('open');
-                var permissoes = new Object();
-                permissoes.idusuario = funcionario;
-                if (document.getElementById("chpedido").checked == true) {
-                    permissoes.pedido = "1";
-                }
-                if (document.getElementById("chcadasto").checked == true) {
-                    permissoes.cadastro = "2";
-                }
-                if (document.getElementById("chnegoc").checked == true) {
-                    permissoes.negoc = "3";
-                }
-                if (document.getElementById("chconfi").checked == true) {
-                    permissoes.confi = "4";
-                }
-                var dado = JSON.stringify(permissoes);
-
-                $.ajax({
-                    url: url + "php/permissoesUsuario.php",
-                    type: "POST",
-                    data: {"dado": dado},
-                    success: function (json) {
-                        document.getElementById("chpedido").checked = false;
-                        document.getElementById("chcadasto").checked = false;
-                        document.getElementById("chnegoc").checked = false;
-                        document.getElementById("chconfi").checked = false;
-                        document.getElementById("msgModal").innerHTML = "Permissoes incluidas com sucesso !";
-                        $(".autocomplete").val("");
-                        $('#modalpreload').modal('close');
-                    }
-                });
-            });
+            $('#modalpreload').modal('close');
         });
-
-    }
-
-    function inicarClientesNegociacao() {
-        //	TRAS OS PRODUTOS NEGOCIADO DO CLIENTE PARA A TABELA
-        $.ajax({
-            url: url + "php/getClientes.php",
-            type: "POST",
-            success: function (json) {
-                var result = JSON.parse(json);
-                clientes = result;
-                var nomes = {};
-                for (var i = 0; i < result.length; i++) {
-                    nomes[result[i].PAR_A_RAZAOSOCIAL.toUpperCase()] = i;
-                }
-                $('input.autoclientenegociacao').autocomplete({
-                    data: nomes,
-                    limit: 100, // The max amount of results that can be shown at once. Default: Infinity.
-                    onAutocomplete: function (val) {
-
-                        cliente = result[nomes[val]];
-                        mostraProdutosCliente(cliente, "detalhe_negociacao");
-                    },
-                    minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
-                });
-            }
-        });
-    }
+}
 
     //tras todos os orcamentos do cliente
     function listaOrcamentos() {
@@ -854,7 +816,7 @@ function initLogin() {
                 }
                 $('input.autocliente').autocomplete({
                     data: nomes,
-                    limit: 100, // The max amount of results that can be shown at once. Default: Infinity.
+                    limit: 5, // The max amount of results that can be shown at once. Default: Infinity.
                     onAutocomplete: function (val) {
                         cliente = result[nomes[val]];
                         selectProdutoCliente(cliente, "produtos_pedido");
@@ -884,7 +846,7 @@ function initLogin() {
                 }
                 $('input.autocomplete').autocomplete({
                     data: nomes,
-                    limit: 100, // The max amount of results that can be shown at once. Default: Infinity.
+                    limit: 10, // The max amount of results that can be shown at once. Default: Infinity.
                     onAutocomplete: function (val) {
                         funcionario = nomes[val];
                         getPermissoes(funcionario);
@@ -895,31 +857,6 @@ function initLogin() {
         });
     }
 
-    //permisoes de tela
-    function getPermissoes(idusuario) {
-        $.ajax({
-            url: url + "php/getPermissoes.php",
-            type: "POST",
-            data: {"idusuario": idusuario},
-            success: function (json) {
-                var permissoes = JSON.parse(json);
-                for (var i = 0; i < permissoes.length; i++) {
-                    if (permissoes[i].idpermissao == 1) {
-                        document.getElementById("chpedido").checked = true;
-                    }
-                    if (permissoes[i].idpermissao == 2) {
-                        document.getElementById("chcadasto").checked = true;
-                    }
-                    if (permissoes[i].idpermissao == 3) {
-                        document.getElementById("chnegoc").checked = true;
-                    }
-                    if (permissoes[i].idpermissao == 4) {
-                        document.getElementById("chconfi").checked == true;
-                    }
-                }
-            }
-        });
-    }
 
     //Habilitar a tela de configuração de layout do usuario
     function abrirConfiguracao() {
@@ -984,8 +921,6 @@ function initLogin() {
         document.getElementById("criar_orcamento").style.display = "none";
         document.getElementById("menu_cadastros").style.display = "none";
         document.getElementById("menu_pedidos").style.display = "none";
-        document.getElementById("menu_negociacao").style.display = "none";
-        document.getElementById("menu_configuracao").style.display = "none";
         document.getElementById("btnConfiguracao").style.display = "none";
         document.getElementById("btnConfiguracaoMobile").style.display = "none";
         document.getElementById("permissoes_users").style.display = "none";
@@ -995,76 +930,6 @@ function initLogin() {
         document.getElementById("selectCliente").style.display = "none";
         document.getElementById("addItens").style.display = "none";
     }
+    
 
-    //remove a mascara moeda do valor
-    function removeMascara(valor) {
-        valor = valor.replace(".", "");
-        valor = valor.replace(",", ".");
-        return parseFloat(valor);
-    }
-
-    function numberToReal(num) {
-        var numero = parseFloat(num);
-        var numero = numero.toFixed(2).split('.');
-        numero[0] = numero[0].split(/(?=(?:...)*$)/).join('.');
-        return numero.join(',');
-    }
-
-    //formata de forma generica os campos
-    function formataCampo(campo, Mascara, evento) {
-        var boleanoMascara;
-
-        var Digitato = evento.keyCode;
-        exp = /\-|\.|\/|\(|\)| /g
-        campoSoNumeros = campo.value.toString().replace(exp, "");
-
-        var posicaoCampo = 0;
-        var NovoValorCampo = "";
-        var TamanhoMascara = campoSoNumeros.length;
-        ;
-
-        if (Digitato != 8) { // backspace 
-            for (i = 0; i <= TamanhoMascara; i++) {
-                boleanoMascara = ((Mascara.charAt(i) == "-") || (Mascara.charAt(i) == ".")
-                || (Mascara.charAt(i) == "/"))
-                boleanoMascara = boleanoMascara || ((Mascara.charAt(i) == "(")
-                    || (Mascara.charAt(i) == ")") || (Mascara.charAt(i) == " "))
-                if (boleanoMascara) {
-                    NovoValorCampo += Mascara.charAt(i);
-                    TamanhoMascara++;
-                } else {
-                    NovoValorCampo += campoSoNumeros.charAt(posicaoCampo);
-                    posicaoCampo++;
-                }
-            }
-            campo.value = NovoValorCampo;
-            return true;
-        } else {
-            return true;
-        }
-    }
-
-    function ValidarCPF(Objcpf) {
-        var cpf = Objcpf.value;
-        exp = /\.|\-/g
-        cpf = cpf.toString().replace(exp, "");
-        var digitoDigitado = eval(cpf.charAt(9) + cpf.charAt(10));
-        var soma1 = 0, soma2 = 0;
-        var vlr = 11;
-
-        for (i = 0; i < 9; i++) {
-            soma1 += eval(cpf.charAt(i) * (vlr - 1));
-            soma2 += eval(cpf.charAt(i) * vlr);
-            vlr--;
-        }
-        soma1 = (((soma1 * 10) % 11) == 10 ? 0 : ((soma1 * 10) % 11));
-        soma2 = (((soma2 + (2 * soma1)) * 10) % 11);
-
-        var digitoGerado = (soma1 * 10) + soma2;
-        if (digitoGerado != digitoDigitado) {
-            document.getElementById("cpf").setAttribute("class", "validate invalid");
-        } else {
-            document.getElementById("cpf").setAttribute("class", "validate");
-        }
-    }
 }

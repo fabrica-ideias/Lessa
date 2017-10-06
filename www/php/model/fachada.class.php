@@ -52,8 +52,7 @@ class Fachada{
 
 	function salvaUsuario($usuario){
 		include("conexao.php");
-		if(!mysqli_query($con,"insert into usuario (nome,email,senha,perfil,cpf,telefone,tipo) values ('".$usuario->getNome()."','".$usuario->getEmail()."','".$usuario->getSenha()."','".$usuario->getPerfil()."','".$usuario->getCpf()."','".$usuario->getTelefone()."','".$usuario->getTipo()."')")){
-
+		if(!mysqli_query($con,"insert into login (nome,email,senha,idpermissao,codparticipante) values ('".$usuario->getNome()."','".$usuario->getEmail()."','".$usuario->getSenha()."','".$usuario->getIdPermissao()."','".$usuario->getCodParticipante()."')")){
 			echo "Error :".mysqli_error($con);
 		}
 		echo "0";
@@ -133,16 +132,29 @@ class Fachada{
 	}
 	function getProdutoCliente($codigo){
 		include("conexao.php");
-		$result = mysqli_query($con,"SELECT DISTINCT TB_PRO_PRODUTO.PRO_A_DESCRICAO, TB_PRO_PRODUTO.PRO_PKN_CODIGO, TB_ITB_PRECO_PAR.PRO_N_PRECO_VENDA_01_ITB FROM TB_PRO_PRODUTO,TB_ITB_PRECO_PAR WHERE  TB_ITB_PRECO_PAR.ITB_PKN_CODIGO = '$codigo' AND TB_PRO_PRODUTO.PRO_PKN_CODIGO = TB_ITB_PRECO_PAR.PRO_PKN_CODIGO");
+		$result = mysqli_query($con,"SELECT * from TB_PRO_PRODUTO as prod,TB_ITB_PRECO_PAR as itbpreco where itbpreco.TAB_PKN_CODIGO = '$codigo' and prod.PRO_PKN_CODIGO = itbpreco.PRO_PKN_CODIGO");
 		$produtos = array();
-		while($dados= mysqli_fetch_array($result)){
-			$produto = [];
-			$produto['idproduto'] = $dados['PRO_PKN_CODIGO'];
-			$produto['descricao'] = $dados['PRO_A_DESCRICAO'];
-			$produto['valor'] = $dados['PRO_N_PRECO_VENDA_01_ITB'];
-			$produtos[] = $produto;
+		if(mysqli_num_rows($result) > 0){
+			while($dados= mysqli_fetch_array($result)){
+				$produto = [];
+				$produto['idproduto'] = $dados['PRO_PKN_CODIGO'];
+				$produto['descricao'] = $dados['PRO_A_DESCRICAO'];
+				$produto['valor'] = $dados['PRO_N_PRECO_VENDA_01_ITB'];
+				$produtos[] = $produto;
+			}
+			echo json_encode($produtos, JSON_UNESCAPED_UNICODE);
+		}else{
+			$result = mysqli_query($con,"SELECT * FROM `TB_PRO_PRODUTO` ORDER BY `PRO_A_DESCRICAO` ASC");
+			$produtos = array();
+			while($dados= mysqli_fetch_array($result)){
+				$produto = [];
+				$produto['idproduto'] = $dados['PRO_PKN_CODIGO'];
+				$produto['descricao'] = $dados['PRO_A_DESCRICAO'];
+				$produto['valor'] = $dados['PRO_N_PRECO_VENDA_01'];
+				$produtos[] = $produto;
+			}
+			echo json_encode($produtos, JSON_UNESCAPED_UNICODE);
 		}
-		echo json_encode($produtos, JSON_UNESCAPED_UNICODE);
 	}
 	function getOrcamentos(){
 		include("conexao.php");

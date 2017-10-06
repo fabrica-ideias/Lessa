@@ -6,6 +6,14 @@ body{
 .row{
 	margin: 0;
 }
+#totalOrcamento{
+	background-color: #fff !important;
+	color: #000;
+	text-align: right !important;;
+	padding: 0px 5px !important;;
+	border-radius: 4px !important;
+	margin-bottom: 0px;
+}
 .container{
 	overflow-x:hidden;
 	position: absolute;
@@ -68,7 +76,17 @@ body{
 	background-color:#b12c2c;
 	text-shadow: 2px 2px 5px #000;
 }
-
+.informatacaoCliente label{
+	color: #000;
+}
+#datelhe_item{
+	color: #000;
+	position: absolute;
+	width: 100%;
+	max-height: 80%;
+	height: 75%;
+	overflow-y: scroll;
+}
 .p{
 	font-size: 1.3em;
 }
@@ -95,6 +113,19 @@ td{
 	cursor: grab;
 	cursor: -moz-grab;
 	cursor: -webkit-grab;
+}
+.inputPreco{
+	text-align: right;
+    background-color: #4c79a6;
+    color: #fff;
+    padding: 0px 5px;
+    border-radius: 10px;
+}
+.labelPreco{
+	text-align: right;
+    font-size: 1.2em;
+    padding-right: 5px;
+    color: #000 !important;
 }
 
 /* (Optional) Apply a "closed-hand" cursor during drag operation. */
@@ -143,7 +174,7 @@ td{
 #btnAddItem{
 	position: absolute;
 	bottom: 0px;
-	margin-bottom: 10px;
+	margin-bottom: 60px;
 	right: 10px;
 }
 #addItens p{
@@ -155,14 +186,12 @@ td{
 #criar_cliente_orca,
 #btnSalvaOrcamento,
 #cadastro_users,
-#btnConfiguracao,
-#btnConfiguracaoMobile,
 #permissoes_users,
 #menu_cadastros,
 #menu_pedidos,
 #selectCliente,
-#menu_negociacao,
 #menu_configuracao,
+#selecioneCliente,
 #addItens{
 	display: none;
 }
@@ -230,16 +259,17 @@ td{
 	display: none;
 }
 #submenu{
-	background-color: rgb(226, 82, 82);
+	background-color: #716f70;
 	position: absolute;
 	left: 0;
 	right: 0;
+	bottom: 0;
 }
 #btnFinalizaOrcamento{
 	position: absolute;
-    top: 10px;
-    right: 2px;
-    background-color: #e28c52;
+	top: 10px;
+	left: 10px;
+	background-color: #3db54b;
 }
 @media screen and (max-width: 920px){
 	.fila li{
@@ -302,6 +332,17 @@ td{
 		position: relative;
 		display: block;
 		max-height: 500px;
+		overflow-y: scroll;
+	}
+}
+@media screen and (max-height: 600px){
+	#datelhe_item {
+		color: #000;
+		height: 8;
+		position: absolute;
+		width: 100%;
+		max-height: 60% !important;
+		height: 60% !important;
 		overflow-y: scroll;
 	}
 }

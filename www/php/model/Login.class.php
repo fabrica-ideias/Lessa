@@ -3,14 +3,20 @@ class Login{
     var $idlogin;
     var $email;
     var $senha;
-    var $usuario;
+    var $nome;
+    var $perfil;
+    var $idpermissao;
+    var $codparticipante;
 
     function setLogin($dados){
     	include("conexao.php");
         $this->idlogin = $dados['idlogin'];
     	$this->email = $dados['email'];
     	$this->senha = $dados['senha'];
-        $this->usuario = new Usuario(mysqli_fetch_array(mysqli_query($con ,"select * from  TB_FUN_FUNCIONARIO where FUN_PKN_CODIGO='".$dados['codfuncionario']."'")));;
+        $this->nome = $dados['nome'];
+        $this->perfil = $dados['perfil'];
+        $this->idpermissao = $dados['idpermissao'];
+        $this->codparticipante = $dados['codparticipante'];
     }
 
     function setIdLogin($idlogin){
@@ -31,11 +37,29 @@ class Login{
     function getSenha(){
         return $this->senha;
     }
-    function setUsuario($usuario){
-        $this->usuario = $usuario;
+    function setNome($nome){
+        $this->nome = $nome;
     }
-    function getUsuario(){
-        return $this->usuario;
+    function getNome(){
+        return $this->nome;
+    }
+    function setPerfil($perfil){
+        $this->perfil = $perfil;
+    }
+    function getPerfil(){
+        return $this->perfil;
+    }
+    function setIdPermissao($idpermissao){
+        $this->idpermissao = $idpermissao;
+    }
+    function getIdPermissao(){
+        return $this->idpermissao;
+    }
+    function setCodParticipante($codparticipante){
+        $this->codparticipante = $codparticipante;
+    }
+    function getCodParticipante(){
+        return $this->codparticipante;
     }
 }
 ?>
