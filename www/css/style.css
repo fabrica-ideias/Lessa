@@ -76,6 +76,12 @@ body{
 	background-color:#b12c2c;
 	text-shadow: 2px 2px 5px #000;
 }
+.informatacaoCliente{
+	color: black;
+	background: #fff;
+	padding: 5px 10px;
+	border: 1px solid #ccc;
+}
 .informatacaoCliente label{
 	color: #000;
 }
@@ -84,7 +90,7 @@ body{
 	position: absolute;
 	width: 100%;
 	max-height: 80%;
-	height: 75%;
+	height: 60%;
 	overflow-y: scroll;
 }
 .p{
@@ -209,6 +215,24 @@ td{
 	padding: 0;
 	text-align: center;
 }
+#descricaoitem{
+	background: #fff;
+	padding: 10px;
+}
+.titleDescricao{
+	background-color: #8282e2;
+	color: #fff;
+	padding: 10px !important;
+}
+#subdescricaoitem{
+	background: #c5c5c5;
+	padding: 5px;
+}
+.subItemDescricao{
+	background-color: #7878b7;
+	color: #fff;
+	padding: 5px !important;
+}
 @font-face {
 	font-family: 'Material Icons';
 	font-style: normal;
@@ -270,6 +294,16 @@ td{
 	top: 10px;
 	left: 10px;
 	background-color: #3db54b;
+}
+#opcaoItem{
+	display: none;
+	position: absolute;
+	right: 0;
+	left: 0;
+	top: 45% !important;
+	padding: 10px;
+	background-color: #fff;
+	border: 1px solid #ccc;
 }
 @media screen and (max-width: 920px){
 	.fila li{

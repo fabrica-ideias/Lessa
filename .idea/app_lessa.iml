@@ -7,16 +7,12 @@
     <orderEntry type="module-library">
       <library name="PHARS">
         <CLASSES>
-          <root url="phar://$MODULE_DIR$/www/composer.phar/" />
           <root url="phar://$MODULE_DIR$/platforms/browser/www/composer.phar/" />
-          <root url="phar://$MODULE_DIR$/platforms/windows/www/composer.phar/" />
-          <root url="phar://$MODULE_DIR$/platforms/android/assets/www/composer.phar/" />
+          <root url="phar://$MODULE_DIR$/www/composer.phar/" />
         </CLASSES>
         <SOURCES>
-          <root url="phar://$MODULE_DIR$/www/composer.phar/" />
           <root url="phar://$MODULE_DIR$/platforms/browser/www/composer.phar/" />
-          <root url="phar://$MODULE_DIR$/platforms/windows/www/composer.phar/" />
-          <root url="phar://$MODULE_DIR$/platforms/android/assets/www/composer.phar/" />
+          <root url="phar://$MODULE_DIR$/www/composer.phar/" />
         </SOURCES>
       </library>
     </orderEntry>
