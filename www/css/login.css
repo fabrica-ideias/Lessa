@@ -2,6 +2,15 @@
 body{
 	background-color: #eae9e9;
 }
+.toast{
+	background-color: #4c79a6;
+	color:#fff;
+	text-align: center;
+	text-transform: uppercase;
+}
+.paraMobile{
+	display: none;
+}
 .container{
 	max-width: 100% !important;
 	width: 100%;
@@ -152,11 +161,14 @@ a{
 #logar{
 	background-color: #f55f5f;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
 	#nameLogin h4{
 		font-size: 2em;
 	}
 	#containerLogin{
 		margin-top: 20%;
+	}
+	.paraMobile{
+		display: block;
 	}
 }

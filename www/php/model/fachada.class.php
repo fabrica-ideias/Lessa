@@ -152,6 +152,7 @@ class Fachada{
 				$produto['idproduto'] = $dados['PRO_PKN_CODIGO'];
 				$produto['descricao'] = $dados['PRO_A_DESCRICAO'];
 				$produto['valor'] = $dados['PRO_N_PRECO_VENDA_01'];
+				$produto['unidade'] = $dados['PRO_A_UNIDADE'];
 				$produtos[] = $produto;
 			}
 			echo json_encode($produtos, JSON_UNESCAPED_UNICODE);

@@ -14,6 +14,9 @@ body{
 	border-radius: 4px !important;
 	margin-bottom: 0px;
 }
+#btnOrcaProximo{
+	display: none;
+}
 .container{
 	overflow-x:hidden;
 	position: absolute;
@@ -37,45 +40,7 @@ body{
 	text-align: center;
 	font-size: 14em;
 }
-.titulochamada{
-	border: 1px solid;
-	margin: 0;
-	background-color: #5e69d4;
-	color: #fff;
-	padding: 10px;
-}
-.proximo li{
-	float: left;
-	margin-left: 5%;
-	font-size: 1.5em;
-}
-.fila {
-	margin-left: 5px;
-}
-.fila li{
-	float: left;
-	font-size: 2em;
-	width: 10%;
-	text-align: center;
-	border:1px solid #000;
-	color:#fff;
-}
-.fila .presente,ul i.presente{
-	background-color: #3aa13d;	
-	text-shadow: 2px 2px 5px #000;
-}
-.dafault{
-	background-color: #3a4ebe;	
-	text-shadow: 2px 2px 5px #000;
-}
-.ausente{
-	background-color: #e3f107;	
-	text-shadow: 2px 2px 5px #000;
-}
-.problema{
-	background-color:#b12c2c;
-	text-shadow: 2px 2px 5px #000;
-}
+
 .informatacaoCliente{
 	color: black;
 	background: #fff;
@@ -188,15 +153,7 @@ td{
 	color: #a2a2a2;
 	font-size: 1.3em;
 }
-#criar_orcamento,
-#criar_cliente_orca,
-#btnSalvaOrcamento,
-#cadastro_users,
-#permissoes_users,
-#menu_cadastros,
-#menu_pedidos,
 #selectCliente,
-#menu_configuracao,
 #selecioneCliente,
 #addItens{
 	display: none;
@@ -305,6 +262,47 @@ td{
 	background-color: #fff;
 	border: 1px solid #ccc;
 }
+
+#addItensWeb{
+	background-color: #597796;
+}
+.descricaoElemento.active{
+	color: #fff !important;
+}
+.entradaOrcamentoWeb{
+	background-color: #fff !important;
+	color: #000;
+	height: 2em !important;
+	border-radius: 4px !important;
+}
+.valores{
+	color:#000;
+	text-align: right
+}
+.autocomplete-content {
+	position: absolute;
+}
+.containerItens{
+	position:relative;
+	max-height: 350px;
+	overflow-y: scroll;
+	background-color: #9F9F9F;
+}
+.painelOrcamento{
+	border:1px solid #ccc;
+	margin:10px;
+	background-color: #e7e7e7;
+	border-radius: 10px;
+}
+.resumo{
+	color: #000000 !important;
+}
+.valorTotal{
+	color: #000 !important;;
+	text-align: center;
+	font-size: 2em !important;
+	background-color: #eba98a !important;
+}
 @media screen and (max-width: 920px){
 	.fila li{
 		float: left;
@@ -368,15 +366,25 @@ td{
 		max-height: 500px;
 		overflow-y: scroll;
 	}
+	#btnOrcaProximo{
+		display: block;
+	}
+	#addItensWeb{
+		display: none;
+		background-color: #718aa4;
+	}
+	#resumo{
+		display: none;
+	}
 }
-@media screen and (max-height: 600px){
+@media only screen and (max-width: 600px){
 	#datelhe_item {
 		color: #000;
-		height: 8;
 		position: absolute;
 		width: 100%;
 		max-height: 60% !important;
 		height: 60% !important;
 		overflow-y: scroll;
 	}
+
 }
