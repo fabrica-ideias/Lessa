@@ -6,6 +6,19 @@ body{
 .row{
 	margin: 0;
 }
+.modalFormaPagamento{
+	display: none;
+	position: absolute;
+	width: 45%;
+	border: 1px solid #ccc;
+	padding: 10px;
+	border-radius: 10px;
+	top: 30%;
+	background-color: #fff;
+	right: 0;
+	left: 0;
+	margin: auto;
+}
 #totalOrcamento{
 	background-color: #fff !important;
 	color: #000;
@@ -52,8 +65,6 @@ body{
 }
 #datelhe_item{
 	color: #000;
-	position: absolute;
-	width: 100%;
 	max-height: 80%;
 	height: 60%;
 	overflow-y: scroll;
@@ -281,6 +292,7 @@ td{
 }
 .autocomplete-content {
 	position: absolute;
+	width: 100%;
 }
 .containerItens{
 	position:relative;
@@ -380,8 +392,6 @@ td{
 @media only screen and (max-width: 600px){
 	#datelhe_item {
 		color: #000;
-		position: absolute;
-		width: 100%;
 		max-height: 60% !important;
 		height: 60% !important;
 		overflow-y: scroll;

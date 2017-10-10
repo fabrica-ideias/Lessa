@@ -12,6 +12,8 @@ function initLogin() {
     var url = "";
     var indexProduto = 0;
     var total = 0;
+    var iniciou = 0;
+
 
     //Inicia a Configuração de Layout e Eventos
     function initConfiguracao() {
@@ -19,27 +21,83 @@ function initLogin() {
         request.onreadystatechange = function () {
             if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
                 config = JSON.parse(this.responseText);
-                iniciarConfiguracoes(config);
+                if (iniciou == 0) {
+                    iniciarConfiguracoes(config);
+                    document.getElementById("btnConfiguracao").addEventListener("click", abrirConfiguracao); //tela de configuracao de layout
+                    document.getElementById("logout").addEventListener("click", logout); //logout
+                    document.getElementById("btnConfiguracaoMobile").addEventListener("click", abrirConfiguracao);//abri as configuração de cores da tela
+                    document.getElementById("logoutMobile").addEventListener("click", logout); //Faz logout
+                    document.getElementById("btnSalvaUsuario").addEventListener("click", salvaUsuario);// Salva o Usuario
+                    document.getElementById("btnOrcaProximo").addEventListener("click", habilitaTelaItem);//FUNÇÕE DO ORCAMENTO DO FUNCIONARIO
+                    document.getElementById("addItemOrca").addEventListener("click", function () {
+                        addItem("qtdeProduto", "datelhe_item", false)
+                    });
+                    document.getElementById("addItemOrcaWeb").addEventListener("click", function () {
+                        addItem("qtdeProdutoWeb", "detalheItemWeb", true)
+                    });
+                    document.getElementById("btnFinalizaOrcamento").addEventListener("click", finalizaOrcamento);//Finalizar Orcamento
+                    document.getElementById("btnFinalizaOrcamentoWeb").addEventListener("click", mostraFormaPagamento);//Finalizar Orcamento
+                    document.getElementById("verOrcamentosMobile").addEventListener("click", listaOrcamentos);
+
+                    document.getElementById("qtdeProdutoWeb").addEventListener("input", calculaProduto);
+                    document.getElementById("qtdeProdutoWeb").addEventListener("keyup", addPedidoEnter);
+                    document.getElementById("habilitaOrcamento").addEventListener("click",habilitaOrcamento);
+                    document.getElementById("enviarOrcamento").addEventListener("click",finalizaOrcamento);
+                    opcaoItem();
+                }
+                document.getElementById("addItensWeb").style.display = "none";
+                document.getElementById("informatacaoCliente").style.display = "none";
                 document.getElementById("resumoVendedor").value = usuario.nome.toUpperCase();
-                document.getElementById("btnConfiguracao").addEventListener("click", abrirConfiguracao); //tela de configuracao de layout
-                document.getElementById("logout").addEventListener("click", logout); //logout
-                document.getElementById("btnConfiguracaoMobile").addEventListener("click", abrirConfiguracao);//abri as configuração de cores da tela
-                document.getElementById("logoutMobile").addEventListener("click", logout); //Faz logout
-                document.getElementById("btnSalvaUsuario").addEventListener("click", salvaUsuario);// Salva o Usuario
-                document.getElementById("btnOrcaProximo").addEventListener("click", habilitaTelaItem);//FUNÇÕE DO ORCAMENTO DO FUNCIONARIO
-                document.getElementById("addItemOrca").addEventListener("click",function(){ addItem("qtdeProduto","datelhe_item",false)}); // Adiciona Item
-                document.getElementById("addItemOrcaWeb").addEventListener("click",function(){ addItem("qtdeProdutoWeb","detalheItemWeb",true)}); // Adiciona Item
-                document.getElementById("btnFinalizaOrcamento").addEventListener("click", finalizaOrcamento);//Finalizar Orcamento
-                document.getElementById("btnFinalizaOrcamentoWeb").addEventListener("click", finalizaOrcamento);//Finalizar Orcamento
-                document.getElementById("verOrcamentosMobile").addEventListener("click", listaOrcamentos);
-                document.getElementById("qtdeProdutoWeb").addEventListener("keyup",addPedidoEnter);
+
                 checarTipoUsuario();
                 consultaPermissoes();
                 $('#modalpreload').modal('close');
-                opcaoItem();
+                iniciou = 1;
             }
         }
+
         request.open("POST", url + "php/configuracao.php", true);
+        request.send();
+    }
+
+    function habilitaOrcamento(){
+        if(cliente != null) {
+            document.getElementById("selectCliente").style.display = "none";
+            document.getElementById("informatacaoCliente").style.display = "block";
+            document.getElementById("addItensWeb").style.display = "block";
+            document.getElementById("infoNome").innerHTML = "RAZAO SOCIAL: " + cliente.PAR_A_RAZAOSOCIAL;
+            document.getElementById("infoCpfCnpj").innerHTML = "CNPJ/CPF: " + cliente.PAR_A_CNPJ_CPF;
+            document.getElementById("infoEndereco").innerHTML = "ENDERECO: " + cliente.PAR_A_LOGRADOURO + " " + cliente.PAR_A_ENDERECO + " " + cliente.PAR_A_NUMERO;
+            selectProdutoCliente(cliente, ".autoProdutoWeb", "precoProdutoWeb", "unidadeProdutoWeb");
+        }
+    }
+
+    function mostraFormaPagamento() {
+        if (cliente == null) {
+            Materialize.toast('CLIENTE DEVE SER SELECIONADO', 5000);
+            return;
+        }
+        if (itensOrcamento.length == 0) {
+            Materialize.toast('ADICIONE PELO MENOS UM ITEM NO ORCAMENTO', 5000);
+            return;
+        }
+        $('#modalpreload').modal('open');
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
+                var forma = JSON.parse(request.responseText);
+                var options = "<option value='' disabled selected >SELECIONE A FORMA DE PAGAMENTO</option>";
+                for (var i = 0; i < forma.length; i++) {
+                    options += '<option value="' + forma[i].FOR_PKN_CODIGO + '">' + forma[i].FOR_A_DESCRICAO + '</option>';
+                }
+                document.getElementById("selectFormaPagamento").innerHTML = options;
+                $('#modalpreload').modal('close');
+                $('#modalFormaPagamento').modal({dismissible: true});
+                $('#modalFormaPagamento').modal('open');
+                $('select').material_select();
+            }
+        }
+        request.open("GET", url + "php/formaPagamento.php?id=" + cliente.PAR_PKN_CODIGO, true);
         request.send();
     }
 
@@ -73,7 +131,7 @@ function initLogin() {
         }
     }
 
-    //Verifica o E-mail
+//Verifica o E-mail
     function verificaEmail(email) {
         if (email.indexOf("@") >= 0 && email.indexOf(".com") >= 0) {
             request = new XMLHttpRequest();
@@ -143,7 +201,7 @@ function initLogin() {
         }
     }
 
-    //Verifica a Senha
+//Verifica a Senha
     function verificaSenha(senha) {
         document.getElementById("progress").style.display = "block";
         if (usuario.senha == senha) {
@@ -161,7 +219,7 @@ function initLogin() {
         }
     }
 
-    //checa se  tem error de digitação
+//checa se  tem error de digitação
     function validaEmailUser(email) {
         var dominio = email.split("@");
         var subdominio = dominio[1].split(".");
@@ -194,7 +252,7 @@ function initLogin() {
 
     }
 
-    //inicia a sessao
+//inicia a sessao
     function startSession(conectado) {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
@@ -207,7 +265,7 @@ function initLogin() {
         xmlhttp.send();
     }
 
-    //verifica se o usuario esta logado
+//verifica se o usuario esta logado
     function verificaLogin() {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
@@ -241,7 +299,7 @@ function initLogin() {
         xmlhttp.send();
     }
 
-    //logout
+//logout
     function logout() {
         $('.button-collapse').sideNav('hide');
         request = new XMLHttpRequest();
@@ -256,7 +314,7 @@ function initLogin() {
         request.send();
     }
 
-    // Tela de adicionar item
+// Tela de adicionar item
     function habilitaTelaItem() {
         if (cliente != null) {
             document.getElementById("selectCliente").style.display = "none";
@@ -273,8 +331,8 @@ function initLogin() {
         }
     }
 
-    // Adicionar Item na lista
-    function addItem(campoQuantidade,idtabela,web) {
+// Adicionar Item na lista
+    function addItem(campoQuantidade, idtabela, web) {
         console.log("teste");
         Materialize.Toast.removeAll();
         var item = new Object();
@@ -306,20 +364,20 @@ function initLogin() {
             if (existe == false) {
                 total = total + item.total;
                 itensOrcamento.push(item);
-                atualizaLista(idtabela,web)
+                atualizaLista(idtabela, web)
             } else {
                 //SE EXISTIR ELE REFAZ A TABELA E ALTERAR OS VALORES DO ITEM
                 document.getElementById("datelhe_item").innerHTML = "";
                 total = 0;
-                atualizaLista(idtabela,web);
+                atualizaLista(idtabela, web);
             }
-            if(web == false){
+            if (web == false) {
                 document.getElementById("totalOrcamento").value = numberToReal(total);
                 document.getElementById("precoProduto").value = "";
                 document.getElementById("produto_orcamento").value = "";
                 document.getElementById("qtdeProduto").value = "";
                 document.getElementById("unidadeProduto").value = "";
-            }else{
+            } else {
                 document.getElementById("precoProdutoWeb").value = "";
                 document.getElementById("qtdeProdutoWeb").value = "";
                 document.getElementById("unidadeProdutoWeb").value = "";
@@ -327,7 +385,7 @@ function initLogin() {
                 document.getElementById("autoProdutoWeb").focus();
                 document.getElementById("totalProdutoWeb").value = "";
                 document.getElementById("resumoQtdeItem").value = itensOrcamento.length;
-                document.getElementById("resumotTotalItens").value = "R$:"+numberToReal(total);
+                document.getElementById("resumotTotalItens").value = "R$:" + numberToReal(total);
             }
 
             $("#modalSelecionaProduto").modal("close");
@@ -336,12 +394,12 @@ function initLogin() {
     }
 
 
-    function atualizaLista(tabela,web) {
+    function atualizaLista(tabela, web) {
         var itens = "";
-        var qtdeKilo = 0;
+        var acumulaUnidade = [];
         for (var i = 0; i < itensOrcamento.length; i++) {
             var item = itensOrcamento[i];
-            if(web == false) {
+            if (web == false) {
                 itens += "<li style='border:1px solid #5f5c5c' class='itemCliente' id='" + item.produto.idproduto + "'>";
                 itens += '<div class="row">';
                 itens += '<div class="col s12" id="descricaoitem">' + item.produto.descricao.toUpperCase() + '</div>';
@@ -352,53 +410,47 @@ function initLogin() {
                 itens += '</div>';
                 itens += '</div>';
                 itens += '</li>';
-            }else{
+            } else {
                 itens += "<li style='border:1px solid #5f5c5c' class='itemCliente' id='" + item.produto.idproduto + "'>";
                 itens += '<div class="row" id="descricaoitem">';
                 itens += '<div class="col s5" >' + item.produto.descricao.toUpperCase() + '</div>';
-                itens += '<div class="col s1">'+item.produto.unidade+'</div>';
+                itens += '<div class="col s1">' + item.produto.unidade + '</div>';
                 itens += '<div class="col s1">' + item.qtde + '</div>';
                 itens += '<div class="col s2">' + numberToReal(item.produto.valor) + '</div>';
                 itens += '<div class="col s2">' + numberToReal(itensOrcamento[i].total) + '</div>';
-                itens += '<div class="col s1"><i class="material-icons">close</i></div>';
+                itens += '<div class="col s1"><i class="material-icons" id="close">close</i></div>';
                 itens += '</div>';
                 itens += '</li>';
             }
-            if(item.produto.unidade == "KG"){
-                qtdeKilo += item.qtde;
+
+            var existe = false;
+            for (var j = 0; j < acumulaUnidade.length; j++) {
+                if (acumulaUnidade[j].unidade == item.produto.unidade) {
+                    acumulaUnidade[j].qtde += item.qtde;
+                    existe = true;
+                    break;
+                }
+            }
+            if (existe == false) {
+                var objeto = new Object();
+                objeto.unidade = item.produto.unidade;
+                objeto.qtde = item.qtde;
+                acumulaUnidade.push(objeto);
             }
             document.getElementById(tabela).innerHTML = itens;
-            document.getElementById("resumoQtdeKgItem").value = qtdeKilo;
         }
+        var acumulador = "";
+        for (var i = 0; i < acumulaUnidade.length; i++) {
+            acumulador += "<li class='collection-item'>" + acumulaUnidade[i].unidade + " : " + acumulaUnidade[i].qtde + "</li>";
+        }
+        document.getElementById("resumoQtdeKgItem").innerHTML = acumulador;
 
-
-        if(web == false){
+        if (web == false) {
             eventItem();
-        }else{
-
         }
     }
 
     function eventItem() {
-        //Habilita Opções quando clicar no item
-        var elems = document.getElementsByClassName("itemCliente"), i;
-        for (i = 0; i < elems.length; i++) {
-
-            document.getElementById(elems[i].id).addEventListener("click", function () {
-                for (var j = 0; j < itensOrcamento.length; j++) {
-                    if (itensOrcamento[j].produto.idproduto == parseInt(this.id)) {
-                        indexProduto = j;
-                        break;
-                    }
-                }
-                var descricao = itensOrcamento[indexProduto].produto.descricao;
-                document.getElementById("nomeProduto").innerHTML = "PRODUTO: " + descricao;
-                $("#opcaoItem").modal();
-                $("#opcaoItem").modal('open');
-            });
-        }
-    }
-    function eventItemWeb() {
         //Habilita Opções quando clicar no item
         var elems = document.getElementsByClassName("itemCliente"), i;
         for (i = 0; i < elems.length; i++) {
@@ -424,12 +476,12 @@ function initLogin() {
             atualizaLista();
             $("#opcaoItem").modal("close");
         });
-        document.getElementById("alteraItem").addEventListener("click",function(){
+        document.getElementById("alteraItem").addEventListener("click", function () {
             $("#opcaoItem").modal("close");
             item = itensOrcamento[indexProduto];
             produtoSelecionado = item.produto;
             document.getElementById("produto_orcamento").value = produtoSelecionado.descricao;
-            document.getElementById("qtdeProduto").value =  item.qtde;
+            document.getElementById("qtdeProduto").value = item.qtde;
             document.getElementById("precoProduto").value = numberToReal(produtoSelecionado.valor);
             document.getElementById("unidadeProduto").value = produtoSelecionado.unidade.toString();
             $("#modalSelecionaProduto").modal('open');
@@ -437,16 +489,19 @@ function initLogin() {
     }
 
     function finalizaOrcamento() {
-        if(cliente == null){
-                Materialize.toast('CLIENTE DEVE SER SELECIONADO', 5000);
+        $("#modalFormaPagamento").modal("close");
+        if (cliente == null) {
+            Materialize.toast('CLIENTE DEVE SER SELECIONADO', 5000);
             return;
         }
-        if(itensOrcamento.length == 0){
+        if (itensOrcamento.length == 0) {
             Materialize.toast('ADICIONE PELO MENOS UM ITEM NO ORCAMENTO', 5000);
             return;
         }
         $('#modalpreload').modal('open');
+
         var orcamento = new Object();
+        orcamento.forma = $("#selectFormaPagamento").val();
         orcamento.usuario = cliente;
         orcamento.funcionario = funcionario;
         orcamento.total = parseFloat(total);
@@ -455,26 +510,7 @@ function initLogin() {
         request = new XMLHttpRequest();
         request.onreadystatechange = function () {
             if (request.readyState == 4 && request.status == 200) {
-                $(".autocliente").val("");
-                $(".autocomplete").val("");
-                document.getElementById("totalOrcamento").value = "0,00";
-                document.getElementById("autocomplete-fantasia").value = "";
-                document.getElementById("cpfcnpj").value = "";
-                document.getElementById("totalOrcamento").value = "0,00";
-                document.getElementById("qtdeProduto").value = "";
-                document.getElementById("titleModal").innerHTML = "";
-                document.getElementById("msgModal").innerHTML = "Orcamento enviado com sucesso";
-                document.getElementById("selectCliente").style.display = "block";
-                document.getElementById("addItens").style.display = "none";
-                document.getElementById("menu_painel").style.display = "block";
-                document.getElementById("menu_pedido").style.display = "block";
-                document.getElementById("datelhe_item").innerHTML = "";
-                document.getElementById("detalheItemWeb").innerHTML = "";
-                document.getElementById("resumoQtdeItem").value = "0";
-                document.getElementById("resumoQtdeKgItem").value = "0";
-                document.getElementById("resumotTotalItens").value = "R$: 0,00";
-                itensOrcamento = [];
-                total = 0;
+                limparOrcamento();
                 $('#modalpreload').modal('close');
                 $('#modalInfo').modal('open');
             }
@@ -485,7 +521,32 @@ function initLogin() {
 
     }
 
-    //Salva o usuario
+    function limparOrcamento() {
+        $(".autocliente").val("");
+        $(".autocomplete").val("");
+        document.getElementById("totalOrcamento").value = "0,00";
+        document.getElementById("autocomplete-fantasia").value = "";
+        document.getElementById("cpfcnpj").value = "";
+        document.getElementById("totalOrcamento").value = "0,00";
+        document.getElementById("qtdeProduto").value = "";
+        document.getElementById("titleModal").innerHTML = "";
+        document.getElementById("msgModal").innerHTML = "Orcamento enviado com sucesso";
+        document.getElementById("selectCliente").style.display = "block";
+        document.getElementById("addItens").style.display = "none";
+        document.getElementById("menu_painel").style.display = "block";
+        document.getElementById("menu_pedido").style.display = "block";
+        document.getElementById("datelhe_item").innerHTML = "";
+        document.getElementById("detalheItemWeb").innerHTML = "";
+        document.getElementById("resumoQtdeItem").value = "0";
+        document.getElementById("resumoQtdeKgItem").innerHTML = " ";
+        document.getElementById("resumotTotalItens").value = "R$: 0,00";
+        document.getElementById("endereco").value = "";
+        document.getElementById("addItensWeb").style.display = "none";
+        itensOrcamento = [];
+        total = 0;
+    }
+
+//Salva o usuario
     function salvaUsuario() {
         $('#modalpreload').modal('open');
         var img = document.getElementById("file");
@@ -555,6 +616,7 @@ function initLogin() {
             $('#modalpreload').modal('open');
         });
         initConfiguracao();
+
     }
 
     verificaLogin();
@@ -565,16 +627,21 @@ function initLogin() {
         if (usuario.idpermissao == 1 || usuario.idpermissao == 2) {
             document.getElementById("tabs-menu").style.display = "block"
             $('ul.tabs').tabs('select_tab', 'home');
+            document.getElementById("funcionario_orcamento").style.display = "block";
+            document.getElementById("selectCliente").style.display = "block";
             document.getElementById("menu_cadastros").style.display = "block";
             document.getElementById("menu_pedidos").style.display = "block";
             document.getElementById("btnConfiguracao").style.display = "block";
             document.getElementById("btnConfiguracaoMobile").style.display = "block";
+            preencheClientes();
         }
         if (usuario.idpermissao == 3) {
             document.getElementById("tabs-menu").style.display = "none";
             $('ul.tabs').tabs('select_tab', 'pedidos');
             document.getElementById("funcionario_orcamento").style.display = "block";
             document.getElementById("selectCliente").style.display = "block";
+            document.getElementById("btnConfiguracao").style.display = "none";
+            document.getElementById("btnConfiguracaoMobile").style.display = "none";
             preencheClientes();
         }
         // if(usuario.idpermissao == 4){
@@ -594,16 +661,12 @@ function initLogin() {
 
     }
 
-    //Incluir os produtos do cliente dentro do select
-    function selectProdutoCliente(cliente, autocompete, preco,unidade) {
+//Incluir os produtos do cliente dentro do select
+    function selectProdutoCliente(cliente, autocompete, preco, unidade) {
         $('#modalpreload').modal('open');
         request = new XMLHttpRequest();
         request.onreadystatechange = function () {
             if (request.readyState == 4 && request.status == 200) {
-                document.getElementById("autocomplete-fantasia").placeholder = " ";
-                document.getElementById("autocomplete-fantasia").value = cliente.PAR_A_NOME_FANTASIA;
-                document.getElementById("cpfcnpj").placeholder = " ";
-                document.getElementById("cpfcnpj").value = cliente.PAR_A_CNPJ_CPF;
                 var result = JSON.parse(this.responseText);
                 produtoCliente = result;
                 var nomes = {};
@@ -617,7 +680,7 @@ function initLogin() {
                         produtoSelecionado = produtoCliente[nomes[val]];
                         document.getElementById(preco).value = numberToReal(produtoSelecionado.valor);
                         document.getElementById(unidade).value = produtoSelecionado.unidade.toString();
-                        if(autocompete == ".autoProdutoWeb"){
+                        if (autocompete == ".autoProdutoWeb") {
                             document.getElementById("qtdeProdutoWeb").focus();
                         }
                     },
@@ -631,15 +694,22 @@ function initLogin() {
         request.send("codigo=" + cliente.TAB_PKN_CODIGO);
     }
 
-    function addPedidoEnter(event){
-        document.getElementById("totalProdutoWeb").value = numberToReal(produtoSelecionado.valor * parseFloat(this.value));
+    function calculaProduto() {
         var tecla = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;
-        if (tecla==13) {
-            addItem("qtdeProdutoWeb","detalheItemWeb");
+        if (tecla == 13) {
+            addItem("qtdeProdutoWeb", "detalheItemWeb");
         }
     }
 
-    //tras todos os orcamentos do cliente
+    function addPedidoEnter(event) {
+        document.getElementById("totalProdutoWeb").value = numberToReal(produtoSelecionado.valor * parseFloat(this.value));
+        var tecla = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;
+        if (tecla == 13) {
+            addItem("qtdeProdutoWeb", "detalheItemWeb");
+        }
+    }
+
+//tras todos os orcamentos do cliente
     function listaOrcamentos() {
         document.getElementById("todosOrcamento").style.display = "block";
         document.getElementById("criar_orcamento").style.display = "none";
@@ -669,7 +739,7 @@ function initLogin() {
         request.send();
     }
 
-    //preenche o select com os clientes
+//preenche o select com os clientes
     function preencheClientes() {
         request = new XMLHttpRequest();
         request.onreadystatechange = function () {
@@ -684,10 +754,16 @@ function initLogin() {
                     data: nomes,
                     limit: 5, // The max amount of results that can be shown at once. Default: Infinity.
                     onAutocomplete: function (val) {
+                        limparOrcamento();
                         cliente = result[nomes[val]];
+                        document.getElementById("autocomplete-fantasia").value = cliente.PAR_A_NOME_FANTASIA;
+                        document.getElementById("cpfcnpj").placeholder = " ";
+                        document.getElementById("cpfcnpj").value = cliente.PAR_A_CNPJ_CPF;
+                        document.getElementById("autocompletecliente").value = val;
                         document.getElementById("endereco").value = cliente.PAR_A_LOGRADOURO + " " + cliente.PAR_A_ENDERECO + " " + cliente.PAR_A_NUMERO;
-                        selectProdutoCliente(cliente, ".autoproduto","precoProduto","unidadeProduto");
-                        selectProdutoCliente(cliente, ".autoProdutoWeb","precoProdutoWeb","unidadeProdutoWeb");
+                        // /selectProdutoCliente(cliente, ".autoproduto", "precoProduto", "unidadeProduto");
+                        //selectProdutoCliente(cliente, ".autoProdutoWeb", "precoProdutoWeb", "unidadeProdutoWeb");
+
                     },
                     minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
                 });
@@ -698,7 +774,7 @@ function initLogin() {
         request.send();
     }
 
-    //Habilitar a tela de configuração de layout do usuario
+//Habilitar a tela de configuração de layout do usuario
     function abrirConfiguracao() {
         $('.button-collapse').sideNav('hide');
         document.getElementById("configuracao").style.display = "block";
@@ -759,5 +835,20 @@ function initLogin() {
         document.getElementById("configuracao").style.display = "none";
         document.getElementById("selectCliente").style.display = "none";
         document.getElementById("addItens").style.display = "none";
+        document.getElementById("totalOrcamento").value = numberToReal(total);
+        document.getElementById("precoProduto").value = "";
+        document.getElementById("produto_orcamento").value = "";
+        document.getElementById("qtdeProduto").value = "";
+        document.getElementById("unidadeProduto").value = "";
+        document.getElementById("precoProdutoWeb").value = "";
+        document.getElementById("qtdeProdutoWeb").value = "";
+        document.getElementById("unidadeProdutoWeb").value = "";
+        document.getElementById("autoProdutoWeb").value = "";
+        document.getElementById("autoProdutoWeb").focus();
+        document.getElementById("totalProdutoWeb").value = "";
+        document.getElementById("resumoQtdeItem").value = itensOrcamento.length;
+        document.getElementById("resumotTotalItens").value = "R$:" + numberToReal(total);
+
+        limparOrcamento();
     }
 }

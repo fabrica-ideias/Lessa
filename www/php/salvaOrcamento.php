@@ -19,7 +19,8 @@ if (!mysqli_query($con,"INSERT INTO NET_MOVIMENTO(
 	PAR_PKN_CODIGO,
 	NET_D_DATA,
 	FIL_PKN_CODIGO,
-	 FUN_PKN_CODIGO) 
+	 FUN_PKN_CODIGO,
+	 FOR_PKN_CODIGO) 
 	VALUES (
 	'".$orcamento->usuario->PAR_A_RAZAOSOCIAL."','"
 	.$orcamento->usuario->PAR_A_CNPJ_CPF."','"
@@ -36,7 +37,8 @@ if (!mysqli_query($con,"INSERT INTO NET_MOVIMENTO(
 	.$orcamento->usuario->PAR_A_OBS_FINANCEIRA."', '"
 	.$orcamento->usuario->PAR_PKN_CODIGO."','"
 	.$data."','0','"
-	.$orcamento->funcionario."')")){
+	.$orcamento->funcionario."',
+	'".$orcamento->forma."')")){
 	echo("Error description: " . mysqli_error($con));
 }
 $id =  mysqli_insert_id($con);

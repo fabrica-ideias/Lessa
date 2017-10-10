@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="css/style.css"/>
     <link rel="stylesheet" type="text/css" href="css/fonts/font_roboto.css"/>
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="js/jquery.maskMoney.min.js"></script>
     <script src="materialize/js/materialize.min.js"></script>
     <script src="js/util.js" type="text/javascript"></script>
     <script src="js/login.js" type="text/javascript"></script>
@@ -128,6 +127,7 @@
                                                class="autofantasia" autocomplete="off">
                                         <label for="autocomplete-fantasia">NOME FANTASIA</label>
                                     </div>
+
                                 </div>
                                 <div class="row">
                                     <div class="input-field col s12 l2" style="padding: 10px;">
@@ -148,13 +148,21 @@
                                             style="margin-top: 20px;margin-bottom: 0px;background: #5ea1ce;">Proximo
                                     </button>
                                 </div>
+                                <div class="row">
+                                    <div class="col s4"></div>
+                                    <button type="button" class="col s12 l4 btn" id="habilitaOrcamento"
+                                            style="margin-top: 20px;margin-bottom: 0px;background: #5ea1ce;">Proximo
+                                    </button>
+                                </div>
+
+                            </div>
+                            <div class="row informatacaoCliente" id="informatacaoCliente">
+                                <button  id="cancelarOrcamento" type="button" class="btn">CANCELAR</button>
+                                <label class="col s8" id="infoNome">RAZAO SOCIAL:</label>
+                                <label class="col s8" id="infoCpfCnpj">CNPJ/CPF:</label>
+                                <label class="col s8" id="infoEndereco">ENDERECO:</label>
                             </div>
                             <div class="row" id="addItens">
-                                <div class="row informatacaoCliente">
-                                    <label class="col s12" id="infoNome">RAZAO SOCIAL:</label>
-                                    <label class="col s12" id="infoCpfCnpj">CNPJ/CPF:</label>
-                                    <label class="col s12" id="infoEndereco">ENDERECO:</label>
-                                </div>
                                 <nav id="submenu">
                                     <div class="nav-wrapper">
                                         <div class="row">
@@ -194,20 +202,19 @@
                                                class="validate autoProdutoWeb entradaOrcamentoWeb" autocomplete="off"
                                                maxlength="14">
                                         <label for="autoProdutoWeb" class="descricaoElemento"
-                                               data-error=" Digite nome do produto">DESCRIÇÃO DO PRODUTO</label>
+                                               data-error=" Digite nome do produto">BUSCAR PRODUTO</label>
                                     </div>
                                     <div class="input-field col l1" style="padding: 5px;">
                                         <input disabled type="text" placeholder=" " id="unidadeProdutoWeb"
                                                autocomplete="off" style="color:#000;background: #c0c0c0 !important;"
                                                class="validate entradaOrcamentoWeb" autocomplete="off" maxlength="14">
                                         <label for="unidadeProdutoWeb" class="descricaoElemento"
-                                               data-error="Digite nome do produto" >UNIDADE</label>
+                                               data-error="Digite nome do produto">UNIDADE</label>
                                     </div>
                                     <div class="input-field col l1" style="padding: 5px;">
                                         <input type="number" placeholder=" " id="qtdeProdutoWeb" autocomplete="off"
-                                               class="validate entradaOrcamentoWeb" autocomplete="off" maxlength="14">
-                                        <label for="qtdeProdutoWeb" class="descricaoElemento"
-                                               data-error="Digite nome do produto">QUANTIDADE</label>
+                                               class="validate entradaOrcamentoWeb" autocomplete="off" maxlength="14" min="0">
+                                        <label for="qtdeProdutoWeb" class="descricaoElemento">QUANTIDADE</label>
                                     </div>
                                     <div class="input-field col l1" style="padding: 5px;">
                                         <input disabled type="text" placeholder=" " id="precoProdutoWeb"
@@ -221,7 +228,8 @@
                                         <input disabled type="text" placeholder=" " id="totalProdutoWeb"
                                                autocomplete="off"
                                                class="validate entradaOrcamentoWeb valores" autocomplete="off"
-                                               maxlength="14" style="color:#000;text-align: right;background: #c0c0c0 !important;">
+                                               maxlength="14"
+                                               style="color:#000;text-align: right;background: #c0c0c0 !important;">
                                         <label for="totalProdutoWeb" class="descricaoElemento">TOTAL</label>
                                     </div>
                                     <div class="col l2">
@@ -235,7 +243,7 @@
                                     <div class="col s12 titleDescricao">
                                         <div class="col l5">DESCRIÇÃO</div>
                                         <div class="col l1">UNIDADE</div>
-                                        <div class="col l1">QUANTIDADE</div>
+                                        <div class="col l1">QTDE</div>
                                         <div class="col l2">PREÇO</div>
                                         <div class="col l2">TOTAL</div>
                                         <div class="col l1"></div>
@@ -244,7 +252,6 @@
                                 <div class="containerItens">
                                     <ul id="detalheItemWeb" style="color: #000;" class="row"
                                         data-collapsible="accordion">
-
                                     </ul>
                                 </div>
                             </div>
@@ -256,37 +263,43 @@
                                 <div class="col s12">
                                     RESUMO DO PEDIDO
                                 </div>
-                                <div class="col s12">
+                                <div class="col s12 m2 l12">
                                     <div class="input-field col l12" style="padding: 5px;">
-                                        <input disabled type="number" placeholder=" " id="resumoQtdeItem" autocomplete="off"
-                                               class="validate entradaOrcamentoWeb resumo" autocomplete="off" maxlength="14"
-                                        style="text-align: center">
+                                        <input disabled type="number" placeholder=" " id="resumoQtdeItem"
+                                               autocomplete="off"
+                                               class="validate entradaOrcamentoWeb resumo" autocomplete="off"
+                                               maxlength="14"
+                                               style="text-align: center">
                                         <label for="resumoQtdeItem">QUANTIDADE DE ITEM</label>
                                     </div>
                                 </div>
-                                <div class="col s12">
-                                    <div class="input-field col l12" style="padding: 5px;">
-                                        <input disabled type="number" placeholder=" " id="resumoQtdeKgItem" autocomplete="off"
-                                               class="validate entradaOrcamentoWeb resumo" autocomplete="off" maxlength="14"
-                                               style="text-align: center">
-                                        <label for="resumoQtdeKgItem">QUANTIDADE POR KG</label>
-                                    </div>
+                                <div class="col s12 m2 l12">
+                                    <label>UNIDADES</label>
+                                    <ul id="resumoQtdeKgItem" class="collection" style="height: 150px;overflow-y: scroll">
+
+                                    </ul>
                                 </div>
-                                <div class="col s12">
+                                <div class="col s12 m2 l12">
                                     <div class="input-field col l12" style="padding: 5px;">
-                                        <input disabled type="text" placeholder=" " value="R$: 0,00" id="resumotTotalItens" autocomplete="off"
-                                               class="validate entradaOrcamentoWeb valorTotal" autocomplete="off" maxlength="14">
-                                        <label for="resumoQtdeItem">VALOR TOTAL</label>
-                                    </div>
-                                </div>
-                                <div class="col s12">
-                                    <div class="input-field col l12" style="padding: 5px;">
-                                        <input disabled type="text" placeholder=" " id="resumoVendedor" autocomplete="off"
-                                               class="validate entradaOrcamentoWeb resumo" autocomplete="off" maxlength="14">
+                                        <input disabled type="text" placeholder=" " id="resumoVendedor"
+                                               autocomplete="off"
+                                               class="validate entradaOrcamentoWeb resumo" autocomplete="off"
+                                               maxlength="14">
                                         <label for="resumoVendedor">VENDEDOR</label>
                                     </div>
                                 </div>
-                                <button type="button" id="btnFinalizaOrcamentoWeb" class="col s12 btn">FINALIZAR PEDIDO</button>
+                                <div class="col s12 l12">
+                                    <div class="input-field col l12" style="padding: 5px;">
+                                        <input disabled type="text" placeholder=" " value="R$: 0,00"
+                                               id="resumotTotalItens" autocomplete="off"
+                                               class="validate entradaOrcamentoWeb valorTotal" autocomplete="off"
+                                               maxlength="14">
+                                        <label for="resumoQtdeItem">VALOR TOTAL</label>
+                                    </div>
+                                </div>
+                                <button type="button" id="btnFinalizaOrcamentoWeb" class="col s12 btn">FINALIZAR
+                                    PEDIDO
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -455,6 +468,12 @@
         <a href="#!" id="addItemOrca" class="modal-action waves-effect waves-green btn-flat">Adicionar</a>
     </div>
 </div>
+<div id="modalFormaPagamento" class="modalFormaPagamento">
+    <div class="input-field col s12">
+        <select id="selectFormaPagamento">
+        </select>
+        <button type="button" id="enviarOrcamento" class="btn">FINALIZAR</button>
+    </div>
 </div>
 </body>
 </html>
