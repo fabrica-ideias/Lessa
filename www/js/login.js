@@ -437,6 +437,14 @@ function initLogin() {
     }
 
     function finalizaOrcamento() {
+        if(cliente == null){
+                Materialize.toast('CLIENTE DEVE SER SELECIONADO', 5000);
+            return;
+        }
+        if(itensOrcamento.length == 0){
+            Materialize.toast('ADICIONE PELO MENOS UM ITEM NO ORCAMENTO', 5000);
+            return;
+        }
         $('#modalpreload').modal('open');
         var orcamento = new Object();
         orcamento.usuario = cliente;
