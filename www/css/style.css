@@ -143,6 +143,10 @@ td{
 	border: 1px solid;
 	border-color: #afafaf;
 }
+#cancelarOrcamento{
+	position: relative;
+	float: right;
+}
 #cancelar{
 	float: right;
 	color:#000;
@@ -281,7 +285,7 @@ td{
 	color: #fff !important;
 }
 .entradaOrcamentoWeb{
-	background-color: #fff !important;
+	background-color: #fff;
 	color: #000;
 	height: 2em !important;
 	border-radius: 4px !important;
@@ -334,6 +338,13 @@ td{
 .autocomplete .close.visible {
 	display: block;
 }
+.textBloqueado{
+	padding: 5px !important;
+	margin: 5px;
+	background-color: #dcdcdc;
+	border-radius: 10px;
+	font-size: 1em;
+}
 .dialog {
 	width: 100%;
 	display: none;
@@ -341,6 +352,10 @@ td{
 	max-height: 330px;
 	overflow-y: scroll;
 	border-top: 1px solid #f4f4f4;
+	z-index: 100;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	position: absolute;
 }
 .dialog.open {
 	display: block;
@@ -351,9 +366,10 @@ td{
 	cursor: pointer;
 	transition: all 0.2s;
 }
-.dialog div:hover {
+.dialog div:hover,.dialog div.active {
 	background: #f2f2f2;
 }
+
 @media screen and (max-width: 920px){
 	.fila li{
 		float: left;

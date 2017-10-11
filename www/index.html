@@ -116,10 +116,14 @@
                             <div class="row" id="selectCliente" style="margin:10px">
                                 <div class="row">
                                     <div class="input-field col s12 l6" style="padding: 10px;">
-                                        <input type="text" id="autocompletecliente" class="autocliente"
-                                               autocomplete="off" placeholder=" ">
-                                        <label for="autocompletecliente" autocomplete="off"
-                                               data-error="SELECIONE O CLIENTE">RAZÃO SOCIAL</label>
+                                        <div class="autocliente">
+                                            <input type="text" id="autocompletecliente" style="margin: 0"
+                                                   autocomplete="off">
+                                            <div class="dialog" id="dialogcliente">
+                                            </div>
+                                            <label for="autocompletecliente" autocomplete="off"
+                                                   data-error="SELECIONE O CLIENTE">RAZÃO SOCIAL</label>
+                                        </div>
                                     </div>
                                     <div class="input-field col s12 l6" style="padding: 10px;">
                                         <input type="text" placeholder=" " autocomplete="off"
@@ -157,10 +161,12 @@
 
                             </div>
                             <div class="row informatacaoCliente" id="informatacaoCliente">
-                                <button  id="cancelarOrcamento" type="button" class="btn">CANCELAR</button>
-                                <label class="col s8" id="infoNome">RAZAO SOCIAL:</label>
-                                <label class="col s8" id="infoCpfCnpj">CNPJ/CPF:</label>
-                                <label class="col s8" id="infoEndereco">ENDERECO:</label>
+                                <button id="cancelarOrcamento" type="button" class="btn red">X</button>
+                                <div class="col s12 l8">
+                                    <label class="col s12 l8 textBloqueado" id="infoNome">RAZAO SOCIAL:</label>
+                                    <label class="col s12 l3 textBloqueado" id="infoCpfCnpj">CNPJ/CPF:</label>
+                                    <label class="col s12 l5 textBloqueado" id="infoEndereco">ENDERECO:</label>
+                                </div>
                             </div>
                             <div class="row" id="addItens">
                                 <nav id="submenu">
@@ -198,11 +204,15 @@
                             <div id="addItensWeb">
                                 <div class="row">
                                     <div class="input-field col l5" style="padding: 5px;">
-                                        <input type="text" placeholder=" " id="autoProdutoWeb" autocomplete="off"
-                                               class="validate autoProdutoWeb entradaOrcamentoWeb" autocomplete="off"
-                                               maxlength="14">
-                                        <label for="autoProdutoWeb" class="descricaoElemento"
-                                               data-error=" Digite nome do produto">BUSCAR PRODUTO</label>
+                                        <div class="autoProdutoWeb">
+                                            <input type="text" id="autocompleteproduto" placeholder=" "
+                                                   class="validate autoProdutoWeb entradaOrcamentoWeb"
+                                                   style="margin: 0;background-color: #fff" autocomplete="off">
+                                            <div class="dialog" id="dialogProduto">
+                                            </div>
+                                            <label for="autocompleteproduto" class="descricaoElemento"
+                                                   data-error="Digite nome do produto">BUSCAR PRODUTO</label>
+                                        </div>
                                     </div>
                                     <div class="input-field col l1" style="padding: 5px;">
                                         <input disabled type="text" placeholder=" " id="unidadeProdutoWeb"
@@ -212,8 +222,10 @@
                                                data-error="Digite nome do produto">UNIDADE</label>
                                     </div>
                                     <div class="input-field col l1" style="padding: 5px;">
-                                        <input type="number" placeholder=" " id="qtdeProdutoWeb" autocomplete="off"
-                                               class="validate entradaOrcamentoWeb" autocomplete="off" maxlength="14" min="0">
+                                        <input type="number" placeholder=" " style="text-align: center;background-color: #fff"
+                                               id="qtdeProdutoWeb" autocomplete="off"
+                                               class="validate entradaOrcamentoWeb" autocomplete="off" maxlength="14"
+                                               min="0">
                                         <label for="qtdeProdutoWeb" class="descricaoElemento">QUANTIDADE</label>
                                     </div>
                                     <div class="input-field col l1" style="padding: 5px;">
@@ -232,10 +244,14 @@
                                                style="color:#000;text-align: right;background: #c0c0c0 !important;">
                                         <label for="totalProdutoWeb" class="descricaoElemento">TOTAL</label>
                                     </div>
-                                    <div class="col l2">
+                                    <div class="col s2">
                                         <button type="button" class="btn blue" id="addItemOrcaWeb"
                                                 style="margin-top:15px;">
                                             ADICIONAR
+                                        </button>
+                                        <button type="button" class="btn orange" id="cancelarItem"
+                                                style="margin-top: 15px;position: absolute;margin-left: 5px;">
+                                            CANCELAR
                                         </button>
                                     </div>
                                 </div>
@@ -244,8 +260,8 @@
                                         <div class="col l5">DESCRIÇÃO</div>
                                         <div class="col l1">UNIDADE</div>
                                         <div class="col l1">QTDE</div>
-                                        <div class="col l2">PREÇO</div>
-                                        <div class="col l2">TOTAL</div>
+                                        <div class="col l1">PREÇO</div>
+                                        <div class="col l1">TOTAL</div>
                                         <div class="col l1"></div>
                                     </div>
                                 </div>
@@ -275,7 +291,8 @@
                                 </div>
                                 <div class="col s12 m2 l12">
                                     <label>UNIDADES</label>
-                                    <ul id="resumoQtdeKgItem" class="collection" style="height: 150px;overflow-y: scroll">
+                                    <ul id="resumoQtdeKgItem" class="collection"
+                                        style="height: 150px;overflow-y: scroll">
 
                                     </ul>
                                 </div>

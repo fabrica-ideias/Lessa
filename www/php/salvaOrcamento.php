@@ -45,4 +45,5 @@ $id =  mysqli_insert_id($con);
 foreach ($orcamento->itens as $item) {
 	mysqli_query($con,"INSERT INTO NET_ITEM_MOVIMENTO(PRO_PKN_CODIGO, NET_ITEM_QTD, NET_M_VALOR_UNITARIO, NET_PKN_CODIGO) VALUES ('".$item->produto->idproduto."','".$item->qtde."','".$item->produto->valor."','$id')");
 }
+	mysqli_close($con);
 ?>
