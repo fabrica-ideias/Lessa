@@ -162,10 +162,12 @@
                             </div>
                             <div class="row informatacaoCliente" id="informatacaoCliente">
                                 <button id="cancelarOrcamento" type="button" class="btn red">X</button>
-                                <div class="col s12 l8">
-                                    <label class="col s12 l8 textBloqueado" id="infoNome">RAZAO SOCIAL:</label>
-                                    <label class="col s12 l3 textBloqueado" id="infoCpfCnpj">CNPJ/CPF:</label>
-                                    <label class="col s12 l5 textBloqueado" id="infoEndereco">ENDERECO:</label>
+                                <div class="col s12 l10">
+                                    <div class="row">
+                                        <label class="col s12 l8 textBloqueado" id="infoNome">RAZAO SOCIAL:</label>
+                                        <label class="col s12 l3 textBloqueado" id="infoCpfCnpj">CNPJ/CPF:</label>
+                                    </div>
+                                    <label class="col s12 l8 textBloqueado" id="infoEndereco">ENDERECO:</label>
                                 </div>
                             </div>
                             <div class="row" id="addItens">
@@ -203,7 +205,7 @@
                             </div>
                             <div id="addItensWeb">
                                 <div class="row">
-                                    <div class="input-field col l5" style="padding: 5px;">
+                                    <div class="input-field col l4" style="padding: 5px;">
                                         <div class="autoProdutoWeb">
                                             <input type="text" id="autocompleteproduto" placeholder=" "
                                                    class="validate autoProdutoWeb entradaOrcamentoWeb"
@@ -222,7 +224,8 @@
                                                data-error="Digite nome do produto">UNIDADE</label>
                                     </div>
                                     <div class="input-field col l1" style="padding: 5px;">
-                                        <input type="number" placeholder=" " style="text-align: center;background-color: #fff"
+                                        <input type="number" placeholder=" "
+                                               style="text-align: center;background-color: #fff"
                                                id="qtdeProdutoWeb" autocomplete="off"
                                                class="validate entradaOrcamentoWeb" autocomplete="off" maxlength="14"
                                                min="0">
@@ -452,15 +455,13 @@
     <div class="modal-content">
         <div class="row">
             <div class="input-field col s12">
-                <div class="row">
-                    <div class="col s12">
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input type="text" id="produto_orcamento" class="autoproduto">
-                                <label for="produto_orcamento">Descricao do produto</label>
-                            </div>
-                        </div>
+                <div class="autoproduto">
+                    <input type="text" id="produto_orcamento" style="margin: 0"
+                           autocomplete="off">
+                    <div class="dialog" id="dlgproduto">
                     </div>
+                    <label for="produto_orcamento" autocomplete="off"
+                           >Descricao do produto</label>
                 </div>
             </div>
             <div class="input-field col s4">

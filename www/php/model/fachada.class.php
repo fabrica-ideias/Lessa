@@ -132,7 +132,7 @@ class Fachada{
 	}
 	function getProdutoCliente($codigo){
 		include("conexao.php");
-		$result = mysqli_query($con,"SELECT * from TB_PRO_PRODUTO as prod,TB_ITB_PRECO_PAR as itbpreco where itbpreco.TAB_PKN_CODIGO = '$codigo' and prod.PRO_PKN_CODIGO = itbpreco.PRO_PKN_CODIGO");
+		$result = mysqli_query($con,"SELECT * from TB_PRO_PRODUTO as prod,TB_ITB_PRECO_PAR as itbpreco where itbpreco.TAB_PKN_CODIGO = '$codigo' and prod.PRO_PKN_CODIGO = itbpreco.PRO_PKN_CODIGO ORDER BY PRO_A_DESCRICAO");
 		$produtos = array();
 		if(mysqli_num_rows($result) > 0){
 			while($dados= mysqli_fetch_array($result)){
