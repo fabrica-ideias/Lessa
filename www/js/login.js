@@ -36,7 +36,7 @@ function initLogin() {
                     document.getElementById("addItemOrcaWeb").addEventListener("click", function () {
                         addItem("qtdeProdutoWeb", "detalheItemWeb", true)
                     });
-                    document.getElementById("btnFinalizaOrcamento").addEventListener("click", finalizaOrcamento);//Finalizar Orcamento
+                    document.getElementById("btnFinalizaOrcamento").addEventListener("click", mostraFormaPagamento);//Finalizar Orcamento
                     document.getElementById("btnFinalizaOrcamentoWeb").addEventListener("click", mostraFormaPagamento);//Finalizar Orcamento
                     document.getElementById("verOrcamentosMobile").addEventListener("click", listaOrcamentos);
 
@@ -44,8 +44,15 @@ function initLogin() {
                     document.getElementById("qtdeProdutoWeb").addEventListener("keyup", addPedidoEnter);
                     document.getElementById("habilitaOrcamento").addEventListener("click", habilitaOrcamento);
                     document.getElementById("enviarOrcamento").addEventListener("click", finalizaOrcamento);
-                    document.getElementById("cancelarOrcamento").addEventListener("click", limparOrcamento);
+                    document.getElementById("cancelarOrcamento").addEventListener("click", questionarOrcamento);
                     document.getElementById("cancelarItem").addEventListener("click", cancelarProduto);
+                    document.getElementById("simCancelaPedido").addEventListener("click",function(){
+                        limparOrcamento();
+                        $(".modalCancelaPedido").modal('close');
+                    });
+                    document.getElementById("naoCancelaPedido").addEventListener("click",function(){
+                        $(".modalCancelaPedido").modal('close');
+                    });
                     opcaoItem();
                     preencheClientes();
                 }
@@ -62,6 +69,10 @@ function initLogin() {
 
         request.open("POST", url + "php/configuracao.php", true);
         request.send();
+    }
+    function questionarOrcamento(){
+        $(".modalCancelaPedido").modal();
+        $(".modalCancelaPedido").modal('open');
     }
 
     function habilitaOrcamento() {
@@ -324,7 +335,7 @@ function initLogin() {
             document.getElementById("selectCliente").style.display = "none";
             document.getElementById("addItens").style.display = "block";
             document.getElementById("menu_pedido").style.display = "none";
-
+            document.getElementById("informatacaoCliente").style.display = "block";
             document.getElementById("infoNome").innerHTML = "RAZAO SOCIAL: " + cliente.PAR_A_RAZAOSOCIAL;
             document.getElementById("infoCpfCnpj").innerHTML = "CNPJ/CPF: " + cliente.PAR_A_CNPJ_CPF;
             document.getElementById("infoEndereco").innerHTML = "ENDERECO: " + cliente.PAR_A_LOGRADOURO + " " + cliente.PAR_A_ENDERECO + " " + cliente.PAR_A_NUMERO;
@@ -408,7 +419,7 @@ function initLogin() {
         for (var i = 0; i < itensOrcamento.length; i++) {
             var item = itensOrcamento[i];
             if (web == false) {
-                itens += "<li style='border:1px solid #5f5c5c' class='itemCliente' id='" + item.produto.idproduto + "'>";
+                itens += "<li style='border:1px solid #5f5c5c' class='itemCliente' id='" + i + "'>";
                 itens += '<div class="row">';
                 itens += '<div class="col s12" id="descricaoitem">' + item.produto.descricao.toUpperCase() + '</div>';
                 itens += '<div class="col s12" id="subdescricaoitem">';
@@ -516,7 +527,7 @@ function initLogin() {
         for (i = 0; i < elems.length; i++) {
             document.getElementById(elems[i].id).addEventListener("click", function () {
                 for (var j = 0; j < itensOrcamento.length; j++) {
-                    if (itensOrcamento[j].produto.idproduto == parseInt(this.id)) {
+                    if (j == this.id) {
                         indexProduto = j;
                         break;
                     }
@@ -532,7 +543,7 @@ function initLogin() {
     function opcaoItem() {
         document.getElementById("excluirItem").addEventListener("click", function () {
             itensOrcamento.splice(indexProduto, 1);
-            atualizaLista();
+            atualizaLista("datelhe_item",false);
             $("#opcaoItem").modal("close");
         });
         document.getElementById("alteraItem").addEventListener("click", function () {
