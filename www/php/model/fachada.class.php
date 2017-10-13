@@ -28,7 +28,6 @@ class Fachada{
 	}
 	function getClientes(){
 		include("conexao.php");
-		mysqli_query($con,"SET NAMES 'utf8'");
 		$result = mysqli_query($con,"SELECT * FROM TB_PAR_PARTICIPANTE ORDER BY PAR_A_RAZAOSOCIAL ASC") ;
 		$clientes = [];
 		while($dados= mysqli_fetch_array($result)){
@@ -38,7 +37,7 @@ class Fachada{
 	}
 	function getFuncionarios(){
 		include("conexao.php");
-		$result = mysqli_query($con,"select * from TB_PAR_PARTICIPANTE");
+		$result = mysqli_query($con,"select * from TB_FUN_FUNCIONARIO");
 		if( mysqli_num_rows($result)){
 			$funcionario = array();
 			while($dados= mysqli_fetch_array($result)){

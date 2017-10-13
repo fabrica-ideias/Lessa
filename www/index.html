@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
     <meta charset="utf-8"/>
     <meta http-equiv="cache-control" content="max-age=0"/>
     <meta http-equiv="cache-control" content="no-cache"/>
@@ -27,7 +27,7 @@
     <div class="col s12 m12 l4" id="form">
         <form method="POST" class="col s12 m12 l12" id="fLogin">
             <div class="row">
-                <div class="col s4 m5 l5"></div>
+                <div class="col s4 m4 l5"></div>
                 <div class="col s4 m2 l2 z-depth-4" id="imgUser"></div>
                 <div class="col s4 m5 l5"></div>
             </div>
@@ -97,18 +97,6 @@
             <!-- PEDIDOS -->
             <div id="pedidos" class="col s12">
                 <!-- CRIAR Orcamento -->
-                <div class="row menu_mobile" id="mobile-orcamento">
-                    <ul class="col s12 collapsible" id="menu_pedido" data-collapsible="accordion">
-                        <li class="col s2">
-                            <div class=" collapsible-header" id="btnOrcamentoMobile"><i
-                                    class="material-icons">create</i></div>
-                        </li>
-                        <li class="col s2 ">
-                            <div class="collapsible-header" id="verOrcamentosMobile"><i class="material-icons">list</i>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
                 <div class="row">
                     <form class="col s12 l10">
                         <!-- Orcamento do funcionario -->
@@ -171,6 +159,16 @@
                                 </div>
                             </div>
                             <div class="row" id="addItens">
+                                <div class="input-field col s12">
+                                    <div class="autoproduto">
+                                        <input type="text" id="produto_orcamento" style="margin: 0"
+                                               autocomplete="off" placeholder="BUSCAR POR DESCRICAO DO PRODUTO">
+                                        <div class="dialog" id="dlgproduto">
+                                        </div>
+                                        <label for="produto_orcamento" autocomplete="off"
+                                        >Descricao do produto</label>
+                                    </div>
+                                </div>
                                 <nav id="submenu">
                                     <div class="nav-wrapper">
                                         <div class="row">
@@ -183,9 +181,6 @@
                                                 <input type="text" id="totalOrcamento" value="0,00" disabled/>
                                             </div>
                                         </div>
-                                        <a class="btn-floating btn-large waves-effect waves-light blue modal-trigger"
-                                           id="btnAddItem" href="#modalSelecionaProduto"><i
-                                                class="material-icons">add</i></a>
                                     </div>
                                 </nav>
                                 <div class="row">
@@ -260,12 +255,12 @@
                                 </div>
                                 <div class="row">
                                     <div class="col s12 titleDescricao">
-                                        <div class="col l5">DESCRIÇÃO</div>
-                                        <div class="col l1">UNIDADE</div>
-                                        <div class="col l1">QTDE</div>
-                                        <div class="col l1">PREÇO</div>
-                                        <div class="col l1">TOTAL</div>
-                                        <div class="col l1"></div>
+                                        <div class="col s5 l5">DESCRIÇÃO</div>
+                                        <div class="col s1 l1">UNIDADE</div>
+                                        <div class="col s1 l1">QTDE</div>
+                                        <div class="col s1 l1">PREÇO</div>
+                                        <div class="col s1 l1">TOTAL</div>
+                                        <div class="col s1 l1"></div>
                                     </div>
                                 </div>
                                 <div class="containerItens">
@@ -335,29 +330,10 @@
                     <!-- CADASTRO DE USUARIO  -->
                     <div class="col s12" style="padding: 10px;">
                         <div class="row">
-                            <div class="col l2"></div>
-                            <div class="col s12 l8">
+                            <div class="col l3"></div>
+                            <div class="col s12 l6 containerCadastro">
                                 <div class="row">
-                                    <div class="row">
-                                        <div class="input-field col l1"></div>
-                                        <div class="input-field col s12 l6">
-                                            <input id="nome" type="text" class="validate">
-                                            <label for="nome">Nome Completo</label>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="input-field col s12 l4">
-                                            <input id="emailUserNovo" type="email" class="validate">
-                                            <label for="emailUserNovo">Email</label>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="input-field col s12 l4">
-                                            <input id="senhaUserNovo" type="password" class="validate">
-                                            <label for="senhaUserNovo">Senha</label>
-                                        </div>
-                                    </div>
-                                    <div class="input-field col s12 l5">
+                                    <div class="input-field col s12 l12">
                                         <select id="tipoUsuario">
                                             <option value="" disabled selected>SELECIONE O TIPO DO USUARIO</option>
                                             <option value="2">GERENTE</option>
@@ -365,23 +341,32 @@
                                             <option value="4">CLIENTE</option>
                                         </select>
                                     </div>
-                                    <div class="input-field col s12 l5">
+                                    <div class="dadosUser" id="dadosUser">
                                         <div class="row">
-                                            <div class="input-field col s12" id="selecioneCliente">
-                                                <input type="text" id="autocliente" class="autocliente"
-                                                       autocomplete="off">
-                                                <label for="autocliente">Cliente</label>
+                                            <div class="input-field col s12 l12">
+                                                <input id="nome" type="text" class="validate" autocomplete="off">
+                                                <label for="nome">Nome Completo</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s12 l12">
+                                                <input id="emailUserNovo" type="email" class="validate" autocomplete="off">
+                                                <label for="emailUserNovo">Email</label>
+                                            </div>
+                                            <div class="input-field col s12 l6" style="margin-left: 10px">
+                                                <input id="senhaUserNovo" type="password" class="validate" autocomplete="off">
+                                                <label for="senhaUserNovo">Senha</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col l12">
+                                                <button class="btn" id="btnSalvaUsuario">SALVA USUARIO</button>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col l4"></div>
-                                        <button class="col s12 l4 btn" id="btnSalvaUsuario">SALVA USUARIO</button>
-                                        <div class="col l4"></div>
-                                    </div>
                                 </div>
-                            </div>
-                            <div class="col l2"></div>
+                               </div>
+                            <div class="col l4"></div>
                         </div>
                     </div>
                 </div>
@@ -454,16 +439,6 @@
 <div id="modalSelecionaProduto" class="modal">
     <div class="modal-content">
         <div class="row">
-            <div class="input-field col s12">
-                <div class="autoproduto">
-                    <input type="text" id="produto_orcamento" style="margin: 0"
-                           autocomplete="off">
-                    <div class="dialog" id="dlgproduto">
-                    </div>
-                    <label for="produto_orcamento" autocomplete="off"
-                    >Descricao do produto</label>
-                </div>
-            </div>
             <div class="input-field col s4">
                 <input type="number" name="qtdeProduto" id="qtdeProduto" style="text-align: center"/>
                 <label for="qtdeProduto"
@@ -491,6 +466,7 @@
         <select id="selectFormaPagamento">
         </select>
         <button type="button" id="enviarOrcamento" class="btn">FINALIZAR</button>
+        <button type="button" class="modal-action modal-close btn">CANCELAR</button>
     </div>
 </div>
 <div id="modalCancelaPedido" class="modalCancelaPedido">

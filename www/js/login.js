@@ -38,7 +38,6 @@ function initLogin() {
                     });
                     document.getElementById("btnFinalizaOrcamento").addEventListener("click", mostraFormaPagamento);//Finalizar Orcamento
                     document.getElementById("btnFinalizaOrcamentoWeb").addEventListener("click", mostraFormaPagamento);//Finalizar Orcamento
-                    document.getElementById("verOrcamentosMobile").addEventListener("click", listaOrcamentos);
 
                     document.getElementById("qtdeProdutoWeb").addEventListener("input", calculaProduto);
                     document.getElementById("qtdeProdutoWeb").addEventListener("keyup", addPedidoEnter);
@@ -46,11 +45,11 @@ function initLogin() {
                     document.getElementById("enviarOrcamento").addEventListener("click", finalizaOrcamento);
                     document.getElementById("cancelarOrcamento").addEventListener("click", questionarOrcamento);
                     document.getElementById("cancelarItem").addEventListener("click", cancelarProduto);
-                    document.getElementById("simCancelaPedido").addEventListener("click",function(){
+                    document.getElementById("simCancelaPedido").addEventListener("click", function () {
                         limparOrcamento();
                         $(".modalCancelaPedido").modal('close');
                     });
-                    document.getElementById("naoCancelaPedido").addEventListener("click",function(){
+                    document.getElementById("naoCancelaPedido").addEventListener("click", function () {
                         $(".modalCancelaPedido").modal('close');
                     });
                     opcaoItem();
@@ -70,7 +69,8 @@ function initLogin() {
         request.open("POST", url + "php/configuracao.php", true);
         request.send();
     }
-    function questionarOrcamento(){
+
+    function questionarOrcamento() {
         $(".modalCancelaPedido").modal();
         $(".modalCancelaPedido").modal('open');
     }
@@ -83,7 +83,7 @@ function initLogin() {
             document.getElementById("infoNome").innerHTML = "RAZAO SOCIAL: " + cliente.PAR_A_RAZAOSOCIAL;
             document.getElementById("infoCpfCnpj").innerHTML = "CNPJ/CPF: " + cliente.PAR_A_CNPJ_CPF;
             document.getElementById("infoEndereco").innerHTML = "ENDERECO: " + cliente.PAR_A_LOGRADOURO + " " + cliente.PAR_A_ENDERECO + " " + cliente.PAR_A_NUMERO;
-            selectProdutoCliente(cliente, "autocompleteproduto", "precoProdutoWeb", "unidadeProdutoWeb","dialogProduto");
+            selectProdutoCliente(cliente, "autocompleteproduto", "precoProdutoWeb", "unidadeProdutoWeb", "dialogProduto");
             document.getElementById("autocompleteproduto").focus();
         }
     }
@@ -128,11 +128,8 @@ function initLogin() {
 
     function checarTipoUsuario() {
         $("#tipoUsuario").change(function () {
-            if ($(this).val() == 4) {
-                document.getElementById("selecioneCliente").style.display = 'block';
-            } else {
-                document.getElementById("selecioneCliente").style.display = 'none';
-            }
+            document.getElementById("dadosUser").style.display = "block";
+            //alert(document.getElementById("tipoUsuario").value);
         });
     }
 
@@ -334,12 +331,11 @@ function initLogin() {
         if (cliente != null) {
             document.getElementById("selectCliente").style.display = "none";
             document.getElementById("addItens").style.display = "block";
-            document.getElementById("menu_pedido").style.display = "none";
-            document.getElementById("informatacaoCliente").style.display = "block";
+            //document.getElementById("informatacaoCliente").style.display = "block";
             document.getElementById("infoNome").innerHTML = "RAZAO SOCIAL: " + cliente.PAR_A_RAZAOSOCIAL;
             document.getElementById("infoCpfCnpj").innerHTML = "CNPJ/CPF: " + cliente.PAR_A_CNPJ_CPF;
             document.getElementById("infoEndereco").innerHTML = "ENDERECO: " + cliente.PAR_A_LOGRADOURO + " " + cliente.PAR_A_ENDERECO + " " + cliente.PAR_A_NUMERO;
-            selectProdutoCliente(cliente, "produto_orcamento", "precoProduto", "unidadeProduto","dlgproduto");
+            selectProdutoCliente(cliente, "produto_orcamento", "precoProduto", "unidadeProduto", "dlgproduto");
         } else {
             Materialize.Toast.removeAll();
             Materialize.toast('Por favor selecione o cliente', 4000);
@@ -373,7 +369,7 @@ function initLogin() {
                     total = total + itensOrcamento[i].total;
                 }
             }
-            if(alteracaoItem == false) {
+            if (alteracaoItem == false) {
                 total = total + item.total;
                 itensOrcamento.push(item);
             }
@@ -414,35 +410,35 @@ function initLogin() {
 
     function atualizaLista(tabela, web) {
         var itens = "";
+        var itensWeb = "";
         var acumulaUnidade = [];
         total = 0;
         for (var i = 0; i < itensOrcamento.length; i++) {
             var item = itensOrcamento[i];
-            if (web == false) {
-                itens += "<li style='border:1px solid #5f5c5c' class='itemCliente' id='" + i + "'>";
-                itens += '<div class="row">';
-                itens += '<div class="col s12" id="descricaoitem">' + item.produto.descricao.toUpperCase() + '</div>';
-                itens += '<div class="col s12" id="subdescricaoitem">';
-                itens += '<div class="col s4">' + item.qtde + '</div>';
-                itens += '<div class="col s4">' + numberToReal(item.produto.valor) + '</div>';
-                itens += '<div class="col s4">' + numberToReal(itensOrcamento[i].total) + '</div>';
-                itens += '</div>';
-                itens += '</div>';
-                itens += '</li>';
-            } else {
-                itens += "<li style='border:1px solid #5f5c5c' class='itemCliente' id='" + item.produto.idproduto + "'>";
-                itens += '<div class="row" id="descricaoitem">';
-                itens += '<div class="col s1" >' + item.produto.idproduto + '</div>';
-                itens += '<div class="col s4" >' + item.produto.descricao.toUpperCase() + '</div>';
-                itens += '<div class="col s1">' + item.produto.unidade + '</div>';
-                itens += '<div class="col s1">' + item.qtde + '</div>';
-                itens += '<div class="col s1">' + numberToReal(item.produto.valor) + '</div>';
-                itens += '<div class="col s2">' + numberToReal(itensOrcamento[i].total) + '</div>';
-                itens += '<div class="col s1"><a class="apagaritem" id="' + i + '"><i class="material-icons ">close</i></a></div>';
-                itens += '<div class="col s1"><a class="edititem" id="' + i + '"><i class="material-icons ">edit</i></a></div>';
-                itens += '</div>';
-                itens += '</li>';
-            }
+            itens += "<li style='border:1px solid #5f5c5c' class='itemCliente' id='" + i + "'>";
+            itens += '<div class="row">';
+            itens += '<div class="col s12" id="descricaoitem">' + item.produto.descricao.toUpperCase() + '</div>';
+            itens += '<div class="col s12" id="subdescricaoitem">';
+            itens += '<div class="col s4">' + item.qtde + '</div>';
+            itens += '<div class="col s4">' + numberToReal(item.produto.valor) + '</div>';
+            itens += '<div class="col s4">' + numberToReal(itensOrcamento[i].total) + '</div>';
+            itens += '</div>';
+            itens += '</div>';
+            itens += '</li>';
+
+            itensWeb += "<li style='border:1px solid #5f5c5c' class='itemCliente' id='" + item.produto.idproduto + "'>";
+            itensWeb += '<div class="row" id="descricaoitem">';
+            itensWeb += '<div class="col s1" >' + item.produto.idproduto + '</div>';
+            itensWeb += '<div class="col s4" >' + item.produto.descricao.toUpperCase() + '</div>';
+            itensWeb += '<div class="col s1">' + item.produto.unidade + '</div>';
+            itensWeb += '<div class="col s1">' + item.qtde + '</div>';
+            itensWeb += '<div class="col s1">' + numberToReal(item.produto.valor) + '</div>';
+            itensWeb += '<div class="col s2">' + numberToReal(itensOrcamento[i].total) + '</div>';
+            itensWeb += '<div class="col s1"><a class="apagaritem" id="' + i + '"><i class="material-icons ">close</i></a></div>';
+            itensWeb += '<div class="col s1"><a class="edititem" id="' + i + '"><i class="material-icons ">edit</i></a></div>';
+            itensWeb += '</div>';
+            itensWeb += '</li>';
+
             total += itensOrcamento[i].total;
 
             var existe = false;
@@ -461,19 +457,17 @@ function initLogin() {
             }
         }
         document.getElementById("resumoQtdeItem").value = itensOrcamento.length;
-        document.getElementById("resumotTotalItens").value = "R$:" + numberToReal(total);
-        document.getElementById(tabela).innerHTML = itens;
+        document.getElementById("resumotTotalItens").value =  numberToReal(total);
+        document.getElementById("datelhe_item").innerHTML = itens;
+        document.getElementById("detalheItemWeb").innerHTML = itensWeb;
         var acumulador = "";
         for (var i = 0; i < acumulaUnidade.length; i++) {
             acumulador += "<li class='collection-item'>" + acumulaUnidade[i].unidade + " : " + acumulaUnidade[i].qtde + "</li>";
         }
         document.getElementById("resumoQtdeKgItem").innerHTML = acumulador;
+        eventItem();
+        eventItemWeb();
 
-        if (web == false) {
-            eventItem();
-        } else {
-            eventItemWeb();
-        }
     }
 
     function eventItemWeb() {
@@ -498,7 +492,6 @@ function initLogin() {
                 for (var j = 0; j < itensOrcamento.length; j++) {
                     if (j == this.id) {
                         indexProduto = j;
-                        console.log(indexProduto);
                         break;
                     }
                 }
@@ -543,7 +536,7 @@ function initLogin() {
     function opcaoItem() {
         document.getElementById("excluirItem").addEventListener("click", function () {
             itensOrcamento.splice(indexProduto, 1);
-            atualizaLista("datelhe_item",false);
+            atualizaLista("datelhe_item", false);
             $("#opcaoItem").modal("close");
         });
         document.getElementById("alteraItem").addEventListener("click", function () {
@@ -560,6 +553,10 @@ function initLogin() {
     }
 
     function finalizaOrcamento() {
+        if (document.getElementById("selectFormaPagamento").value == '') {
+            Materialize.toast('SELECIONE UMA FORMA DE PAGAMENTO', 5000);
+            return;
+        }
         $("#modalFormaPagamento").modal("close");
         if (cliente == null) {
             Materialize.toast('CLIENTE DEVE SER SELECIONADO', 5000);
@@ -605,7 +602,6 @@ function initLogin() {
         document.getElementById("selectCliente").style.display = "block";
         document.getElementById("addItens").style.display = "none";
         document.getElementById("menu_painel").style.display = "block";
-        document.getElementById("menu_pedido").style.display = "block";
         document.getElementById("datelhe_item").innerHTML = "";
         document.getElementById("detalheItemWeb").innerHTML = "";
         document.getElementById("resumoQtdeItem").value = "0";
@@ -779,6 +775,9 @@ function initLogin() {
                             document.getElementById(preco).value = numberToReal(produtoSelecionado.valor);
                             document.getElementById(unidade).value = produtoSelecionado.unidade.toString();
                             document.getElementById("qtdeProdutoWeb").focus();
+                            if (autocompete == "produto_orcamento") {
+                                $('#modalSelecionaProduto').modal('open');
+                            }
                         });
                     }
                 });
@@ -871,18 +870,17 @@ function initLogin() {
         request = new XMLHttpRequest();
         request.onreadystatechange = function () {
             if (request.readyState == 4 && request.status == 200) {
+                cliente = [];
                 clientes = JSON.parse(this.responseText);
                 var qtde = 0;
                 document.getElementById("autocompletecliente").addEventListener("input", function () {
                     this.value = this.value.toUpperCase();
                     var select = "";
                     var str = document.getElementById("autocompletecliente").value;
-                    var users = [];
                     qtde = 0;
                     for (var i = 0; i < clientes.length; i++) {
                         if (clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase().startsWith(str.toUpperCase())) {
-                            users.push(clientes[i]);
-                            select += '<div class="selecionaCliente" id="cliente' + i + '">' + clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase() + '</div>';
+                            select += '<div class="selecionaCliente" id="' + i + '">' + clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase() + '</div>';
                             qtde++;
                         }
 
@@ -900,7 +898,7 @@ function initLogin() {
                         document.getElementsByClassName("selecionaCliente")[i].addEventListener("click", function () {
                             document.getElementById("dialogcliente").style.display = "none";
                             limparOrcamento();
-                            cliente = clientes[i];
+                            cliente = clientes[this.id];
                             document.getElementById("autocomplete-fantasia").value = cliente.PAR_A_NOME_FANTASIA;
                             document.getElementById("cpfcnpj").placeholder = " ";
                             document.getElementById("cpfcnpj").value = cliente.PAR_A_CNPJ_CPF;
@@ -995,4 +993,8 @@ function initLogin() {
 
         limparOrcamento();
     }
+}
+
+window.onbeforeunload = function () {
+    return "Os dados do formulário serão perdidos.";
 }
