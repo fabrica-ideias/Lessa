@@ -55,6 +55,7 @@ function initLogin() {
                     opcaoItem();
                     preencheClientes();
                 }
+                listaProdutosSolicitados();
                 document.getElementById("addItensWeb").style.display = "none";
                 document.getElementById("informatacaoCliente").style.display = "none";
                 document.getElementById("resumoVendedor").value = usuario.nome.toUpperCase();
@@ -66,7 +67,42 @@ function initLogin() {
             }
         }
 
+
         request.open("POST", url + "php/configuracao.php", true);
+        request.send();
+    }
+
+    function listaProdutosSolicitados() {
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
+                var result = JSON.parse(request.responseText);
+                var produtos = [];
+                for(var i  = 0; i < result.length; i++){
+                    for(var j = 0; j < result[i].itens.length;j++){
+                        var verifica =false;
+                        for(var k = 0; k < produtos.length; k++){
+                            if(result[i].itens[j].PRO_PKN_CODIGO == produtos[k].codigo){
+                                produtos[k].qtde = parseInt(produtos[k].qtde) +  parseInt(result[i].itens[j].NET_ITEM_QTD);
+                                verifica = true;
+                                break;
+                            }
+                        }
+                        if(verifica == false){
+                            produtos.push({codigo: result[i].itens[j].PRO_PKN_CODIGO,descricao: result[i].itens[j].descricao,
+                                qtde: parseInt(result[i].itens[j].NET_ITEM_QTD) });
+                        }
+                    }
+                }
+                var select = "";
+                for(var i = 0; i < produtos.length; i++){
+                    select += '    <a class="collection-item"><span class="badge">'+produtos[i].qtde+'</span>'+produtos[i].descricao+'</a>'
+                }
+                document.getElementById("produtos").innerHTML = select;
+                console.log(produtos);
+            }
+        }
+        request.open("POST", url + "php/getOrcamentos.php", true);
         request.send();
     }
 
@@ -457,7 +493,7 @@ function initLogin() {
             }
         }
         document.getElementById("resumoQtdeItem").value = itensOrcamento.length;
-        document.getElementById("resumotTotalItens").value =  numberToReal(total);
+        document.getElementById("resumotTotalItens").value = numberToReal(total);
         document.getElementById("datelhe_item").innerHTML = itens;
         document.getElementById("detalheItemWeb").innerHTML = itensWeb;
         var acumulador = "";
