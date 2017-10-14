@@ -27,6 +27,55 @@ body{
 	border-radius: 4px !important;
 	margin-bottom: 0px;
 }
+#home{
+	padding: 10px;
+	background-color: #e3e3e3;
+	margin-top: 20px;
+	border-radius: 10px;
+}
+.modalItemOrcamentos{
+	display: none;
+	position: fixed;
+	width: 90%;
+	top: 5% !important;
+	right: 0;
+	left: 0;
+	margin: auto;
+	padding: 5px;
+	border-radius: 10px;
+}
+.zebra{
+	padding:5px;
+	border: 1px solid #bec8fc;
+}
+.cinza{
+	background-color: #ccc;
+}
+
+
+
+.listaProduto{
+	overflow-y: scroll;
+	height:100%;
+	max-height: 35em;
+}
+.tituloProdutoSolicitado{
+	background-color: #5a7ea3;
+	color: #fff;
+	padding: 10px;
+}
+#itemPedido{
+	border:1px solid #ccc;
+	background-color: #fff;
+}
+.listaProduto .collection-item{
+	color: #000 !important;
+}
+.listaProduto .badge{
+	background-color: #32a435;
+	color: #fff;
+	border-radius: 4px;
+}
 #btnOrcaProximo{
 	display: none;
 }
@@ -255,7 +304,6 @@ td{
 	display: none;
 }
 #submenu{
-	display: none;
 	background-color: #716f70;
 	position: absolute;
 	left: 0;
@@ -438,6 +486,21 @@ td{
 	}
 }
 @media screen and (max-width: 995px){
+	.titleMobileItem{
+		background-color: #5d92c9;
+		padding: 10px;
+	}
+	.subtitleitem{
+		padding: 5px !important;
+		background-color: #f26363;
+		color: #fff;
+	}
+	.subdetalheitem{
+		padding: 10px !important;
+	}
+	.modalItemOrcamentos{
+		width: 100%;
+	}
 	.modalCancelaPedido{
 		width: 100%;
 	}

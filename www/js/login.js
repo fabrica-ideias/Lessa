@@ -6,6 +6,7 @@ function initLogin() {
     var produtoCliente = [];
     var produtoSelecionado = null;
     var clientes = [];
+    var funcionarios = [];
     var itensOrcamento = [];
     var funcionario = null;
     var cliente = null;
@@ -78,28 +79,70 @@ function initLogin() {
             if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
                 var result = JSON.parse(request.responseText);
                 var produtos = [];
-                for(var i  = 0; i < result.length; i++){
-                    for(var j = 0; j < result[i].itens.length;j++){
-                        var verifica =false;
-                        for(var k = 0; k < produtos.length; k++){
-                            if(result[i].itens[j].PRO_PKN_CODIGO == produtos[k].codigo){
-                                produtos[k].qtde = parseInt(produtos[k].qtde) +  parseInt(result[i].itens[j].NET_ITEM_QTD);
+                for (var i = 0; i < result.length; i++) {
+                    for (var j = 0; j < result[i].itens.length; j++) {
+                        var verifica = false;
+                        for (var k = 0; k < produtos.length; k++) {
+                            if (result[i].itens[j].PRO_PKN_CODIGO == produtos[k].codigo) {
+                                produtos[k].qtde = parseInt(produtos[k].qtde) + parseInt(result[i].itens[j].NET_ITEM_QTD);
+                                if (produtos[k].orcamentos.indexOf(result[i]) <= -1) {
+                                    produtos[k].orcamentos.push(result[i]);
+                                }
+
                                 verifica = true;
-                                break;
                             }
                         }
-                        if(verifica == false){
-                            produtos.push({codigo: result[i].itens[j].PRO_PKN_CODIGO,descricao: result[i].itens[j].descricao,
-                                qtde: parseInt(result[i].itens[j].NET_ITEM_QTD) });
+                        if (verifica == false) {
+                            produtos.push(
+                                {
+                                    codigo: result[i].itens[j].PRO_PKN_CODIGO,
+                                    descricao: result[i].itens[j].descricao,
+                                    qtde: parseInt(result[i].itens[j].NET_ITEM_QTD),
+                                    orcamentos: [result[i]]
+                                });
                         }
                     }
                 }
+                produtos.sort(function (a, b) {
+                    return a.qtde > b.qtde ? -1 : a.qtde < b.qtde ? 1 : 0;
+                });
                 var select = "";
-                for(var i = 0; i < produtos.length; i++){
-                    select += '    <a class="collection-item"><span class="badge">'+produtos[i].qtde+'</span>'+produtos[i].descricao+'</a>'
+                var qtdeAcumulada = 0;
+                for (var i = 0; i < produtos.length; i++) {
+                    select += '    <a class="collection-item itemacumulado" id="' + i + '">' +
+                        '<span class="badge">' + produtos[i].qtde + '</span>' +
+                        '<div class="col s2">' + produtos[i].codigo + '</div>' + produtos[i].descricao.substring(0, 35) + '</a>';
+                    qtdeAcumulada += produtos[i].qtde;
                 }
+                document.getElementById("preloadItens").style.display = "none";
                 document.getElementById("produtos").innerHTML = select;
-                console.log(produtos);
+                document.getElementById("qtdeItemAcumulado").value = qtdeAcumulada;
+
+                for (var i = 0; i < produtos.length; i++) {
+                    document.getElementsByClassName("itemacumulado")[i].removeEventListener("click", function () {
+                    });
+                    document.getElementsByClassName("itemacumulado")[i].addEventListener("click", function () {
+                        var pedidos = "";
+                        var zebra = true;
+                        for (var j = 0; j < produtos[this.id].orcamentos.length; j++) {
+                            var orcamento = produtos[this.id].orcamentos[j];
+                            for (var k = 0; k < orcamento.itens.length; k++) {
+                                if (produtos[this.id].codigo == orcamento.itens[k].PRO_PKN_CODIGO) {
+                                    pedidos += '<div class="row zebra">';
+                                    pedidos += '<div class="col s12 m6 l6 subtitleitem"><div class="col s1 m2 l2">' + orcamento.NET_PKN_SEQUENCIAL + '</div>';
+                                    pedidos += '<div class="col s11 m10 l10">' + orcamento.NET_A_CLI_NOME.substring(0, 35) + '</div></div>';
+                                    pedidos += '<div class="col s12 m6 l6 subdetalheitem"><div class="col s9 m10 l10">' + orcamento.itens[k].descricao + '</div>';
+                                    pedidos += '<div class="col s1 m1 l1">' + orcamento.itens[k].NET_ITEM_QTD + '</div></div>';
+                                    pedidos += '</div>';
+                                    zebra = !zebra;
+                                }
+                            }
+                        }
+                        document.getElementById("itemPedido").innerHTML = pedidos;
+                        $('.modalItemOrcamentos').modal();
+                        $('.modalItemOrcamentos').modal('open');
+                    });
+                }
             }
         }
         request.open("POST", url + "php/getOrcamentos.php", true);
@@ -165,7 +208,16 @@ function initLogin() {
     function checarTipoUsuario() {
         $("#tipoUsuario").change(function () {
             document.getElementById("dadosUser").style.display = "block";
-            //alert(document.getElementById("tipoUsuario").value);
+            if(document.getElementById("tipoUsuario").value == 2 || document.getElementById("tipoUsuario").value == 3){
+                preencheAutoFuncionario();
+                document.getElementById("autofuncionario").style.display = "block";
+                document.getElementById("autocomcliente").style.display = "none";
+            }else{;
+                preencheAutoCliente();
+                document.getElementById("autocomcliente").style.display = "block";
+                document.getElementById("autofuncionario").style.display = "none";
+            }
+
         });
     }
 
@@ -660,6 +712,11 @@ function initLogin() {
 
 //Salva o usuario
     function salvaUsuario() {
+
+        if(cliente == null || funcionario == null){
+            Materialize.toast('Selecione um usuario', 4000);
+            return;
+        }
         $('#modalpreload').modal('open');
         var img = document.getElementById("file");
         var file_data = img.files[0];
@@ -669,18 +726,22 @@ function initLogin() {
         form_data.append('email', $('#emailUserNovo').val());
         form_data.append('senha', $('#senhaUserNovo').val());
         form_data.append('permissao', $('#tipoUsuario').val());
+
+        if(document.getElementById("tipoUsuario").value == 2 || document.getElementById("tipoUsuario").value == 3){
+            form_data.append('codusuario',funcionario.FUN_PKN_CODIGO);
+        }
         if (cliente != null) {
-            form_data.append('codparticipante', cliente.PAR_PKN_CODIGO);
+            form_data.append('codusuario', cliente.PAR_PKN_CODIGO);
         }
         request = new XMLHttpRequest();
         request.onreadystatechange = function () {
             if (request.readyState == 4 && request.status == 200) {
-                document.getElementById('nome').value = "";
                 document.getElementById('emailUserNovo').value = "";
                 document.getElementById('senhaUserNovo').value = "";
                 document.getElementById("titleModal").innerHTML = "";
                 document.getElementById("msgModal").innerHTML = "Usuario salvo com sucesso";
                 document.getElementById("autocomplete-input").value = "";
+                document.getElementById("dadosUser").style.display = "none";
                 $('#modalpreload').modal('close');
                 $('#modalInfo').modal('open');
             }
@@ -940,8 +1001,92 @@ function initLogin() {
                             document.getElementById("cpfcnpj").value = cliente.PAR_A_CNPJ_CPF;
                             document.getElementById("autocompletecliente").value = this.innerHTML;
                             document.getElementById("endereco").value = cliente.PAR_A_LOGRADOURO + " " + cliente.PAR_A_ENDERECO + " " + cliente.PAR_A_NUMERO;
-                            //selectProdutoCliente(cliente, ".autoproduto", "precoProduto", "unidadeProduto");
-                            //selectProdutoCliente(cliente, ".autoProdutoWeb", "precoProdutoWeb", "unidadeProdutoWeb");
+                        });
+                    }
+                });
+            }
+        }
+        request.open("POST", url + "php/getClientes.php", true);
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        request.send();
+    }
+
+    function preencheAutoFuncionario(){
+        request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 && request.status == 200) {
+                funcionarios = [];
+                funcionarios = JSON.parse(this.responseText);
+                var qtde = 0;
+                document.getElementById("autocompletefuncionario").addEventListener("input", function () {
+                    this.value = this.value.toUpperCase();
+                    var select = "";
+                    var str = document.getElementById("autocompletefuncionario").value;
+                    qtde = 0;
+                    for (var i = 0; i < funcionarios.length; i++) {
+                        if (funcionarios[i].FUN_A_NOME.toUpperCase().startsWith(str.toUpperCase())) {
+                            select += '<div class="selecionaFuncionario" id="' + i + '">' + funcionarios[i].FUN_A_NOME.toUpperCase() + '</div>';
+                            qtde++;
+                        }
+
+                    }
+                    document.getElementById("dialogfuncionario").innerHTML = select;
+                    if (qtde > 0) {
+                        document.getElementById("dialogfuncionario").style.display = "block";
+                    } else {
+                        document.getElementById("dialogfuncionario").style.display = "none";
+                    }
+                    var elems = document.getElementsByClassName("selecionaFuncionario"), i;
+                    for (i = 0; i < elems.length; i++) {
+                        document.getElementsByClassName("selecionaFuncionario")[i].removeEventListener("click", function () {
+                        });
+                        document.getElementsByClassName("selecionaFuncionario")[i].addEventListener("click", function () {
+                            document.getElementById("dialogfuncionario").style.display = "none";
+                            funcionario = funcionarios[this.id];
+                            document.getElementById("autocompletefuncionario").value = funcionario.FUN_A_NOME;
+                        });
+                    }
+                });
+            }
+        }
+        request.open("POST", url + "php/getFuncionarios.php", true);
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        request.send();
+    }
+    function preencheAutoCliente(){
+        request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 && request.status == 200) {
+                cliente = [];
+                clientes = JSON.parse(this.responseText);
+                var qtde = 0;
+                document.getElementById("autocliente").addEventListener("input", function () {
+                    this.value = this.value.toUpperCase();
+                    var select = "";
+                    var str = document.getElementById("autocliente").value;
+                    qtde = 0;
+                    for (var i = 0; i < clientes.length; i++) {
+                        if (clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase().startsWith(str.toUpperCase())) {
+                            select += '<div class="selecionaNovoCliente" id="' + i + '">' + clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase() + '</div>';
+                            qtde++;
+                        }
+
+                    }
+                    document.getElementById("dialogclientenovo").innerHTML = select;
+                    if (qtde > 0) {
+                        document.getElementById("dialogclientenovo").style.display = "block";
+                    } else {
+                        document.getElementById("dialogclientenovo").style.display = "none";
+                    }
+                    var elems = document.getElementsByClassName("selecionaNovoCliente"), i;
+                    for (i = 0; i < elems.length; i++) {
+                        document.getElementsByClassName("selecionaNovoCliente")[i].removeEventListener("click", function () {
+                        });
+                        document.getElementsByClassName("selecionaNovoCliente")[i].addEventListener("click", function () {
+                            document.getElementById("dialogclientenovo").style.display = "none";
+                            limparOrcamento();
+                            cliente = clientes[this.id];
+                            document.getElementById("autocliente").value = this.innerHTML;
                         });
                     }
                 });

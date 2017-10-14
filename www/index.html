@@ -87,8 +87,34 @@
                 <div class="row">
                     <div class="col s12 m12 l12"></div>
                     <div class="col s12 m12 l12">
-                        <ul class="collection" id="produtos">
+                        <div style="width: 100%;text-align: center;" id="preloadItens">
+                            <div class="preloader-wrapper big active">
+                                <div class="spinner-layer spinner-blue-only">
+                                    <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="gap-patch">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="circle-clipper right">
+                                        <div class="circle"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="collection listaProduto" id="produtos">
                         </ul>
+                        <div class="row">
+                            <div class="col s12 l2 offset-l10">
+                                QTDE ITENS:
+                                <span class="flow-text">
+
+                                    <input disabled type="text" id="qtdeItemAcumulado" style="
+                                        background-color: #fff;color: #000;text-align: center;font-size: 1.3em;"/>
+                                </span>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="col s12 m4 l4"></div>
                 </div>
@@ -343,18 +369,33 @@
                                     </div>
                                     <div class="dadosUser" id="dadosUser">
                                         <div class="row">
-                                            <div class="input-field col s12 l12">
-                                                <input id="nome" type="text" class="validate" autocomplete="off">
-                                                <label for="nome">Nome Completo</label>
+                                            <div id="autofuncionario">
+                                                <label for="autocompletefuncionario" autocomplete="off"
+                                                       data-error="SELECIONE O CLIENTE">BUSCAR FUNCIONARIO</label>
+                                                <input type="text" id="autocompletefuncionario" class="valid" style="margin: 0"
+                                                       autocomplete="off">
+                                                <div class="dialog" id="dialogfuncionario">
+                                                </div>
+
+                                            </div>
+                                            <div id="autocomcliente">
+                                                <input type="text" id="autocliente" style="margin: 0"
+                                                       autocomplete="off">
+                                                <div class="dialog" id="dialogclientenovo">
+                                                </div>
+                                                <label for="autocliente" autocomplete="off"
+                                                       data-error="SELECIONE O CLIENTE">BUSCAR CIENTE</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s12 l12">
-                                                <input id="emailUserNovo" type="email" class="validate" autocomplete="off">
+                                                <input id="emailUserNovo" type="email" class="validate"
+                                                       autocomplete="off">
                                                 <label for="emailUserNovo">Email</label>
                                             </div>
                                             <div class="input-field col s12 l6" style="margin-left: 10px">
-                                                <input id="senhaUserNovo" type="password" class="validate" autocomplete="off">
+                                                <input id="senhaUserNovo" type="password" class="validate"
+                                                       autocomplete="off">
                                                 <label for="senhaUserNovo">Senha</label>
                                             </div>
                                         </div>
@@ -365,7 +406,7 @@
                                         </div>
                                     </div>
                                 </div>
-                               </div>
+                            </div>
                             <div class="col l4"></div>
                         </div>
                     </div>
@@ -481,6 +522,18 @@
         <div class="col s3">
             <button type="button" id="naoCancelaPedido" class="btn red">NÃO</button>
         </div>
+    </div>
+</div>
+<div class="modalItemOrcamentos">
+    <div class="row tituloProdutoSolicitado">
+        <div class="col s2 m1 l1">PEDIDO</div>
+        <div class="col s10 m5 l5">CLIENTE</div>
+        <div class="col s12 m6 l6 titleMobileItem" >
+            <div class="col s8 m10 l10">PRODUTO</div>
+            <div class="col s2 m1 l1">QUANTIDADE</div>
+        </div>
+    </div>
+    <div id="itemPedido">
     </div>
 </div>
 </body>

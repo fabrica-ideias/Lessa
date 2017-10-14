@@ -37,7 +37,7 @@ class Fachada{
 	}
 	function getFuncionarios(){
 		include("conexao.php");
-		$result = mysqli_query($con,"select * from TB_FUN_FUNCIONARIO");
+		$result = mysqli_query($con,"select * from TB_FUN_FUNCIONARIO ORDER BY FUN_A_NOME");
 		if( mysqli_num_rows($result)){
 			$funcionario = array();
 			while($dados= mysqli_fetch_array($result)){
