@@ -51,7 +51,7 @@ class Fachada{
 
 	function salvaUsuario($usuario){
 		include("conexao.php");
-		if(!mysqli_query($con,"insert into login (nome,email,senha,idpermissao,codparticipante) values ('".$usuario->getNome()."','".$usuario->getEmail()."','".$usuario->getSenha()."','".$usuario->getIdPermissao()."','".$usuario->getCodParticipante()."')")){
+		if(!mysqli_query($con,"insert into login (nome,email,senha,idpermissao,codparticipante,codfuncionario) values ('".$usuario->getNome()."','".$usuario->getEmail()."','".$usuario->getSenha()."','".$usuario->getIdPermissao()."','".$usuario->getCodParticipante()."','".$usuario->getCodfuncionario()."')")){
 			echo "Error :".mysqli_error($con);
 		}
 		echo "0";

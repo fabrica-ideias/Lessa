@@ -11,6 +11,10 @@
 	$usuario->setEmail($_POST['email']);
 	$usuario->setSenha($_POST['senha']);
 	$usuario->setIdPermissao($_POST['permissao']);
-	$usuario->setCodParticipante($_POST['codparticipante']);
-	$fachada->salvaUsuario($usuario);
+	if($_POST['permissao'] == '2' || $_POST['permissao'] == '3'){
+        $usuario->setCodfuncionario($_POST['codusuario']);
+    }else{
+        $usuario->setCodParticipante($_POST['codusuario']);
+    }
+    $fachada->salvaUsuario($usuario);
 ?>

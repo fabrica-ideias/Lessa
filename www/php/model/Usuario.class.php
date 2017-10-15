@@ -7,7 +7,7 @@ class Usuario{
     var $telefone;
     var $tipo;
     var $codparticipante;
-
+    var $codfuncionario;
     function setUsuario($dados){
     	$this->idusuario = $dados['FUN_PKN_CODIGO'];
     	$this->nome = $dados['FUN_A_NOME'];
@@ -59,5 +59,12 @@ class Usuario{
     function getCodParticipante(){
         return $this->codparticipante;
     }
+    public function getCodfuncionario(){
+        return $this->codfuncionario;
+    }
+    public function setCodfuncionario($codfuncionario){
+        $this->codfuncionario = $codfuncionario;
+    }
+
 }
 ?>

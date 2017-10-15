@@ -51,3 +51,10 @@ function formataCampo(campo, Mascara, evento) {
         return true;
     }
 }
+function verificaNovoEmail(email) {
+    if (email.indexOf("@") < 0 || email.indexOf(".com") < 0) {
+        Materialize.toast('E-MAIL INVALIDO', 4000);
+        return false;
+    }
+    return true;
+}

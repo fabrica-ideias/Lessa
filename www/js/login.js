@@ -111,7 +111,7 @@ function initLogin() {
                 for (var i = 0; i < produtos.length; i++) {
                     select += '    <a class="collection-item itemacumulado" id="' + i + '">' +
                         '<span class="badge">' + produtos[i].qtde + '</span>' +
-                        '<div class="col s2">' + produtos[i].codigo + '</div>' + produtos[i].descricao.substring(0, 35) + '</a>';
+                        '' + produtos[i].descricao.substring(0, 35) + '</a>';
                     qtdeAcumulada += produtos[i].qtde;
                 }
                 document.getElementById("preloadItens").style.display = "none";
@@ -208,11 +208,12 @@ function initLogin() {
     function checarTipoUsuario() {
         $("#tipoUsuario").change(function () {
             document.getElementById("dadosUser").style.display = "block";
-            if(document.getElementById("tipoUsuario").value == 2 || document.getElementById("tipoUsuario").value == 3){
+            if (document.getElementById("tipoUsuario").value == 2 || document.getElementById("tipoUsuario").value == 3) {
                 preencheAutoFuncionario();
                 document.getElementById("autofuncionario").style.display = "block";
                 document.getElementById("autocomcliente").style.display = "none";
-            }else{;
+            } else {
+                ;
                 preencheAutoCliente();
                 document.getElementById("autocomcliente").style.display = "block";
                 document.getElementById("autofuncionario").style.display = "none";
@@ -546,6 +547,7 @@ function initLogin() {
         }
         document.getElementById("resumoQtdeItem").value = itensOrcamento.length;
         document.getElementById("resumotTotalItens").value = numberToReal(total);
+        document.getElementById("totalOrcamento").value = numberToReal(total);
         document.getElementById("datelhe_item").innerHTML = itens;
         document.getElementById("detalheItemWeb").innerHTML = itensWeb;
         var acumulador = "";
@@ -555,7 +557,6 @@ function initLogin() {
         document.getElementById("resumoQtdeKgItem").innerHTML = acumulador;
         eventItem();
         eventItemWeb();
-
     }
 
     function eventItemWeb() {
@@ -606,7 +607,9 @@ function initLogin() {
         //Habilita Opções quando clicar no item
         var elems = document.getElementsByClassName("itemCliente"), i;
         for (i = 0; i < elems.length; i++) {
-            document.getElementById(elems[i].id).addEventListener("click", function () {
+            document.getElementsByClassName("itemCliente")[i].removeEventListener("click", function () {
+            });
+            document.getElementsByClassName("itemCliente")[i].addEventListener("click", function () {
                 for (var j = 0; j < itensOrcamento.length; j++) {
                     if (j == this.id) {
                         indexProduto = j;
@@ -655,11 +658,11 @@ function initLogin() {
             return;
         }
         $('#modalpreload').modal('open');
-
+        console.log(usuario.codfuncionario);
         var orcamento = new Object();
         orcamento.forma = $("#selectFormaPagamento").val();
         orcamento.usuario = cliente;
-        orcamento.funcionario = funcionario;
+        orcamento.funcionario = usuario.codfuncionario;
         orcamento.total = parseFloat(total);
         orcamento.itens = itensOrcamento;
         var dado = JSON.stringify(orcamento);
@@ -712,38 +715,44 @@ function initLogin() {
 
 //Salva o usuario
     function salvaUsuario() {
-
-        if(cliente == null || funcionario == null){
+        if (cliente == null && funcionario == null) {
             Materialize.toast('Selecione um usuario', 4000);
             return;
         }
-        $('#modalpreload').modal('open');
         var img = document.getElementById("file");
         var file_data = img.files[0];
         var form_data = new FormData();
+        if (verificaNovoEmail(document.getElementById('emailUserNovo').value) == false) {
+            return;
+        }
         // form_data.append('file', file_data);
-        form_data.append('nome', $('#nome').val());
-        form_data.append('email', $('#emailUserNovo').val());
-        form_data.append('senha', $('#senhaUserNovo').val());
-        form_data.append('permissao', $('#tipoUsuario').val());
+        form_data.append('email', document.getElementById('emailUserNovo').value);
+        form_data.append('senha', document.getElementById('senhaUserNovo').value);
+        form_data.append('permissao', document.getElementById('tipoUsuario').value);
 
-        if(document.getElementById("tipoUsuario").value == 2 || document.getElementById("tipoUsuario").value == 3){
-            form_data.append('codusuario',funcionario.FUN_PKN_CODIGO);
+        if (document.getElementById("tipoUsuario").value == 2 || document.getElementById("tipoUsuario").value == 3) {
+            form_data.append('nome', funcionario.FUN_A_NOME);
+            form_data.append('codusuario', funcionario.FUN_PKN_CODIGO);
         }
         if (cliente != null) {
+            form_data.append('nome', cliente.PAR_A_RAZAOSOCIAL);
             form_data.append('codusuario', cliente.PAR_PKN_CODIGO);
         }
+        $('#modalpreload').modal('open');
         request = new XMLHttpRequest();
         request.onreadystatechange = function () {
             if (request.readyState == 4 && request.status == 200) {
+                document.getElementById("autocompletefuncionario").value = "";
+                document.getElementById("autocliente").value = "";
                 document.getElementById('emailUserNovo').value = "";
                 document.getElementById('senhaUserNovo').value = "";
                 document.getElementById("titleModal").innerHTML = "";
                 document.getElementById("msgModal").innerHTML = "Usuario salvo com sucesso";
-                document.getElementById("autocomplete-input").value = "";
                 document.getElementById("dadosUser").style.display = "none";
                 $('#modalpreload').modal('close');
                 $('#modalInfo').modal('open');
+                cliente = null;
+                funcionario = null;
             }
         }
         request.open("POST", url + "php/salvaUsuario.php");
@@ -873,6 +882,7 @@ function initLogin() {
                             document.getElementById(unidade).value = produtoSelecionado.unidade.toString();
                             document.getElementById("qtdeProdutoWeb").focus();
                             if (autocompete == "produto_orcamento") {
+                                document.getElementById("descricaoProduto").value = produtoSelecionado.descricao.toUpperCase();
                                 $('#modalSelecionaProduto').modal('open');
                             }
                         });
@@ -1011,7 +1021,7 @@ function initLogin() {
         request.send();
     }
 
-    function preencheAutoFuncionario(){
+    function preencheAutoFuncionario() {
         request = new XMLHttpRequest();
         request.onreadystatechange = function () {
             if (request.readyState == 4 && request.status == 200) {
@@ -1047,13 +1057,19 @@ function initLogin() {
                         });
                     }
                 });
+                document.getElementById("autocompletefuncionario").addEventListener("blur", function () {
+                    setTimeout(function () {
+                        document.getElementById("dialogfuncionario").style.display = "none";
+                    }, 200);
+                });
             }
         }
         request.open("POST", url + "php/getFuncionarios.php", true);
         request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         request.send();
     }
-    function preencheAutoCliente(){
+
+    function preencheAutoCliente() {
         request = new XMLHttpRequest();
         request.onreadystatechange = function () {
             if (request.readyState == 4 && request.status == 200) {

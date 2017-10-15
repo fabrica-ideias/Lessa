@@ -7,6 +7,7 @@ class Login{
     var $perfil;
     var $idpermissao;
     var $codparticipante;
+    var $codfuncionario;
 
     function setLogin($dados){
     	include("conexao.php");
@@ -17,6 +18,8 @@ class Login{
         $this->perfil = $dados['perfil'];
         $this->idpermissao = $dados['idpermissao'];
         $this->codparticipante = $dados['codparticipante'];
+        $this->codfuncionario = $dados['codfuncionario'];
+
     }
 
     function setIdLogin($idlogin){
@@ -61,5 +64,12 @@ class Login{
     function getCodParticipante(){
         return $this->codparticipante;
     }
+    public function getCodfuncionario(){
+        return $this->codfuncionario;
+    }
+    public function setCodfuncionario($codfuncionario){
+        $this->codfuncionario = $codfuncionario;
+    }
+
 }
 ?>

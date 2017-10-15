@@ -57,7 +57,8 @@ body{
 .listaProduto{
 	overflow-y: scroll;
 	height:100%;
-	max-height: 35em;
+	max-height: 300px;
+    margin-top: 0px;
 }
 .tituloProdutoSolicitado{
 	background-color: #5a7ea3;
