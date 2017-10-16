@@ -88,9 +88,9 @@ label.active{
 .tabs .tab a:hover, .tabs .tab a.active{
 	color: #fff;
 }
-#imgUser{
+.perfil{
 	background-color: #ddd;
-	width: 100px;
+	width: 100px !important;
 	height: 100px;
 	border-radius: 100%;	
 	background-image: url("../assets/icon/default.png");
@@ -163,7 +163,7 @@ a{
 	height: 100% !important;
 }
 #logar{
-	background-color: #f55f5f;
+	background-color: #5e85c2;
 }
 @media only screen and (max-width: 800px) {
 	#nameLogin h4{

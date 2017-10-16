@@ -28,7 +28,7 @@
         <form method="POST" class="col s12 m12 l12" id="fLogin">
             <div class="row">
                 <div class="col s4 m4 l5"></div>
-                <div class="col s4 m2 l2 z-depth-4" id="imgUser"></div>
+                <div class="col s4 m2 l2 z-depth-4 perfil" id="imgUser"></div>
                 <div class="col s4 m5 l5"></div>
             </div>
             <div id="nameLogin"></div>
@@ -65,12 +65,33 @@
             <a href="#" id="mobile" data-activates="mobile-demo" class="button-collapse"><i
                     class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a id="btnPrincipal" href="#">Página Inicial</a></li>
+                <li><a id="btnPedidos" href="#">Pedidos</a></li>
                 <li><a id="btnConfiguracao" href="#">Configuração</a></li>
                 <li><a id="logout" href="#">Sair</a></li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
-                <li><a id="btnConfiguracaoMobile" href="#">Configuração</a></li>
-                <li><a id="logoutMobile" href="#">Sair</a></li>
+                <div class="row dadosPerfil">
+                    <div class="row">
+                        <div class="col s10" style="margin: 10px 0px 0px 10px;">
+                            <div class="col s4 m2 l2 z-depth-1 perfil" id="imgUserLogado"
+                                 style="width: 50px !important;height: 50px"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <a id="nomeUser"></a>
+                        </div>
+                    </div>
+                </div>
+                <ul class="menuOpcoes">
+                    <li><a id="btnPrincipalMobile" href="#" class="active"><i class="material-icons">home</i>Página
+                        Inicial</a></li>
+                    <li><a id="btnPedidosMobile" href="#"><i class="material-icons">list</i>Pedidos</a></li>
+                    <li><a id="btnConfiguracaoMobile" href="#"><i class="material-icons">settings</i>Configuração</a>
+                    </li>
+                    <li><a id="logoutMobile" href="#"><i class="material-icons">exit_to_app</i>Sair</a></li>
+                </ul>
             </ul>
         </div>
         <ul id="tabs-menu" class="tabs tabs-fixed-width tabs-transparent tabs-fixed-width">
@@ -87,6 +108,14 @@
                 <div class="row">
                     <div class="col s12 m12 l12"></div>
                     <div class="col s12 m12 l12">
+                        <label style="color:#000">ITENS SOLICITADO</label>
+                        <ul class="collection" style="margin:0;">
+                            <li style="color:#fff;margin:0;background-color: #5a7ea3"
+                                class="collection-item"><span style="color:#fff" class="badge">QTDE</span>PRODUTO
+                            </li>
+                        </ul>
+                        <ul class="collection listaProduto" id="produtos">
+                        </ul>
                         <div style="width: 100%;text-align: center;" id="preloadItens">
                             <div class="preloader-wrapper big active">
                                 <div class="spinner-layer spinner-blue-only">
@@ -102,13 +131,6 @@
                                 </div>
                             </div>
                         </div>
-                        <label style="color:#000">ITENS SOLICITADO</label>
-                        <ul class="collection" style="margin:0;">
-                            <li style="color:#fff;margin:0;background-color: #5a7ea3"
-                               class="collection-item"><span style="color:#fff" class="badge">QTDE</span>PRODUTO</li>
-                        </ul>
-                        <ul class="collection listaProduto" id="produtos">
-                        </ul>
                         <div class="row">
                             <div class="col s12 l2 offset-l10">
                                 QTDE ITENS:
@@ -183,10 +205,10 @@
                                 <button id="cancelarOrcamento" type="button" class="btn red">X</button>
                                 <div class="col s12 l10">
                                     <div class="row">
-                                        <label class="col s12 l8 textBloqueado" id="infoNome">RAZAO SOCIAL:</label>
-                                        <label class="col s12 l3 textBloqueado" id="infoCpfCnpj">CNPJ/CPF:</label>
+                                        <label class="col s12 m7 l7 textBloqueado" id="infoNome">RAZAO SOCIAL:</label>
+                                        <label class="col s12 m4 l4 textBloqueado" id="infoCpfCnpj">CNPJ/CPF:</label>
                                     </div>
-                                    <label class="col s12 l8 textBloqueado" id="infoEndereco">ENDERECO:</label>
+                                    <label class="col s12 m8 l8 textBloqueado" id="infoEndereco">ENDERECO:</label>
                                 </div>
                             </div>
                             <div class="row" id="addItens">
@@ -231,7 +253,7 @@
                             </div>
                             <div id="addItensWeb">
                                 <div class="row">
-                                    <div class="input-field col l4" style="padding: 5px;">
+                                    <div class="input-field col s5 m4 l4" style="padding: 5px;">
                                         <div class="autoProdutoWeb">
                                             <input type="text" id="autocompleteproduto" placeholder=" "
                                                    class="validate autoProdutoWeb entradaOrcamentoWeb"
@@ -242,14 +264,14 @@
                                                    data-error="Digite nome do produto">BUSCAR PRODUTO</label>
                                         </div>
                                     </div>
-                                    <div class="input-field col l1" style="padding: 5px;">
+                                    <div class="input-field col s1 m1 l1" style="padding: 5px;">
                                         <input disabled type="text" placeholder=" " id="unidadeProdutoWeb"
                                                autocomplete="off" style="color:#000;background: #c0c0c0 !important;"
                                                class="validate entradaOrcamentoWeb" autocomplete="off" maxlength="14">
                                         <label for="unidadeProdutoWeb" class="descricaoElemento"
                                                data-error="Digite nome do produto">UNIDADE</label>
                                     </div>
-                                    <div class="input-field col l1" style="padding: 5px;">
+                                    <div class="input-field col s1 m1 l1" style="padding: 5px;">
                                         <input type="number" placeholder=" "
                                                style="text-align: center;background-color: #fff"
                                                id="qtdeProdutoWeb" autocomplete="off"
@@ -257,7 +279,7 @@
                                                min="0">
                                         <label for="qtdeProdutoWeb" class="descricaoElemento">QUANTIDADE</label>
                                     </div>
-                                    <div class="input-field col l1" style="padding: 5px;">
+                                    <div class="input-field col s1 m1 l1" style="padding: 5px;">
                                         <input disabled type="text" placeholder=" " id="precoProdutoWeb"
                                                autocomplete="off"
                                                class="validate entradaOrcamentoWeb valores" autocomplete="off"
@@ -265,7 +287,7 @@
                                                style="color:#000;text-align: right;background: #c0c0c0 !important;">
                                         <label for="precoProdutoWeb" class="descricaoElemento">PREÇO</label>
                                     </div>
-                                    <div class="input-field col l1" style="padding: 5px;">
+                                    <div class="input-field col s1 m1 l1" style="padding: 5px;">
                                         <input disabled type="text" placeholder=" " id="totalProdutoWeb"
                                                autocomplete="off"
                                                class="validate entradaOrcamentoWeb valores" autocomplete="off"
@@ -273,14 +295,14 @@
                                                style="color:#000;text-align: right;background: #c0c0c0 !important;">
                                         <label for="totalProdutoWeb" class="descricaoElemento">TOTAL</label>
                                     </div>
-                                    <div class="col s2">
+                                    <div class="col s3">
                                         <button type="button" class="btn blue" id="addItemOrcaWeb"
                                                 style="margin-top:15px;">
                                             ADICIONAR
                                         </button>
                                         <button type="button" class="btn orange" id="cancelarItem"
                                                 style="margin-top: 15px;position: absolute;margin-left: 5px;">
-                                            CANCELAR
+                                            <i class="material-icons">clear</i>
                                         </button>
                                     </div>
                                 </div>
@@ -336,7 +358,7 @@
                                 </div>
                                 <div class="col s12 l12">
                                     <div class="input-field col l12" style="padding: 5px;">
-                                        <input disabled type="text" placeholder=" " value="R$: 0,00"
+                                        <input disabled type="text" placeholder=" " value="0,00"
                                                id="resumotTotalItens" autocomplete="off"
                                                class="validate entradaOrcamentoWeb valorTotal" autocomplete="off"
                                                maxlength="14">
@@ -345,6 +367,8 @@
                                 </div>
                                 <button type="button" id="btnFinalizaOrcamentoWeb" class="col s12 btn">FINALIZAR
                                     PEDIDO
+                                </button>
+                                <button type="button" id="btnAlteraOrcamento" class="col s12 btn orange">FINALIZAR ALTERACAO
                                 </button>
                             </div>
                         </div>
@@ -368,6 +392,7 @@
                                         <select id="tipoUsuario">
                                             <option value="" disabled selected>SELECIONE O TIPO DO USUARIO</option>
                                             <option value="2">GERENTE</option>
+                                            <option value="1">ESTOQUISTA</option>
                                             <option value="3">VENDEDOR</option>
                                             <option value="4">CLIENTE</option>
                                         </select>
@@ -399,7 +424,7 @@
                                                        autocomplete="off">
                                                 <label for="emailUserNovo">Email</label>
                                             </div>
-                                            <div class="input-field col s12 l6" style="margin-left: 10px">
+                                            <div class="input-field col s12 l6">
                                                 <input id="senhaUserNovo" type="password" class="validate"
                                                        autocomplete="off">
                                                 <label for="senhaUserNovo">Senha</label>
@@ -419,133 +444,148 @@
                 </div>
             </div>
         </div>
-        <div class="col l1"></div>
-    </div>
-    <!-- Opções de Configuração de Layout -->
-    <div class="row">
-        <div class="col s12">
+        <div class="col s12 m12 l10" id="listaOrcamentos">
+            <div class="row">
+                <div class="row desListaPedidos">
+                    PEDIDOS
+                </div>
+                <ul class="col s12 m12 l10 collapsible" id="orcamentos">
+
+                </ul>
+            </div>
+            <div class="col l1"></div>
+        </div>
+        <!-- Opções de Configuração de Layout -->
+        <div class="col s12 m10 l10">
             <div class="configuracao" id="configuracao">
-                <a id="cancelar">X</a>
-                <div class="col s4">
+                <div class="col s12">
                     <p>Nome da Empresa</p><input type="text" id="nome_empresa"/>
-                    <p>Cor do Menu</p><input type="color" id="cor_menu"/>
-                    <p>Cor do Painel de Conteudo</p><input type="color" id="cor_conteudo"/>
-                    <p>Cor do Fundo</p><input type="color" id="cor_fundo"/>
                 </div>
-                <div class="col s8 l4">
-                    <form action="#">
-                        <div class="file-field input-field">
-                            <div class="btn">
-                                <span>File</span>
-                                <input type="file" accept="image/*" class="fileImg" name="file" id="file">
-                            </div>
-                            <div class="file-path-wrapper">
-                                <input type="file" accept="image/*" class="fileImg" name="fileLogo" id="fileLogo">
-                                <input class="file-path validate" type="text" placeholder="Upload one or more files">
-                            </div>
+                <!--<div class="row">
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>LOGO</span>
+                            <input type="file" accept="image/*" class="fileImg" name="file" id="file">
                         </div>
-                    </form>
-                    <div class="col s2 l5"></div>
-                    <button class="col s8 l2 btn" id="btnSalvaConfig">Salvar</button>
-                    <div class="col s2 l5"></div>
+                        <div class="file-path-wrapper">
+                            <input type="file" accept="image/*" class="fileImg" name="fileLogo" id="fileLogo">
+                            <input class="file-path validate" type="text" placeholder="Upload one or more files">
+                        </div>
+                    </div>
+                </div>-->
+                <div class="col s12" style="margin-bottom: 10px">
+                    <div class="col s4">
+                        <p>Cor do Menu</p><input type="color" id="cor_menu"/>
+                    </div>
+                    <div class="col s4">
+                        <p>Cor do Painel</p><input type="color" id="cor_conteudo"/>
+                    </div>
+                    <div class="col s4">
+                        <p>Cor do Fundo</p><input type="color" id="cor_fundo"/>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 20px">
+                    <div class="col s4"></div>
+                    <button class="col s4 btn" id="btnSalvaConfig">Salvar</button>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Modal Structure -->
-<div id="modalpreload" class="modalpreloader">
-    <div class="preloader-wrapper big active">
-        <div class="spinner-layer spinner-blue-only">
-            <div class="circle-clipper left">
-                <div class="circle"></div>
-            </div>
-            <div class="gap-patch">
-                <div class="circle"></div>
-            </div>
-            <div class="circle-clipper right">
-                <div class="circle"></div>
+    <!-- Modal Structure -->
+    <div id="modalpreload" class="modalpreloader">
+        <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div id="modalInfo" class="modal">
-    <div class="modal-content">
-        <h4 id="titleModal">Resultado:</h4>
-        <p id="msgModal" style='text-align:center'></p>
+    <div id="modalInfo" class="modal">
+        <div class="modal-content">
+            <h4 id="titleModal">Resultado:</h4>
+            <p id="msgModal" style='text-align:center'></p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
+        </div>
     </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
+    <div class="row" id="opcaoItem">
+        <div class="col s12" id="nomeProduto" style="padding: 10px"></div>
+        <button class="col s5 m4 btn blue" id="alteraItem">ALTERAR</button>
+        <div class="col s1"></div>
+        <button class="col s5 m4  btn red" id="excluirItem">EXCLUIR</button>
     </div>
-</div>
-<div class="row" id="opcaoItem">
-    <div class="col s12" id="nomeProduto" style="padding: 10px"></div>
-    <button class="col s6 btn blue" id="alteraItem">ALTERAR</button>
-    <button class="col s6 btn red" id="excluirItem">EXCLUIR</button>
-</div>
-<div id="modalSelecionaProduto" class="modal">
-    <div class="modal-content">
+    <div id="modalSelecionaProduto" class="modal">
+        <div class="modal-content">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input disabled type="text" placeholder=" " id="descricaoProduto"
+                           style="background-color: #4c79a6;color: #fff;border-radius: 10px;width: 90%;padding: 5px;"/>
+                    <label for="descricaoProduto" class="labelPreco">DESCRIÇÃO</label>
+                </div>
+                <div class="input-field col s4">
+                    <input type="number" name="qtdeProduto" id="qtdeProduto" style="text-align: center"/>
+                    <label for="qtdeProduto"
+                           style="text-align: right;font-size: 1.2em;padding-right: 5px;">QUANTIDADE</label>
+                </div>
+                <div class="input-field col s4" style="margin-left: 50px;">
+                    <input disabled type="text" placeholder=" " name="unidadeProduto" id="unidadeProduto"
+                           style="text-align: center;color: #000"/>
+                    <label for="unidadeProduto" class="labelPreco">UNIDADE</label>
+                </div>
+                <div class="input-field col s12">
+                    <input disabled type="text" placeholder=" " name="precoProduto" id="precoProduto"
+                           style="text-align: right;background-color: #4c79a6;color: #fff;border-radius: 10px;width: 45%;padding: 5px;"/>
+                    <label for="precoProduto" class="labelPreco">PREÇO</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+            <a href="#!" id="addItemOrca" class="modal-action waves-effect waves-green btn-flat">Adicionar</a>
+        </div>
+    </div>
+    <div id="modalFormaPagamento" class="modalFormaPagamento">
+        <div class="input-field col s12">
+            <select id="selectFormaPagamento">
+            </select>
+            <button type="button" id="enviarOrcamento" class="btn">FINALIZAR</button>
+            <button type="button" class="modal-action modal-close btn">CANCELAR</button>
+        </div>
+    </div>
+    <div id="modalCancelaPedido" class="modalCancelaPedido">
+        <div class=" col s12" style="margin-bottom: 30px;text-align: center">
+            <p>Deseja Cancelar o Pedido ?</p>
+        </div>
         <div class="row">
-            <div class="input-field col s12">
-                <input disabled type="text" placeholder=" " id="descricaoProduto"
-                       style="background-color: #4c79a6;color: #fff;border-radius: 10px;width: 90%;padding: 5px;"/>
-                <label for="descricaoProduto" class="labelPreco">DESCRIÇÃO</label>
+            <div class="col s4 m4 l3"></div>
+            <div class="col s4 m4 l3">
+                <button type="button" id="simCancelaPedido" class="btn green">SIM</button>
             </div>
-            <div class="input-field col s4">
-                <input type="number" name="qtdeProduto" id="qtdeProduto" style="text-align: center"/>
-                <label for="qtdeProduto"
-                       style="text-align: right;font-size: 1.2em;padding-right: 5px;">QUANTIDADE</label>
-            </div>
-            <div class="input-field col s4" style="margin-left: 50px;">
-                <input disabled type="text" placeholder=" " name="unidadeProduto" id="unidadeProduto"
-                       style="text-align: center;color: #000"/>
-                <label for="unidadeProduto" class="labelPreco">UNIDADE</label>
-            </div>
-            <div class="input-field col s12">
-                <input disabled type="text" placeholder=" " name="precoProduto" id="precoProduto"
-                       style="text-align: right;background-color: #4c79a6;color: #fff;border-radius: 10px;width: 45%;padding: 5px;"/>
-                <label for="precoProduto" class="labelPreco">PREÇO</label>
+            <div class="col s4 m4 l2">
+                <button type="button" id="naoCancelaPedido" class="btn red">NÃO</button>
             </div>
         </div>
     </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
-        <a href="#!" id="addItemOrca" class="modal-action waves-effect waves-green btn-flat">Adicionar</a>
-    </div>
-</div>
-<div id="modalFormaPagamento" class="modalFormaPagamento">
-    <div class="input-field col s12">
-        <select id="selectFormaPagamento">
-        </select>
-        <button type="button" id="enviarOrcamento" class="btn">FINALIZAR</button>
-        <button type="button" class="modal-action modal-close btn">CANCELAR</button>
-    </div>
-</div>
-<div id="modalCancelaPedido" class="modalCancelaPedido">
-    <div class=" col s12" style="margin-bottom: 30px;text-align: center">
-        <p>Deseja Cancelar o Pedido ?</p>
-    </div>
-    <div class="row">
-        <div class="col s3"></div>
-        <div class="col s3">
-            <button type="button" id="simCancelaPedido" class="btn green">SIM</button>
+    <div class="modalItemOrcamentos">
+        <div class="row tituloProdutoSolicitado">
+            <div class="col s2 m1 l1">PEDIDO</div>
+            <div class="col s10 m5 l5">CLIENTE</div>
+            <div class="col s12 m12 l6 titleMobileItem">
+                <div class="col s8 m10 l10">PRODUTO</div>
+                <div class="col s2 m1 l1">QUANTIDADE</div>
+            </div>
         </div>
-        <div class="col s3">
-            <button type="button" id="naoCancelaPedido" class="btn red">NÃO</button>
+        <div id="itemPedido">
         </div>
     </div>
-</div>
-<div class="modalItemOrcamentos">
-    <div class="row tituloProdutoSolicitado">
-        <div class="col s2 m1 l1">PEDIDO</div>
-        <div class="col s10 m5 l5">CLIENTE</div>
-        <div class="col s12 m6 l6 titleMobileItem">
-            <div class="col s8 m10 l10">PRODUTO</div>
-            <div class="col s2 m1 l1">QUANTIDADE</div>
-        </div>
-    </div>
-    <div id="itemPedido">
-    </div>
-</div>
 </body>
 </html>

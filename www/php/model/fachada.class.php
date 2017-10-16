@@ -168,6 +168,7 @@ class Fachada{
 			    $query = mysqli_query($con,"SELECT * FROM TB_PRO_PRODUTO where PRO_PKN_CODIGO = '".$item['PRO_PKN_CODIGO']."'");
 		        $produto = mysqli_fetch_array($query);
 			    $item['descricao'] = $produto['PRO_A_DESCRICAO'];
+			    $item['unidade'] = $produto['PRO_A_UNIDADE'];
 		        $itens[] = $item;
             }
             $dados['itens'] = $itens;

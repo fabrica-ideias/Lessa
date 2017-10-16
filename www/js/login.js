@@ -7,6 +7,8 @@ function initLogin() {
     var produtoSelecionado = null;
     var clientes = [];
     var funcionarios = [];
+    var orcamentos = [];
+    var orcamento = null;
     var itensOrcamento = [];
     var funcionario = null;
     var cliente = null;
@@ -39,7 +41,11 @@ function initLogin() {
                     });
                     document.getElementById("btnFinalizaOrcamento").addEventListener("click", mostraFormaPagamento);//Finalizar Orcamento
                     document.getElementById("btnFinalizaOrcamentoWeb").addEventListener("click", mostraFormaPagamento);//Finalizar Orcamento
-
+                    document.getElementById("btnAlteraOrcamento").addEventListener("click",alterarOrcamento);
+                    document.getElementById("btnPrincipalMobile").addEventListener("click", home);
+                    document.getElementById("btnPrincipal").addEventListener("click", home);
+                    document.getElementById("btnPedidos").addEventListener("click", mostraOrcamentos);
+                    document.getElementById("btnPedidosMobile").addEventListener("click", mostraOrcamentos);
                     document.getElementById("qtdeProdutoWeb").addEventListener("input", calculaProduto);
                     document.getElementById("qtdeProdutoWeb").addEventListener("keyup", addPedidoEnter);
                     document.getElementById("habilitaOrcamento").addEventListener("click", habilitaOrcamento);
@@ -73,7 +79,45 @@ function initLogin() {
         request.send();
     }
 
+    function home() {
+        $(".menuOpcoes li a").removeClass();
+        this.className = "active";
+        document.getElementById("configuracao").style.display = "none";
+        document.getElementById("conteudo_painel").style.display = "block";
+        document.getElementById("tabs-menu").style.display = "block";
+        document.getElementById("listaOrcamentos").style.display = "none";
+        $('.button-collapse').sideNav('hide');
+    }
+
+    function mostraOrcamentos() {
+        $('.button-collapse').sideNav('hide');
+        $('#modalpreload').modal('open');
+        $(".menuOpcoes li a").removeClass();
+        this.className = "active";
+        document.getElementById("configuracao").style.display = "none";
+        document.getElementById("conteudo_painel").style.display = "none";
+        document.getElementById("tabs-menu").style.display = "none";
+        document.getElementById("listaOrcamentos").style.display = "block";
+        request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
+                orcamentos = [];
+                orcamentos = JSON.parse(request.responseText);
+                var lista = "";
+                for (var i = 0; i < orcamentos.length; i++) {
+                    lista += "<li><div class='collapsible-header'>" + orcamentos[i].NET_PKN_SEQUENCIAL + " - " + orcamentos[i].NET_A_CLI_NOME.substr(0, 35) + ".</div></li>";
+                }
+                document.getElementById("orcamentos").innerHTML = lista;
+                $('#modalpreload').modal('close');
+            }
+        }
+        request.open("POST", url + "php/getOrcamentos.php", true);
+        request.send();
+    }
+
     function listaProdutosSolicitados() {
+        document.getElementById("preloadItens").style.display = "block";
+        document.getElementById("produtos").innerHTML = "";
         var request = new XMLHttpRequest();
         request.onreadystatechange = function () {
             if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
@@ -104,7 +148,7 @@ function initLogin() {
                     }
                 }
                 produtos.sort(function (a, b) {
-                    return a.qtde > b.qtde ? -1 : a.qtde < b.qtde ? 1 : 0;
+                    return a.descricao < b.descricao ? -1 : a.descricao > b.descricao ? 1 : 0;
                 });
                 var select = "";
                 var qtdeAcumulada = 0;
@@ -122,23 +166,41 @@ function initLogin() {
                     document.getElementsByClassName("itemacumulado")[i].removeEventListener("click", function () {
                     });
                     document.getElementsByClassName("itemacumulado")[i].addEventListener("click", function () {
+                        orcamentos = [];
                         var pedidos = "";
-                        var zebra = true;
                         for (var j = 0; j < produtos[this.id].orcamentos.length; j++) {
                             var orcamento = produtos[this.id].orcamentos[j];
+                            orcamentos.push(orcamento);
                             for (var k = 0; k < orcamento.itens.length; k++) {
                                 if (produtos[this.id].codigo == orcamento.itens[k].PRO_PKN_CODIGO) {
-                                    pedidos += '<div class="row zebra">';
-                                    pedidos += '<div class="col s12 m6 l6 subtitleitem"><div class="col s1 m2 l2">' + orcamento.NET_PKN_SEQUENCIAL + '</div>';
+                                    pedidos += '<div class="row zebra"><a class="orcamentoSelecionado" id="' + orcamento.NET_PKN_SEQUENCIAL + '"  style="color:#000">';
+                                    pedidos += '<div class="col s12 m12 l6 subtitleitem"><div class="col s1 m2 l2">' + orcamento.NET_PKN_SEQUENCIAL + '</div>';
                                     pedidos += '<div class="col s11 m10 l10">' + orcamento.NET_A_CLI_NOME.substring(0, 35) + '</div></div>';
-                                    pedidos += '<div class="col s12 m6 l6 subdetalheitem"><div class="col s9 m10 l10">' + orcamento.itens[k].descricao + '</div>';
+                                    pedidos += '<div class="col s12 m12 l6 subdetalheitem"><div class="col s9 m10 l10">' + orcamento.itens[k].descricao + '</div>';
                                     pedidos += '<div class="col s1 m1 l1">' + orcamento.itens[k].NET_ITEM_QTD + '</div></div>';
-                                    pedidos += '</div>';
-                                    zebra = !zebra;
+                                    pedidos += '</a></div>';
                                 }
                             }
                         }
                         document.getElementById("itemPedido").innerHTML = pedidos;
+                        var elems = document.getElementsByClassName("orcamentoSelecionado"), i;
+                        for (i = 0; i < elems.length; i++) {
+                            document.getElementsByClassName("orcamentoSelecionado")[i].removeEventListener("click", function () {
+                            });
+                            document.getElementsByClassName("orcamentoSelecionado")[i].addEventListener("click", function () {
+                                for (var j = 0; j < orcamentos.length; j++) {
+                                    if (orcamentos[j].NET_PKN_SEQUENCIAL == this.id) {
+                                        var verificar = confirm("Deseja alterar pedido");
+                                        if (verificar == true) {
+                                            $(".modalItemOrcamentos").modal("close");
+                                            alteraOrcamento(orcamentos[j]);
+                                        }
+                                        break;
+                                    }
+
+                                }
+                            });
+                        }
                         $('.modalItemOrcamentos').modal();
                         $('.modalItemOrcamentos').modal('open');
                     });
@@ -148,6 +210,7 @@ function initLogin() {
         request.open("POST", url + "php/getOrcamentos.php", true);
         request.send();
     }
+
 
     function questionarOrcamento() {
         $(".modalCancelaPedido").modal();
@@ -208,17 +271,15 @@ function initLogin() {
     function checarTipoUsuario() {
         $("#tipoUsuario").change(function () {
             document.getElementById("dadosUser").style.display = "block";
-            if (document.getElementById("tipoUsuario").value == 2 || document.getElementById("tipoUsuario").value == 3) {
+            if (document.getElementById("tipoUsuario").value >= 1 && document.getElementById("tipoUsuario").value <= 3) {
                 preencheAutoFuncionario();
                 document.getElementById("autofuncionario").style.display = "block";
                 document.getElementById("autocomcliente").style.display = "none";
             } else {
-                ;
                 preencheAutoCliente();
                 document.getElementById("autocomcliente").style.display = "block";
                 document.getElementById("autofuncionario").style.display = "none";
             }
-
         });
     }
 
@@ -243,7 +304,7 @@ function initLogin() {
                     if (this.responseText != "0") {
                         usuario = JSON.parse(this.responseText);
                         document.getElementById("checkConect").innerHTML = "<p><input type='checkbox' id='manterConectado' /><label for='manterConectado'>Manter conectado</label></p>";
-                        document.getElementById("nameLogin").innerHTML = "<label class='namePerson'>" + usuario.nome + "</label>";
+                        document.getElementById("nameLogin").innerHTML = "<label class='namePerson'>" + usuario.nome.substr(0, 15) + ".</label>";
                         document.getElementById("progress").style.display = "none";
                         document.getElementById("fieldEmail").style.display = "none";
                         document.getElementById("fieldPassword").style.display = "block";
@@ -276,7 +337,6 @@ function initLogin() {
             document.getElementById("selectCliente").style.display = "block";
         }
         document.getElementById("todosOrcamento").style.display = "none";
-        preencheClientes();
     }
 
     function verificaEmailCadastro() {
@@ -488,7 +548,7 @@ function initLogin() {
         document.getElementById("autocompleteproduto").focus();
         document.getElementById("totalProdutoWeb").value = "";
         document.getElementById("resumoQtdeItem").value = itensOrcamento.length;
-        document.getElementById("resumotTotalItens").value = "R$:" + numberToReal(total);
+        document.getElementById("resumotTotalItens").value = numberToReal(total);
         document.getElementById("autocompleteproduto").setAttribute("style", "background-color:#fff");
         document.getElementById("autocompleteproduto").style.color = "#000";
         document.getElementById("addItemOrcaWeb").innerHTML = "ADICIONAR";
@@ -515,7 +575,7 @@ function initLogin() {
             itens += '</div>';
             itens += '</li>';
 
-            itensWeb += "<li style='border:1px solid #5f5c5c' class='itemCliente' id='" + item.produto.idproduto + "'>";
+            itensWeb += "<li style='border:1px solid #5f5c5c' id='" + item.produto.idproduto + "'>";
             itensWeb += '<div class="row" id="descricaoitem">';
             itensWeb += '<div class="col s1" >' + item.produto.idproduto + '</div>';
             itensWeb += '<div class="col s4" >' + item.produto.descricao.toUpperCase() + '</div>';
@@ -616,10 +676,12 @@ function initLogin() {
                         break;
                     }
                 }
-                var descricao = itensOrcamento[indexProduto].produto.descricao;
-                document.getElementById("nomeProduto").innerHTML = "PRODUTO: " + descricao;
-                $("#opcaoItem").modal();
-                $("#opcaoItem").modal('open');
+                if (itensOrcamento.length > 0) {
+                    var descricao = itensOrcamento[indexProduto].produto.descricao;
+                    document.getElementById("nomeProduto").innerHTML = "PRODUTO: " + descricao;
+                    $("#opcaoItem").modal();
+                    $("#opcaoItem").modal('open');
+                }
             });
         }
     }
@@ -679,6 +741,31 @@ function initLogin() {
         request.send("dado=" + dado);
 
     }
+    function alterarOrcamento() {
+        $('#modalpreload').modal('open');
+        console.log(usuario.codfuncionario);
+        orcamento.forma = $("#selectFormaPagamento").val();
+        orcamento.usuario = cliente;
+        orcamento.funcionario = usuario.codfuncionario;
+        orcamento.total = parseFloat(total);
+        orcamento.itens = itensOrcamento;
+        var dado = JSON.stringify(orcamento);
+        console.log(orcamento);
+        request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 && request.status == 200) {
+                limparOrcamento();
+                $('#modalpreload').modal('close');
+                $('#modalInfo').modal('open');
+                $('ul.tabs').tabs('select_tab', 'home');
+                listaProdutosSolicitados();
+
+            }
+        }
+        request.open("POST", url + "php/alteraOrcamento.php", true);
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        request.send("dado=" + dado);
+    }
 
     function limparOrcamento() {
         itensOrcamento = [];
@@ -697,7 +784,7 @@ function initLogin() {
         document.getElementById("detalheItemWeb").innerHTML = "";
         document.getElementById("resumoQtdeItem").value = "0";
         document.getElementById("resumoQtdeKgItem").innerHTML = " ";
-        document.getElementById("resumotTotalItens").value = "R$: 0,00";
+        document.getElementById("resumotTotalItens").value = "0,00";
         document.getElementById("endereco").value = "";
         document.getElementById("addItensWeb").style.display = "none";
         document.getElementById("informatacaoCliente").style.display = "none";
@@ -710,7 +797,9 @@ function initLogin() {
         document.getElementById("autocompleteproduto").focus();
         document.getElementById("totalProdutoWeb").value = "";
         document.getElementById("resumoQtdeItem").value = itensOrcamento.length;
-        document.getElementById("resumotTotalItens").value = "R$:" + numberToReal(total);
+        document.getElementById("resumotTotalItens").value = numberToReal(total);
+        document.getElementById("btnFinalizaOrcamentoWeb").style.display="block";
+        document.getElementById("btnAlteraOrcamento").style.display="none";
     }
 
 //Salva o usuario
@@ -720,7 +809,7 @@ function initLogin() {
             return;
         }
         var img = document.getElementById("file");
-        var file_data = img.files[0];
+        //var file_data = img.files[0];
         var form_data = new FormData();
         if (verificaNovoEmail(document.getElementById('emailUserNovo').value) == false) {
             return;
@@ -730,7 +819,7 @@ function initLogin() {
         form_data.append('senha', document.getElementById('senhaUserNovo').value);
         form_data.append('permissao', document.getElementById('tipoUsuario').value);
 
-        if (document.getElementById("tipoUsuario").value == 2 || document.getElementById("tipoUsuario").value == 3) {
+        if (document.getElementById("tipoUsuario").value >= 1 && document.getElementById("tipoUsuario").value <= 3) {
             form_data.append('nome', funcionario.FUN_A_NOME);
             form_data.append('codusuario', funcionario.FUN_PKN_CODIGO);
         }
@@ -804,8 +893,21 @@ function initLogin() {
     verificaLogin();
 
     function consultaPermissoes() {
-
-        if (usuario.idpermissao == 1 || usuario.idpermissao == 2) {
+        preencheClientes();
+        document.getElementById("nomeUser").innerHTML = usuario.nome.toUpperCase();
+        if (usuario.idpermissao == 1) {
+            document.getElementById("tabs-menu").style.display = "none";
+            document.getElementById("conteudo_painel").style.display = "none";
+            document.getElementById("funcionario_orcamento").style.display = "none";
+            document.getElementById("btnPrincipal").style.display = "none";
+            document.getElementById("btnPrincipalMobile").style.display = "none";
+            document.getElementById("btnPedidosMobile").style.display = "none";
+            document.getElementById("btnPedidos").style.display = "none";
+            document.getElementById("selectCliente").style.display = "none";
+            document.getElementById("btnConfiguracao").style.display = "none";
+            document.getElementById("btnConfiguracaoMobile").style.display = "none";
+        }
+        if (usuario.idpermissao == 2) {
             document.getElementById("tabs-menu").style.display = "block"
             $('ul.tabs').tabs('select_tab', 'home');
             document.getElementById("funcionario_orcamento").style.display = "block";
@@ -814,7 +916,6 @@ function initLogin() {
             document.getElementById("menu_pedidos").style.display = "block";
             document.getElementById("btnConfiguracao").style.display = "block";
             document.getElementById("btnConfiguracaoMobile").style.display = "block";
-
         }
         if (usuario.idpermissao == 3) {
             document.getElementById("tabs-menu").style.display = "none";
@@ -824,21 +925,102 @@ function initLogin() {
             document.getElementById("btnConfiguracao").style.display = "none";
             document.getElementById("btnConfiguracaoMobile").style.display = "none";
         }
-        // if(usuario.idpermissao == 4){
-        //     document.getElementById("tabs-menu").style.display = "none";
-        //     $('ul.tabs').tabs('select_tab', 'pedidos');
-        //     document.getElementById("funcionario_orcamento").style.display = "block";
-        //     document.getElementById("selectCliente").style.display = "block";
-        //     document.getElementById("selectCliente").style.display = "none";
-        //     document.getElementById("addItens").style.display = "block";
-        //     document.getElementById("menu_pedido").style.display = "none";
+        if (usuario.idpermissao == 4) {
+            document.getElementById("tabs-menu").style.display = "none";
+            $('ul.tabs').tabs('select_tab', 'pedidos');
+            document.getElementById("conteudo_painel").style.display = "block";
+            request = new XMLHttpRequest();
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    cliente = JSON.parse(request.responseText);
+                    if (cliente != null) {
+                        document.getElementById("funcionario_orcamento").style.display = "block";
+                        document.getElementById("btnConfiguracao").style.display = "none";
+                        document.getElementById("btnConfiguracaoMobile").style.display = "none";
+                        document.getElementById("selectCliente").style.display = "none";
 
-        //     document.getElementById("infoNome").innerHTML = "RAZAO SOCIAL: "+usuario.user.PAR_A_RAZAOSOCIAL;
-        //     document.getElementById("infoCpfCnpj").innerHTML = "CNPJ/CPF: "+usuario.user.PAR_A_CNPJ_CPF;
-        //     document.getElementById("infoEndereco").innerHTML = "ENDERECO: "+usuario.user.PAR_A_LOGRADOURO+" "+usuario.user.PAR_A_ENDERECO+" "+cliente.PAR_A_NUMERO;
-        //     selectProdutoCliente(, "produto_orcamento");
-        // }
+                        if (window.innerWidth > 900) {
+                            document.getElementById("informatacaoCliente").style.display = "block";
+                            document.getElementById("addItensWeb").style.display = "block";
+                            document.getElementById("infoNome").innerHTML = "RAZAO SOCIAL: " + cliente.PAR_A_RAZAOSOCIAL;
+                            document.getElementById("infoCpfCnpj").innerHTML = "CNPJ/CPF: " + cliente.PAR_A_CNPJ_CPF;
+                            document.getElementById("infoEndereco").innerHTML = "ENDERECO: " + cliente.PAR_A_LOGRADOURO + " " + cliente.PAR_A_ENDERECO + " " + cliente.PAR_A_NUMERO;
+                            selectProdutoCliente(cliente, "autocompleteproduto", "precoProdutoWeb", "unidadeProdutoWeb", "dialogProduto");
+                            document.getElementById("autocompleteproduto").focus();
+                        } else {
+                            document.getElementById("selectCliente").style.display = "none";
+                            document.getElementById("addItens").style.display = "block";
+                            //document.getElementById("informatacaoCliente").style.display = "block";
+                            document.getElementById("infoNome").innerHTML = "RAZAO SOCIAL: " + cliente.PAR_A_RAZAOSOCIAL;
+                            document.getElementById("infoCpfCnpj").innerHTML = "CNPJ/CPF: " + cliente.PAR_A_CNPJ_CPF;
+                            document.getElementById("infoEndereco").innerHTML = "ENDERECO: " + cliente.PAR_A_LOGRADOURO + " " + cliente.PAR_A_ENDERECO + " " + cliente.PAR_A_NUMERO;
+                            selectProdutoCliente(cliente, "produto_orcamento", "precoProduto", "unidadeProduto", "dlgproduto")
+                        }
+                    }
+                }
+            }
+            request.open("POST", url + "php/getCliente.php", true);
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            request.send("codigo=" + usuario.codparticipante);
+        }
+    }
 
+    function alteraOrcamento(pedido) {
+        orcamento = pedido;
+        request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 && request.status == 200) {
+                cliente = JSON.parse(request.responseText);
+                if (cliente != null) {
+                    document.getElementById("funcionario_orcamento").style.display = "block";
+                    document.getElementById("btnConfiguracao").style.display = "none";
+                    document.getElementById("btnConfiguracaoMobile").style.display = "none";
+                    document.getElementById("selectCliente").style.display = "none";
+
+                    if (window.innerWidth > 900) {
+                        document.getElementById("informatacaoCliente").style.display = "block";
+                        document.getElementById("addItensWeb").style.display = "block";
+                        document.getElementById("infoNome").innerHTML = "RAZAO SOCIAL: " + cliente.PAR_A_RAZAOSOCIAL;
+                        document.getElementById("infoCpfCnpj").innerHTML = "CNPJ/CPF: " + cliente.PAR_A_CNPJ_CPF;
+                        document.getElementById("infoEndereco").innerHTML = "ENDERECO: " + cliente.PAR_A_LOGRADOURO + " " + cliente.PAR_A_ENDERECO + " " + cliente.PAR_A_NUMERO;
+                        selectProdutoCliente(cliente, "autocompleteproduto", "precoProdutoWeb", "unidadeProdutoWeb", "dialogProduto");
+                        document.getElementById("autocompleteproduto").focus();
+                    } else {
+                        document.getElementById("selectCliente").style.display = "none";
+                        document.getElementById("addItens").style.display = "block";
+                        //document.getElementById("informatacaoCliente").style.display = "block";
+                        document.getElementById("infoNome").innerHTML = "RAZAO SOCIAL: " + cliente.PAR_A_RAZAOSOCIAL;
+                        document.getElementById("infoCpfCnpj").innerHTML = "CNPJ/CPF: " + cliente.PAR_A_CNPJ_CPF;
+                        document.getElementById("infoEndereco").innerHTML = "ENDERECO: " + cliente.PAR_A_LOGRADOURO + " " + cliente.PAR_A_ENDERECO + " " + cliente.PAR_A_NUMERO;
+                        selectProdutoCliente(cliente, "produto_orcamento", "precoProduto", "unidadeProduto", "dlgproduto")
+                    }
+                    console.log(orcamento.itens);
+                    for (var i = 0; i < orcamento.itens.length; i++) {
+                        var produto = new Object();
+                        produto.idproduto = orcamento.itens[i].PRO_PKN_CODIGO;
+                        produto.descricao =  orcamento.itens[i].descricao;
+                        produto.valor =  orcamento.itens[i].NET_M_VALOR_UNITARIO;
+                        produto.unidade = orcamento.itens[i].unidade;
+
+                        var item = new Object();
+                        item.produto = produto;
+                        item.qtde = parseFloat(orcamento.itens[i].NET_ITEM_QTD);
+                        item.unitaro = orcamento.itens[i]
+                        item.total = produto.valor * item.qtde;
+                        itensOrcamento.push(item);
+
+                    }
+                    console.log(itensOrcamento);
+                    document.getElementById("btnAlteraOrcamento").style.display="block";
+                    document.getElementById("btnFinalizaOrcamentoWeb").style.display="none";
+                    $('ul.tabs').tabs('select_tab', 'pedidos');
+                    atualizaLista("detalheItemWeb", true);
+                }
+            }
+        }
+        request.open("POST", url + "php/getCliente.php", true);
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        request.send("codigo=" + orcamento.PAR_PKN_CODIGO);
     }
 
 //Incluir os produtos do cliente dentro do select
@@ -848,7 +1030,6 @@ function initLogin() {
         request.onreadystatechange = function () {
             if (request.readyState == 4 && request.status == 200) {
                 produtoCliente = JSON.parse(this.responseText);
-                console.log(autocompete);
                 var qtde = 0;
                 document.getElementById(autocompete).removeEventListener("input", function () {
                 });
@@ -863,7 +1044,6 @@ function initLogin() {
                             qtde++;
                         }
                     }
-                    console.log(dialog);
                     document.getElementById(dialog).innerHTML = select;
                     if (qtde > 0) {
                         document.getElementById(dialog).style.display = "block";
@@ -887,6 +1067,11 @@ function initLogin() {
                             }
                         });
                     }
+                });
+                document.getElementById(autocompete).addEventListener("blur", function () {
+                    setTimeout(function () {
+                        document.getElementById(dialog).style.display = "none";
+                    }, 200);
                 });
                 document.getElementById(autocompete).addEventListener("keypress", function (e) {
                     if (e.keyCode == 13) {
@@ -916,7 +1101,6 @@ function initLogin() {
                         }
                     }
                 });
-
                 $('#modalpreload').modal('close');
             }
         }
@@ -977,8 +1161,8 @@ function initLogin() {
         request = new XMLHttpRequest();
         request.onreadystatechange = function () {
             if (request.readyState == 4 && request.status == 200) {
-                cliente = [];
-                clientes = JSON.parse(this.responseText);
+                clientes = [];
+                clientes = JSON.parse(request.responseText);
                 var qtde = 0;
                 document.getElementById("autocompletecliente").addEventListener("input", function () {
                     this.value = this.value.toUpperCase();
@@ -1116,14 +1300,26 @@ function initLogin() {
 //Habilitar a tela de configuração de layout do usuario
     function abrirConfiguracao() {
         $('.button-collapse').sideNav('hide');
+        $(".menuOpcoes li a").removeClass();
+        this.className = "active";
+        document.getElementById("conteudo_painel").style.display = "none";
+        document.getElementById("tabs-menu").style.display = "none";
+        document.getElementById("listaOrcamentos").style.display = "none";
+        $('.button-collapse').sideNav('hide');
         document.getElementById("configuracao").style.display = "block";
         document.getElementById("cor_menu").value = config.cor_menu;
         document.getElementById("cor_fundo").value = config.cor_fundo;
         document.getElementById("cor_conteudo").value = config.cor_conteudo;
         document.getElementById("nome_empresa").value = config.nome_empresa;
-        document.getElementById("cor_menu").addEventListener("change", mudarCorElemento("menu_painel", "cor_menu"));
-        document.getElementById("cor_conteudo").addEventListener("change", mudarCorElemento("conteudo_pa-fundo", "cor_fundo"));
-        document.getElementById("cor_fundo").addEventListener("change", mudarCorElemento("container", "cor"));
+        document.getElementById("cor_menu").addEventListener("change", function () {
+            mudarCorElemento("menu_painel", "cor_menu")
+        });
+        document.getElementById("cor_conteudo").addEventListener("change", function () {
+            mudarCorElemento("conteudo_pa-fundo", "cor_fundo")
+        });
+        document.getElementById("cor_fundo").addEventListener("change", function () {
+            mudarCorElemento("container", "cor")
+        });
         document.getElementById("btnSalvaConfig").addEventListener("click", function () {
             var file_data = document.getElementById("fileLogo").files[0];
             var form_data = new FormData();
@@ -1142,26 +1338,23 @@ function initLogin() {
             request.open("POST", url + "php/salvaConfiguracao.php");
             request.send(form_data);
         });
-        document.getElementById("fileLogo").addEventListener("change", function () {
-            var img;
-            var input = document.getElementById("fileLogo");
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    img = new FormData(input);
-                    document.getElementById("logo").src = "" + e.target.result;
-                    document.getElementById("nome").focus();
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
-        });
-        document.getElementById("cancelar").addEventListener("click", function () {
-            document.getElementById("configuracao").style.display = "none";
-        });
+        /*document.getElementById("fileLogo").addEventListener("change", function () {
+         var img;
+         var input = document.getElementById("fileLogo");
+         if (input.files && input.files[0]) {
+         var reader = new FileReader();
+         reader.onload = function (e) {
+         img = new FormData(input);
+         document.getElementById("logo").src = "" + e.target.result;
+         document.getElementById("nome").focus();
+         }
+         reader.readAsDataURL(input.files[0]);
+         }
+         });*/
     }
 
     function mudarCorElemento(nomeElemento, inputColor) {
-        document.getElementById(nomeElemento).style.background = document.getElementById(inputColor).value;
+        document.getElementById(nomeElemento).style.backgroundColor = document.getElementById(inputColor).value;
     }
 
     function desativar() {
@@ -1186,7 +1379,7 @@ function initLogin() {
         document.getElementById("autocompleteproduto").focus();
         document.getElementById("totalProdutoWeb").value = "";
         document.getElementById("resumoQtdeItem").value = itensOrcamento.length;
-        document.getElementById("resumotTotalItens").value = "R$:" + numberToReal(total);
+        document.getElementById("resumotTotalItens").value = numberToReal(total);
 
         limparOrcamento();
     }
