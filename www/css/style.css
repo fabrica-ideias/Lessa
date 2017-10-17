@@ -12,6 +12,7 @@
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #fff;
+    overflow-y: auto;
 }
 .row {
     margin: 0;
@@ -136,8 +137,11 @@ body {
 .informatacaoCliente {
     color: black;
     background: #fff;
-    padding: 5px 10px;
     border: 1px solid #ccc;
+}
+.titlePedido{
+    background-color: #6e8fb9;
+    padding: 5px 10px;
 }
 
 .informatacaoCliente label {
@@ -237,8 +241,7 @@ td {
 }
 
 #cancelarOrcamento {
-    position: relative;
-    float: right;
+    color:#fff;
 }
 
 #cancelar {
@@ -366,7 +369,7 @@ td {
 #submenu {
     display: none;
     background-color: #716f70;
-    position: absolute;
+    position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
@@ -575,8 +578,15 @@ td {
     margin-bottom: 10px !important;
 
 }
+#infoNome{
+    background-color: rgba(93, 93, 93, 0.88);
+    color: #fff;
+    text-align: center;
+}
+
 
 @media only screen and (min-width: 601px) and (max-width: 992px) {
+
     #imgUser {
         background-color: #ddd;
         width: 200px;
@@ -713,14 +723,19 @@ td {
 
     #submenu {
         display: block;
+        z-index: 1000;
     }
 }
 
 @media only screen and (max-width: 600px) {
+    .painelOrcamento {
+        margin: 0px;
+    }
     #datelhe_item {
+        position: absolute;
         color: #000;
-        max-height: 60% !important;
-        height: 60% !important;
+        max-height: 45%;
+        width: 99%;
         overflow-y: scroll;
     }
 

@@ -1,307 +1,742 @@
-*{margin:0;padding:0;}
-body{	
-	font-family: 'Roboto', sans-serif;
-	background-color: #e9e9e9;	
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
 }
-.row{
-	margin: 0;
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #fff;
+    overflow-y: auto;
 }
-.container{
-	overflow-x:hidden;
-	position: absolute;
-	max-width: 100% !important;
-	width: 100%;
-	height: 100%;
-	background-color: #ccc;	
+.row {
+    margin: 0;
 }
-.subcontainer{
-	position: relative;
-	border-radius: 4px;
-	border:1px solid #ccc;
-	background-color: #e6e6e6;
-	float: left;
+#btnAlteraOrcamento{
+    display: none;
 }
-.subcontainer h3{
-	text-align: center;
-	font-size: 2em;
-}
-.subcontainer h1{
-	text-align: center;
-	font-size: 14em;
-}
-.titulochamada{
-	border: 1px solid;
-	margin: 0;
-	background-color: #5e69d4;
-	color: #fff;
-	padding: 10px;
-}
-.proximo li{
-	float: left;
-	margin-left: 5%;
-	font-size: 1.5em;
-}
-.fila {
-	margin-left: 5px;
-}
-.fila li{
-	float: left;
-	font-size: 2em;
-	width: 10%;
-	text-align: center;
-	border:1px solid #000;
-	color:#fff;
-}
-.fila .presente,ul i.presente{
-	background-color: #3aa13d;	
-	text-shadow: 2px 2px 5px #000;
-}
-.dafault{
-	background-color: #3a4ebe;	
-	text-shadow: 2px 2px 5px #000;
-}
-.ausente{
-	background-color: #e3f107;	
-	text-shadow: 2px 2px 5px #000;
-}
-.problema{
-	background-color:#b12c2c;
-	text-shadow: 2px 2px 5px #000;
+.modalFormaPagamento {
+    display: none;
+    position: absolute;
+    width: 45%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 10px;
+    top: 30%;
+    background-color: #fff;
+    right: 0;
+    left: 0;
+    margin: auto;
 }
 
-.p{
-	font-size: 1.3em;
+#totalOrcamento {
+    background-color: #fff !important;
+    color: #000;
+    text-align: right !important;;
+    padding: 0px 5px !important;;
+    border-radius: 4px !important;
+    margin-bottom: 0px;
 }
-td{
-	padding: 0px !important;
-	font-size: 1.5em;
+
+#home {
+    padding: 10px;
+    background-color: #e3e3e3;
+    margin-top: 10px;
+    border-radius: 10px;
 }
-.row .col{
-	padding: 0px;
+
+.modalItemOrcamentos {
+    display: none;
+    position: fixed;
+    width: 90%;
+    top: 5% !important;
+    right: 0;
+    left: 0;
+    margin: auto;
+    padding: 5px;
+    border-radius: 10px;
 }
-.observacao{
-	padding: 5px;
-	border-radius: 4px;
-	margin: 5px;
-	border: 1px solid;
+
+.zebra {
+    padding: 5px;
+    border: 1px solid #bec8fc;
 }
-.observacao ul li{
-	float: left;
-	margin-left: 5%;
-	font-size: 2em;
+
+.cinza {
+    background-color: #ccc;
 }
+
+#listaOrcamentos {
+    display: none;
+}
+
+.listaProduto {
+    overflow-y: scroll;
+    height: 100%;
+    max-height: 300px;
+    margin-top: 0px;
+}
+
+.tituloProdutoSolicitado {
+    background-color: #5a7ea3;
+    color: #fff;
+    padding: 10px;
+}
+
+#itemPedido {
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.listaProduto .collection-item {
+    color: #000 !important;
+}
+
+.listaProduto .badge {
+    background-color: #32a435;
+    color: #fff;
+    border-radius: 4px;
+}
+
+#btnOrcaProximo {
+    display: none;
+}
+
+.container {
+    overflow-x: hidden;
+    position: absolute;
+    max-width: 100% !important;
+    width: 100%;
+    height: 100%;
+    background-color: #ccc;
+}
+
+.subcontainer {
+    position: relative;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #e6e6e6;
+    float: left;
+}
+
+.subcontainer h3 {
+    text-align: center;
+    font-size: 2em;
+}
+
+.subcontainer h1 {
+    text-align: center;
+    font-size: 14em;
+}
+
+.informatacaoCliente {
+    color: black;
+    background: #fff;
+    border: 1px solid #ccc;
+}
+.titlePedido{
+    background-color: #6e8fb9;
+    padding: 5px 10px;
+}
+
+.informatacaoCliente label {
+    color: #000;
+}
+
+#datelhe_item {
+    color: #000;
+    max-height: 80%;
+    height: 60%;
+    overflow-y: scroll;
+}
+
+.p {
+    font-size: 1.3em;
+}
+
+td {
+    padding: 0px !important;
+    font-size: 1.5em;
+}
+
+.row .col {
+    padding: 0px;
+}
+
+.observacao {
+    padding: 5px;
+    border-radius: 4px;
+    margin: 5px;
+    border: 1px solid;
+}
+
+.observacao ul li {
+    float: left;
+    margin-left: 5%;
+    font-size: 2em;
+}
+
 .grabbable {
-	cursor: move; /* fallback if grab cursor is unsupported */
-	cursor: grab;
-	cursor: -moz-grab;
-	cursor: -webkit-grab;
+    cursor: move; /* fallback if grab cursor is unsupported */
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+
+.inputPreco {
+    text-align: right;
+    background-color: #4c79a6;
+    color: #fff;
+    padding: 0px 5px;
+    border-radius: 10px;
+}
+
+.labelPreco {
+    text-align: right;
+    font-size: 1.2em;
+    padding-right: 5px;
+    color: #000 !important;
 }
 
 /* (Optional) Apply a "closed-hand" cursor during drag operation. */
-.grabbable:active { 
-	cursor: grabbing;
-	cursor: -moz-grabbing;
-	cursor: -webkit-grabbing;
+.grabbable:active {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
 }
 
-.btnbottom{
-	position: absolute;
-	bottom: 0;
-	background-color: #4b4848;
+.btnbottom {
+    position: absolute;
+    bottom: 0;
+    background-color: #4b4848;
 }
-.btnbottom:active{
-	background-color: #1a1a1a;	
+
+.btnbottom:active {
+    background-color: #1a1a1a;
 }
-.btnbottom:hover{
-	background-color: #1a1a1a;
+
+.btnbottom:hover {
+    background-color: #1a1a1a;
 }
-#conteudo_painel{
-	/*margin-top: 10px;
-	padding: 10px;*/
-	height: 80%;
+
+#conteudo_painel {
+    /*margin-top: 10px;
+    padding: 10px;*/
+    height: 80%;
 }
-.configuracao{
-	display: none;
-	position: fixed;
-	bottom: 0;
-	width: 100%;
-	padding: 10px;
-	background-color: #fff;
-	border: 1px solid;
-	border-color: #afafaf;
+
+.configuracao {
+    background-color: #f2f2f2;
+    display: none;
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid;
+    border-color: #afafaf;
 }
-#cancelar{
-	float: right;
-	color:#000;
+
+#cancelarOrcamento {
+    color:#fff;
 }
-#container{
-	display: none;
+
+#cancelar {
+    float: right;
+    color: #000;
 }
-.painel{
-	display: none;
+
+#container {
+    display: none;
 }
-#btnAddItem{
-	position: absolute;
-	bottom: 0px;
-	margin-bottom: 10px;
-	right: 10px;
+
+.painel {
+    display: none;
 }
-#addItens p{
-	text-align: center;
-	color: #a2a2a2;
-	font-size: 1.3em;
+
+#btnAddItem {
+    position: absolute;
+    bottom: 0px;
+    margin-bottom: 60px;
+    right: 10px;
 }
-#criar_orcamento,
-#criar_cliente_orca,
-#btnSalvaOrcamento,
-#cadastro_users,
-#btnConfiguracao,
-#btnConfiguracaoMobile,
-#permissoes_users,
-#menu_cadastros,
-#menu_pedidos,
+
+#addItens p {
+    text-align: center;
+    color: #a2a2a2;
+    font-size: 1.3em;
+}
+
 #selectCliente,
-#menu_negociacao,
-#menu_configuracao,
-#addItens{
-	display: none;
-}
-#todosOrcamento,#criar_orcamento,
-#cadastro_users,#criar_cliente_orca{
-	margin-bottom: 50px;
+#selecioneCliente,
+#addItens {
+    display: none;
 }
 
-.modalpreloader{
-	top: 45% !important;
-	display: none;
-	position: fixed;
-	left: 0;
-	right: 0;
-	padding: 0;
-	text-align: center;
+#todosOrcamento, #criar_orcamento,
+#cadastro_users, #criar_cliente_orca {
+    margin-bottom: 50px;
 }
+
+.modalpreloader {
+    top: 45% !important;
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    padding: 0;
+    text-align: center;
+}
+
+#descricaoitem {
+    background: #fff;
+    padding: 10px;
+}
+
+.titleDescricao {
+    background-color: #8282e2;
+    color: #fff;
+    padding: 10px !important;
+}
+
+#subdescricaoitem {
+    background: #c5c5c5;
+    padding: 5px;
+}
+
+.subItemDescricao {
+    background-color: #7878b7;
+    color: #fff;
+    padding: 5px !important;
+}
+
 @font-face {
-	font-family: 'Material Icons';
-	font-style: normal;
-	font-weight: 400;
-	src: url(fonts/MaterialIcons-Regular.eot); /* For IE6-8 */
-	src: local('Material Icons'),
-	local('MaterialIcons-Regular'),
-	url(fonts/MaterialIcons-Regular.woff2) format('woff2'),
-	url(fonts/MaterialIcons-Regular.woff) format('woff'),
-	url(fonts/MaterialIcons-Regular.ttf) format('truetype');
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(fonts/MaterialIcons-Regular.eot); /* For IE6-8 */
+    src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url(fonts/MaterialIcons-Regular.woff2) format('woff2'),
+    url(fonts/MaterialIcons-Regular.woff) format('woff'),
+    url(fonts/MaterialIcons-Regular.ttf) format('truetype');
 }
+
 .material-icons {
-	font-family: 'Material Icons';
-	font-weight: normal;
-	font-style: normal;
-	font-size: 24px;  /* Preferred icon size */
-	display: inline-block;
-	line-height: 1;
-	text-transform: none;
-	letter-spacing: normal;
-	word-wrap: normal;
-	white-space: nowrap;
-	direction: ltr;
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px; /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
 
-	/* Support for all WebKit browsers. */
-	-webkit-font-smoothing: antialiased;
-	/* Support for Safari and Chrome. */
-	text-rendering: optimizeLegibility;
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
 
-	/* Support for Firefox. */
-	-moz-osx-font-smoothing: grayscale;
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
 
-	/* Support for IE. */
-	font-feature-settings: 'liga';
+    /* Support for IE. */
+    font-feature-settings: 'liga';
 }
-.item_home{
-	background-color: #13d11c;
-	color: #fff;
-	text-align: center;
-	padding: 5px;
-	float: right;
-	width: 10%;
-	font-size: 1em;
-	margin-right: 10px;
-	border-radius: 4px;
+
+.item_home {
+    background-color: #13d11c;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    float: right;
+    width: 10%;
+    font-size: 1em;
+    margin-right: 10px;
+    border-radius: 4px;
 }
-.menu_mobile{
-	display: none;
+
+.menu_mobile {
+    display: none;
 }
-#submenu{
-	background-color: rgb(226, 82, 82);
-	position: absolute;
-	left: 0;
-	right: 0;
+
+#submenu {
+    display: none;
+    background-color: #716f70;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
-#btnFinalizaOrcamento{
-	position: absolute;
+
+#btnFinalizaOrcamento {
+    position: absolute;
     top: 10px;
-    right: 2px;
-    background-color: #e28c52;
+    left: 10px;
+    background-color: #3db54b;
 }
-@media screen and (max-width: 920px){
-	.fila li{
-		float: left;
-		width: 10%;
-		text-align: center;
-		font-size: 1em;
-		border:1px solid #000;
-		color:#fff;
-	}
-	.observacao ul li{
-		float: left;
-		margin-left: 5%;
-		font-size: 1em;
-	}
-	td{
-		padding: 15px 5px !important;
-		font-size: 1em;
-	}
-	.btnbottom{
-		height: 40px;
-		font-size: 2em;
-	}
-	.item_home{
-		background-color: #13d11c;
-		color: #fff;
-		text-align: center;
-		padding: 5px;
-		float: right;
-		width: 20%;
-		font-size: 1em;
-		margin-right: 10px;
-		border-radius: 4px;
-	}
-	.menu_pc{
-		display: none;
-	}
-	.menu_mobile{
-		position: fixed;
-		display: block;
-		width: 100%;
-		margin: 0px;
-		right: 0px;
-		left: 0px;	
-		bottom: 0;
-		z-index:150;
-		background-color: #fff;
-	}
-	.menu_mobile ul li{
-		float: left;
-	}
-	.collapsible{
-		margin:0 !important;
-	}
-	.modal {
-		width: 95%;
-		padding: 5px;
-	}
-	#todosOrcamento{
-		position: relative;
-		display: block;
-		max-height: 500px;
-		overflow-y: scroll;
-	}
+
+#opcaoItem {
+    display: none;
+    position: absolute;
+    right: 0;
+    left: 0;
+    width: 70%;
+    top: 30% !important;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: auto;
+}
+
+#addItensWeb {
+    background-color: #597796;
+}
+
+.descricaoElemento.active {
+    color: #fff !important;
+}
+
+.entradaOrcamentoWeb {
+    background-color: #fff;
+    color: #000;
+    height: 2em !important;
+    border-radius: 4px !important;
+}
+
+.valores {
+    color: #000;
+    text-align: right
+}
+
+.autocomplete-content {
+    position: absolute;
+    width: 100%;
+}
+
+.containerItens {
+    position: relative;
+    max-height: 350px;
+    overflow-y: scroll;
+    background-color: #9F9F9F;
+}
+
+.painelOrcamento {
+    border: 1px solid #ccc;
+    margin: 10px;
+    background-color: #e7e7e7;
+    border-radius: 10px;
+}
+
+.resumo {
+    color: #000000 !important;
+}
+
+.valorTotal {
+    color: #000 !important;;
+    text-align: center;
+    font-size: 2em !important;
+    background-color: #eba98a !important;
+}
+
+.autocomplete {
+    background: #fff;
+    position: relative;
+    width: 400px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.24);
+}
+
+.autocomplete .close {
+    position: absolute;
+    font-size: 13px;
+    z-index: 10;
+    top: 10px;
+    left: calc(100% - 50px);
+    color: #aaa;
+    cursor: pointer;
+    display: none;
+}
+
+.autocomplete .close.visible {
+    display: block;
+}
+
+.textBloqueado {
+    padding: 5px !important;
+    margin: 5px;
+    background-color: #dcdcdc;
+    border-radius: 10px;
+    font-size: 1em;
+}
+
+.menuOpcoes li {
+    margin: 1px;
+}
+
+.menuOpcoes li a.active {
+    background-color: #d7d7d7;
+}
+
+.menuOpcoes li a i {
+    color: #37759e !important;
+}
+
+.dadosPerfil {
+    border-bottom: 1px solid #ccc;
+    background: #5c85a0;
+}
+
+#orcamentos {
+    position: absolute;
+    max-height: 85%;
+    overflow-y: scroll;
+    margin: 0;
+}
+
+.desListaPedidos {
+    padding: 10px;
+    background-color: #678eb5;
+    color: #fff;
+}
+
+.dialog {
+    width: 100%;
+    display: none;
+    min-height: 40px;
+    max-height: 330px;
+    overflow-y: scroll;
+    border-top: 1px solid #f4f4f4;
+    z-index: 100;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    position: absolute;
+}
+
+.dialog.open {
+    display: block;
+}
+
+.dialog div {
+    padding: 20px 10px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.dialog div:hover, .dialog div.active {
+    background: #f2f2f2;
+}
+
+.modalCancelaPedido {
+    display: none;
+    position: absolute;
+    top: 20%;
+    width: 30%;
+    right: 0;
+    left: 0;
+    margin: auto;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#dadosUser {
+    display: none;
+}
+
+.dadosUser {
+    position: relative;
+    background: #ffffff;
+    display: block;
+    float: left;
+    width: 100%;
+    padding: 10px;
+}
+
+.containerCadastro {
+    background-color: #e3e3e3;
+    padding: 20px !important;
+    border: 1px solid #e7e7e7;
+}
+
+#btnSalvaUsuario {
+    background-color: #5a7ea3;
+}
+
+#produto_orcamento {
+    margin: 0;
+    BACKGROUND-COLOR: #fff;
+    border-radius: 4px;
+    margin-bottom: 10px !important;
+
+}
+#infoNome{
+    background-color: rgba(93, 93, 93, 0.88);
+    color: #fff;
+    text-align: center;
+}
+
+
+@media only screen and (min-width: 601px) and (max-width: 992px) {
+
+    #imgUser {
+        background-color: #ddd;
+        width: 200px;
+        height: 200px;
+        border-radius: 100%;
+        background-size: 100% 100%;
+        margin-bottom: 10%;
+    }
+
+    #containerLogin {
+        margin-top: 10%;
+    }
+
+    #logar {
+        font-size: 2em;
+        background-color: #5576dd;
+    }
+
+    #form {
+        margin-top: 2%;
+        background-color: #f1f1f1;
+        padding: 2%;
+        border: 1px solid #e7e7e7;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        position: absolute;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 995px) {
+    .titleMobileItem {
+        background-color: #5d92c9;
+        padding: 10px;
+    }
+
+    .subtitleitem {
+        padding: 5px !important;
+        background-color: #f26363;
+        color: #fff;
+    }
+
+    .subdetalheitem {
+        padding: 10px !important;
+    }
+
+    .modalItemOrcamentos {
+        width: 100%;
+    }
+
+    .modalCancelaPedido {
+        width: 100%;
+    }
+
+    #habilitaOrcamento {
+        display: none;
+    }
+
+    .modalFormaPagamento {
+        width: 100%;
+    }
+
+    td {
+        padding: 15px 5px !important;
+        font-size: 1em;
+    }
+
+    .btnbottom {
+        height: 40px;
+        font-size: 2em;
+    }
+
+    .item_home {
+        background-color: #13d11c;
+        color: #fff;
+        text-align: center;
+        padding: 5px;
+        float: right;
+        width: 20%;
+        font-size: 1em;
+        margin-right: 10px;
+        border-radius: 4px;
+    }
+
+    .menu_pc {
+        display: none;
+    }
+
+    .menu_mobile {
+        position: fixed;
+        display: block;
+        width: 100%;
+        margin: 0px;
+        right: 0px;
+        left: 0px;
+        bottom: 0;
+        z-index: 150;
+        background-color: #fff;
+    }
+
+    .menu_mobile ul li {
+        float: left;
+    }
+
+    .collapsible {
+        margin: 0 !important;
+    }
+
+    .modal {
+        width: 95%;
+        padding: 5px;
+    }
+
+    #todosOrcamento {
+        position: relative;
+        display: block;
+        max-height: 500px;
+        overflow-y: scroll;
+    }
+
+    #btnOrcaProximo {
+        display: block;
+    }
+
+    #addItensWeb {
+        display: none;
+        background-color: #718aa4;
+    }
+
+    #resumo {
+        display: none;
+    }
+
+    #submenu {
+        display: block;
+        z-index: 1000;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .painelOrcamento {
+        margin: 0px;
+    }
+    #datelhe_item {
+        position: absolute;
+        color: #000;
+        max-height: 45%;
+        width: 99%;
+        overflow-y: scroll;
+    }
+
 }

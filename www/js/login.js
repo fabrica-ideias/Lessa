@@ -26,6 +26,7 @@ function initLogin() {
             if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
                 config = JSON.parse(this.responseText);
                 if (iniciou == 0) {
+
                     iniciarConfiguracoes(config);
                     document.getElementById("btnConfiguracao").addEventListener("click", abrirConfiguracao); //tela de configuracao de layout
                     document.getElementById("logout").addEventListener("click", logout); //logout
@@ -60,9 +61,12 @@ function initLogin() {
                         $(".modalCancelaPedido").modal('close');
                     });
                     opcaoItem();
-                    preencheClientes();
+
                 }
-                listaProdutosSolicitados();
+                if(usuario.idpermissao == 2){
+                    listaProdutosSolicitados();
+                }
+                preencheClientes();
                 document.getElementById("addItensWeb").style.display = "none";
                 document.getElementById("informatacaoCliente").style.display = "none";
                 document.getElementById("resumoVendedor").value = usuario.nome.toUpperCase();
@@ -84,7 +88,9 @@ function initLogin() {
         this.className = "active";
         document.getElementById("configuracao").style.display = "none";
         document.getElementById("conteudo_painel").style.display = "block";
-        document.getElementById("tabs-menu").style.display = "block";
+        if(usuario.idpermissao == 2){
+            document.getElementById("tabs-menu").style.display = "block";
+        }
         document.getElementById("listaOrcamentos").style.display = "none";
         $('.button-collapse').sideNav('hide');
     }
@@ -111,8 +117,18 @@ function initLogin() {
                 $('#modalpreload').modal('close');
             }
         }
-        request.open("POST", url + "php/getOrcamentos.php", true);
-        request.send();
+        if(usuario.idpermissao == 2){
+            request.open("POST", url + "php/getOrcamentos.php", true);
+            request.send();
+        }else if(usuario.idpermissao == 3){
+            request.open("POST", url + "php/getOrcamentoFuncionario.php", true);
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            request.send("id=" + usuario.codfuncionario);
+        }else{
+            request.open("POST", url + "php/getOrcamentoCliente.php", true);
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            request.send("id=" + usuario.codparticipante);
+        }
     }
 
     function listaProdutosSolicitados() {
@@ -222,9 +238,7 @@ function initLogin() {
             document.getElementById("selectCliente").style.display = "none";
             document.getElementById("informatacaoCliente").style.display = "block";
             document.getElementById("addItensWeb").style.display = "block";
-            document.getElementById("infoNome").innerHTML = "RAZAO SOCIAL: " + cliente.PAR_A_RAZAOSOCIAL;
-            document.getElementById("infoCpfCnpj").innerHTML = "CNPJ/CPF: " + cliente.PAR_A_CNPJ_CPF;
-            document.getElementById("infoEndereco").innerHTML = "ENDERECO: " + cliente.PAR_A_LOGRADOURO + " " + cliente.PAR_A_ENDERECO + " " + cliente.PAR_A_NUMERO;
+            document.getElementById("infoNome").value = cliente.PAR_A_RAZAOSOCIAL;
             selectProdutoCliente(cliente, "autocompleteproduto", "precoProdutoWeb", "unidadeProdutoWeb", "dialogProduto");
             document.getElementById("autocompleteproduto").focus();
         }
@@ -478,12 +492,11 @@ function initLogin() {
 // Tela de adicionar item
     function habilitaTelaItem() {
         if (cliente != null) {
+            document.getElementById("menu_painel").style.display="none";
             document.getElementById("selectCliente").style.display = "none";
             document.getElementById("addItens").style.display = "block";
-            //document.getElementById("informatacaoCliente").style.display = "block";
-            document.getElementById("infoNome").innerHTML = "RAZAO SOCIAL: " + cliente.PAR_A_RAZAOSOCIAL;
-            document.getElementById("infoCpfCnpj").innerHTML = "CNPJ/CPF: " + cliente.PAR_A_CNPJ_CPF;
-            document.getElementById("infoEndereco").innerHTML = "ENDERECO: " + cliente.PAR_A_LOGRADOURO + " " + cliente.PAR_A_ENDERECO + " " + cliente.PAR_A_NUMERO;
+            document.getElementById("informatacaoCliente").style.display = "block";
+            document.getElementById("infoNome").value = cliente.PAR_A_RAZAOSOCIAL;
             selectProdutoCliente(cliente, "produto_orcamento", "precoProduto", "unidadeProduto", "dlgproduto");
         } else {
             Materialize.Toast.removeAll();
@@ -768,8 +781,10 @@ function initLogin() {
     }
 
     function limparOrcamento() {
+
         itensOrcamento = [];
         total = 0;
+        document.getElementById("menu_painel").style.display="block";
         document.getElementById("totalOrcamento").value = "0,00";
         document.getElementById("autocomplete-fantasia").value = "";
         document.getElementById("cpfcnpj").value = "";
@@ -800,6 +815,7 @@ function initLogin() {
         document.getElementById("resumotTotalItens").value = numberToReal(total);
         document.getElementById("btnFinalizaOrcamentoWeb").style.display="block";
         document.getElementById("btnAlteraOrcamento").style.display="none";
+        $('ul.tabs').tabs('select_tab', 'pedidos');
     }
 
 //Salva o usuario
@@ -942,18 +958,14 @@ function initLogin() {
                         if (window.innerWidth > 900) {
                             document.getElementById("informatacaoCliente").style.display = "block";
                             document.getElementById("addItensWeb").style.display = "block";
-                            document.getElementById("infoNome").innerHTML = "RAZAO SOCIAL: " + cliente.PAR_A_RAZAOSOCIAL;
-                            document.getElementById("infoCpfCnpj").innerHTML = "CNPJ/CPF: " + cliente.PAR_A_CNPJ_CPF;
-                            document.getElementById("infoEndereco").innerHTML = "ENDERECO: " + cliente.PAR_A_LOGRADOURO + " " + cliente.PAR_A_ENDERECO + " " + cliente.PAR_A_NUMERO;
+                            document.getElementById("infoNome").value = cliente.PAR_A_RAZAOSOCIAL;
                             selectProdutoCliente(cliente, "autocompleteproduto", "precoProdutoWeb", "unidadeProdutoWeb", "dialogProduto");
                             document.getElementById("autocompleteproduto").focus();
                         } else {
                             document.getElementById("selectCliente").style.display = "none";
                             document.getElementById("addItens").style.display = "block";
-                            //document.getElementById("informatacaoCliente").style.display = "block";
-                            document.getElementById("infoNome").innerHTML = "RAZAO SOCIAL: " + cliente.PAR_A_RAZAOSOCIAL;
-                            document.getElementById("infoCpfCnpj").innerHTML = "CNPJ/CPF: " + cliente.PAR_A_CNPJ_CPF;
-                            document.getElementById("infoEndereco").innerHTML = "ENDERECO: " + cliente.PAR_A_LOGRADOURO + " " + cliente.PAR_A_ENDERECO + " " + cliente.PAR_A_NUMERO;
+                            document.getElementById("informatacaoCliente").style.display = "block";
+                            document.getElementById("infoNome").value = "RAZAO SOCIAL: " + cliente.PAR_A_RAZAOSOCIAL;
                             selectProdutoCliente(cliente, "produto_orcamento", "precoProduto", "unidadeProduto", "dlgproduto")
                         }
                     }
@@ -980,18 +992,14 @@ function initLogin() {
                     if (window.innerWidth > 900) {
                         document.getElementById("informatacaoCliente").style.display = "block";
                         document.getElementById("addItensWeb").style.display = "block";
-                        document.getElementById("infoNome").innerHTML = "RAZAO SOCIAL: " + cliente.PAR_A_RAZAOSOCIAL;
-                        document.getElementById("infoCpfCnpj").innerHTML = "CNPJ/CPF: " + cliente.PAR_A_CNPJ_CPF;
-                        document.getElementById("infoEndereco").innerHTML = "ENDERECO: " + cliente.PAR_A_LOGRADOURO + " " + cliente.PAR_A_ENDERECO + " " + cliente.PAR_A_NUMERO;
+                        document.getElementById("infoNome").value = cliente.PAR_A_RAZAOSOCIAL;
                         selectProdutoCliente(cliente, "autocompleteproduto", "precoProdutoWeb", "unidadeProdutoWeb", "dialogProduto");
                         document.getElementById("autocompleteproduto").focus();
                     } else {
                         document.getElementById("selectCliente").style.display = "none";
                         document.getElementById("addItens").style.display = "block";
-                        //document.getElementById("informatacaoCliente").style.display = "block";
-                        document.getElementById("infoNome").innerHTML = "RAZAO SOCIAL: " + cliente.PAR_A_RAZAOSOCIAL;
-                        document.getElementById("infoCpfCnpj").innerHTML = "CNPJ/CPF: " + cliente.PAR_A_CNPJ_CPF;
-                        document.getElementById("infoEndereco").innerHTML = "ENDERECO: " + cliente.PAR_A_LOGRADOURO + " " + cliente.PAR_A_ENDERECO + " " + cliente.PAR_A_NUMERO;
+                        document.getElementById("informatacaoCliente").style.display = "block";
+                        document.getElementById("infoNome").value = cliente.PAR_A_RAZAOSOCIAL;
                         selectProdutoCliente(cliente, "produto_orcamento", "precoProduto", "unidadeProduto", "dlgproduto")
                     }
                     console.log(orcamento.itens);
@@ -1013,6 +1021,8 @@ function initLogin() {
                     console.log(itensOrcamento);
                     document.getElementById("btnAlteraOrcamento").style.display="block";
                     document.getElementById("btnFinalizaOrcamentoWeb").style.display="none";
+                    document.getElementById("menu_painel").style.display="none";
+                    document.getElementById("informatacaoCliente").style.display = "block";
                     $('ul.tabs').tabs('select_tab', 'pedidos');
                     atualizaLista("detalheItemWeb", true);
                 }
@@ -1158,51 +1168,44 @@ function initLogin() {
 
 //preenche o select com os clientes
     function preencheClientes() {
-        request = new XMLHttpRequest();
-        request.onreadystatechange = function () {
-            if (request.readyState == 4 && request.status == 200) {
-                clientes = [];
-                clientes = JSON.parse(request.responseText);
-                var qtde = 0;
-                document.getElementById("autocompletecliente").addEventListener("input", function () {
-                    this.value = this.value.toUpperCase();
+        document.getElementById("autocompletecliente").addEventListener("input", function () {
+            request = new XMLHttpRequest();
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    clientes = [];
+                    clientes = JSON.parse(request.responseText);
+                    console.log(clientes);
                     var select = "";
-                    var str = document.getElementById("autocompletecliente").value;
-                    qtde = 0;
                     for (var i = 0; i < clientes.length; i++) {
-                        if (clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase().startsWith(str.toUpperCase())) {
-                            select += '<div class="selecionaCliente" id="' + i + '">' + clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase() + '</div>';
-                            qtde++;
-                        }
-
+                        select += '<div class="selecionaCliente" id="' + i + '">' + clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase() + '</div>';
                     }
-                    document.getElementById("dialogcliente").innerHTML = select;
-                    if (qtde > 0) {
+                    if (clientes.length > 0) {
+                        document.getElementById("dialogcliente").innerHTML = select;
+                        var elems = document.getElementsByClassName("selecionaCliente"), i;
+                        for (i = 0; i < elems.length; i++) {
+                            document.getElementsByClassName("selecionaCliente")[i].removeEventListener("click", function () {
+                            });
+                            document.getElementsByClassName("selecionaCliente")[i].addEventListener("click", function () {
+                                document.getElementById("dialogcliente").style.display = "none";
+                                limparOrcamento();
+                                cliente = clientes[this.id];
+                                document.getElementById("autocomplete-fantasia").value = cliente.PAR_A_NOME_FANTASIA;
+                                document.getElementById("cpfcnpj").placeholder = " ";
+                                document.getElementById("cpfcnpj").value = cliente.PAR_A_CNPJ_CPF;
+                                document.getElementById("autocompletecliente").value = this.innerHTML;
+                                document.getElementById("endereco").value = cliente.PAR_A_LOGRADOURO + " " + cliente.PAR_A_ENDERECO + " " + cliente.PAR_A_NUMERO;
+                            });
+                        }
                         document.getElementById("dialogcliente").style.display = "block";
                     } else {
                         document.getElementById("dialogcliente").style.display = "none";
                     }
-                    var elems = document.getElementsByClassName("selecionaCliente"), i;
-                    for (i = 0; i < elems.length; i++) {
-                        document.getElementsByClassName("selecionaCliente")[i].removeEventListener("click", function () {
-                        });
-                        document.getElementsByClassName("selecionaCliente")[i].addEventListener("click", function () {
-                            document.getElementById("dialogcliente").style.display = "none";
-                            limparOrcamento();
-                            cliente = clientes[this.id];
-                            document.getElementById("autocomplete-fantasia").value = cliente.PAR_A_NOME_FANTASIA;
-                            document.getElementById("cpfcnpj").placeholder = " ";
-                            document.getElementById("cpfcnpj").value = cliente.PAR_A_CNPJ_CPF;
-                            document.getElementById("autocompletecliente").value = this.innerHTML;
-                            document.getElementById("endereco").value = cliente.PAR_A_LOGRADOURO + " " + cliente.PAR_A_ENDERECO + " " + cliente.PAR_A_NUMERO;
-                        });
-                    }
-                });
+                }
             }
-        }
-        request.open("POST", url + "php/getClientes.php", true);
-        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        request.send();
+            request.open("POST", url + "php/getClientes.php", true);
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            request.send("nome="+document.getElementById("autocompletecliente").value.toUpperCase());
+        });
     }
 
     function preencheAutoFuncionario() {
@@ -1284,7 +1287,6 @@ function initLogin() {
                         });
                         document.getElementsByClassName("selecionaNovoCliente")[i].addEventListener("click", function () {
                             document.getElementById("dialogclientenovo").style.display = "none";
-                            limparOrcamento();
                             cliente = clientes[this.id];
                             document.getElementById("autocliente").value = this.innerHTML;
                         });
@@ -1358,6 +1360,7 @@ function initLogin() {
     }
 
     function desativar() {
+        $(".menuOpcoes li a").removeClass();
         document.getElementById("configuracao").style.display = "none";
         document.getElementById("container").style.display = "none";
         document.getElementById("menu_cadastros").style.display = "none";
@@ -1380,6 +1383,12 @@ function initLogin() {
         document.getElementById("totalProdutoWeb").value = "";
         document.getElementById("resumoQtdeItem").value = itensOrcamento.length;
         document.getElementById("resumotTotalItens").value = numberToReal(total);
+        document.getElementById("btnPrincipalMobile").className = "active";
+        document.getElementById("configuracao").style.display = "none";
+        document.getElementById("conteudo_painel").style.display = "block";
+        document.getElementById("tabs-menu").style.display = "block";
+        document.getElementById("listaOrcamentos").style.display = "none";
+        $('.button-collapse').sideNav('hide');
 
         limparOrcamento();
     }
@@ -1388,3 +1397,4 @@ function initLogin() {
 window.onbeforeunload = function () {
     return "Os dados do formulário serão perdidos.";
 }
+

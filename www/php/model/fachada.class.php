@@ -176,5 +176,45 @@ class Fachada{
 		}
 		echo json_encode($orcamentos);
 	}
+
+	function getOrcamentosFuncionario($id){
+		include("conexao.php");
+		$result = mysqli_query($con,"SELECT * FROM NET_MOVIMENTO where STATUS_EXPORTACAO='false' and FUN_PKN_CODIGO='$id'");
+		$orcamentos = array();
+		while($dados= mysqli_fetch_array($result)){
+			$result2 = mysqli_query($con,"SELECT *  FROM NET_ITEM_MOVIMENTO WHERE NET_PKN_CODIGO='".$dados['NET_PKN_SEQUENCIAL']."'");
+			$itens = [];
+			while ($item = mysqli_fetch_array($result2)){
+				$query = mysqli_query($con,"SELECT * FROM TB_PRO_PRODUTO where PRO_PKN_CODIGO = '".$item['PRO_PKN_CODIGO']."'");
+				$produto = mysqli_fetch_array($query);
+				$item['descricao'] = $produto['PRO_A_DESCRICAO'];
+				$item['unidade'] = $produto['PRO_A_UNIDADE'];
+				$itens[] = $item;
+			}
+			$dados['itens'] = $itens;
+			$orcamentos[] = $dados;
+		}
+		echo json_encode($orcamentos);
+	}
+
+	function getOrcamentosCliente($id){
+		include("conexao.php");
+		$result = mysqli_query($con,"SELECT * FROM NET_MOVIMENTO where STATUS_EXPORTACAO='false' and PAR_PKN_CODIGO='$id'");
+		$orcamentos = array();
+		while($dados= mysqli_fetch_array($result)){
+			$result2 = mysqli_query($con,"SELECT *  FROM NET_ITEM_MOVIMENTO WHERE NET_PKN_CODIGO='".$dados['NET_PKN_SEQUENCIAL']."'");
+			$itens = [];
+			while ($item = mysqli_fetch_array($result2)){
+				$query = mysqli_query($con,"SELECT * FROM TB_PRO_PRODUTO where PRO_PKN_CODIGO = '".$item['PRO_PKN_CODIGO']."'");
+				$produto = mysqli_fetch_array($query);
+				$item['descricao'] = $produto['PRO_A_DESCRICAO'];
+				$item['unidade'] = $produto['PRO_A_UNIDADE'];
+				$itens[] = $item;
+			}
+			$dados['itens'] = $itens;
+			$orcamentos[] = $dados;
+		}
+		echo json_encode($orcamentos);
+	}
 }
 ?>

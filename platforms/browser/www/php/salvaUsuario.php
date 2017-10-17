@@ -3,14 +3,18 @@
 	require_once("conexao.php");
 	require_once("model/fachada.class.php");
   	$fachada = new Fachada();
-  	$usuario = new Usuario();
+  	$usuario = new Login();
   	if(isset($_FILES['file'])){
   		$usuario->setPerfil(uploadImage($_FILES['file']));
   	}
   	$usuario->setNome($_POST['nome']);
 	$usuario->setEmail($_POST['email']);
-	$usuario->setCpf($_POST['cpf']);
-	$usuario->setTelefone($_POST['telefone']);
-	$usuario->setTipo($_POST['tipoUsuario']);
-	$fachada->salvaUsuario($usuario);
+	$usuario->setSenha($_POST['senha']);
+	$usuario->setIdPermissao($_POST['permissao']);
+	if($_POST['permissao'] == '2' || $_POST['permissao'] == '3'){
+        $usuario->setCodfuncionario($_POST['codusuario']);
+    }else{
+        $usuario->setCodParticipante($_POST['codusuario']);
+    }
+    $fachada->salvaUsuario($usuario);
 ?>

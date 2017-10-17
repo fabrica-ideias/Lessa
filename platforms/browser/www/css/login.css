@@ -2,6 +2,15 @@
 body{
 	background-color: #eae9e9;
 }
+.toast{
+	background-color: #4c79a6;
+	color:#fff;
+	text-align: center;
+	text-transform: uppercase;
+}
+.paraMobile{
+	display: none;
+}
 .container{
 	max-width: 100% !important;
 	width: 100%;
@@ -16,8 +25,12 @@ body{
 }
 #form{
 	margin-top: 2%;
-	background-color: #fff;
+	background-color: #dcd9d9;
 	padding: 2%;
+	border:1px solid #e7e7e7;
+	-webkit-border-radius:4px;
+	-moz-border-radius:4px;
+	border-radius:4px;
 }
 #fCadastro{
 	display: none;
@@ -75,9 +88,9 @@ label.active{
 .tabs .tab a:hover, .tabs .tab a.active{
 	color: #fff;
 }
-#imgUser{
+.perfil{
 	background-color: #ddd;
-	width: 100px;
+	width: 100px !important;
 	height: 100px;
 	border-radius: 100%;	
 	background-image: url("../assets/icon/default.png");
@@ -150,13 +163,16 @@ a{
 	height: 100% !important;
 }
 #logar{
-	background-color: #f55f5f;
+	background-color: #5e85c2;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
 	#nameLogin h4{
 		font-size: 2em;
 	}
 	#containerLogin{
 		margin-top: 20%;
+	}
+	.paraMobile{
+		display: block;
 	}
 }

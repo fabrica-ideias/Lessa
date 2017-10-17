@@ -1,466 +1,596 @@
 <!DOCTYPE html>
-<html >
+<html>
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta charset="utf-8"/>
-	<meta http-equiv="cache-control" content="max-age=0" />
-	<meta http-equiv="cache-control" content="no-cache" />
-	<meta http-equiv="expires" content="0" />
-	<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-	<meta http-equiv="pragma" content="no-cache" />
-	<title>Login</title>
-	<!-- Compiled and minified CSS -->
-	<link rel="stylesheet" href="materialize/css/materialize.min.css">
-	<!-- Compiled and minified JavaScript -->
-	<link rel="stylesheet" href="css/login.css" />
-	<link rel="stylesheet" href="css/style.css" />
-	<link rel="stylesheet" type="text/css" href="css/fonts/font_roboto.css"/>
-	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/jquery-ui.js"></script>
-	<script type="text/javascript" src="js/jquery.maskMoney.min.js" ></script>
-	<script src="materialize/js/materialize.min.js"></script>
-	<script src="js/login.js" type="text/javascript"></script>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
+    <meta charset="utf-8"/>
+    <meta http-equiv="cache-control" content="max-age=0"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="expires" content="0"/>
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT"/>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <title>Login</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="materialize/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <link rel="stylesheet" href="css/login.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/fonts/font_roboto.css"/>
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script src="materialize/js/materialize.min.js"></script>
+    <script src="js/util.js" type="text/javascript"></script>
+    <script src="js/login.js" type="text/javascript"></script>
 </head>
 <body onload="initLogin()">
-	<!-- Login -->
-	<div class="row" id="containerLogin">
-		<div class="col s12 m4 l4"></div>
-		<div class="col s12 m12 l4" id="form">
-			<form method="POST" class="col s12 m12 l12" id="fLogin">
-				<div class="row">
-					<div class="col s4 m5 l5"></div>
-					<div class="col s4 m2 l2 z-depth-4" id="imgUser"></div>
-					<div class="col s4 m5 l5"></div>
-				</div>	
-				<div id="nameLogin"></div>
-				<div class="progress" id="progress">
-					<div class="indeterminate"></div>
-				</div>
-				<div class="row" id="fieldEmail">
-					<div class="input-field col s12">
-						<input id="email"  type="email"  class="validate" required="true" />
-						<label for="email" id="lEmail" data-error="E-mail Invalido" >E-mail</label>
-					</div>
-				</div>
-				<div class="row" id="fieldPassword">
-					<div class="input-field col s12">
-						<input id="password" type="password" class="validate"/>
-						<label for="password" data-error="Senha incorreta">Senha</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col s12" id="checkConect" style="margin-bottom: 5px"></div>
-					<a  class="col s12 m4 l4 btn" id="logar" style="margin-bottom: 5px">PRÓXIMO</a>
-					<!-- <div class="col s12"><a  id="cadastro" style="margin-bottom: 5px">Cadastre-se</a></div> -->
-				</div>		
-			</form>
-		</div>
-		<div class="col s12 m4 l4"></div>
-	</div>
-
-	<!-- Painel de Controlle -->
-	<div class="row" id="container">
-		<nav class="nav-extended" id="menu_painel">
-			<div class="nav-wrapper">
-				<img src="" height="100%" id="logo" class="brand-logo">
-				<a href="#" id="mobile" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-				<ul id="nav-mobile" class="right hide-on-med-and-down">
-					<li><a id="btnConfiguracao" href="#">Configuração</a></li>
-					<li><a id="logout" href="#">Sair</a></li>
-				</ul>
-				<ul class="side-nav" id="mobile-demo">
-					<li><a id="btnConfiguracaoMobile" href="#">Configuração</a></li>
-					<li><a id="logoutMobile" href="#">Sair</a></li>
-				</ul>
-			</div>
-			<ul id="tabs-menu" class="tabs tabs-fixed-width tabs-transparent tabs-fixed-width">
-				<li class="tab"><a href="#home">HOME</a></li>
-				<li class="tab" id="menu_pedidos"><a href="#pedidos">PEDIDOS</a></li>
-				<li class="tab" id="menu_cadastros"><a href="#cadastros">CADASTRO</a></li>
-				<li class="tab" id="menu_negociacao"><a href="#negociacao">NEGOCIAÇÃO</a></li>
-				<li class="tab" id="menu_configuracao"><a href="#configuracoes">CONFIGURAÇÕES</a></li>
-			</ul>
-		</nav>	
-		<div class="row" >
-			<div class="col l1"></div>
-			<div class="col s12 l10" id="conteudo_painel">
-				<!-- HOME PRODUTOS -->
-				<div id="home" class="col s12">
-					<div class="row">
-						<div class="col s12 m12 l12"></div>
-						<div class="col s12 m12 l12" >
-							<ul class="collapsible" data-collapsible="accordion" id="produtos">
-							</ul>
-						</div>
-						<div class="col s12 m4 l4"></div>
-					</div>
-
-				</div>
-				<!-- PEDIDOS -->
-				<div id="pedidos" class="col s12">
-					<!-- CRIAR Orcamento -->
-					<div class="row hide-on-med-and-down">
-						<ul class="col s12 l3 collapsible"  data-collapsible="accordion" style="margin: 0">
-							<li><div class="collapsible-header" id="btnOrcamento">ORCAMENTO</div></li>
-							<li><div class="collapsible-header" id="verOrcamentos">VER ORCAMENTOS</div></li>
-						</ul>
-					</div>
-					<div class="row menu_mobile" id="mobile-demo">
-						<ul class="col s12 collapsible" id="menu_pedido" data-collapsible="accordion" >
-							<li class="col s2">
-								<div class=" collapsible-header" id="btnOrcamentoMobile"><i class="material-icons">create</i></div>
-							</li>
-							<li class="col s2 ">
-								<div class="collapsible-header" id="verOrcamentosMobile"><i class="material-icons">list</i></div>
-							</li>
-						</ul>
-					</div>
-					<div class="row">
-						<div class="col s1"></div>
-						<form class="col s12 l12 ">
-							<div id="criar_orcamento">
-								<div class="row">
-									<div class="row">
-										<div class="input-field col s12">
-											<input type="text" id="autocomplete-input" class="autocliente" autocomplete="off">
-											<label for="autocomplete-input">Cliente</label>
-										</div>
-									</div>
-									<div class="row">
-										<div class="input-field col s12">
-											<input type="text" id="autocomplete-input" class="autocomplete">
-											<label for="autocomplete-input">Funcionario</label>
-										</div>
-									</div>
-									<div class="row">
-										<div class="input-field col s12">
-											<select id="produtos_pedido">
-												<option value="" disabled selected>SELECIONE UM PRODUTO</option>
-											</select>
-											<label>Produtos</label>
-										</div>
-									</div>
-									<div class="row">
-										<div class="input-field col s5 l2" >
-											<input type="number" id="qtde" style="font-size: 2em;text-align: right;" class="validate">
-											<label for="qtde">Quantidade</label>
-										</div>
-										<div class="input-field col s1 l1"></div>
-										<div class="input-field col s5 l2">
-											<input id="preconegociado" placeholder="" type="text" style="text-align: right;text-align: right;background-color: #efc33e;font-size: 2em;" disabled>
-											<label for="preconegociado">Valor do Produto</label>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col l4"></div>
-										<div class="col s12 l4">
-											<a class="col s12 btn" id="btnAdicionarItem" >ADICIONAR ITEM</a>
-										</div>
-										<div class="col l4"></div>
-									</div>
-									<table class="striped">
-										<thead>
-											<tr>
-												<th>PRODUTO</th>
-												<th>QTDES</th>
-												<th>PRECO</th>
-												<th>TOTAL</th>
-												<th></th>
-											</tr>
-										</thead>
-										<tbody id="detalhe_pedido">
-										</tbody>
-									</table>
-									<div class="row">
-										<div class="col l4"></div>
-										<a class="col s12 l4 btn" id="btnSalvaOrcamento">FINALIZAR ORCAMENTO</a>
-										<div class="col l4"></div>
-									</div>
-									<div class="row">
-										<div class="input-field col s12 l2">
-											<input id="totalpedido" style="text-align: right;text-align: right;background-color: #f74848;font-size: 2em; " disabled>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Orcamento do funcionario -->
-							<div id="funcionario_orcamento">
-								<div class="row" id="selectCliente" style="margin:10px">
-									<div class="row">
-										<div class="input-field col s12">
-											<input type="text" id="autocomplete-input" class="autocliente" autocomplete="off">
-											<label for="autocomplete-input" data-error="SELECIONE O CLIENTE">RAZÃO SOCIAL</label>
-										</div>
-									</div>
-									<div class="row">
-										<div class="input-field col s12">
-											<input type="text" id="autocomplete-input" class="autofantasia" autocomplete="off">
-											<label for="autocomplete-input">NOME FANTASIA</label>
-										</div>
-									</div>
-									<div class="row">
-										<div class="input-field col12">
-											<input type="text" id="cpfcnpj" class="validate" autocomplete="off" maxlength="14">
-											<label for="cpfcnpj" data-error="Digite o cpf ou cnpj do cliente">CPF/CNPJ</label>
-										</div>
-									</div>
-									<div class="row">
-										<button type="button" class="col s12 l4 btn" id="btnOrcaProximo" style="margin-top: 20px;margin-bottom: 0px;background: #e25252;">Proximo</button>
-									</div>
-								</div>
-								<div class="row" id="addItens">
-									<nav id="submenu">
-										<div class="nav-wrapper">
-											<div class="col s12">
-												<a href="#!" style="padding-left: 5px;" class="breadcrumb" id="retornaOrcamento">CLIENTE</a>
-												<a href="#!" class="breadcrumb">ITENS</a>
-												<button class="btn" id="btnFinalizaOrcamento"> <i class="material-icons" style="height: 0;line-height: 0;">check</i></button>
-											</div>
-										</div>
-										<div class="row">
-											<p id="observacaoItem">Adicionar Item</p>
-											<table style="background-color: #fff;color: #000;border: 1px solid #ccc;">
-
-												<tbody id="datelhe_item"></tbody>
-											</table>
-										</div>
-									</nav>
-									<a class="btn-floating btn-large waves-effect waves-light red modal-trigger" id="btnAddItem" href="#modalSelecionaProduto"><i class="material-icons">add</i></a>	
-								</div>
-							</div>
-						</form>
-
-						<div class="col s12" id="todosOrcamento"  style="position: relative;">
-
-						</div>
-					</div>
-				</div>
-
-
-				<!-- Cadastro -->
-				<div id="cadastros" class="col s12">
-					<div class="row">
-						<ul class="col s12 l2 collapsible hide-on-med-and-down""  data-collapsible="accordion">
-							<li><div class="collapsible-header" id="btnUsuario">USUARIO</div></li>
-							<li><div class="collapsible-header" id="btnPermissoes">PERMISSÕES</div></li>
-						</ul>
-						<div class="row menu_mobile" id="mobile-demo">
-							<ul class="col s12 collapsible" data-collapsible="accordion" >
-								<li class="col s2">
-									<div class=" collapsible-header" id="btnUsuarioMobile"><i class="material-icons">person_add</i></div>
-								</li>
-								<li class="col s2 ">
-									<div class="collapsible-header" id="btnPermissoesMobile"><i class="material-icons">lock_open</i></div>
-								</li>
-							</ul>
-						</div>
-						<!-- CADASTRO DE USUARIO  -->
-						<div class="col s12" id="cadastro_users">
-							<div class="row">
-								<div class="col l2"></div>
-								<div class="col s12 l8">
-									<div class="row">
-										<div class="row">
-											<div class="input-field col s12 l5">
-												<select id="tipoUsuario">
-													<option value="" disabled selected>SELECIONE O TIPO DO USUARIO</option>
-													<option value="FUNCIONARIO">FUNCIONARIO</option>
-													<option value="CLIENTE">CLIENTE</option>
-												</select>
-											</div>
-											<div class="input-field col l1"></div>
-											<div class="input-field col s12 l6">
-												<input id="nome" type="text" class="validate">
-												<label for="nome">Nome Completo</label>
-											</div>
-										</div>
-										<div class="row">
-											<div class="input-field col s12 l4">
-												<input id="emailUserNovo" type="email" class="validate">
-												<label for="emailUserNovo">Email</label>
-											</div>
-										</div>
-										<div class="row">
-											<div class="input-field col s5 l4">
-												<input id="cpf" type="text" class="validate" maxlength="14">
-												<label for="cpf" data-error="Cpf Invalido" data-success="" data-success="ok">CPF</label>
-											</div>
-											<div class="col s2 l1"></div>
-											<div class="input-field col s5 l4">
-												<input id="telefone" type="text" class="validate">
-												<label for="telefone">TELEFONE</label>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col l4"></div>
-											<button class="col s12 l4 btn" id="btnSalvaUsuario">SALVA USUARIO</button>
-											<div class="col l4"></div>
-										</div>									
-									</div>
-								</div>
-								<div class="col l2"></div>
-							</div>
-						</div>
-						<!-- PERMISSÕES -->
-						<div class="col s12" id="permissoes_users">
-							<div class="row">
-								<div class="col l2"></div>
-								<div class="col s12 l8">
-									<div class="row">
-										<div class="input-field col s12">	
-											<input type="text" id="autocomplete-input" class="autocomplete">
-											<label for="autocomplete-input">Nome do Funcionario</label>
-										</div>
-										<form action="#">
-											<p>
-												<input type="checkbox" id="chpedido">
-												<label for="chpedido">PEDIDOS</label>
-											</p>
-											<p>
-												<input type="checkbox" id="chcadasto"/>
-												<label for="chcadasto">CADASTRO</label>
-											</p>
-											<p>
-												<input type="checkbox" id="chnegoc"/>
-												<label for="chnegoc">NEGOCIACAO</label>
-											</p>
-											<p>
-												<input type="checkbox" id="chconfi"/>
-												<label for="chconfi">CONFIGURACAO</label>
-											</p>
-										</form>
-										<div class="row">
-											<div class="col s5 l3"></div>
-											<button class="col s12 l2 btn" id="salvaPermissoes">SALVAR</button>
-											<div class="col s5 l3"></div>
-										</div>
-									</div>
-								</div>
-								<div class="col l2"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div id="negociacao" class="col s12">
-					<div class="row">					
-						<div class="col s12">
-							<div class="row">
-								<div class="input-field col s12">
-									<input type="text" id="autocomplete-input" class="autoclientenegociacao">
-									<label for="autocomplete-input">Cliente</label>
-								</div>
-							</div>
-						</div>
-						<div class="input-field col s12">
-							<select id="produtos_negociacao">
-								<option value="" disabled selected>SELECIONE UM PRODUTO</option>
-							</select>
-							<label>Produtos</label>
-						</div>
-						<div class="row">
-							<div class="input-field col s6 l2">
-								<input id="precoproduto" type="text" maxlength="10"  class="validate" style="text-align: right;">
-								<label for="precoproduto">PREÇO NEGOCIADO</label>
-							</div>
-							<div class="input-field col l1"></div>
-							<button class=" col s12 l2 btn" id="btnSalvaNegociacao">SALVAR</button>
-						</div>
-						<table class="striped">
-							<thead>
-								<tr>
-									<th>PRODUTO</th>
-									<th>PREÇO</th>
-								</tr>
-							</thead>
-							<tbody id="detalhe_negociacao">
-							</tbody>
-						</table>
-					</div>
-				</div>
-				<div id="configuracoes" class="col s12">CONFIGURAÇÕES</div>
-			</div>
-			<div class="col l1"></div>
-		</div>
-
-
-		<!-- Opções de Configuração de Layout -->
-		<div class="row" >
-			<div class="col s12">
-				<div class="configuracao" id="configuracao">
-					<a id="cancelar">X</a>
-					<div class="col s4">
-						<p>Nome da Empresa</p><input type="text" id="nome_empresa"/>
-						<p>Cor do Menu</p><input type="color" id="cor_menu"/>
-						<p>Cor do Painel de Conteudo</p><input type="color" id="cor_conteudo"/>
-						<p>Cor do Fundo</p><input type="color" id="cor_fundo"/>
-					</div>
-					<div class="col s8 l4">
-						<form action="#">
-							<div class="file-field input-field">
-								<div class="btn">
-									<span>File</span>
-									<input type="file" accept="image/*" class="fileImg" name="file" id="file">
-								</div>
-								<div class="file-path-wrapper">
-									<input type="file" accept="image/*" class="fileImg" name="fileLogo" id="fileLogo">
-									<input class="file-path validate" type="text" placeholder="Upload one or more files">
-								</div>
-							</div>
-						</form>
-						<div class="col s2 l5"></div>
-						<button class="col s8 l2 btn" id="btnSalvaConfig">Salvar</button>
-						<div class="col s2 l5"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Modal Structure -->
-	<div id="modalpreload" class="modalpreloader">
-		<div class="preloader-wrapper big active">
-			<div class="spinner-layer spinner-blue-only">
-				<div class="circle-clipper left">
-					<div class="circle"></div>
-				</div>
-				<div class="gap-patch">
-					<div class="circle"></div>
-				</div>
-				<div class="circle-clipper right">
-					<div class="circle"></div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div id="modalInfo" class="modal">
-		<div class="modal-content">
-			<h4 id="titleModal">Resultado:</h4>
-			<p id="msgModal" style='text-align:center'></p>
-		</div>
-		<div class="modal-footer">
-			<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
-		</div>
-	</div>
-	<div id="modalSelecionaProduto" class="modal">
-		<div class="modal-content">
-			<div class="row">
-				<div class="input-field col s12">
-					<select id="produto_orcamento">
-						<option value="" disabled selected>SELECIONE O PRODUTO</option>
-					</select>
-					<label>Selecione o produto</label>
-				</div>
-				<div class="input-field col s4">
-					<input type="number" name="qtdeProduto" id="qtdeProduto" />
-					<label for="qtdeProduto" style="text-align: right;font-size: 1.2em;padding-right: 5px;">Quantidade</label>
-				</div>
-			</div>
-		</div>
-		<div class="modal-footer">
-			<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
-			<a href="#!" id="addItemOrca" class="modal-action modal-close waves-effect waves-green btn-flat">Adicionar</a>
-		</div>
-	</div>
+<!-- Login -->
+<div class="row" id="containerLogin">
+    <div class="col s12 m4 l4"></div>
+    <div class="col s12 m12 l4" id="form">
+        <form method="POST" class="col s12 m12 l12" id="fLogin">
+            <div class="row">
+                <div class="col s4 m4 l5"></div>
+                <div class="col s4 m2 l2 z-depth-4 perfil" id="imgUser"></div>
+                <div class="col s4 m5 l5"></div>
+            </div>
+            <div id="nameLogin"></div>
+            <div class="progress" id="progress">
+                <div class="indeterminate"></div>
+            </div>
+            <div class="row" id="fieldEmail">
+                <div class="input-field col s12">
+                    <input id="email" type="email" class="validate" required="true"/>
+                    <label for="email" id="lEmail" data-error="E-mail Invalido">E-mail</label>
+                </div>
+            </div>
+            <div class="row" id="fieldPassword">
+                <div class="input-field col s12">
+                    <input id="password" type="password" class="validate"/>
+                    <label for="password" data-error="Senha incorreta">Senha</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12" id="checkConect" style="margin-bottom: 5px"></div>
+                <a class="col s12 m4 l4 btn" id="logar" style="margin-bottom: 5px">PRÓXIMO</a>
+                <!-- <div class="col s12"><a  id="cadastro" style="margin-bottom: 5px">Cadastre-se</a></div> -->
+            </div>
+        </form>
+    </div>
+    <div class="col s12 m4 l4"></div>
 </div>
-</body> 
+
+<!-- Painel de Controlle -->
+<div class="row" id="container">
+    <nav class="nav-extended" id="menu_painel">
+        <div class="nav-wrapper">
+            <img src="" height="100%" id="logo" class="brand-logo">
+            <a href="#" id="mobile" data-activates="mobile-demo" class="button-collapse"><i
+                    class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a id="btnPrincipal" href="#">Página Inicial</a></li>
+                <li><a id="btnPedidos" href="#">Pedidos</a></li>
+                <li><a id="btnConfiguracao" href="#">Configuração</a></li>
+                <li><a id="logout" href="#">Sair</a></li>
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <div class="row dadosPerfil">
+                    <div class="row">
+                        <div class="col s10" style="margin: 10px 0px 0px 10px;">
+                            <div class="col s4 m2 l2 z-depth-1 perfil" id="imgUserLogado"
+                                 style="width: 50px !important;height: 50px"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <a id="nomeUser"></a>
+                        </div>
+                    </div>
+                </div>
+                <ul class="menuOpcoes">
+                    <li><a id="btnPrincipalMobile" href="#" class="active"><i class="material-icons">home</i>Página
+                        Inicial</a></li>
+                    <li><a id="btnPedidosMobile" href="#"><i class="material-icons">list</i>Pedidos</a></li>
+                    <li><a id="btnConfiguracaoMobile" href="#"><i class="material-icons">settings</i>Configuração</a>
+                    </li>
+                    <li><a id="logoutMobile" href="#"><i class="material-icons">exit_to_app</i>Sair</a></li>
+                </ul>
+            </ul>
+        </div>
+        <ul id="tabs-menu" class="tabs tabs-fixed-width tabs-transparent tabs-fixed-width">
+            <li class="tab"><a href="#home">HOME</a></li>
+            <li class="tab" id="menu_pedidos"><a href="#pedidos">PEDIDOS</a></li>
+            <li class="tab" id="menu_cadastros"><a href="#cadastros">USUARIO</a></li>
+        </ul>
+    </nav>
+    <div class="row">
+        <div class="col l1"></div>
+        <div class="col s12 l12" id="conteudo_painel">
+            <!-- HOME PRODUTOS -->
+            <div id="home" class="col s12">
+                <div class="row">
+                    <div class="col s12 m12 l12"></div>
+                    <div class="col s12 m12 l12">
+                        <label style="color:#000">ITENS SOLICITADO</label>
+                        <ul class="collection" style="margin:0;">
+                            <li style="color:#fff;margin:0;background-color: #5a7ea3"
+                                class="collection-item"><span style="color:#fff" class="badge">QTDE</span>PRODUTO
+                            </li>
+                        </ul>
+                        <ul class="collection listaProduto" id="produtos">
+                        </ul>
+                        <div style="width: 100%;text-align: center;" id="preloadItens">
+                            <div class="preloader-wrapper big active">
+                                <div class="spinner-layer spinner-blue-only">
+                                    <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="gap-patch">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="circle-clipper right">
+                                        <div class="circle"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 l2 offset-l10">
+                                QTDE ITENS:
+                                <span class="flow-text">
+
+                                    <input disabled type="text" id="qtdeItemAcumulado" style="
+                                        background-color: #fff;color: #000;text-align: center;font-size: 1.3em;"/>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col s12 m4 l4"></div>
+                </div>
+
+            </div>
+            <!-- PEDIDOS -->
+            <div id="pedidos" class="col s12">
+                <!-- CRIAR Orcamento -->
+                <div class="row">
+                    <form class="col s12 l10">
+                        <!-- Orcamento do funcionario -->
+                        <div id="funcionario_orcamento" class="painelOrcamento">
+                            <div class="row" id="selectCliente" style="margin:10px">
+                                <div class="row">
+                                    <div class="input-field col s12 l6" style="padding: 10px;">
+                                        <div class="autocliente">
+                                            <input type="text" id="autocompletecliente" style="margin: 0"
+                                                   autocomplete="off">
+                                            <div class="dialog" id="dialogcliente">
+                                            </div>
+                                            <label for="autocompletecliente" autocomplete="off"
+                                                   data-error="SELECIONE O CLIENTE">RAZÃO SOCIAL</label>
+                                        </div>
+                                    </div>
+                                    <div class="input-field col s12 l6" style="padding: 10px;">
+                                        <input type="text" placeholder=" " autocomplete="off"
+                                               id="autocomplete-fantasia"
+                                               class="autofantasia" autocomplete="off">
+                                        <label for="autocomplete-fantasia">NOME FANTASIA</label>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12 l2" style="padding: 10px;">
+                                        <input type="text" placeholder=" " id="cpfcnpj" autocomplete="off"
+                                               class="validate" autocomplete="off" maxlength="14">
+                                        <label for="cpfcnpj"
+                                               data-error="Digite o cpf ou cnpj do cliente">CPF/CNPJ</label>
+                                    </div>
+                                    <div class="input-field col s12 l9" style="padding: 10px;">
+                                        <input style="color: #000;" disabled type="text" placeholder=" "
+                                               id="endereco" autocomplete="off"
+                                               class="validate" autocomplete="off" maxlength="14">
+                                        <label for="endereco">ENDEREÇO</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <button type="button" class="col s12 l4 btn" id="btnOrcaProximo"
+                                            style="margin-bottom: 0px;background: #5ea1ce;">Proximo
+                                    </button>
+                                </div>
+                                <div class="row">
+                                    <div class="col s4"></div>
+                                    <button type="button" class="col s12 l4 btn" id="habilitaOrcamento"
+                                            style="margin-top: 20px;margin-bottom: 0px;background: #5ea1ce;">Proximo
+                                    </button>
+                                </div>
+
+                            </div>
+                            <div class="row informatacaoCliente" id="informatacaoCliente">
+                                <div class="row titlePedido">
+                                    <a id="cancelarOrcamento" type="button"><i class="material-icons">arrow_back</i></a>
+                                </div>
+                                <div class="col s12">
+                                    <div class="row">
+                                        <div class="col s12">
+                                            <input disabled placeholder=" " id="infoNome" type="text" class="validate">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" id="addItens">
+                                <div class="input-field col s12">
+                                    <div class="autoproduto" style="padding: 5px;">
+                                        <input type="text" id="produto_orcamento" style="margin: 0"
+                                               autocomplete="off" placeholder="BUSCAR POR DESCRICAO DO PRODUTO">
+                                        <div class="dialog" id="dlgproduto">
+                                        </div>
+                                        <label for="produto_orcamento" autocomplete="off"
+                                        >Descricao do produto</label>
+                                    </div>
+                                </div>
+                                <nav id="submenu">
+                                    <div class="nav-wrapper">
+                                        <div class="row">
+                                            <div class="col s7">
+                                                <button type="button" class="btn" id="btnFinalizaOrcamento">
+                                                    Finalizar
+                                                </button>
+                                            </div>
+                                            <div class="col s4">
+                                                <input type="text" id="totalOrcamento" value="0,00" disabled/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </nav>
+                                <div class="row">
+                                    <div class="col s12 titleDescricao">
+                                        DESCRIÇÃO
+                                    </div>
+                                    <div class="col s12 subItemDescricao">
+                                        <div class="col s4">QUANTIDADE</div>
+                                        <div class="col s4">PREÇO</div>
+                                        <div class="col s4">TOTAL</div>
+                                    </div>
+                                </div>
+                                <ul id="datelhe_item" style="color: #000;" class="row"
+                                    data-collapsible="accordion">
+
+                                </ul>
+                            </div>
+                            <div id="addItensWeb">
+                                <div class="row">
+                                    <div class="input-field col s5 m4 l4" style="padding: 5px;">
+                                        <div class="autoProdutoWeb">
+                                            <input type="text" id="autocompleteproduto" placeholder=" "
+                                                   class="validate autoProdutoWeb entradaOrcamentoWeb"
+                                                   style="margin: 0;background-color: #fff" autocomplete="off">
+                                            <div class="dialog" id="dialogProduto">
+                                            </div>
+                                            <label for="autocompleteproduto" class="descricaoElemento"
+                                                   data-error="Digite nome do produto">BUSCAR PRODUTO</label>
+                                        </div>
+                                    </div>
+                                    <div class="input-field col s1 m1 l1" style="padding: 5px;">
+                                        <input disabled type="text" placeholder=" " id="unidadeProdutoWeb"
+                                               autocomplete="off" style="color:#000;background: #c0c0c0 !important;"
+                                               class="validate entradaOrcamentoWeb" autocomplete="off" maxlength="14">
+                                        <label for="unidadeProdutoWeb" class="descricaoElemento"
+                                               data-error="Digite nome do produto">UNIDADE</label>
+                                    </div>
+                                    <div class="input-field col s1 m1 l1" style="padding: 5px;">
+                                        <input type="number" placeholder=" "
+                                               style="text-align: center;background-color: #fff"
+                                               id="qtdeProdutoWeb" autocomplete="off"
+                                               class="validate entradaOrcamentoWeb" autocomplete="off" maxlength="14"
+                                               min="0">
+                                        <label for="qtdeProdutoWeb" class="descricaoElemento">QUANTIDADE</label>
+                                    </div>
+                                    <div class="input-field col s1 m1 l1" style="padding: 5px;">
+                                        <input disabled type="text" placeholder=" " id="precoProdutoWeb"
+                                               autocomplete="off"
+                                               class="validate entradaOrcamentoWeb valores" autocomplete="off"
+                                               maxlength="14"
+                                               style="color:#000;text-align: right;background: #c0c0c0 !important;">
+                                        <label for="precoProdutoWeb" class="descricaoElemento">PREÇO</label>
+                                    </div>
+                                    <div class="input-field col s1 m1 l1" style="padding: 5px;">
+                                        <input disabled type="text" placeholder=" " id="totalProdutoWeb"
+                                               autocomplete="off"
+                                               class="validate entradaOrcamentoWeb valores" autocomplete="off"
+                                               maxlength="14"
+                                               style="color:#000;text-align: right;background: #c0c0c0 !important;">
+                                        <label for="totalProdutoWeb" class="descricaoElemento">TOTAL</label>
+                                    </div>
+                                    <div class="col s3">
+                                        <button type="button" class="btn blue" id="addItemOrcaWeb"
+                                                style="margin-top:15px;">
+                                            ADICIONAR
+                                        </button>
+                                        <button type="button" class="btn orange" id="cancelarItem"
+                                                style="margin-top: 15px;position: absolute;margin-left: 5px;">
+                                            <i class="material-icons">clear</i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col s12 titleDescricao">
+                                        <div class="col s5 l5">DESCRIÇÃO</div>
+                                        <div class="col s1 l1">UNIDADE</div>
+                                        <div class="col s1 l1">QTDE</div>
+                                        <div class="col s1 l1">PREÇO</div>
+                                        <div class="col s1 l1">TOTAL</div>
+                                        <div class="col s1 l1"></div>
+                                    </div>
+                                </div>
+                                <div class="containerItens">
+                                    <ul id="detalheItemWeb" style="color: #000;" class="row"
+                                        data-collapsible="accordion">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <form class="col l2">
+                        <div id="resumo" class="painelOrcamento" style="padding: 10px;">
+                            <div class="row">
+                                <div class="col s12">
+                                    RESUMO DO PEDIDO
+                                </div>
+                                <div class="col s12 m2 l12">
+                                    <div class="input-field col l12" style="padding: 5px;">
+                                        <input disabled type="number" placeholder=" " id="resumoQtdeItem"
+                                               autocomplete="off"
+                                               class="validate entradaOrcamentoWeb resumo" autocomplete="off"
+                                               maxlength="14"
+                                               style="text-align: center">
+                                        <label for="resumoQtdeItem">QUANTIDADE DE ITEM</label>
+                                    </div>
+                                </div>
+                                <div class="col s12 m2 l12">
+                                    <label>UNIDADES</label>
+                                    <ul id="resumoQtdeKgItem" class="collection"
+                                        style="height: 150px;overflow-y: scroll">
+
+                                    </ul>
+                                </div>
+                                <div class="col s12 m2 l12">
+                                    <div class="input-field col l12" style="padding: 5px;">
+                                        <input disabled type="text" placeholder=" " id="resumoVendedor"
+                                               autocomplete="off"
+                                               class="validate entradaOrcamentoWeb resumo" autocomplete="off"
+                                               maxlength="14">
+                                        <label for="resumoVendedor">VENDEDOR</label>
+                                    </div>
+                                </div>
+                                <div class="col s12 l12">
+                                    <div class="input-field col l12" style="padding: 5px;">
+                                        <input disabled type="text" placeholder=" " value="0,00"
+                                               id="resumotTotalItens" autocomplete="off"
+                                               class="validate entradaOrcamentoWeb valorTotal" autocomplete="off"
+                                               maxlength="14">
+                                        <label for="resumoQtdeItem">VALOR TOTAL</label>
+                                    </div>
+                                </div>
+                                <button type="button" id="btnFinalizaOrcamentoWeb" class="col s12 btn">FINALIZAR
+                                    PEDIDO
+                                </button>
+                                <button type="button" id="btnAlteraOrcamento" class="col s12 btn orange">FINALIZAR
+                                    ALTERACAO
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- <div class="col s12" id="todosOrcamento"  style="position: relative;">
+
+                    </div> -->
+                </div>
+            </div>
+            <!-- Cadastro -->
+            <div id="cadastros" class="col s12">
+                <div class="row">
+                    <!-- CADASTRO DE USUARIO  -->
+                    <div class="col s12" style="padding: 10px;">
+                        <div class="row">
+                            <div class="col l3"></div>
+                            <div class="col s12 l6 containerCadastro">
+                                <div class="row">
+                                    <div class="input-field col s12 l12">
+                                        <select id="tipoUsuario">
+                                            <option value="" disabled selected>SELECIONE O TIPO DO USUARIO</option>
+                                            <option value="2">GERENTE</option>
+                                            <option value="1">ESTOQUISTA</option>
+                                            <option value="3">VENDEDOR</option>
+                                            <option value="4">CLIENTE</option>
+                                        </select>
+                                    </div>
+                                    <div class="dadosUser" id="dadosUser">
+                                        <div class="row">
+                                            <div id="autofuncionario">
+                                                <label for="autocompletefuncionario" autocomplete="off"
+                                                       data-error="SELECIONE O CLIENTE">BUSCAR FUNCIONARIO</label>
+                                                <input type="text" id="autocompletefuncionario" class="valid"
+                                                       style="margin: 0"
+                                                       autocomplete="off">
+                                                <div class="dialog" id="dialogfuncionario">
+                                                </div>
+
+                                            </div>
+                                            <div id="autocomcliente">
+                                                <input type="text" id="autocliente" style="margin: 0"
+                                                       autocomplete="off">
+                                                <div class="dialog" id="dialogclientenovo">
+                                                </div>
+                                                <label for="autocliente" autocomplete="off"
+                                                       data-error="SELECIONE O CLIENTE">BUSCAR CIENTE</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s12 l12">
+                                                <input id="emailUserNovo" type="email" class="validate"
+                                                       autocomplete="off">
+                                                <label for="emailUserNovo">Email</label>
+                                            </div>
+                                            <div class="input-field col s12 l6">
+                                                <input id="senhaUserNovo" type="password" class="validate"
+                                                       autocomplete="off">
+                                                <label for="senhaUserNovo">Senha</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col l12">
+                                                <button class="btn" id="btnSalvaUsuario">SALVA USUARIO</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col l4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m12 l10" id="listaOrcamentos">
+            <div class="row">
+                <div class="row desListaPedidos">
+                    PEDIDOS
+                </div>
+                <ul class="col s12 m12 l10 collapsible" id="orcamentos">
+
+                </ul>
+            </div>
+            <div class="col l1"></div>
+        </div>
+        <!-- Opções de Configuração de Layout -->
+        <div class="col s12 m10 l10">
+            <div class="configuracao" id="configuracao">
+                <div class="col s12">
+                    <p>Nome da Empresa</p><input type="text" id="nome_empresa"/>
+                </div>
+                <!--<div class="row">
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>LOGO</span>
+                            <input type="file" accept="image/*" class="fileImg" name="file" id="file">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input type="file" accept="image/*" class="fileImg" name="fileLogo" id="fileLogo">
+                            <input class="file-path validate" type="text" placeholder="Upload one or more files">
+                        </div>
+                    </div>
+                </div>-->
+                <div class="col s12" style="margin-bottom: 10px">
+                    <div class="col s4">
+                        <p>Cor do Menu</p><input type="color" id="cor_menu"/>
+                    </div>
+                    <div class="col s4">
+                        <p>Cor do Painel</p><input type="color" id="cor_conteudo"/>
+                    </div>
+                    <div class="col s4">
+                        <p>Cor do Fundo</p><input type="color" id="cor_fundo"/>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 20px">
+                    <div class="col s4"></div>
+                    <button class="col s4 btn" id="btnSalvaConfig">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Structure -->
+    <div id="modalpreload" class="modalpreloader">
+        <div class="preloader-wrapper big active">
+            <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modalInfo" class="modal">
+        <div class="modal-content">
+            <h4 id="titleModal">Resultado:</h4>
+            <p id="msgModal" style='text-align:center'></p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
+        </div>
+    </div>
+    <div class="row" id="opcaoItem">
+        <div class="col s12" id="nomeProduto" style="padding: 10px"></div>
+        <button class="col s5 m4 btn blue" id="alteraItem">ALTERAR</button>
+        <div class="col s1"></div>
+        <button class="col s5 m4  btn red" id="excluirItem">EXCLUIR</button>
+    </div>
+    <div id="modalSelecionaProduto" class="modal">
+        <div class="modal-content">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input disabled type="text" placeholder=" " id="descricaoProduto"
+                           style="background-color: #4c79a6;color: #fff;border-radius: 10px;width: 90%;padding: 5px;"/>
+                    <label for="descricaoProduto" class="labelPreco">DESCRIÇÃO</label>
+                </div>
+                <div class="input-field col s4">
+                    <input type="number" name="qtdeProduto" id="qtdeProduto" style="text-align: center"/>
+                    <label for="qtdeProduto"
+                           style="text-align: right;font-size: 1.2em;padding-right: 5px;">QUANTIDADE</label>
+                </div>
+                <div class="input-field col s4" style="margin-left: 50px;">
+                    <input disabled type="text" placeholder=" " name="unidadeProduto" id="unidadeProduto"
+                           style="text-align: center;color: #000"/>
+                    <label for="unidadeProduto" class="labelPreco">UNIDADE</label>
+                </div>
+                <div class="input-field col s12">
+                    <input disabled type="text" placeholder=" " name="precoProduto" id="precoProduto"
+                           style="text-align: right;background-color: #4c79a6;color: #fff;border-radius: 10px;width: 45%;padding: 5px;"/>
+                    <label for="precoProduto" class="labelPreco">PREÇO</label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+            <a href="#!" id="addItemOrca" class="modal-action waves-effect waves-green btn-flat">Adicionar</a>
+        </div>
+    </div>
+    <div id="modalFormaPagamento" class="modalFormaPagamento">
+        <div class="input-field col s12">
+            <select id="selectFormaPagamento">
+            </select>
+            <button type="button" id="enviarOrcamento" class="btn">FINALIZAR</button>
+            <button type="button" class="modal-action modal-close btn">CANCELAR</button>
+        </div>
+    </div>
+    <div id="modalCancelaPedido" class="modalCancelaPedido">
+        <div class=" col s12" style="margin-bottom: 30px;text-align: center">
+            <p>Deseja Cancelar o Pedido ?</p>
+        </div>
+        <div class="row">
+            <div class="col s2 m4 l3"></div>
+            <div class="col s4 m4 l3">
+                <button type="button" id="simCancelaPedido" class="btn green">SIM</button>
+            </div>
+            <div class="col s4 m4 l2">
+                <button type="button" id="naoCancelaPedido" class="btn red">NÃO</button>
+            </div>
+        </div>
+    </div>
+    <div class="modalItemOrcamentos">
+        <div class="row tituloProdutoSolicitado">
+            <div class="col s2 m1 l1">PEDIDO</div>
+            <div class="col s10 m5 l5">CLIENTE</div>
+            <div class="col s12 m12 l6 titleMobileItem">
+                <div class="col s8 m10 l10">PRODUTO</div>
+                <div class="col s2 m1 l1">QUANTIDADE</div>
+            </div>
+        </div>
+        <div id="itemPedido">
+        </div>
+    </div>
+</div>
+<script src="js/index.js"></script>
+</body>
 </html>
