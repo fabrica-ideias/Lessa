@@ -156,37 +156,32 @@
                         <div id="funcionario_orcamento" class="painelOrcamento">
                             <div class="row" id="selectCliente" style="margin:10px">
                                 <div class="row">
+                                    <div class="input-field col s12 l3"></div>
                                     <div class="input-field col s12 l6" style="padding: 10px;">
                                         <div class="autocliente">
-                                            <input type="text" id="autocompletecliente" style="margin: 0"
+                                            <input type="text" placeholder=" " id="autocompletecliente"
+                                                   style="margin: 0"
                                                    autocomplete="off">
                                             <div class="dialog" id="dialogcliente">
                                             </div>
-                                            <label for="autocompletecliente" autocomplete="off"
-                                                   data-error="SELECIONE O CLIENTE">RAZÃO SOCIAL</label>
+                                            <label style="width: 100%;text-align: center;" for="autocompletecliente">CLIENTE</label>
                                         </div>
                                     </div>
-                                    <div class="input-field col s12 l6" style="padding: 10px;">
-                                        <input type="text" placeholder=" " autocomplete="off"
-                                               id="autocomplete-fantasia"
-                                               class="autofantasia" autocomplete="off">
-                                        <label for="autocomplete-fantasia">NOME FANTASIA</label>
-                                    </div>
-
                                 </div>
                                 <div class="row">
-                                    <div class="input-field col s12 l2" style="padding: 10px;">
-                                        <input type="text" placeholder=" " id="cpfcnpj" autocomplete="off"
-                                               class="validate" autocomplete="off" maxlength="14">
-                                        <label for="cpfcnpj"
-                                               data-error="Digite o cpf ou cnpj do cliente">CPF/CNPJ</label>
-                                    </div>
-                                    <div class="input-field col s12 l9" style="padding: 10px;">
-                                        <input style="color: #000;" disabled type="text" placeholder=" "
-                                               id="endereco" autocomplete="off"
-                                               class="validate" autocomplete="off" maxlength="14">
-                                        <label for="endereco">ENDEREÇO</label>
-                                    </div>
+                                    <div class="col l4"></div>
+                                    <p style="float: left;margin-right: 10px">
+                                        <input name="group1" type="radio" id="razao" checked/>
+                                        <label for="razao">NOME</label>
+                                    </p>
+                                    <p style="float: left;margin-right: 10px    ">
+                                        <input name="group1" type="radio" id="cpfcnpj" disabled/>
+                                        <label for="cpfcnpj">CPF/CNPJ</label>
+                                    </p>
+                                    <p style="float: left;">
+                                        <input name="group1" type="radio" id="fantasia" disabled/>
+                                        <label for="fantasia">FANTASIA</label>
+                                    </p>
                                 </div>
                                 <div class="row">
                                     <button type="button" class="col s12 l4 btn" id="btnOrcaProximo"
@@ -204,49 +199,33 @@
                             <div class="row informatacaoCliente" id="informatacaoCliente">
                                 <div class="row titlePedido">
                                     <a id="cancelarOrcamento" type="button"><i class="material-icons">arrow_back</i></a>
-                                </div>
-                                <div class="col s12">
-                                    <div class="row">
-                                        <div class="col s12">
-                                            <input disabled placeholder=" " id="infoNome" type="text" class="validate">
-                                        </div>
-                                    </div>
+                                    <input disabled placeholder=" " id="infoNome" type="text" class="validate">
                                 </div>
                             </div>
                             <div class="row" id="addItens">
-                                <div class="input-field col s12">
-                                    <div class="autoproduto" style="padding: 5px;">
-                                        <input type="text" id="produto_orcamento" style="margin: 0"
-                                               autocomplete="off" placeholder="BUSCAR POR DESCRICAO DO PRODUTO">
-                                        <div class="dialog" id="dlgproduto">
-                                        </div>
-                                        <label for="produto_orcamento" autocomplete="off"
-                                        >Descricao do produto</label>
-                                    </div>
+                                <div style="text-align: center">
+                                    Cesta de Produtos
                                 </div>
-                                <nav id="submenu">
-                                    <div class="nav-wrapper">
-                                        <div class="row">
-                                            <div class="col s7">
-                                                <button type="button" class="btn" id="btnFinalizaOrcamento">
-                                                    Finalizar
-                                                </button>
-                                            </div>
-                                            <div class="col s4">
-                                                <input type="text" id="totalOrcamento" value="0,00" disabled/>
-                                            </div>
+                                <div id="submenu">
+                                    <div class="row" style="margin-bottom: 20px">
+                                        <div class="col s6">
+                                        </div>
+                                        <div class="col s6" id="totalOrcamento">
+                                            Total R$
                                         </div>
                                     </div>
-                                </nav>
-                                <div class="row">
-                                    <div class="col s12 titleDescricao">
-                                        DESCRIÇÃO
+                                    <div class="row">
+                                        <div class="col s4"></div>
+                                        <div class="col s4">
+                                            <button type="button" class="btn" id="btnFinalizaOrcamento">
+                                                Finalizar
+                                            </button>
+                                        </div>
+                                        <div class="col s4">
+                                            <a id="addItem" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">add</i></a>
+                                        </div>
                                     </div>
-                                    <div class="col s12 subItemDescricao">
-                                        <div class="col s4">QUANTIDADE</div>
-                                        <div class="col s4">PREÇO</div>
-                                        <div class="col s4">TOTAL</div>
-                                    </div>
+
                                 </div>
                                 <ul id="datelhe_item" style="color: #000;" class="row"
                                     data-collapsible="accordion">
@@ -530,9 +509,13 @@
         <div class="modal-content">
             <div class="row">
                 <div class="input-field col s12">
-                    <input disabled type="text" placeholder=" " id="descricaoProduto"
-                           style="background-color: #4c79a6;color: #fff;border-radius: 10px;width: 90%;padding: 5px;"/>
-                    <label for="descricaoProduto" class="labelPreco">DESCRIÇÃO</label>
+                    <div class="autoproduto" style="padding: 5px;">
+                        <input type="text" id="produto_orcamento" style="margin: 0"
+                               autocomplete="off" placeholder="BUSCAR POR DESCRICAO OU CODIGO">
+                        <div class="dialog" id="dlgproduto">
+                        </div>
+                        <label for="produto_orcamento" autocomplete="off">PRODUTO</label>
+                    </div>
                 </div>
                 <div class="input-field col s4">
                     <input type="number" name="qtdeProduto" id="qtdeProduto" style="text-align: center"/>

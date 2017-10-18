@@ -2,226 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a5748a5b-aa6a-4596-ac61-ae583f4524b0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/php/getOrcamentoCliente.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/php/getOrcamentoFuncionario.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/node_modules/npm-debug.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/AuthenticationToken.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/BuildConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CallbackContext.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CallbackMap.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/Config.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ConfigXmlParser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$4$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaArgs.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaBridge.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaClientCertRequest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$6.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$7.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$8.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$9.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$Result.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaHttpAuthHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaInterface.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaInterfaceImpl$ActivityResultHolder.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaInterfaceImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaPlugin.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaPreferences.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaResourceApi$OpenForReadResult.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaResourceApi.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewEngine$Client.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewEngine$EngineView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewEngine.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$EngineClient$1$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$EngineClient$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$EngineClient.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ExposedJsApi.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ICordovaClientCertRequest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ICordovaCookieManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ICordovaHttpAuthHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/LOG.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$BridgeMode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$EvalBridgeMode$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$EvalBridgeMode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$JsMessage.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$LoadUrlBridgeMode$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$LoadUrlBridgeMode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$NoOpBridgeMode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$OnlineEventsBridgeModeDelegate.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginEntry.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginResult$Status.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginResult.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ResumeCallback.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/Whitelist$URLPattern.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/Whitelist.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemCookieManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemExposedJsApi.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewClient.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewEngine$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewEngine$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewEngine.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental-safeguard/debug/tag.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/cadastro.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/composer.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/composer.lock" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/composer.phar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/css/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/css/codepoints" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/css/infraero.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/index.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/js/function.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/js/infraero.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/js/jquery-ui.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/js/jquery.maskMoney.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/logs/23-Emerson Alves.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/logs/28-JOSE.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/logs/29-rodrigo undefined.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/php/model/Usuario.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/status.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/teste.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/autoload.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/composer/ClassLoader.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/composer/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/composer/autoload_classmap.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/composer/autoload_namespaces.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/composer/autoload_psr4.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/composer/autoload_real.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/composer/autoload_static.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/composer/installed.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/.htaccess" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/.travis.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/CONTRIBUTING.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/README.markdown" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Environment.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Exception/Pass.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Exception/Stop.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Helper/Set.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Http/Cookies.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Http/Headers.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Http/Request.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Http/Response.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Http/Util.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Log.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/LogWriter.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Middleware.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Middleware/ContentTypes.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Middleware/Flash.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Middleware/MethodOverride.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Middleware/SessionCookie.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Route.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Router.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Slim.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/View.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/composer.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/index.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/phpunit.xml.dist" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/EnvironmentTest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/Foo.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/Helper/SetTest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/Http/CookiesTest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/Http/HeadersTest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/Http/RequestTest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/Http/ResponseTest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/Http/UtilTest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/LogTest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/LogWriterTest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/Middleware/ContentTypesTest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/Middleware/FlashTest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/Middleware/MethodOverrideTest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/Middleware/PrettyExceptionsTest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/Middleware/SessionCookieTest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/MiddlewareTest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/README" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/RouteTest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/RouterTest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/SlimTest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/ViewTest.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/bootstrap.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/templates/test.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/build/package.zip" afterPath="$PROJECT_DIR$/platforms/browser/build/package.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/app_lessa.iml" afterPath="$PROJECT_DIR$/.idea/app_lessa.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.xml" afterPath="$PROJECT_DIR$/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/CordovaLib.iml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/CordovaLib.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugAndroidTestResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugAndroidTestResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/manifest/androidTest/debug/AndroidManifest.xml" afterPath="$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/manifest/androidTest/debug/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/android.iml" afterPath="$PROJECT_DIR$/platforms/android/android.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/android.json" afterPath="$PROJECT_DIR$/platforms/android/android.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/platform_www/cordova_plugins.js" afterPath="$PROJECT_DIR$/platforms/android/platform_www/cordova_plugins.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/res/xml/config.xml" afterPath="$PROJECT_DIR$/platforms/android/res/xml/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/browser.json" afterPath="$PROJECT_DIR$/platforms/browser/browser.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/platform_www/cordova_plugins.js" afterPath="$PROJECT_DIR$/platforms/browser/platform_www/cordova_plugins.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/cordova_plugins.js" afterPath="$PROJECT_DIR$/platforms/browser/www/cordova_plugins.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/login.css" afterPath="$PROJECT_DIR$/platforms/browser/www/css/login.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/css/style.css" afterPath="$PROJECT_DIR$/platforms/browser/www/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/index.html" afterPath="$PROJECT_DIR$/platforms/browser/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/js/login.js" afterPath="$PROJECT_DIR$/platforms/browser/www/js/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/php/conexao.php" afterPath="$PROJECT_DIR$/platforms/browser/www/php/conexao.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/php/getOrcamentos.php" afterPath="$PROJECT_DIR$/platforms/browser/www/php/getOrcamentos.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/php/getProdutosCliente.php" afterPath="$PROJECT_DIR$/platforms/browser/www/php/getProdutosCliente.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/php/log.php" afterPath="$PROJECT_DIR$/platforms/browser/www/php/log.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/php/model/fachada.class.php" afterPath="$PROJECT_DIR$/platforms/browser/www/php/model/fachada.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/php/salvaOrcamento.php" afterPath="$PROJECT_DIR$/platforms/browser/www/php/salvaOrcamento.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/browser/www/php/salvaUsuario.php" afterPath="$PROJECT_DIR$/platforms/browser/www/php/salvaUsuario.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/windows/platform_www/cordova_plugins.js" afterPath="$PROJECT_DIR$/platforms/windows/platform_www/cordova_plugins.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/windows/windows.json" afterPath="$PROJECT_DIR$/platforms/windows/windows.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/android.json" afterPath="$PROJECT_DIR$/plugins/android.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/browser.json" afterPath="$PROJECT_DIR$/plugins/browser.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/fetch.json" afterPath="$PROJECT_DIR$/plugins/fetch.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugins/windows.json" afterPath="$PROJECT_DIR$/plugins/windows.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/style.css" afterPath="$PROJECT_DIR$/www/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/login.js" afterPath="$PROJECT_DIR$/www/js/login.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/php/conexao.php" afterPath="$PROJECT_DIR$/www/php/conexao.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/php/getClientes.php" afterPath="$PROJECT_DIR$/www/php/getClientes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/php/getOrcamentos.php" afterPath="$PROJECT_DIR$/www/php/getOrcamentos.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/php/model/fachada.class.php" afterPath="$PROJECT_DIR$/www/php/model/fachada.class.php" />
     </list>
     <ignored path="app_lessa.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -233,7 +19,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -244,7 +29,6 @@
     <option name="SHOW_TABLE_DETAILS" value="true" />
     <option name="SHOW_EMPTY_GROUPS" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="app_lessa" />
   </component>
@@ -253,16 +37,16 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="507">
-              <caret line="592" column="6" selection-start-line="592" selection-start-column="6" selection-end-line="592" selection-end-column="6" />
+            <state relative-caret-position="221">
+              <caret line="171" column="62" lean-forward="false" selection-start-line="171" selection-start-column="62" selection-end-line="171" selection-end-column="62" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#ul#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#ul#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#0;n#div#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#1;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#2;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1508295690221" expanded="true" signature="32876:32894" ph="..." />
               </folding>
             </state>
           </provider>
@@ -271,32 +55,74 @@
       <file leaf-file-name="login.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/login.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="1199" column="28" selection-start-line="1199" selection-start-column="28" selection-end-line="1199" selection-end-column="28" />
+            <state relative-caret-position="380">
+              <caret line="602" column="85" lean-forward="false" selection-start-line="602" selection-start-column="85" selection-end-line="602" selection-end-column="85" />
               <folding>
-                <marker date="1508265978314" expanded="true" signature="10589:10599" ph="..." />
-                <marker date="1508265978314" expanded="true" signature="29512:29536" ph="..." />
-                <marker date="1508265978314" expanded="true" signature="30185:30209" ph="..." />
-                <marker date="1508265978314" expanded="true" signature="60642:60676" ph="..." />
-                <marker date="1508265978314" expanded="true" signature="60731:60791" ph="..." />
+                <marker date="1508295888843" expanded="true" signature="10772:10782" ph="..." />
+                <marker date="1508295888843" expanded="true" signature="29711:29735" ph="..." />
+                <marker date="1508295888843" expanded="true" signature="29851:29868" ph="..." />
+                <marker date="1508295888843" expanded="true" signature="29964:29981" ph="..." />
+                <marker date="1508295888843" expanded="true" signature="30847:30871" ph="..." />
+                <marker date="1508295888843" expanded="true" signature="30961:30997" ph="..." />
+                <marker date="1508295888843" expanded="true" signature="60728:60762" ph="..." />
+                <marker date="1508295888843" expanded="true" signature="60817:60877" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="getClientes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/php/getClientes.php">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="84" selection-start-line="9" selection-start-column="84" selection-end-line="9" selection-end-column="84" />
-              <folding>
-                <marker date="1508262020694" expanded="true" signature="210:323" ph="SELECT * FRO... TB_PAR_PARTICIPANTE" />
-              </folding>
+            <state relative-caret-position="282">
+              <caret line="591" column="15" lean-forward="false" selection-start-line="591" selection-start-column="15" selection-end-line="591" selection-end-column="15" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>cancelarOrca</find>
+      <find>pre</find>
+      <find>autocompletecliente</find>
+      <find>salvaU</find>
+      <find>sal</find>
+      <find>salvaUsua</find>
+      <find>SALVAu</find>
+      <find>listaProduto</find>
+      <find>salvaUsuario</find>
+      <find>salvaOrca</find>
+      <find>produt</find>
+      <find>produtoSel</find>
+      <find>produtoCl</find>
+      <find>event</find>
+      <find>even</find>
+      <find>addItem</find>
+      <find>ras</find>
+      <find>pree</find>
+      <find>#cancelarOrcamento</find>
+      <find>infoNome</find>
+      <find>produto_orcamento</find>
+      <find>submenu</find>
+      <find>#btnFinalizaOrcamento</find>
+      <find>produtoClie</find>
+      <find>produtoCliete</find>
+      <find>subdes</find>
+      <find>date</find>
+      <find>limparOrca</find>
+      <find>info</find>
+      <find>atualiza</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -309,27 +135,20 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/www/php/model/Usuario.class.php" />
-        <option value="$PROJECT_DIR$/www/php/model/Login.class.php" />
         <option value="$PROJECT_DIR$/www/index.php" />
         <option value="$PROJECT_DIR$/www/php/getProdutosCliente.php" />
-        <option value="$PROJECT_DIR$/www/materialize/js/materialize.min.js" />
-        <option value="$PROJECT_DIR$/www/php/formaPagamento.php" />
-        <option value="$PROJECT_DIR$/platforms/android/assets/www/php/model/fachada.class.php" />
-        <option value="$PROJECT_DIR$/www/php/todosUsuarios.php" />
         <option value="$PROJECT_DIR$/www/php/salvaOrcamento.php" />
-        <option value="$PROJECT_DIR$/www/php/getCliente.php" />
+        <option value="$PROJECT_DIR$/www/teste.html" />
         <option value="$PROJECT_DIR$/www/css/login.css" />
-        <option value="$PROJECT_DIR$/www/php/alteraOrcamento.php" />
-        <option value="$PROJECT_DIR$/www/php/getOrcamentos.php" />
-        <option value="$PROJECT_DIR$/www/php/getOrcamentoFuncionario.php" />
+        <option value="$PROJECT_DIR$/www/php/model/Usuario.class.php" />
+        <option value="$PROJECT_DIR$/www/php/salvaUsuario.php" />
         <option value="$PROJECT_DIR$/www/php/model/fachada.class.php" />
-        <option value="$PROJECT_DIR$/www/php/getOrcamentoCliente.php" />
-        <option value="$PROJECT_DIR$/www/css/style.css" />
-        <option value="$PROJECT_DIR$/www/php/conexao.php" />
         <option value="$PROJECT_DIR$/www/js/util.js" />
+        <option value="$PROJECT_DIR$/www/php/model/Login.class.php" />
+        <option value="$PROJECT_DIR$/www/php/conexao.php" />
         <option value="$PROJECT_DIR$/www/php/getClientes.php" />
         <option value="$PROJECT_DIR$/www/index.html" />
+        <option value="$PROJECT_DIR$/www/css/style.css" />
         <option value="$PROJECT_DIR$/www/js/login.js" />
       </list>
     </option>
@@ -342,25 +161,21 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+    <handled-path value="$PROJECT_DIR$/platforms/android/cordova/node_modules" />
+    <handled-path value="$PROJECT_DIR$/platforms/browser/cordova/node_modules" />
+    <handled-path value="$PROJECT_DIR$/platforms/windows/cordova/node_modules" />
+  </component>
   <component name="PhpServers">
     <servers />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="1" />
-    <option name="y" value="1" />
-    <option name="width" value="1364" />
-    <option name="height" value="726" />
-  </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
-    <OptionsSetting value="true" id="Add" />
-    <OptionsSetting value="true" id="Remove" />
-    <OptionsSetting value="true" id="Checkout" />
-    <OptionsSetting value="true" id="Update" />
-    <OptionsSetting value="true" id="Status" />
-    <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
-    <ConfirmationsSetting value="0" id="Remove" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -377,130 +192,391 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app_lessa" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app_lessa" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app_lessa" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app_lessa" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app_lessa" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app_lessa" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app_lessa" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app_lessa" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app_lessa" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
+          <expand>
+            <path>
+              <item name="lessa" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lessa" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="lessa" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lessa" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="lessa" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lessa" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="www" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="php" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+          </expand>
+          <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../taxidrivercall" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
     <property name="settings.editor.splitter.proportion" value="0.21645446" />
-    <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
-    <property name="SearchEverywhereHistoryKey" value="ter&#9;ACTION&#9;ActivateTerminalToolWindow" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SearchEverywhereHistoryKey" value="getter and&#9;ACTION&#9;PhpGenerateGettersAndSetters" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\app_lessa\www" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\lessa\www\css\fonts" />
     </key>
   </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/app_lessa.iml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/config.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/package.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileHashes.bin</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.lock</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/.idea/workspace.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/CordovaLib.iml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugAndroidTestResources/compile-file-map.properties</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/packageDebugResources/compile-file-map.properties</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/android.iml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/android.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/platform_www/cordova_plugins.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/res/xml/config.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/browser.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/build/package.zip</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/platform_www/cordova_plugins.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/cordova_plugins.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/css/login.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/css/style.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/index.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/js/login.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/php/conexao.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/php/getOrcamentos.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/php/getProdutosCliente.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/php/log.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/php/model/fachada.class.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/php/salvaOrcamento.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/php/salvaUsuario.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/windows/platform_www/cordova_plugins.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/windows/windows.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/plugins/android.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/plugins/browser.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/plugins/fetch.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/plugins/windows.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/css/login.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/css/style.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/index.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/js/login.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/php/conexao.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/php/getClientes.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/php/getOrcamentos.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/php/model/fachada.class.php</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/php/alteraOrcamento.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/php/getCliente.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/php/getOrcamentoCliente.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/php/getOrcamentoFuncionario.php</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/node_modules/npm-debug.log</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/AuthenticationToken.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/BuildConfig.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CallbackContext.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CallbackMap.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/Config.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ConfigXmlParser.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$2.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$3.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$4$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$4.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaArgs.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaBridge.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaClientCertRequest.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$2.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$3.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$4.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$5.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$6.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$7.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$8.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$9.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$Result.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaHttpAuthHandler.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaInterface.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaInterfaceImpl$ActivityResultHolder.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaInterfaceImpl.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaPlugin.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaPreferences.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaResourceApi$OpenForReadResult.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaResourceApi.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebView.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewEngine$Client.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewEngine$EngineView.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewEngine.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$2.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$3.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$EngineClient$1$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$EngineClient$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$EngineClient.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$2.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$3.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$4.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$5.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ExposedJsApi.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ICordovaClientCertRequest.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ICordovaCookieManager.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ICordovaHttpAuthHandler.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/LOG.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$BridgeMode.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$EvalBridgeMode$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$EvalBridgeMode.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$JsMessage.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$LoadUrlBridgeMode$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$LoadUrlBridgeMode.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$NoOpBridgeMode.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$2.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$OnlineEventsBridgeModeDelegate.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginEntry.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginManager.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginResult$Status.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginResult.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ResumeCallback.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/Whitelist$URLPattern.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/Whitelist.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemCookieManager.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemExposedJsApi.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$2.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$3.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$4.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$5.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebView.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewClient.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewEngine$1.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewEngine$2.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewEngine.class</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental-safeguard/debug/tag.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/android/CordovaLib/build/intermediates/incremental/mergeDebugJniLibFolders/merger.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/cadastro.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/composer.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/composer.lock</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/composer.phar</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/css/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/css/codepoints</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/css/infraero.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/index.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/js/function.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/js/infraero.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/js/jquery-ui.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/js/jquery.maskMoney.min.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/logs/23-Emerson Alves.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/logs/28-JOSE.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/logs/29-rodrigo undefined.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/php/model/Usuario.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/status.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/teste.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/autoload.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/composer/ClassLoader.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/composer/LICENSE</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/composer/autoload_classmap.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/composer/autoload_namespaces.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/composer/autoload_psr4.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/composer/autoload_real.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/composer/autoload_static.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/composer/installed.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/.gitignore</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/.htaccess</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/.travis.yml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/CONTRIBUTING.md</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/LICENSE</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/README.markdown</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Environment.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Exception/Pass.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Exception/Stop.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Helper/Set.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Http/Cookies.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Http/Headers.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Http/Request.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Http/Response.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Http/Util.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Log.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/LogWriter.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Middleware.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Middleware/ContentTypes.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Middleware/Flash.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Middleware/MethodOverride.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Middleware/SessionCookie.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Route.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Router.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/Slim.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/View.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/composer.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/index.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/phpunit.xml.dist</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/EnvironmentTest.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/Foo.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/Helper/SetTest.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/Http/CookiesTest.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/Http/HeadersTest.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/Http/RequestTest.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/Http/ResponseTest.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/Http/UtilTest.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/LogTest.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/LogWriterTest.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/Middleware/ContentTypesTest.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/Middleware/FlashTest.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/Middleware/MethodOverrideTest.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/Middleware/PrettyExceptionsTest.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/Middleware/SessionCookieTest.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/MiddlewareTest.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/README</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/RouteTest.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/RouterTest.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/SlimTest.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/ViewTest.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/bootstrap.php</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/tests/templates/test.php</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
   <component name="RunManager">
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
-    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
-      <BehatRunner />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
-      <method />
-    </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
-      <command value="run-script" />
-      <scripts />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
     <configuration name="&lt;template&gt;" type="Applet" default="true" selected="false">
       <option name="MAIN_CLASS_NAME" />
       <option name="HTML_FILE_NAME" />
@@ -537,92 +613,100 @@
       <workItem from="1506080990973" duration="27000" />
       <workItem from="1507207728161" duration="11650000" />
       <workItem from="1507233120505" duration="1047000" />
-      <workItem from="1507548401321" duration="28190000" />
-      <workItem from="1507633985768" duration="25595000" />
-      <workItem from="1507721065611" duration="23257000" />
-      <workItem from="1507895601005" duration="19947000" />
-      <workItem from="1507978570489" duration="14697000" />
-      <workItem from="1508152782894" duration="14906000" />
-      <workItem from="1508166802992" duration="15102000" />
-      <workItem from="1508235803002" duration="25265000" />
+      <workItem from="1507502167942" duration="131000" />
+      <workItem from="1507502449720" duration="309000" />
+      <workItem from="1507502773535" duration="7000" />
+      <workItem from="1507502868112" duration="9672000" />
+      <workItem from="1507713700297" duration="1868000" />
+      <workItem from="1507758982508" duration="7968000" />
+      <workItem from="1507807529530" duration="1204000" />
+      <workItem from="1507841279168" duration="1928000" />
+      <workItem from="1507945231931" duration="4845000" />
+      <workItem from="1508013279059" duration="2803000" />
+      <workItem from="1508073548746" duration="7000" />
+      <workItem from="1508102864621" duration="6881000" />
+      <workItem from="1508289086875" duration="6815000" />
     </task>
-    <task id="LOCAL-00001" summary="Finalizacao de Orcamento Web">
-      <created>1507580651256</created>
+    <task id="LOCAL-00001" summary="Ajuste na finalização do orcamento">
+      <created>1507601590645</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1507580651256</updated>
+      <updated>1507601590645</updated>
     </task>
-    <task id="LOCAL-00002" summary="Alteracoes na tela de orcamento">
-      <created>1507666238348</created>
+    <task id="LOCAL-00002" summary="NOVO AUTOCOMPLETE">
+      <created>1507715572892</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1507666238348</updated>
+      <updated>1507715572892</updated>
     </task>
-    <task id="LOCAL-00003" summary="Alteracoes na tela de orcamento">
-      <created>1507752422514</created>
+    <task id="LOCAL-00003" summary="FINALIZACAO DO ORCAMENTO  PARA DESKTOP">
+      <created>1507768837555</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1507752422514</updated>
+      <updated>1507768837555</updated>
     </task>
-    <task id="LOCAL-00004" summary="Atualização no orcamento">
-      <created>1507924545400</created>
+    <task id="LOCAL-00004" summary="FINALIZACAO DO ORCAMENTO  PARA DESKTOP">
+      <created>1507842627545</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1507924545400</updated>
+      <updated>1507842627545</updated>
     </task>
-    <task id="LOCAL-00005" summary="CRIACAO A TABELA DE PRODUTOS E ANDAMENTO DO CADASTRO DE USUARIOS">
-      <created>1507993270284</created>
+    <task id="LOCAL-00005" summary="IMPLANTACAO DA TELA DO ADMINSTADOR">
+      <created>1507950108065</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1507993270284</updated>
+      <updated>1507950108065</updated>
     </task>
-    <task id="LOCAL-00006" summary="criacao da tela de cliente e alteracao de orcamentos">
-      <created>1508180912003</created>
+    <task id="LOCAL-00006" summary="funcionalidade na tela de adminstrador">
+      <created>1508109576267</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1508180912003</updated>
+      <updated>1508109576267</updated>
     </task>
     <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="179845000" />
+    <option name="totallyTimeSpent" value="58294000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="1" width="1364" height="726" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26150307" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23499268" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5030257" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.4969743" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" x="92" y="92" width="1182" height="544" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -636,221 +720,34 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Finalizacao de Orcamento Web" />
-    <MESSAGE value="Alteracoes na tela de orcamento" />
-    <MESSAGE value="Atualização no orcamento" />
-    <MESSAGE value="CRIACAO A TABELA DE PRODUTOS E ANDAMENTO DO CADASTRO DE USUARIOS" />
-    <MESSAGE value="criacao da tela de cliente e alteracao de orcamentos" />
-    <option name="LAST_COMMIT_MESSAGE" value="criacao da tela de cliente e alteracao de orcamentos" />
+    <MESSAGE value="Ajuste na finalização do orcamento" />
+    <MESSAGE value="NOVO AUTOCOMPLETE" />
+    <MESSAGE value="FINALIZACAO DO ORCAMENTO  PARA DESKTOP" />
+    <MESSAGE value="IMPLANTACAO DA TELA DO ADMINSTADOR" />
+    <MESSAGE value="funcionalidade na tela de adminstrador" />
+    <MESSAGE value="atualizacao na tela de pedido" />
+    <option name="LAST_COMMIT_MESSAGE" value="atualizacao na tela de pedido" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="2" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/www/js/login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1508265978314" expanded="true" signature="10589:10599" ph="..." />
-            <marker date="1508265978314" expanded="true" signature="29512:29536" ph="..." />
-            <marker date="1508265978314" expanded="true" signature="30185:30209" ph="..." />
-            <marker date="1508265978314" expanded="true" signature="60642:60676" ph="..." />
-            <marker date="1508265978314" expanded="true" signature="60731:60791" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#ul#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#ul#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4998">
-          <caret line="294" column="16" selection-start-line="294" selection-start-column="16" selection-end-line="294" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12920">
-          <caret line="760" column="90" selection-start-line="760" selection-start-column="90" selection-end-line="760" selection-end-column="90" />
-          <folding>
-            <marker date="1508265978314" expanded="true" signature="10589:10599" ph="..." />
-            <marker date="1508265978314" expanded="true" signature="29512:29536" ph="..." />
-            <marker date="1508265978314" expanded="true" signature="30185:30209" ph="..." />
-            <marker date="1508265978314" expanded="true" signature="60642:60676" ph="..." />
-            <marker date="1508265978314" expanded="true" signature="60731:60791" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1326">
-          <caret line="78" column="43" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="43" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#ul#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#ul#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5083">
-          <caret line="299" column="0" selection-start-line="299" selection-start-column="0" selection-end-line="299" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7837">
-          <caret line="461" column="52" selection-start-line="461" selection-start-column="41" selection-end-line="461" selection-end-column="52" />
-          <folding>
-            <marker date="1508265978314" expanded="true" signature="10589:10599" ph="..." />
-            <marker date="1508265978314" expanded="true" signature="29512:29536" ph="..." />
-            <marker date="1508265978314" expanded="true" signature="30185:30209" ph="..." />
-            <marker date="1508265978314" expanded="true" signature="60642:60676" ph="..." />
-            <marker date="1508265978314" expanded="true" signature="60731:60791" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1819">
-          <caret line="107" column="69" selection-start-line="107" selection-start-column="69" selection-end-line="107" selection-end-column="69" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#ul#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#ul#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1508265978314" expanded="true" signature="10589:10599" ph="..." />
-            <marker date="1508265978314" expanded="true" signature="29512:29536" ph="..." />
-            <marker date="1508265978314" expanded="true" signature="30185:30209" ph="..." />
-            <marker date="1508265978314" expanded="true" signature="60642:60676" ph="..." />
-            <marker date="1508265978314" expanded="true" signature="60731:60791" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3604">
-          <caret line="212" column="45" selection-start-line="212" selection-start-column="45" selection-end-line="212" selection-end-column="45" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#ul#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#ul#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10948">
-          <caret line="644" column="42" selection-start-line="644" selection-start-column="42" selection-end-line="644" selection-end-column="42" />
-          <folding>
-            <marker date="1508265978314" expanded="true" signature="10589:10599" ph="..." />
-            <marker date="1508265978314" expanded="true" signature="29512:29536" ph="..." />
-            <marker date="1508265978314" expanded="true" signature="30185:30209" ph="..." />
-            <marker date="1508265978314" expanded="true" signature="60642:60676" ph="..." />
-            <marker date="1508265978314" expanded="true" signature="60731:60791" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/php/salvaOrcamento.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="26" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#ul#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#ul#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/function.js" />
     <entry file="file://$PROJECT_DIR$/www/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+          <caret line="14" column="26" lean-forward="false" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#ul#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#ul#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/function.js" />
-    <entry file="file://$PROJECT_DIR$/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#ul#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#ul#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#2;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1508295690221" expanded="true" signature="32876:32894" ph="..." />
           </folding>
         </state>
       </provider>
@@ -859,132 +756,416 @@
     <entry file="file://$PROJECT_DIR$/platforms/android/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/php/model/Login.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/php/model/Usuario.class.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="1" column="6" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/index.php" />
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DOMEvents.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="158" column="0" selection-start-line="158" selection-start-column="0" selection-end-line="158" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/status.php" />
-    <entry file="file://$PROJECT_DIR$/www/teste.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+          <caret line="1" column="6" lean-forward="false" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/function.js" />
-    <entry file="file://$PROJECT_DIR$/www/materialize/js/materialize.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/teste.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="31" column="17" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/platforms/android/build/intermediates/assets/debug/www/php/model/fachada.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="139" column="35" selection-start-line="139" selection-start-column="26" selection-end-line="139" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/www/index.php" />
     <entry file="file://$PROJECT_DIR$/www/php/getProdutosCliente.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
-          <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/platforms/browser/www/vendor/slim/slim/Slim/LogWriter.php" />
-    <entry file="file://$PROJECT_DIR$/www/php/formaPagamento.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="5" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/platforms/android/assets/www/php/model/fachada.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="46" column="37" selection-start-line="46" selection-start-column="37" selection-end-line="46" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/php/todosUsuarios.php" />
-    <entry file="file://$PROJECT_DIR$/www/php/getFuncionarios.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/login.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="92" column="28" selection-start-line="92" selection-start-column="28" selection-end-line="92" selection-end-column="28" />
-          <folding />
+          <caret line="3" column="46" lean-forward="false" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/php/salvaOrcamento.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="49" column="1" selection-start-line="0" selection-start-column="0" selection-end-line="51" selection-end-column="2" />
+        <state relative-caret-position="85">
+          <caret line="5" column="16" lean-forward="false" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.npmignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/php/conexao.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="37" lean-forward="false" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/php/model/Login.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="30" lean-forward="false" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/php/model/fachada.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="142" column="62" lean-forward="false" selection-start-line="142" selection-start-column="62" selection-end-line="142" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5134">
+          <caret line="302" column="24" lean-forward="false" selection-start-line="302" selection-start-column="24" selection-end-line="302" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6715">
+          <caret line="395" column="40" lean-forward="false" selection-start-line="395" selection-start-column="40" selection-end-line="395" selection-end-column="40" />
           <folding>
-            <marker date="1508158105230" expanded="true" signature="125:1270" ph="INSERT INTO NET_MOVIMENTO... " />
-            <marker date="1508158105230" expanded="true" signature="1426:1629" ph="INSERT INTO NET_ITEM_MOVIMENTO... " />
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#2;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1508295690221" expanded="true" signature="32876:32894" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="318" column="4" lean-forward="false" selection-start-line="318" selection-start-column="4" selection-end-line="318" selection-end-column="4" />
+          <folding>
+            <marker date="1508295888843" expanded="true" signature="10772:10782" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="29711:29735" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="29851:29868" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="29964:29981" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="30847:30871" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="30961:30997" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="60728:60762" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="60817:60877" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6630">
+          <caret line="390" column="19" lean-forward="false" selection-start-line="390" selection-start-column="19" selection-end-line="390" selection-end-column="19" />
+          <folding>
+            <marker date="1508295888843" expanded="true" signature="10772:10782" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="29711:29735" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="29851:29868" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="29964:29981" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="30847:30871" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="30961:30997" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="60728:60762" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="60817:60877" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1819">
+          <caret line="107" column="69" lean-forward="false" selection-start-line="107" selection-start-column="69" selection-end-line="107" selection-end-column="69" />
+          <folding>
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#2;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1508295690221" expanded="true" signature="32876:32894" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6630">
+          <caret line="390" column="19" lean-forward="false" selection-start-line="390" selection-start-column="19" selection-end-line="390" selection-end-column="19" />
+          <folding>
+            <marker date="1508295888843" expanded="true" signature="10772:10782" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="29711:29735" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="29851:29868" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="29964:29981" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="30847:30871" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="30961:30997" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="60728:60762" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="60817:60877" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1819">
+          <caret line="107" column="69" lean-forward="false" selection-start-line="107" selection-start-column="69" selection-end-line="107" selection-end-column="69" />
+          <folding>
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#2;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1508295690221" expanded="true" signature="32876:32894" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1819">
+          <caret line="107" column="69" lean-forward="false" selection-start-line="107" selection-start-column="69" selection-end-line="107" selection-end-column="69" />
+          <folding>
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#2;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1508295690221" expanded="true" signature="32876:32894" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="12682">
+          <caret line="746" column="12" lean-forward="false" selection-start-line="746" selection-start-column="12" selection-end-line="746" selection-end-column="12" />
+          <folding>
+            <marker date="1508295888843" expanded="true" signature="10772:10782" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="29711:29735" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="29851:29868" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="29964:29981" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="30847:30871" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="30961:30997" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="60728:60762" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="60817:60877" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3604">
+          <caret line="212" column="45" lean-forward="false" selection-start-line="212" selection-start-column="45" selection-end-line="212" selection-end-column="45" />
+          <folding>
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#2;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1508295690221" expanded="true" signature="32876:32894" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10948">
+          <caret line="644" column="42" lean-forward="false" selection-start-line="644" selection-start-column="42" selection-end-line="644" selection-end-column="42" />
+          <folding>
+            <marker date="1508295888843" expanded="true" signature="10772:10782" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="29711:29735" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="29851:29868" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="29964:29981" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="30847:30871" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="30961:30997" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="60728:60762" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="60817:60877" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/php/salvaOrcamento.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="26" lean-forward="false" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
+          <folding>
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#2;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1508295690221" expanded="true" signature="32876:32894" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/function.js" />
+    <entry file="file://$PROJECT_DIR$/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="26" lean-forward="false" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+          <folding>
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#2;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1508295690221" expanded="true" signature="32876:32894" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/function.js" />
+    <entry file="file://$PROJECT_DIR$/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="26" lean-forward="false" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+          <folding>
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#2;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1508295690221" expanded="true" signature="32876:32894" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/function.js" />
+    <entry file="file://$PROJECT_DIR$/platforms/android/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/function.js" />
+    <entry file="file://$PROJECT_DIR$/www/index.php" />
+    <entry file="file://$PROJECT_DIR$/www/php/getProdutosCliente.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="46" lean-forward="false" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.npmignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/jquery-ui.js" />
+    <entry file="file://$PROJECT_DIR$/www/teste.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="46" lean-forward="false" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/login.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="63" column="20" lean-forward="true" selection-start-line="63" selection-start-column="20" selection-end-line="63" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/php/getOrcamentos.php">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="2" lean-forward="false" selection-start-line="5" selection-start-column="2" selection-end-line="5" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/php/model/Usuario.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="61" column="37" lean-forward="false" selection-start-line="61" selection-start-column="20" selection-end-line="61" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5">
+          <caret line="28" column="13" lean-forward="false" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/php/salvaUsuario.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="18" lean-forward="false" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/php/salvaOrcamento.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="40" column="14" lean-forward="true" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/php/model/fachada.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="80" column="22" lean-forward="false" selection-start-line="80" selection-start-column="16" selection-end-line="80" selection-end-column="22" />
+          <folding>
+            <marker date="1508289164933" expanded="true" signature="288:334" ph="select * fro... login" />
+            <marker date="1508289164933" expanded="true" signature="603:643" ph="select * fro... login" />
+            <marker date="1508289164933" expanded="true" signature="862:926" ph="SELECT * FRO... TB_PAR_PARTICIPANTE" />
+            <marker date="1508289164933" expanded="true" signature="1168:1220" ph="select * fro... TB_FUN_FUNCIONARIO" />
+            <marker date="1508289164933" expanded="true" signature="1539:1778" ph="insert into login... " />
+            <marker date="1508289164933" expanded="true" signature="1539:1813" ph="insert into login... " />
+            <marker date="1508289164933" expanded="true" signature="1960:2146" ph="UPDATE confi... " />
+            <marker date="1508289164933" expanded="true" signature="2252:2297" ph="select * fro... configuracao" />
+            <marker date="1508289164933" expanded="true" signature="2746:2774" ph="SELECT * FRO... TB_PRO_PRODUTO" />
+            <marker date="1508289164933" expanded="true" signature="3025:3065" ph="SELECT * FRO... produto" />
+            <marker date="1508289164933" expanded="true" signature="3345:3414" ph="SELECT * FRO... itemorcamento" />
+            <marker date="1508289164933" expanded="true" signature="3545:3613" ph="SELECT * FRO... orcamento" />
+            <marker date="1508289164933" expanded="true" signature="3671:3738" ph="SELECT * FRO... usuario" />
+            <marker date="1508289164933" expanded="true" signature="4198:4324" ph="SELECT * FRO... negociacao" />
+            <marker date="1508289164933" expanded="true" signature="4385:4546" ph="update negoc... " />
+            <marker date="1508289164933" expanded="true" signature="4594:4753" ph="insert into negociacao... " />
+            <marker date="1508289164933" expanded="true" signature="4872:5054" ph="SELECT * fro... TB_PRO_PRODUTO" />
+            <marker date="1508289164933" expanded="true" signature="5533:5594" ph="SELECT * FRO... TB_PRO_PRODUTO" />
+            <marker date="1508289164933" expanded="true" signature="6084:6124" ph="SELECT * FRO... NET_MOVIMENTO" />
+            <marker date="1508289164933" expanded="true" signature="6084:6143" ph="SELECT * FRO... NET_MOVIMENTO" />
+            <marker date="1508289164933" expanded="true" signature="6254:6310" ph="SELECT * FRO... NET_ITEM_MOVIMENTO" />
+            <marker date="1508289164933" expanded="true" signature="6254:6343" ph="SELECT * FRO... NET_ITEM_MOVIMENTO" />
+            <marker date="1508289164933" expanded="true" signature="6450:6503" ph="SELECT * FRO... TB_PRO_PRODUTO" />
+            <marker date="1508289164933" expanded="true" signature="6450:6531" ph="SELECT * FRO... TB_PRO_PRODUTO" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/php/getClientes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="84" lean-forward="false" selection-start-line="9" selection-start-column="84" selection-end-line="9" selection-end-column="84" />
+          <folding>
+            <marker date="1508289747627" expanded="true" signature="210:324" ph="SELECT * FRO... TB_PAR_PARTICIPANTE" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/php/model/Login.class.php">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="3" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/php/getOrcamentoFuncionario.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/php/getOrcamentoCliente.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
+          <caret line="20" column="29" lean-forward="false" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -992,140 +1173,48 @@
     <entry file="file://$PROJECT_DIR$/www/php/conexao.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="1" column="23" selection-start-line="1" selection-start-column="23" selection-end-line="1" selection-end-column="23" />
+          <caret line="1" column="37" lean-forward="false" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/php/alteraOrcamento.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="19" />
-          <folding>
-            <marker date="1508179987364" expanded="true" signature="97:149" ph="DELETE FROM " />
-            <marker date="1508179987364" expanded="true" signature="97:183" ph="DELETE FROM " />
-            <marker date="1508179987364" expanded="true" signature="97:185" ph="DELETE FROM " />
-            <marker date="1508179987364" expanded="true" signature="97:186" ph="DELETE FROM " />
-            <marker date="1508179987364" expanded="true" signature="97:187" ph="DELETE FROM " />
-            <marker date="1508179987364" expanded="true" signature="314:517" ph="INSERT INTO NET_ITEM_MOVIMENTO... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/php/checkSession.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/php/configuracao.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/util.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="21" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/php/getCliente.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="6" selection-end-column="54" />
-          <folding>
-            <marker date="1508161093620" expanded="true" signature="124:192" ph="SELECT * FRO... TB_PAR_PARTICIPANTE" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/php/model/fachada.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="35" column="60" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="60" />
-          <folding>
-            <marker date="1508247492907" expanded="true" signature="288:334" ph="select * fro... login" />
-            <marker date="1508247492907" expanded="true" signature="603:643" ph="select * fro... login" />
-            <marker date="1508247492907" expanded="true" signature="862:926" ph="SELECT * FRO... TB_PAR_PARTICIPANTE" />
-            <marker date="1508247492907" expanded="true" signature="1168:1220" ph="select * fro... TB_FUN_FUNCIONARIO" />
-            <marker date="1508247492907" expanded="true" signature="1539:1813" ph="insert into login... " />
-            <marker date="1508247492907" expanded="true" signature="1960:2146" ph="UPDATE confi... " />
-            <marker date="1508247492907" expanded="true" signature="2252:2297" ph="select * fro... configuracao" />
-            <marker date="1508247492907" expanded="true" signature="2746:2774" ph="SELECT * FRO... TB_PRO_PRODUTO" />
-            <marker date="1508247492907" expanded="true" signature="3025:3065" ph="SELECT * FRO... produto" />
-            <marker date="1508247492907" expanded="true" signature="3345:3414" ph="SELECT * FRO... itemorcamento" />
-            <marker date="1508247492907" expanded="true" signature="3545:3613" ph="SELECT * FRO... orcamento" />
-            <marker date="1508247492907" expanded="true" signature="3671:3738" ph="SELECT * FRO... usuario" />
-            <marker date="1508247492907" expanded="true" signature="4198:4324" ph="SELECT * FRO... negociacao" />
-            <marker date="1508247492907" expanded="true" signature="4385:4546" ph="update negoc... " />
-            <marker date="1508247492907" expanded="true" signature="4594:4753" ph="insert into negociacao... " />
-            <marker date="1508247492907" expanded="true" signature="4872:5054" ph="SELECT * fro... TB_PRO_PRODUTO" />
-            <marker date="1508247492907" expanded="true" signature="5533:5594" ph="SELECT * FRO... TB_PRO_PRODUTO" />
-            <marker date="1508247492907" expanded="true" signature="6084:6143" ph="SELECT * FRO... NET_MOVIMENTO" />
-            <marker date="1508247492907" expanded="true" signature="6254:6343" ph="SELECT * FRO... NET_ITEM_MOVIMENTO" />
-            <marker date="1508247492907" expanded="true" signature="6450:6531" ph="SELECT * FRO... TB_PRO_PRODUTO" />
-            <marker date="1508247492907" expanded="true" signature="6943:7002" ph="SELECT * FRO... NET_MOVIMENTO" />
-            <marker date="1508247492907" expanded="true" signature="6943:7027" ph="SELECT * FRO... NET_MOVIMENTO" />
-            <marker date="1508247492907" expanded="true" signature="7135:7224" ph="SELECT * FRO... NET_ITEM_MOVIMENTO" />
-            <marker date="1508247492907" expanded="true" signature="7325:7406" ph="SELECT * FRO... TB_PRO_PRODUTO" />
-            <marker date="1508247492907" expanded="true" signature="7775:7859" ph="SELECT * FRO... NET_MOVIMENTO" />
-            <marker date="1508247492907" expanded="true" signature="7967:8056" ph="SELECT * FRO... NET_ITEM_MOVIMENTO" />
-            <marker date="1508247492907" expanded="true" signature="8157:8238" ph="SELECT * FRO... TB_PRO_PRODUTO" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+        <state relative-caret-position="282">
+          <caret line="591" column="15" lean-forward="false" selection-start-line="591" selection-start-column="15" selection-end-line="591" selection-end-column="15" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/php/getClientes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="84" selection-start-line="9" selection-start-column="84" selection-end-line="9" selection-end-column="84" />
-          <folding>
-            <marker date="1508262020694" expanded="true" signature="210:323" ph="SELECT * FRO... TB_PAR_PARTICIPANTE" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="592" column="6" selection-start-line="592" selection-start-column="6" selection-end-line="592" selection-end-column="6" />
+        <state relative-caret-position="221">
+          <caret line="171" column="62" lean-forward="false" selection-start-line="171" selection-start-column="62" selection-end-line="171" selection-end-column="62" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#ul#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#ul#1;n#div#0;n#nav#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#2;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#3;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#1;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#2;n#div#1;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#2;n#div#0;n#form#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1508295690221" expanded="true" signature="32876:32894" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/login.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="1199" column="28" selection-start-line="1199" selection-start-column="28" selection-end-line="1199" selection-end-column="28" />
+        <state relative-caret-position="380">
+          <caret line="602" column="85" lean-forward="false" selection-start-line="602" selection-start-column="85" selection-end-line="602" selection-end-column="85" />
           <folding>
-            <marker date="1508265978314" expanded="true" signature="10589:10599" ph="..." />
-            <marker date="1508265978314" expanded="true" signature="29512:29536" ph="..." />
-            <marker date="1508265978314" expanded="true" signature="30185:30209" ph="..." />
-            <marker date="1508265978314" expanded="true" signature="60642:60676" ph="..." />
-            <marker date="1508265978314" expanded="true" signature="60731:60791" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="10772:10782" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="29711:29735" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="29851:29868" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="29964:29981" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="30847:30871" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="30961:30997" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="60728:60762" ph="..." />
+            <marker date="1508295888843" expanded="true" signature="60817:60877" ph="..." />
           </folding>
         </state>
       </provider>

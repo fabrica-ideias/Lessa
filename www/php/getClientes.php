@@ -7,7 +7,7 @@
 	$nome = $_POST['nome'];
 	$clientes = [];
 	$result = mysqli_query($con,"SELECT * FROM TB_PAR_PARTICIPANTE 
-		WHERE PAR_A_RAZAOSOCIAL like '$nome%' ORDER BY PAR_A_RAZAOSOCIAL ASC LIMIT 5");
+		WHERE PAR_A_RAZAOSOCIAL like '$nome%' ORDER BY PAR_A_RAZAOSOCIAL ASC LIMIT 30");
 
 	$dados = [];
 	while($row = $result->fetch_array()){

@@ -34,6 +34,9 @@ function initLogin() {
                     document.getElementById("logoutMobile").addEventListener("click", logout); //Faz logout
                     document.getElementById("btnSalvaUsuario").addEventListener("click", salvaUsuario);// Salva o Usuario
                     document.getElementById("btnOrcaProximo").addEventListener("click", habilitaTelaItem);//FUNÇÕE DO ORCAMENTO DO FUNCIONARIO
+                    document.getElementById("addItem").addEventListener("click",function(){
+                        $('#modalSelecionaProduto').modal('open');
+                    });
                     document.getElementById("addItemOrca").addEventListener("click", function () {
                         addItem("qtdeProduto", "datelhe_item", false)
                     });
@@ -539,7 +542,7 @@ function initLogin() {
             alteracaoItem = false;
 
             if (web == false) {
-                document.getElementById("totalOrcamento").value = numberToReal(total);
+                document.getElementById("totalOrcamento").innerHTML = "Total R$ "+numberToReal(total);
                 document.getElementById("precoProduto").value = "";
                 document.getElementById("produto_orcamento").value = "";
                 document.getElementById("qtdeProduto").value = "";
@@ -578,18 +581,26 @@ function initLogin() {
         for (var i = 0; i < itensOrcamento.length; i++) {
             var item = itensOrcamento[i];
             itens += "<li style='border:1px solid #5f5c5c' class='itemCliente' id='" + i + "'>";
-            itens += '<div class="row">';
-            itens += '<div class="col s12" id="descricaoitem">' + item.produto.descricao.toUpperCase() + '</div>';
-            itens += '<div class="col s12" id="subdescricaoitem">';
-            itens += '<div class="col s4">' + item.qtde + '</div>';
-            itens += '<div class="col s4">' + numberToReal(item.produto.valor) + '</div>';
-            itens += '<div class="col s4">' + numberToReal(itensOrcamento[i].total) + '</div>';
+            if(i%2 == 0){
+                itens += '<div class="row" style="font-size: 0.75em">';
+            }else{
+                itens += '<div class="row" id="subdescricaoitem" style="font-size: 0.75em">';
+            }
+            itens += '<div class="col s2" id="descricaoitem">COD</br>' + item.produto.idproduto + '</div>';
+            itens += '<div class="col s10" id="descricaoitem">ITEM</br>' + item.produto.descricao.toUpperCase() + '</div>';
+            itens += '<div class="col s12">';
+            itens += '<div class="col s2"></div>';
+            itens += '<div class="col s2">R$ ' + numberToReal(item.produto.valor) + ' </div>';
+            itens += '<div class="col s1"> X </div>';
+            itens += '<div class="col s3">'+item.qtde+' '+item.produto.unidade+'</div>';
+            itens += '<div class="col s1">-</div>';
+            itens += '<div class="col s2">R$ ' + numberToReal(itensOrcamento[i].total) + '</div>';
             itens += '</div>';
             itens += '</div>';
             itens += '</li>';
 
             itensWeb += "<li style='border:1px solid #5f5c5c' id='" + item.produto.idproduto + "'>";
-            itensWeb += '<div class="row" id="descricaoitem">';
+            itensWeb += '<div class="row" style="background-color: #fff;padding:10px;">';
             itensWeb += '<div class="col s1" >' + item.produto.idproduto + '</div>';
             itensWeb += '<div class="col s4" >' + item.produto.descricao.toUpperCase() + '</div>';
             itensWeb += '<div class="col s1">' + item.produto.unidade + '</div>';
@@ -620,7 +631,6 @@ function initLogin() {
         }
         document.getElementById("resumoQtdeItem").value = itensOrcamento.length;
         document.getElementById("resumotTotalItens").value = numberToReal(total);
-        document.getElementById("totalOrcamento").value = numberToReal(total);
         document.getElementById("datelhe_item").innerHTML = itens;
         document.getElementById("detalheItemWeb").innerHTML = itensWeb;
         var acumulador = "";
@@ -680,15 +690,16 @@ function initLogin() {
         //Habilita Opções quando clicar no item
         var elems = document.getElementsByClassName("itemCliente"), i;
         for (i = 0; i < elems.length; i++) {
-            document.getElementsByClassName("itemCliente")[i].removeEventListener("click", function () {
+            document.getElementById(elems[i].id).removeEventListener("click", function () {
             });
-            document.getElementsByClassName("itemCliente")[i].addEventListener("click", function () {
+            document.getElementById(elems[i].id).addEventListener("click", function () {
                 for (var j = 0; j < itensOrcamento.length; j++) {
                     if (j == this.id) {
                         indexProduto = j;
                         break;
                     }
                 }
+                console.log(elems.length);
                 if (itensOrcamento.length > 0) {
                     var descricao = itensOrcamento[indexProduto].produto.descricao;
                     document.getElementById("nomeProduto").innerHTML = "PRODUTO: " + descricao;
@@ -785,10 +796,6 @@ function initLogin() {
         itensOrcamento = [];
         total = 0;
         document.getElementById("menu_painel").style.display="block";
-        document.getElementById("totalOrcamento").value = "0,00";
-        document.getElementById("autocomplete-fantasia").value = "";
-        document.getElementById("cpfcnpj").value = "";
-        document.getElementById("totalOrcamento").value = "0,00";
         document.getElementById("qtdeProduto").value = "";
         document.getElementById("titleModal").innerHTML = "";
         document.getElementById("msgModal").innerHTML = "Orcamento enviado com sucesso";
@@ -800,7 +807,6 @@ function initLogin() {
         document.getElementById("resumoQtdeItem").value = "0";
         document.getElementById("resumoQtdeKgItem").innerHTML = " ";
         document.getElementById("resumotTotalItens").value = "0,00";
-        document.getElementById("endereco").value = "";
         document.getElementById("addItensWeb").style.display = "none";
         document.getElementById("informatacaoCliente").style.display = "none";
         document.getElementById("autocompletecliente").value = "";
@@ -811,6 +817,7 @@ function initLogin() {
         document.getElementById("autocompleteproduto").value = "";
         document.getElementById("autocompleteproduto").focus();
         document.getElementById("totalProdutoWeb").value = "";
+        document.getElementById("totalOrcamento").innerHTML = "Total R$";
         document.getElementById("resumoQtdeItem").value = itensOrcamento.length;
         document.getElementById("resumotTotalItens").value = numberToReal(total);
         document.getElementById("btnFinalizaOrcamentoWeb").style.display="block";
@@ -1071,10 +1078,7 @@ function initLogin() {
                             document.getElementById(preco).value = numberToReal(produtoSelecionado.valor);
                             document.getElementById(unidade).value = produtoSelecionado.unidade.toString();
                             document.getElementById("qtdeProdutoWeb").focus();
-                            if (autocompete == "produto_orcamento") {
-                                document.getElementById("descricaoProduto").value = produtoSelecionado.descricao.toUpperCase();
-                                $('#modalSelecionaProduto').modal('open');
-                            }
+
                         });
                     }
                 });
@@ -1189,12 +1193,8 @@ function initLogin() {
                                 document.getElementById("dialogcliente").style.display = "none";
                                 limparOrcamento();
                                 cliente = clientes[this.id];
-                                document.getElementById("autocomplete-fantasia").value = cliente.PAR_A_NOME_FANTASIA;
-                                document.getElementById("cpfcnpj").placeholder = " ";
-                                document.getElementById("cpfcnpj").value = cliente.PAR_A_CNPJ_CPF;
                                 document.getElementById("autocompletecliente").value = this.innerHTML;
-                                document.getElementById("endereco").value = cliente.PAR_A_LOGRADOURO + " " + cliente.PAR_A_ENDERECO + " " + cliente.PAR_A_NUMERO;
-                            });
+                              });
                         }
                         document.getElementById("dialogcliente").style.display = "block";
                     } else {
