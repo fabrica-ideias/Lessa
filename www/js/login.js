@@ -26,7 +26,6 @@ function initLogin() {
             if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
                 config = JSON.parse(this.responseText);
                 if (iniciou == 0) {
-
                     iniciarConfiguracoes(config);
                     document.getElementById("btnConfiguracao").addEventListener("click", abrirConfiguracao); //tela de configuracao de layout
                     document.getElementById("logout").addEventListener("click", logout); //logout
@@ -34,8 +33,13 @@ function initLogin() {
                     document.getElementById("logoutMobile").addEventListener("click", logout); //Faz logout
                     document.getElementById("btnSalvaUsuario").addEventListener("click", salvaUsuario);// Salva o Usuario
                     document.getElementById("btnOrcaProximo").addEventListener("click", habilitaTelaItem);//FUNÇÕE DO ORCAMENTO DO FUNCIONARIO
+                    document.getElementById("cancelaAddItem").addEventListener("click",function(){
+                        document.getElementById("submenu").style.display = "block";
+                    });
                     document.getElementById("addItem").addEventListener("click",function(){
+                        document.getElementById("submenu").style.display = "none";
                         $('#modalSelecionaProduto').modal('open');
+                        document.getElementById("produto_orcamento").focus();
                     });
                     document.getElementById("addItemOrca").addEventListener("click", function () {
                         addItem("qtdeProduto", "datelhe_item", false)
@@ -46,12 +50,19 @@ function initLogin() {
                     document.getElementById("btnFinalizaOrcamento").addEventListener("click", mostraFormaPagamento);//Finalizar Orcamento
                     document.getElementById("btnFinalizaOrcamentoWeb").addEventListener("click", mostraFormaPagamento);//Finalizar Orcamento
                     document.getElementById("btnAlteraOrcamento").addEventListener("click",alterarOrcamento);
+                    document.getElementById("btnAlteraOrcaMobile").addEventListener("click",alterarOrcamento);
                     document.getElementById("btnPrincipalMobile").addEventListener("click", home);
                     document.getElementById("btnPrincipal").addEventListener("click", home);
                     document.getElementById("btnPedidos").addEventListener("click", mostraOrcamentos);
                     document.getElementById("btnPedidosMobile").addEventListener("click", mostraOrcamentos);
                     document.getElementById("qtdeProdutoWeb").addEventListener("input", calculaProduto);
                     document.getElementById("qtdeProdutoWeb").addEventListener("keyup", addPedidoEnter);
+                    document.getElementById("qtdeProduto").addEventListener("input",function(){
+                        document.getElementById("totalProduto").value = numberToReal(this.value * produtoSelecionado.valor);
+                    });
+                    document.getElementById("qtdeProduto").addEventListener("keypress",function(){
+                        if (event.keyCode == 13) addItem("qtdeProduto", "datelhe_item", false);
+                    });
                     document.getElementById("habilitaOrcamento").addEventListener("click", habilitaOrcamento);
                     document.getElementById("enviarOrcamento").addEventListener("click", finalizaOrcamento);
                     document.getElementById("cancelarOrcamento").addEventListener("click", questionarOrcamento);
@@ -64,12 +75,12 @@ function initLogin() {
                         $(".modalCancelaPedido").modal('close');
                     });
                     opcaoItem();
-
+                    preencheClientes();
                 }
                 if(usuario.idpermissao == 2){
                     listaProdutosSolicitados();
                 }
-                preencheClientes();
+
                 document.getElementById("addItensWeb").style.display = "none";
                 document.getElementById("informatacaoCliente").style.display = "none";
                 document.getElementById("resumoVendedor").value = usuario.nome.toUpperCase();
@@ -161,6 +172,7 @@ function initLogin() {
                                     codigo: result[i].itens[j].PRO_PKN_CODIGO,
                                     descricao: result[i].itens[j].descricao,
                                     qtde: parseInt(result[i].itens[j].NET_ITEM_QTD),
+                                    unidade: result[i].itens[j].unidade,
                                     orcamentos: [result[i]]
                                 });
                         }
@@ -172,9 +184,14 @@ function initLogin() {
                 var select = "";
                 var qtdeAcumulada = 0;
                 for (var i = 0; i < produtos.length; i++) {
-                    select += '    <a class="collection-item itemacumulado" id="' + i + '">' +
-                        '<span class="badge">' + produtos[i].qtde + '</span>' +
-                        '' + produtos[i].descricao.substring(0, 35) + '</a>';
+                    select += '    <a class="col s12 itemlista itemacumulado" id="' + i + '">' +
+                        '<div class="row" style="padding: 5px;"><div class="col s8">' + produtos[i].descricao.substring(0, 40) + '</div></div>'
+                        +'<div class="row"><div class="col m4 l8" ></div>' +
+                        '<div class="col s3 m2 l1" style="text-align: center">UNIDADE</br>' + produtos[i].unidade + '</div>'
+                        +'<div class="col s3 m2 l1" style="text-align: center">VENDIDO</br>' + produtos[i].qtde + '</div>'
+                        +'<div class="col s3 m2 l1" style="text-align: center">ESTOQUE</br>0</div>'
+                        +'<div class="col s3 m2 l1" style="text-align: center">SALDO</br>' +(0 - produtos[i].qtde) + '</div></div>'
+                        +'</a>';
                     qtdeAcumulada += produtos[i].qtde;
                 }
                 document.getElementById("preloadItens").style.display = "none";
@@ -194,7 +211,7 @@ function initLogin() {
                                 if (produtos[this.id].codigo == orcamento.itens[k].PRO_PKN_CODIGO) {
                                     pedidos += '<div class="row zebra"><a class="orcamentoSelecionado" id="' + orcamento.NET_PKN_SEQUENCIAL + '"  style="color:#000">';
                                     pedidos += '<div class="col s12 m12 l6 subtitleitem"><div class="col s1 m2 l2">' + orcamento.NET_PKN_SEQUENCIAL + '</div>';
-                                    pedidos += '<div class="col s11 m10 l10">' + orcamento.NET_A_CLI_NOME.substring(0, 35) + '</div></div>';
+                                    pedidos += '<div class="col s11 m10 l10">' + orcamento.NET_A_CLI_NOME.substring(0, 30) + '</div></div>';
                                     pedidos += '<div class="col s12 m12 l6 subdetalheitem"><div class="col s9 m10 l10">' + orcamento.itens[k].descricao + '</div>';
                                     pedidos += '<div class="col s1 m1 l1">' + orcamento.itens[k].NET_ITEM_QTD + '</div></div>';
                                     pedidos += '</a></div>';
@@ -542,6 +559,7 @@ function initLogin() {
             alteracaoItem = false;
 
             if (web == false) {
+                document.getElementById("submenu").style.display = "block";
                 document.getElementById("totalOrcamento").innerHTML = "Total R$ "+numberToReal(total);
                 document.getElementById("precoProduto").value = "";
                 document.getElementById("produto_orcamento").value = "";
@@ -633,6 +651,7 @@ function initLogin() {
         document.getElementById("resumotTotalItens").value = numberToReal(total);
         document.getElementById("datelhe_item").innerHTML = itens;
         document.getElementById("detalheItemWeb").innerHTML = itensWeb;
+        document.getElementById("totalOrcamento").innerHTML = "Total R$ "+numberToReal(total);
         var acumulador = "";
         for (var i = 0; i < acumulaUnidade.length; i++) {
             acumulador += "<li class='collection-item'>" + acumulaUnidade[i].unidade + " : " + acumulaUnidade[i].qtde + "</li>";
@@ -690,9 +709,8 @@ function initLogin() {
         //Habilita Opções quando clicar no item
         var elems = document.getElementsByClassName("itemCliente"), i;
         for (i = 0; i < elems.length; i++) {
-            document.getElementById(elems[i].id).removeEventListener("click", function () {
-            });
-            document.getElementById(elems[i].id).addEventListener("click", function () {
+            document.getElementsByClassName("itemCliente")[i].removeEventListener("click", function () {});
+            document.getElementsByClassName("itemCliente")[i].addEventListener("click", function () {
                 for (var j = 0; j < itensOrcamento.length; j++) {
                     if (j == this.id) {
                         indexProduto = j;
@@ -822,6 +840,8 @@ function initLogin() {
         document.getElementById("resumotTotalItens").value = numberToReal(total);
         document.getElementById("btnFinalizaOrcamentoWeb").style.display="block";
         document.getElementById("btnAlteraOrcamento").style.display="none";
+        document.getElementById("btnFinalizaOrcamento").style.display="block";
+        document.getElementById("btnAlteraOrcaMobile").style.display="none";
         $('ul.tabs').tabs('select_tab', 'pedidos');
     }
 
@@ -872,7 +892,6 @@ function initLogin() {
     }
 
     function incluirPainel() {
-        document.getElementById("container").style.display = "block";
         //INICIA FUNÇÕES DO MATERIALIZE
         $(document).ready(function () {
             $('.collapsible').collapsible();
@@ -916,7 +935,6 @@ function initLogin() {
     verificaLogin();
 
     function consultaPermissoes() {
-        preencheClientes();
         document.getElementById("nomeUser").innerHTML = usuario.nome.toUpperCase();
         if (usuario.idpermissao == 1) {
             document.getElementById("tabs-menu").style.display = "none";
@@ -931,14 +949,15 @@ function initLogin() {
             document.getElementById("btnConfiguracaoMobile").style.display = "none";
         }
         if (usuario.idpermissao == 2) {
+            document.getElementById("container").style.display = "block";
             document.getElementById("tabs-menu").style.display = "block"
-            $('ul.tabs').tabs('select_tab', 'home');
             document.getElementById("funcionario_orcamento").style.display = "block";
             document.getElementById("selectCliente").style.display = "block";
             document.getElementById("menu_cadastros").style.display = "block";
             document.getElementById("menu_pedidos").style.display = "block";
             document.getElementById("btnConfiguracao").style.display = "block";
             document.getElementById("btnConfiguracaoMobile").style.display = "block";
+            $('ul.tabs').tabs('select_tab', 'home');
         }
         if (usuario.idpermissao == 3) {
             document.getElementById("tabs-menu").style.display = "none";
@@ -982,6 +1001,8 @@ function initLogin() {
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             request.send("codigo=" + usuario.codparticipante);
         }
+        document.getElementById("container").style.display = "block";
+
     }
 
     function alteraOrcamento(pedido) {
@@ -1028,6 +1049,8 @@ function initLogin() {
                     console.log(itensOrcamento);
                     document.getElementById("btnAlteraOrcamento").style.display="block";
                     document.getElementById("btnFinalizaOrcamentoWeb").style.display="none";
+                    document.getElementById("btnAlteraOrcaMobile").style.display="block";
+                    document.getElementById("btnFinalizaOrcamento").style.display="none";
                     document.getElementById("menu_painel").style.display="none";
                     document.getElementById("informatacaoCliente").style.display = "block";
                     $('ul.tabs').tabs('select_tab', 'pedidos');
@@ -1077,8 +1100,12 @@ function initLogin() {
                             document.getElementById(autocompete).value = produtoSelecionado.descricao.toUpperCase();
                             document.getElementById(preco).value = numberToReal(produtoSelecionado.valor);
                             document.getElementById(unidade).value = produtoSelecionado.unidade.toString();
-                            document.getElementById("qtdeProdutoWeb").focus();
-
+                            if(autocompete == "produto_orcamento"){
+                                console.log("teste");
+                                document.getElementById("qtdeProduto").focus();
+                            }else{
+                                document.getElementById("qtdeProdutoWeb").focus();
+                            }
                         });
                     }
                 });
@@ -1139,6 +1166,11 @@ function initLogin() {
             }
         }
     }
+    function pegaTecla(){
+        cancelarProduto();
+        var tecla = event.keyCode;
+        alert(tecla);
+    }
 
 //tras todos os orcamentos do cliente
     function listaOrcamentos() {
@@ -1178,7 +1210,6 @@ function initLogin() {
                 if (request.readyState == 4 && request.status == 200) {
                     clientes = [];
                     clientes = JSON.parse(request.responseText);
-                    console.log(clientes);
                     var select = "";
                     for (var i = 0; i < clientes.length; i++) {
                         select += '<div class="selecionaCliente" id="' + i + '">' + clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase() + '</div>';
@@ -1205,6 +1236,10 @@ function initLogin() {
             request.open("POST", url + "php/getClientes.php", true);
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             request.send("nome="+document.getElementById("autocompletecliente").value.toUpperCase());
+        });
+
+        document.getElementById("autocompletecliente").addEventListener("blur", function () {
+            setTimeout(function(){document.getElementById("dialogcliente").style.display = "none";},200);
         });
     }
 

@@ -108,13 +108,13 @@
                 <div class="row">
                     <div class="col s12 m12 l12"></div>
                     <div class="col s12 m12 l12">
-                        <label style="color:#000">ITENS SOLICITADO</label>
-                        <ul class="collection" style="margin:0;">
+                        <ul class="row titleItensSolicitados">
                             <li style="color:#fff;margin:0;background-color: #5a7ea3"
-                                class="collection-item"><span style="color:#fff" class="badge">QTDE</span>PRODUTO
+                                class="collection-item">
+                                <div class="col s12">PRODUTO</div>
                             </li>
                         </ul>
-                        <ul class="collection listaProduto" id="produtos">
+                        <ul class="listaProduto" id="produtos">
                         </ul>
                         <div style="width: 100%;text-align: center;" id="preloadItens">
                             <div class="preloader-wrapper big active">
@@ -131,13 +131,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col s12 l2 offset-l10">
+                        <div class="row titleItensSolicitados" id="subvalores" style="margin-top: 2px;">
+                            <div class="col s12 l2 offset-l10" style="color:#fff">
                                 QTDE ITENS:
                                 <span class="flow-text">
-
                                     <input disabled type="text" id="qtdeItemAcumulado" style="
-                                        background-color: #fff;color: #000;text-align: center;font-size: 1.3em;"/>
+                                        background-color: #fff;color: #000;text-align: center;font-size: 1.3em;margin:0"/>
                                 </span>
                             </div>
                         </div>
@@ -220,9 +219,14 @@
                                             <button type="button" class="btn" id="btnFinalizaOrcamento">
                                                 Finalizar
                                             </button>
+                                            <button type="button" class="btn orange" id="btnAlteraOrcaMobile">
+                                                ALTERAR
+                                            </button>
                                         </div>
                                         <div class="col s4">
-                                            <a id="addItem" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">add</i></a>
+                                            <a id="addItem"
+                                               class="btn-floating btn-large waves-effect waves-light blue"><i
+                                                    class="material-icons">add</i></a>
                                         </div>
                                     </div>
 
@@ -474,22 +478,6 @@
             </div>
         </div>
     </div>
-    <!-- Modal Structure -->
-    <div id="modalpreload" class="modalpreloader">
-        <div class="preloader-wrapper big active">
-            <div class="spinner-layer spinner-blue-only">
-                <div class="circle-clipper left">
-                    <div class="circle"></div>
-                </div>
-                <div class="gap-patch">
-                    <div class="circle"></div>
-                </div>
-                <div class="circle-clipper right">
-                    <div class="circle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div id="modalInfo" class="modal">
         <div class="modal-content">
             <h4 id="titleModal">Resultado:</h4>
@@ -505,7 +493,7 @@
         <div class="col s1"></div>
         <button class="col s5 m4  btn red" id="excluirItem">EXCLUIR</button>
     </div>
-    <div id="modalSelecionaProduto" class="modal">
+    <div id="modalSelecionaProduto">
         <div class="modal-content">
             <div class="row">
                 <div class="input-field col s12">
@@ -518,24 +506,30 @@
                     </div>
                 </div>
                 <div class="input-field col s4">
-                    <input type="number" name="qtdeProduto" id="qtdeProduto" style="text-align: center"/>
-                    <label for="qtdeProduto"
-                           style="text-align: right;font-size: 1.2em;padding-right: 5px;">QUANTIDADE</label>
+                    <input type="number" name="qtdeProduto" placeholder=" " id="qtdeProduto"
+                           style="text-align: center"/>
+                    <label for="qtdeProduto" class="labelPreco active">QUANTIDADE</label>
                 </div>
                 <div class="input-field col s4" style="margin-left: 50px;">
                     <input disabled type="text" placeholder=" " name="unidadeProduto" id="unidadeProduto"
                            style="text-align: center;color: #000"/>
                     <label for="unidadeProduto" class="labelPreco">UNIDADE</label>
                 </div>
-                <div class="input-field col s12">
-                    <input disabled type="text" placeholder=" " name="precoProduto" id="precoProduto"
-                           style="text-align: right;background-color: #4c79a6;color: #fff;border-radius: 10px;width: 45%;padding: 5px;"/>
-                    <label for="precoProduto" class="labelPreco">PREÇO</label>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input disabled type="text" placeholder=" " name="precoProduto" id="precoProduto"/>
+                        <label for="precoProduto" class="labelPreco">PREÇO</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input disabled type="text" placeholder=" " name="totalProduto" id="totalProduto"/>
+                        <label for="totalProduto" class="labelPreco">TOTAL</label>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="modal-footer">
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+            <a href="#!" id="cancelaAddItem"
+               class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
             <a href="#!" id="addItemOrca" class="modal-action waves-effect waves-green btn-flat">Adicionar</a>
         </div>
     </div>
@@ -563,6 +557,10 @@
     </div>
     <div class="modalItemOrcamentos">
         <div class="row tituloProdutoSolicitado">
+            <div class="row">
+                <a class="modal-action modal-close" style="top:10px;color: #fff;position: absolute;right: 20px;"
+                    type="button"><i class="material-icons">close</i></a>
+            </div>
             <div class="col s2 m1 l1">PEDIDO</div>
             <div class="col s10 m5 l5">CLIENTE</div>
             <div class="col s12 m12 l6 titleMobileItem">
@@ -571,6 +569,22 @@
             </div>
         </div>
         <div id="itemPedido">
+        </div>
+    </div>
+</div>
+<!-- Modal Structure -->
+<div id="modalpreload" class="modalpreloader">
+    <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+                <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
         </div>
     </div>
 </div>

@@ -43,17 +43,24 @@ body {
     margin-bottom: 0px;
 }
 
+
 #home {
     padding: 10px;
-    background-color: #e3e3e3;
     margin-top: 10px;
     border-radius: 10px;
+}
+
+.zebra{
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid;
+    box-shadow: rgb(211, 211, 211) 5px 2px 1px;
 }
 
 .modalItemOrcamentos {
     display: none;
     position: fixed;
-    width: 90%;
+    width: 65%;
     top: 5% !important;
     right: 0;
     left: 0;
@@ -62,13 +69,9 @@ body {
     border-radius: 10px;
 }
 
-.zebra {
-    padding: 5px;
-    border: 1px solid #bec8fc;
-}
-
 .cinza {
     background-color: #ccc;
+
 }
 
 #listaOrcamentos {
@@ -76,21 +79,55 @@ body {
 }
 
 .listaProduto {
+    position: absolute;
     overflow-y: scroll;
     height: 100%;
-    max-height: 300px;
+    max-height: 60%;
     margin-top: 0px;
+    padding: 10px;
+
+}
+#subvalores{
+    position: absolute;
+    margin-top: 2px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: 0;
+}
+.itemlista{
+    border: 1px solid #ccc;
+    width: 100%;
+    padding: 10px 5px;
+    color: #000;
+    margin-bottom: 7px;
+    box-shadow: rgb(211, 211, 211) 5px 2px 1px;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    border-radius:10px;
+    background-color: #fff;
+}
+.titleItensSolicitados{
+    background-color: #5a7ea3;
+    text-align: center;
+    padding: 10px;
+    border-radius: 1px;
+    margin-bottom: 7px;
+    box-shadow: 4px 2px 1px #c1bdbd;
 }
 
 .tituloProdutoSolicitado {
     background-color: #5a7ea3;
     color: #fff;
     padding: 10px;
+    border-radius: 10px 10px 0px 0px;
 }
 
 #itemPedido {
-    border: 1px solid #ccc;
     background-color: #fff;
+    border-radius: 0px 0px 10px 10px;
+    max-height: 450px;
+    overflow-y: scroll;
 }
 
 .listaProduto .collection-item {
@@ -151,7 +188,7 @@ body {
 #datelhe_item {
     color: #000;
     position: absolute;
-    max-height: 70%;
+    max-height: 65%;
     width: 99%;
     overflow-y: scroll;
 }
@@ -274,6 +311,7 @@ td {
 }
 
 #selectCliente,
+#btnAlteraOrcaMobile,
 #selecioneCliente,
 #addItens {
     display: none;
@@ -502,7 +540,7 @@ td {
 
 #orcamentos {
     position: absolute;
-    max-height: 85%;
+    max-height: 87%;
     overflow-y: scroll;
     margin: 0;
 }
@@ -579,10 +617,8 @@ td {
 }
 
 #produto_orcamento {
-    margin: 0;
     BACKGROUND-COLOR: #fff;
     border-radius: 4px;
-    margin-bottom: 10px !important;
 
 }
 #infoNome{
@@ -591,13 +627,35 @@ td {
     margin:0px;
     border:none;
 }
-
-
+#modalSelecionaProduto{
+    display: none;
+    position: absolute;
+    top: 10px !important;
+    background-color: #fff;
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: 90%;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+#precoProduto,#totalProduto{
+    text-align: right;
+    background-color: #4c79a6;
+    color: #fff;
+    border-radius: 10px;
+    padding-right: 1px;
+    width: 90%;
+}
 @media only screen and (min-width: 601px) and (max-width: 992px) {
+    .painelOrcamento{
+        margin: 0;
+    }
 
     #imgUser {
         background-color: #ddd;
-        width: 200px;
+        width: 200px !important;
         height: 200px;
         border-radius: 100%;
         background-size: 100% 100%;
@@ -625,16 +683,34 @@ td {
         height: auto;
     }
 }
+@media screen and (min-height: 1000px) and (max-width: 900px){
+    .listaProduto{
+        max-height: 75% !important;
+    }
+    #resumo{
+        display: none;
+    }
+}
 
 @media screen and (max-width: 995px) {
+    .listaProduto{
+        max-height: 55%;
+    }
+    .zebra{
+        padding:0px;
+    }
     .titleMobileItem {
-        background-color: #5d92c9;
-        padding: 10px;
+        background-color: #062240;
+        padding: 10px !important;
+        border-radius: 10px;
+    }
+    #resumo{
+        display: none;
     }
 
     .subtitleitem {
         padding: 5px !important;
-        background-color: #f26363;
+        background-color: #42a5f5;
         color: #fff;
     }
 
@@ -643,7 +719,10 @@ td {
     }
 
     .modalItemOrcamentos {
-        width: 100%;
+        width: 90%;
+        border-radius: 10px;
+        position: absolute;
+        height: 80%;
     }
 
     .modalCancelaPedido {
@@ -724,11 +803,6 @@ td {
         display: none;
         background-color: #718aa4;
     }
-
-    #resumo {
-        display: none;
-    }
-
     #submenu {
         display: block;
         z-index: 1000;
@@ -739,6 +813,4 @@ td {
     .painelOrcamento {
         margin: 0px;
     }
-
-
 }
