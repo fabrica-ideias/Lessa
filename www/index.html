@@ -49,7 +49,7 @@
             </div>
             <div class="row">
                 <div class="col s12" id="checkConect" style="margin-bottom: 5px"></div>
-                <a class="col s12 m4 l4 btn" id="logar" style="margin-bottom: 5px">PRÓXIMO</a>
+                <a class="col s12 m12 l4 btn" id="logar" style="margin-bottom: 5px">PRÓXIMO</a>
                 <!-- <div class="col s12"><a  id="cadastro" style="margin-bottom: 5px">Cadastre-se</a></div> -->
             </div>
         </form>
@@ -150,7 +150,7 @@
             <div id="pedidos" class="col s12">
                 <!-- CRIAR Orcamento -->
                 <div class="row">
-                    <form class="col s12 l10">
+                    <form class="col s12 m12 l10 painelPedido">
                         <!-- Orcamento do funcionario -->
                         <div id="funcionario_orcamento" class="painelOrcamento">
                             <div class="row" id="selectCliente" style="margin:10px">
@@ -489,6 +489,8 @@
     </div>
     <div class="row" id="opcaoItem">
         <div class="col s12" id="nomeProduto" style="padding: 10px"></div>
+
+        <div class="col m1"></div>
         <button class="col s5 m4 btn blue" id="alteraItem">ALTERAR</button>
         <div class="col s1"></div>
         <button class="col s5 m4  btn red" id="excluirItem">EXCLUIR</button>
@@ -546,8 +548,8 @@
             <p>Deseja Cancelar o Pedido ?</p>
         </div>
         <div class="row">
-            <div class="col s2 m4 l3"></div>
-            <div class="col s4 m4 l3">
+            <div class="col s2 m1 l3"></div>
+            <div class="col s4 m5 l3">
                 <button type="button" id="simCancelaPedido" class="btn green">SIM</button>
             </div>
             <div class="col s4 m4 l2">
@@ -564,8 +566,8 @@
             <div class="col s2 m1 l1">PEDIDO</div>
             <div class="col s10 m5 l5">CLIENTE</div>
             <div class="col s12 m12 l6 titleMobileItem">
-                <div class="col s8 m10 l10">PRODUTO</div>
-                <div class="col s2 m1 l1">QUANTIDADE</div>
+                <div class="col s8 m9 l8">PRODUTO</div>
+                <div class="col s2 m3 l4">QUANTIDADE</div>
             </div>
         </div>
         <div id="itemPedido">

@@ -58,3 +58,16 @@ function verificaNovoEmail(email) {
     }
     return true;
 }
+function hideKeyBoard(){
+    var field = document.createElement('input');
+    field.className = "keyfocus";
+    field.setAttribute('type', 'text');
+    document.body.appendChild(field);
+
+    setTimeout(function() {
+        field.focus();
+        setTimeout(function() {
+            field.setAttribute('style', 'display:none;');
+        }, 1);
+    }, 50);
+}

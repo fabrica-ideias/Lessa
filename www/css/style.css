@@ -9,646 +9,629 @@
     user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 }
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #fff;
-    overflow-y: auto;
-}
-.row {
-    margin: 0;
-}
-#btnAlteraOrcamento{
-    display: none;
-}
-.modalFormaPagamento {
-    display: none;
-    position: absolute;
-    width: 45%;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 10px;
-    top: 30%;
-    background-color: #fff;
-    right: 0;
-    left: 0;
-    margin: auto;
-}
-
-#totalOrcamento {
-    background-color: #fff !important;
-    color: #000;
-    text-align: right !important;;
-    padding: 0px 5px !important;;
-    border-radius: 4px !important;
-    margin-bottom: 0px;
-}
-
-
-#home {
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 10px;
-}
-
-.zebra{
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid;
-    box-shadow: rgb(211, 211, 211) 5px 2px 1px;
-}
-
-.modalItemOrcamentos {
-    display: none;
-    position: fixed;
-    width: 65%;
-    top: 5% !important;
-    right: 0;
-    left: 0;
-    margin: auto;
-    padding: 5px;
-    border-radius: 10px;
-}
-
-.cinza {
-    background-color: #ccc;
-
-}
-
-#listaOrcamentos {
-    display: none;
-}
-
-.listaProduto {
-    position: absolute;
-    overflow-y: scroll;
-    height: 100%;
-    max-height: 60%;
-    margin-top: 0px;
-    padding: 10px;
-
-}
-#subvalores{
-    position: absolute;
-    margin-top: 2px;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    margin: 0;
-}
-.itemlista{
-    border: 1px solid #ccc;
-    width: 100%;
-    padding: 10px 5px;
-    color: #000;
-    margin-bottom: 7px;
-    box-shadow: rgb(211, 211, 211) 5px 2px 1px;
-    -webkit-border-radius:10px;
-    -moz-border-radius:10px;
-    border-radius:10px;
-    background-color: #fff;
-}
-.titleItensSolicitados{
-    background-color: #5a7ea3;
-    text-align: center;
-    padding: 10px;
-    border-radius: 1px;
-    margin-bottom: 7px;
-    box-shadow: 4px 2px 1px #c1bdbd;
-}
-
-.tituloProdutoSolicitado {
-    background-color: #5a7ea3;
-    color: #fff;
-    padding: 10px;
-    border-radius: 10px 10px 0px 0px;
-}
-
-#itemPedido {
-    background-color: #fff;
-    border-radius: 0px 0px 10px 10px;
-    max-height: 450px;
-    overflow-y: scroll;
-}
-
-.listaProduto .collection-item {
-    color: #000 !important;
-}
-
-.listaProduto .badge {
-    background-color: #32a435;
-    color: #fff;
-    border-radius: 4px;
-}
-
-#btnOrcaProximo {
-    display: none;
-}
-
-.container {
-    overflow-x: hidden;
-    position: absolute;
-    max-width: 100% !important;
-    width: 100%;
-    height: 100%;
-    background-color: #ccc;
-}
-
-.subcontainer {
-    position: relative;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    background-color: #e6e6e6;
-    float: left;
-}
-
-.subcontainer h3 {
-    text-align: center;
-    font-size: 2em;
-}
-
-.subcontainer h1 {
-    text-align: center;
-    font-size: 14em;
-}
-
-.informatacaoCliente {
-    color: black;
-    background: #fff;
-    border: 1px solid #ccc;
-}
-.titlePedido{
-    background-color: #6e8fb9;
-    padding: 5px 10px;
-}
-
-.informatacaoCliente label {
-    color: #000;
-}
-
-#datelhe_item {
-    color: #000;
-    position: absolute;
-    max-height: 65%;
-    width: 99%;
-    overflow-y: scroll;
-}
-
-.p {
-    font-size: 1.3em;
-}
-
-td {
-    padding: 0px !important;
-    font-size: 1.5em;
-}
-
-.row .col {
-    padding: 0px;
-}
-
-.observacao {
-    padding: 5px;
-    border-radius: 4px;
-    margin: 5px;
-    border: 1px solid;
-}
-
-.observacao ul li {
-    float: left;
-    margin-left: 5%;
-    font-size: 2em;
-}
-
-.grabbable {
-    cursor: move; /* fallback if grab cursor is unsupported */
-    cursor: grab;
-    cursor: -moz-grab;
-    cursor: -webkit-grab;
-}
-
-.inputPreco {
-    text-align: right;
-    background-color: #4c79a6;
-    color: #fff;
-    padding: 0px 5px;
-    border-radius: 10px;
-}
-
-.labelPreco {
-    text-align: right;
-    font-size: 1.2em;
-    padding-right: 5px;
-    color: #000 !important;
-}
-
-/* (Optional) Apply a "closed-hand" cursor during drag operation. */
-.grabbable:active {
-    cursor: grabbing;
-    cursor: -moz-grabbing;
-    cursor: -webkit-grabbing;
-}
-
-.btnbottom {
-    position: absolute;
-    bottom: 0;
-    background-color: #4b4848;
-}
-
-.btnbottom:active {
-    background-color: #1a1a1a;
-}
-
-.btnbottom:hover {
-    background-color: #1a1a1a;
-}
-
-#conteudo_painel {
-    /*margin-top: 10px;
-    padding: 10px;*/
-    height: 80%;
-}
-
-.configuracao {
-    background-color: #f2f2f2;
-    display: none;
-    position: relative;
-    width: 100%;
-    padding: 10px;
-    border: 1px solid;
-    border-color: #afafaf;
-}
-
-#cancelarOrcamento {
-    color:#fff;
-    position: absolute;
-    margin-top: 10px;
-}
-
-#cancelar {
-    float: right;
-    color: #000;
-}
-
-#container {
-    display: none;
-}
-
-.painel {
-    display: none;
-}
-
-#btnAddItem {
-    position: absolute;
-    bottom: 0px;
-    margin-bottom: 60px;
-    right: 10px;
-}
-
-#addItens p {
-    text-align: center;
-    color: #a2a2a2;
-    font-size: 1.3em;
-}
 
-#selectCliente,
-#btnAlteraOrcaMobile,
-#selecioneCliente,
-#addItens {
-    display: none;
-}
-
-#todosOrcamento, #criar_orcamento,
-#cadastro_users, #criar_cliente_orca {
-    margin-bottom: 50px;
-}
-
-.modalpreloader {
-    top: 45% !important;
-    display: none;
-    position: fixed;
-    left: 0;
-    right: 0;
-    padding: 0;
-    text-align: center;
-}
-
-#descricaoitem {
-    padding: 5px;
-}
-
-.titleDescricao {
-    background-color: #8282e2;
-    color: #fff;
-    padding: 10px !important;
-}
-
-#subdescricaoitem {
-    background: #c5c5c5;
-    padding: 5px;
-}
-
-.subItemDescricao {
-    background-color: #7878b7;
-    color: #fff;
-    padding: 5px !important;
-}
-
-@font-face {
-    font-family: 'Material Icons';
-    font-style: normal;
-    font-weight: 400;
-    src: url(fonts/MaterialIcons-Regular.eot); /* For IE6-8 */
-    src: local('Material Icons'),
-    local('MaterialIcons-Regular'),
-    url(fonts/MaterialIcons-Regular.woff2) format('woff2'),
-    url(fonts/MaterialIcons-Regular.woff) format('woff'),
-    url(fonts/MaterialIcons-Regular.ttf) format('truetype');
-}
-
-.material-icons {
-    font-family: 'Material Icons';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px; /* Preferred icon size */
-    display: inline-block;
-    line-height: 1;
-    text-transform: none;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
-
-    /* Support for all WebKit browsers. */
-    -webkit-font-smoothing: antialiased;
-    /* Support for Safari and Chrome. */
-    text-rendering: optimizeLegibility;
-
-    /* Support for Firefox. */
-    -moz-osx-font-smoothing: grayscale;
-
-    /* Support for IE. */
-    font-feature-settings: 'liga';
-}
-
-.item_home {
-    background-color: #13d11c;
-    color: #fff;
-    text-align: center;
-    padding: 5px;
-    float: right;
-    width: 10%;
-    font-size: 1em;
-    margin-right: 10px;
-    border-radius: 4px;
-}
-
-.menu_mobile {
-    display: none;
-}
-
-#submenu {
-    border-top:1px solid #ccc;
-    background-color: #fff;
-    display: none;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-#addItem{
-    position: relative;
-    bottom: 10px;
-    float: right;
-    right: 10px;
-}
-#btnFinalizaOrcamento {
-    top: 10px;
-    left: 10px;
-    background-color: #3db54b;
-}
-
-#opcaoItem {
-    display: none;
-    position: absolute;
-    right: 0;
-    left: 0;
-    width: 70%;
-    top: 30% !important;
-    padding: 10px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    margin: auto;
-}
-
-#addItensWeb {
-    background-color: #597796;
-}
-
-.descricaoElemento.active {
-    color: #fff !important;
-}
-
-.entradaOrcamentoWeb {
-    background-color: #fff;
-    color: #000;
-    height: 2em !important;
-    border-radius: 4px !important;
-}
-
-.valores {
-    color: #000;
-    text-align: right
-}
-
-.autocomplete-content {
-    position: absolute;
-    width: 100%;
-}
-
-.containerItens {
-    position: relative;
-    max-height: 350px;
-    overflow-y: scroll;
-    background-color: #9F9F9F;
-}
-
-.painelOrcamento {
-    border: 1px solid #ccc;
-    margin: 10px;
-    background-color: #e7e7e7;
-    border-radius: 10px;
-}
-
-.resumo {
-    color: #000000 !important;
-}
-
-.valorTotal {
-    color: #000 !important;;
-    text-align: center;
-    font-size: 2em !important;
-    background-color: #eba98a !important;
-}
-
-.autocomplete {
-    background: #fff;
-    position: relative;
-    width: 400px;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.24);
-}
-
-.autocomplete .close {
-    position: absolute;
-    font-size: 13px;
-    z-index: 10;
-    top: 10px;
-    left: calc(100% - 50px);
-    color: #aaa;
-    cursor: pointer;
-    display: none;
-}
-
-.autocomplete .close.visible {
-    display: block;
-}
-
-.textBloqueado {
-    padding: 5px !important;
-    margin: 5px;
-    background-color: #dcdcdc;
-    border-radius: 10px;
-    font-size: 1em;
-}
-
-.menuOpcoes li {
-    margin: 1px;
-}
-
-.menuOpcoes li a.active {
-    background-color: #d7d7d7;
-}
-
-.menuOpcoes li a i {
-    color: #37759e !important;
-}
-
-.dadosPerfil {
-    border-bottom: 1px solid #ccc;
-    background: #5c85a0;
-}
-
-#orcamentos {
-    position: absolute;
-    max-height: 87%;
-    overflow-y: scroll;
-    margin: 0;
-}
-
-.desListaPedidos {
-    padding: 10px;
-    background-color: #678eb5;
-    color: #fff;
-}
-
-.dialog {
-    width: 100%;
-    display: none;
-    min-height: 40px;
-    max-height: 330px;
-    overflow-y: scroll;
-    border-top: 1px solid #f4f4f4;
-    z-index: 100;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    position: absolute;
-}
-
-.dialog.open {
-    display: block;
-}
-
-.dialog div {
-    padding: 20px 10px;
-    font-size: 13px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.dialog div:hover, .dialog div.active {
-    background: #f2f2f2;
-}
-
-.modalCancelaPedido {
-    display: none;
-    position: absolute;
-    top: 20%;
-    width: 30%;
-    right: 0;
-    left: 0;
-    margin: auto;
-    background-color: #fff;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-#dadosUser {
-    display: none;
-}
-
-.dadosUser {
-    position: relative;
-    background: #ffffff;
-    display: block;
-    float: left;
-    width: 100%;
-    padding: 10px;
-}
-
-.containerCadastro {
-    background-color: #e3e3e3;
-    padding: 20px !important;
-    border: 1px solid #e7e7e7;
-}
-
-#btnSalvaUsuario {
-    background-color: #5a7ea3;
-}
-
-#produto_orcamento {
-    BACKGROUND-COLOR: #fff;
-    border-radius: 4px;
-
-}
-#infoNome{
-    color: #fff;
-    text-align: center;
-    margin:0px;
-    border:none;
-}
-#modalSelecionaProduto{
-    display: none;
-    position: absolute;
-    top: 10px !important;
-    background-color: #fff;
-    right: 0;
-    left: 0;
-    margin: auto;
-    width: 90%;
-    padding: 5px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-}
-#precoProduto,#totalProduto{
-    text-align: right;
-    background-color: #4c79a6;
-    color: #fff;
-    border-radius: 10px;
-    padding-right: 1px;
-    width: 90%;
-}
-@media only screen and (min-width: 601px) and (max-width: 992px) {
+@media (min-width: 0px){
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #fff;
+        overflow-y: auto;
+    }
+    .row {
+        margin: 0;
+    }
+    #btnAlteraOrcamento{
+        display: none;
+    }
+    .keyfocus{
+        position: absolute;
+        right: 0;
+        left: 0;
+        margin: auto !important;
+        top: 0;
+        width: 0% !important;
+
+    }
+    #habilitaOrcamento{
+        display: none;
+    }
+    .modalFormaPagamento {
+        display: none;
+        position: absolute;
+        width: 45%;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 10px;
+        top: 30%;
+        background-color: #fff;
+        right: 0;
+        left: 0;
+        margin: auto;
+    }
+
+    #totalOrcamento {
+        background-color: #fff !important;
+        color: #000;
+        text-align: right !important;;
+        padding: 0px 5px !important;;
+        border-radius: 4px !important;
+        margin-bottom: 0px;
+    }
+
+
+    #home {
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 10px;
+    }
+
+    .zebra{
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid;
+        box-shadow: rgb(211, 211, 211) 5px 2px 1px;
+    }
+
+    .modalItemOrcamentos {
+        display: none;
+        position: fixed;
+        width: 65%;
+        top: 5% !important;
+        right: 0;
+        left: 0;
+        margin: auto;
+        padding: 5px;
+        border-radius: 10px;
+    }
+
+    .cinza {
+        background-color: #ccc;
+
+    }
+
+    #listaOrcamentos {
+        display: none;
+    }
+
+    .listaProduto {
+        position: absolute;
+        overflow-y: scroll;
+        height: 100%;
+        max-height: 60%;
+        margin-top: 0px;
+        padding: 10px !important;
+        left:0px;
+        right: 0px;
+
+    }
+    #subvalores{
+        position: absolute;
+        margin-top: 2px;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        margin: 0;
+    }
+    .itemlista{
+        border: 1px solid #ccc;
+        width: 100%;
+        padding: 10px 5px;
+        color: #000;
+        margin-bottom: 7px;
+        box-shadow: rgb(211, 211, 211) 5px 2px 1px;
+        -webkit-border-radius:10px;
+        -moz-border-radius:10px;
+        border-radius:10px;
+        background-color: #fff;
+    }
+    .titleItensSolicitados{
+        background-color: #5a7ea3;
+        text-align: center;
+        padding: 10px;
+        border-radius: 1px;
+        margin-bottom: 7px;
+        box-shadow: 4px 2px 1px #c1bdbd;
+    }
+
+    .tituloProdutoSolicitado {
+        background-color: #5a7ea3;
+        color: #fff;
+        padding: 10px;
+        border-radius: 10px 10px 0px 0px;
+    }
+
+    #itemPedido {
+        background-color: #fff;
+        border-radius: 0px 0px 10px 10px;
+        max-height: 450px;
+        overflow-y: scroll;
+    }
+
+    .listaProduto .collection-item {
+        color: #000 !important;
+    }
+
+    .listaProduto .badge {
+        background-color: #32a435;
+        color: #fff;
+        border-radius: 4px;
+    }
+
+    #btnOrcaProximo {
+        display: none;
+    }
+
+    .container {
+        overflow-x: hidden;
+        position: absolute;
+        max-width: 100% !important;
+        width: 100%;
+        height: 100%;
+        background-color: #ccc;
+    }
+
+    .subcontainer {
+        position: relative;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        background-color: #e6e6e6;
+        float: left;
+    }
+
+    .subcontainer h3 {
+        text-align: center;
+        font-size: 2em;
+    }
+
+    .subcontainer h1 {
+        text-align: center;
+        font-size: 14em;
+    }
+
+    .informatacaoCliente {
+        color: black;
+        background: #fff;
+        border: 1px solid #ccc;
+    }
+    .titlePedido{
+        background-color: #6e8fb9;
+        padding: 5px 10px;
+    }
+
+    .informatacaoCliente label {
+        color: #000;
+    }
+
+    #datelhe_item {
+        color: #000;
+        position: absolute;
+        max-height: 65%;
+        width: 99%;
+        overflow-y: scroll;
+    }
+
+    .p {
+        font-size: 1.3em;
+    }
+
+    .row .col {
+        padding: 0px;
+    }
+
+    .observacao {
+        padding: 5px;
+        border-radius: 4px;
+        margin: 5px;
+        border: 1px solid;
+    }
+
+    .inputPreco {
+        text-align: right;
+        background-color: #4c79a6;
+        color: #fff;
+        padding: 0px 5px;
+        border-radius: 10px;
+    }
+
+    .labelPreco {
+        text-align: right;
+        font-size: 1.2em;
+        padding-right: 5px;
+        color: #000 !important;
+    }
+    #conteudo_painel {
+        /*margin-top: 10px;
+        padding: 10px;*/
+        height: 80%;
+    }
+
+    .configuracao {
+        background-color: #f2f2f2;
+        display: none;
+        position: relative;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid;
+        border-color: #afafaf;
+    }
+
+    #cancelarOrcamento {
+        color:#fff;
+        position: absolute;
+        margin-top: 10px;
+    }
+
+    #cancelar {
+        float: right;
+        color: #000;
+    }
+
+    #container {
+        display: none;
+    }
+
+    .painel {
+        display: none;
+    }
+
+    #btnAddItem {
+        position: absolute;
+        bottom: 0px;
+        margin-bottom: 60px;
+        right: 10px;
+    }
+
+    #addItens p {
+        text-align: center;
+        color: #a2a2a2;
+        font-size: 1.3em;
+    }
+
+    #selectCliente,
+    #btnAlteraOrcaMobile,
+    #selecioneCliente,
+    #addItens {
+        display: none;
+    }
+
+    #todosOrcamento, #criar_orcamento,
+    #cadastro_users, #criar_cliente_orca {
+        margin-bottom: 50px;
+    }
+
+    .modalpreloader {
+        top: 45% !important;
+        display: none;
+        position: fixed;
+        left: 0;
+        right: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+    #descricaoitem {
+        padding: 5px;
+    }
+
+    .titleDescricao {
+        background-color: #8282e2;
+        color: #fff;
+        padding: 10px !important;
+    }
+
+    #subdescricaoitem {
+        background: #c5c5c5;
+        padding: 5px;
+    }
+
+    .subItemDescricao {
+        background-color: #7878b7;
+        color: #fff;
+        padding: 5px !important;
+    }
+
+    @font-face {
+        font-family: 'Material Icons';
+        font-style: normal;
+        font-weight: 400;
+        src: url(fonts/MaterialIcons-Regular.eot); /* For IE6-8 */
+        src: local('Material Icons'),
+        local('MaterialIcons-Regular'),
+        url(fonts/MaterialIcons-Regular.woff2) format('woff2'),
+        url(fonts/MaterialIcons-Regular.woff) format('woff'),
+        url(fonts/MaterialIcons-Regular.ttf) format('truetype');
+    }
+
+    .material-icons {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px; /* Preferred icon size */
+        display: inline-block;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+        /* Support for all WebKit browsers. */
+        -webkit-font-smoothing: antialiased;
+        /* Support for Safari and Chrome. */
+        text-rendering: optimizeLegibility;
+
+        /* Support for Firefox. */
+        -moz-osx-font-smoothing: grayscale;
+
+        /* Support for IE. */
+        font-feature-settings: 'liga';
+    }
+
+    .item_home {
+        background-color: #13d11c;
+        color: #fff;
+        text-align: center;
+        padding: 5px;
+        float: right;
+        width: 10%;
+        font-size: 1em;
+        margin-right: 10px;
+        border-radius: 4px;
+    }
+
+    .menu_mobile {
+        display: none;
+    }
+
+    #submenu {
+        border-top:1px solid #ccc;
+        background-color: #fff;
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+    #addItem{
+        position: relative;
+        bottom: 10px;
+        float: right;
+        right: 10px;
+    }
+    #btnFinalizaOrcamento {
+        top: 10px;
+        left: 10px;
+        background-color: #3db54b;
+    }
+
+    #opcaoItem {
+        display: none;
+        position: absolute;
+        right: 0;
+        left: 0;
+        width: 70%;
+        top: 30% !important;
+        padding: 10px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        margin: auto;
+    }
+
+    #addItensWeb {
+        background-color: #597796;
+    }
+
+    .descricaoElemento.active {
+        color: #fff !important;
+    }
+
+    .entradaOrcamentoWeb {
+        background-color: #fff;
+        color: #000;
+        height: 2em !important;
+        border-radius: 4px !important;
+    }
+
+    .valores {
+        color: #000;
+        text-align: right
+    }
+
+    .autocomplete-content {
+        position: absolute;
+        width: 100%;
+    }
+
+    .containerItens {
+        position: relative;
+        max-height: 350px;
+        overflow-y: scroll;
+        background-color: #9F9F9F;
+    }
+
+    .painelOrcamento {
+        border: 1px solid #ccc;
+        margin: 10px;
+        background-color: #e7e7e7;
+        border-radius: 10px;
+    }
+
+    .resumo {
+        color: #000000 !important;
+    }
+
+    .valorTotal {
+        color: #000 !important;;
+        text-align: center;
+        font-size: 2em !important;
+        background-color: #eba98a !important;
+    }
+
+    .autocomplete {
+        background: #fff;
+        position: relative;
+        width: 400px;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.24);
+    }
+
+    .autocomplete .close {
+        position: absolute;
+        font-size: 13px;
+        z-index: 10;
+        top: 10px;
+        left: calc(100% - 50px);
+        color: #aaa;
+        cursor: pointer;
+        display: none;
+    }
+
+    .autocomplete .close.visible {
+        display: block;
+    }
+
+    .textBloqueado {
+        padding: 5px !important;
+        margin: 5px;
+        background-color: #dcdcdc;
+        border-radius: 10px;
+        font-size: 1em;
+    }
+
+    .menuOpcoes li {
+        margin: 1px;
+    }
+
+    .menuOpcoes li a.active {
+        background-color: #d7d7d7;
+    }
+
+    .menuOpcoes li a i {
+        color: #37759e !important;
+    }
+
+    .dadosPerfil {
+        border-bottom: 1px solid #ccc;
+        background: #5c85a0;
+    }
+
+    #orcamentos {
+        position: absolute;
+        max-height: 87%;
+        overflow-y: scroll;
+        margin: 0;
+    }
+
+    .desListaPedidos {
+        padding: 10px;
+        background-color: #678eb5;
+        color: #fff;
+    }
+
+    .dialog {
+        width: 100%;
+        display: none;
+        min-height: 40px;
+        max-height: 330px;
+        overflow-y: scroll;
+        border-top: 1px solid #f4f4f4;
+        z-index: 100;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        position: absolute;
+    }
+
+    .dialog.open {
+        display: block;
+    }
+
+    .dialog div {
+        padding: 20px 10px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .dialog div:hover, .dialog div.active {
+        background: #f2f2f2;
+    }
+
+    .modalCancelaPedido {
+        display: none;
+        position: absolute;
+        top: 20%;
+        width: 30%;
+        right: 0;
+        left: 0;
+        margin: auto;
+        background-color: #fff;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    #dadosUser {
+        display: none;
+    }
+
+    .dadosUser {
+        position: relative;
+        background: #ffffff;
+        display: block;
+        float: left;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .containerCadastro {
+        background-color: #e3e3e3;
+        padding: 20px !important;
+        border: 1px solid #e7e7e7;
+    }
+
+    #btnSalvaUsuario {
+        background-color: #5a7ea3;
+    }
+
+    #produto_orcamento {
+        BACKGROUND-COLOR: #fff;
+        border-radius: 4px;
+
+    }
+    #infoNome{
+        color: #fff;
+        text-align: center;
+        margin:0px;
+        border:none;
+    }
+    #modalSelecionaProduto{
+        display: none;
+        position: absolute;
+        top: 10px !important;
+        background-color: #fff;
+        right: 0;
+        left: 0;
+        margin: auto;
+        width: 90%;
+        padding: 5px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+    }
+    #precoProduto,#totalProduto{
+        text-align: center;
+        background-color: #4c79a6;
+        color: #fff;
+        border-radius: 10px;
+        padding-right: 1px;
+        width: 90%;
+    }
+}
+/* smartphones, iPhone, portrait 480x320 phones */
+@media (min-width:320px)  {
+}
+/* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+@media (min-width:481px)  {
+}
+/* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+@media (min-width:641px)  and (max-width:1281px) {
     .painelOrcamento{
         margin: 0;
     }
@@ -661,19 +644,54 @@ td {
         background-size: 100% 100%;
         margin-bottom: 10%;
     }
-
+    .namePerson {
+        font-size: 2.5em !important;
+        margin-left: 10px;
+        color: #000;
+    }
     #containerLogin {
         margin-top: 10%;
     }
-
+    a{
+        font-size: 1.5em;
+    }
+    .tabs .tab a{
+        font-size: 1.5em;
+    }
+    .titleItensSolicitados{
+        font-size:1.5em;
+    }
+    .dialog div{
+        border-bottom: 1px solid;
+        font-size: 2em !important;
+    }
+    .dialog{
+        max-height: 450px;
+    }
     #logar {
         font-size: 2em;
-        background-color: #5576dd;
+        background-color: #5e7ace;
+        padding: 20px 30px;
+        height: fit-content;
     }
-
+    input{
+        font-size: 2em !important;
+        padding: 10px 0px 0px 0px !important;
+    }
+    label{
+        font-size: 1.5em !important;
+    }
+    .tituloProdutoSolicitado{
+        font-size: 1em;
+    }
+    #totalOrcamento{
+        font-size: 2em;
+    }
+    #datelhe_item{
+        font-size: 2em;
+    }
     #form {
-        margin-top: 2%;
-        background-color: #f1f1f1;
+        background-color: #e9e9e9;
         padding: 2%;
         border: 1px solid #e7e7e7;
         -webkit-border-radius: 4px;
@@ -681,15 +699,75 @@ td {
         border-radius: 4px;
         position: absolute;
         height: auto;
+        right: 0px;
+        left: 0px;
+        margin: auto;
+        width: 80%;
     }
-}
-@media screen and (min-height: 1000px) and (max-width: 900px){
-    .listaProduto{
-        max-height: 75% !important;
+    .dropdown-content li>a, .dropdown-content li>span {
+        color: #000000;
+        font-size: 2em;
+    }
+    button{
+        padding: 20px 30px !important;
+        height: fit-content !important;
+        margin-bottom: 20px !important;
+        font-size: 2em !important;
+        border-radius: 10px !important;
+        float: left;
+    }
+    .modalCancelaPedido{
+        width: 40% !important;
+    }
+    #nomeProduto{
+        font-size: 2em;
+    }
+    #precoProduto, #totalProduto {
+        text-align: center;
+        background-color: #4c79a6;
+        color: #fff;
+        border-radius: 10px;
+        width: 90%;
+        margin-top: 10px;
     }
     #resumo{
         display: none;
     }
+    #btnOrcaProximo{
+        margin-top: 30px;
+        font-size: 2em;
+        padding: 20px 30px;
+        height: fit-content;
+        display: block;
+    }
+    .painelPedido{
+        width: 100% !important;
+    }
+    #submenu {
+        display: block;
+    }
+}
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (min-width:961px)  {
+}
+/* big landscape tablets, laptops, and desktops */
+@media (min-width:1025px) {
+}
+/* hi-res laptops and desktops */
+@media (min-width:1281px) {
+    .listaProduto {
+        width: 100%;
+    }
+    #habilitaOrcamento{
+        display: block;
+    }
+}
+
+@media screen and (min-height: 1000px) and (max-width: 900px){
+    .listaProduto{
+        max-height: 75% !important;
+    }
+
 }
 
 @media screen and (max-width: 995px) {
@@ -727,10 +805,6 @@ td {
 
     .modalCancelaPedido {
         width: 100%;
-    }
-
-    #habilitaOrcamento {
-        display: none;
     }
 
     .modalFormaPagamento {
@@ -795,9 +869,6 @@ td {
         overflow-y: scroll;
     }
 
-    #btnOrcaProximo {
-        display: block;
-    }
 
     #addItensWeb {
         display: none;
@@ -806,6 +877,12 @@ td {
     #submenu {
         display: block;
         z-index: 1000;
+    }
+    #btnOrcaProximo {
+        display: block;
+    }
+    #habilitaOrcamento {
+        display: none;
     }
 }
 

@@ -185,7 +185,7 @@ function initLogin() {
                 var qtdeAcumulada = 0;
                 for (var i = 0; i < produtos.length; i++) {
                     select += '    <a class="col s12 itemlista itemacumulado" id="' + i + '">' +
-                        '<div class="row" style="padding: 5px;"><div class="col s8">' + produtos[i].descricao.substring(0, 40) + '</div></div>'
+                        '<div class="row" style="padding: 5px;"><div class="col s12">' + produtos[i].descricao.substring(0, 40) + '</div></div>'
                         +'<div class="row"><div class="col m4 l8" ></div>' +
                         '<div class="col s3 m2 l1" style="text-align: center">UNIDADE</br>' + produtos[i].unidade + '</div>'
                         +'<div class="col s3 m2 l1" style="text-align: center">VENDIDO</br>' + produtos[i].qtde + '</div>'
@@ -565,6 +565,7 @@ function initLogin() {
                 document.getElementById("produto_orcamento").value = "";
                 document.getElementById("qtdeProduto").value = "";
                 document.getElementById("unidadeProduto").value = "";
+                document.getElementById("totalProduto").value = "";
             } else {
                 cancelarProduto();
             }
@@ -810,7 +811,8 @@ function initLogin() {
     }
 
     function limparOrcamento() {
-
+        listaProdutosSolicitados();
+        cliente = null;
         itensOrcamento = [];
         total = 0;
         document.getElementById("menu_painel").style.display="block";
@@ -1069,7 +1071,7 @@ function initLogin() {
         request = new XMLHttpRequest();
         request.onreadystatechange = function () {
             if (request.readyState == 4 && request.status == 200) {
-                produtoCliente = JSON.parse(this.responseText);
+                produtoCliente = JSON.parse(request.responseText);
                 var qtde = 0;
                 document.getElementById(autocompete).removeEventListener("input", function () {
                 });
@@ -1127,10 +1129,15 @@ function initLogin() {
                             if (produtoCliente[i].idproduto == codigo) {
                                 produtoSelecionado = produtoCliente[i];
                                 document.getElementById(dialog).style.display = "none";
-                                document.getElementById("autocompleteproduto").value = produtoCliente[i].descricao.toUpperCase();
+                                document.getElementById(autocompete).value = produtoCliente[i].descricao.toUpperCase();
                                 document.getElementById(preco).value = numberToReal(produtoCliente[i].valor);
                                 document.getElementById(unidade).value = produtoCliente[i].unidade.toString();
-                                document.getElementById("qtdeProdutoWeb").focus();
+                                if(autocompete == "produto_orcamento"){
+                                    document.getElementById("qtdeProduto").focus();
+                                }else{
+                                    document.getElementById("qtdeProdutoWeb").focus();
+                                }
+
                                 break;
                             }
                         }
@@ -1224,7 +1231,9 @@ function initLogin() {
                                 document.getElementById("dialogcliente").style.display = "none";
                                 limparOrcamento();
                                 cliente = clientes[this.id];
+                                console.log(cliente);
                                 document.getElementById("autocompletecliente").value = this.innerHTML;
+                                hideKeyBoard();
                               });
                         }
                         document.getElementById("dialogcliente").style.display = "block";
