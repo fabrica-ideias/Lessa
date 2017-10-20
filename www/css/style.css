@@ -16,6 +16,25 @@
         background-color: #fff;
         overflow-y: auto;
     }
+    #fechaOpcaoPedido{
+        position: absolute;
+        right: 0;
+        color: #000;    
+    }
+    #modalDadosPedido{
+        position: absolute;
+        top:10px;
+        right:0;
+        left:0;
+        width: 40%;
+        margin:auto;
+        border:1px solid #ccc;
+        background-color: #ffffff;
+        font-size: 1.5em;
+        color:#000;
+        border-radius: 10px;
+        display: none;
+    }
     .row {
         margin: 0;
     }
@@ -292,6 +311,29 @@
     #addItens {
         display: none;
     }
+    .pesquisaCliente{
+        margin: 0px!important;
+
+    }
+    a.tipoPesquisa.active{
+        color: #000 !important;
+    }
+    .tabs.tipo .indicator {
+        background-color: #5a7ea2;
+    }
+
+    .imgresult{
+        width: 50px;
+        height: 50px;
+    }
+    .clientePesquisa{
+        padding: 10px !important;
+        background-color: #fff;
+        border:none;
+    }
+    .clientePesquisa p,.clientePesquisa label , .clientePesquisa img{
+        float: left;
+    }
 
     #todosOrcamento, #criar_orcamento,
     #cadastro_users, #criar_cliente_orca {
@@ -449,7 +491,6 @@
     }
 
     .painelOrcamento {
-        border: 1px solid #ccc;
         margin: 10px;
         background-color: #e7e7e7;
         border-radius: 10px;
@@ -623,6 +664,7 @@
         padding-right: 1px;
         width: 90%;
     }
+
 }
 /* smartphones, iPhone, portrait 480x320 phones */
 @media (min-width:320px)  {
@@ -631,7 +673,7 @@
 @media (min-width:481px)  {
 }
 /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
-@media (min-width:641px)  and (max-width:1281px) {
+@media (min-width:641px)  and (max-width: 992px) {
     .painelOrcamento{
         margin: 0;
     }
@@ -754,7 +796,7 @@
 @media (min-width:1025px) {
 }
 /* hi-res laptops and desktops */
-@media (min-width:1281px) {
+@media (min-width:993px) {
     .listaProduto {
         width: 100%;
     }

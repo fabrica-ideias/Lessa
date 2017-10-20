@@ -1,4 +1,4 @@
-function initLogin() {
+document.addEventListener("DOMContentLoaded", function (event) {
     var verificarEmail = false;
     var usuario = null;
     var config = null;
@@ -16,7 +16,10 @@ function initLogin() {
     var indexProduto = 0;
     var total = 0;
     var iniciou = 0;
-    var alteracaoItem = false
+    var alteracaoItem = false;
+
+    verificaLogin();
+
 
 
     //Inicia a Configuração de Layout e Eventos
@@ -33,10 +36,10 @@ function initLogin() {
                     document.getElementById("logoutMobile").addEventListener("click", logout); //Faz logout
                     document.getElementById("btnSalvaUsuario").addEventListener("click", salvaUsuario);// Salva o Usuario
                     document.getElementById("btnOrcaProximo").addEventListener("click", habilitaTelaItem);//FUNÇÕE DO ORCAMENTO DO FUNCIONARIO
-                    document.getElementById("cancelaAddItem").addEventListener("click",function(){
+                    document.getElementById("cancelaAddItem").addEventListener("click", function () {
                         document.getElementById("submenu").style.display = "block";
                     });
-                    document.getElementById("addItem").addEventListener("click",function(){
+                    document.getElementById("addItem").addEventListener("click", function () {
                         document.getElementById("submenu").style.display = "none";
                         $('#modalSelecionaProduto').modal('open');
                         document.getElementById("produto_orcamento").focus();
@@ -47,26 +50,28 @@ function initLogin() {
                     document.getElementById("addItemOrcaWeb").addEventListener("click", function () {
                         addItem("qtdeProdutoWeb", "detalheItemWeb", true)
                     });
+                    document.getElementById("excluirPedido").addEventListener("click",excluirPedido);
                     document.getElementById("btnFinalizaOrcamento").addEventListener("click", mostraFormaPagamento);//Finalizar Orcamento
                     document.getElementById("btnFinalizaOrcamentoWeb").addEventListener("click", mostraFormaPagamento);//Finalizar Orcamento
-                    document.getElementById("btnAlteraOrcamento").addEventListener("click",alterarOrcamento);
-                    document.getElementById("btnAlteraOrcaMobile").addEventListener("click",alterarOrcamento);
+                    document.getElementById("btnAlteraOrcamento").addEventListener("click", alterarOrcamento);
+                    document.getElementById("btnAlteraOrcaMobile").addEventListener("click", alterarOrcamento);
                     document.getElementById("btnPrincipalMobile").addEventListener("click", home);
                     document.getElementById("btnPrincipal").addEventListener("click", home);
                     document.getElementById("btnPedidos").addEventListener("click", mostraOrcamentos);
                     document.getElementById("btnPedidosMobile").addEventListener("click", mostraOrcamentos);
                     document.getElementById("qtdeProdutoWeb").addEventListener("input", calculaProduto);
                     document.getElementById("qtdeProdutoWeb").addEventListener("keyup", addPedidoEnter);
-                    document.getElementById("qtdeProduto").addEventListener("input",function(){
+                    document.getElementById("qtdeProduto").addEventListener("input", function () {
                         document.getElementById("totalProduto").value = numberToReal(this.value * produtoSelecionado.valor);
                     });
-                    document.getElementById("qtdeProduto").addEventListener("keypress",function(){
+                    document.getElementById("qtdeProduto").addEventListener("keypress", function (event) {
                         if (event.keyCode == 13) addItem("qtdeProduto", "datelhe_item", false);
                     });
                     document.getElementById("habilitaOrcamento").addEventListener("click", habilitaOrcamento);
                     document.getElementById("enviarOrcamento").addEventListener("click", finalizaOrcamento);
                     document.getElementById("cancelarOrcamento").addEventListener("click", questionarOrcamento);
                     document.getElementById("cancelarItem").addEventListener("click", cancelarProduto);
+
                     document.getElementById("simCancelaPedido").addEventListener("click", function () {
                         limparOrcamento();
                         $(".modalCancelaPedido").modal('close');
@@ -77,22 +82,18 @@ function initLogin() {
                     opcaoItem();
                     preencheClientes();
                 }
-                if(usuario.idpermissao == 2){
+                if (usuario.idpermissao == 2) {
                     listaProdutosSolicitados();
+                    checarTipoUsuario();
                 }
-
                 document.getElementById("addItensWeb").style.display = "none";
                 document.getElementById("informatacaoCliente").style.display = "none";
                 document.getElementById("resumoVendedor").value = usuario.nome.toUpperCase();
-
-                checarTipoUsuario();
                 consultaPermissoes();
                 $('#modalpreload').modal('close');
                 iniciou = 1;
             }
         }
-
-
         request.open("POST", url + "php/configuracao.php", true);
         request.send();
     }
@@ -102,7 +103,7 @@ function initLogin() {
         this.className = "active";
         document.getElementById("configuracao").style.display = "none";
         document.getElementById("conteudo_painel").style.display = "block";
-        if(usuario.idpermissao == 2){
+        if (usuario.idpermissao == 2) {
             document.getElementById("tabs-menu").style.display = "block";
         }
         document.getElementById("listaOrcamentos").style.display = "none";
@@ -125,26 +126,55 @@ function initLogin() {
                 orcamentos = JSON.parse(request.responseText);
                 var lista = "";
                 for (var i = 0; i < orcamentos.length; i++) {
-                    lista += "<li><div class='collapsible-header'>" + orcamentos[i].NET_PKN_SEQUENCIAL + " - " + orcamentos[i].NET_A_CLI_NOME.substr(0, 35) + ".</div></li>";
+                    lista += "<li class='orcaitem' id='"+i+"'><div class='collapsible-header'>" + orcamentos[i].NET_PKN_SEQUENCIAL + " - " + orcamentos[i].NET_A_CLI_NOME.substr(0, 35) + ".</div></li>";
                 }
                 document.getElementById("orcamentos").innerHTML = lista;
+                var elems = document.getElementsByClassName("orcaitem"), i;
+                for (i = 0; i < elems.length; i++) {
+                    document.getElementsByClassName("orcaitem")[i].removeEventListener("click",function(){});
+                    document.getElementsByClassName("orcaitem")[i].addEventListener("click",function(){
+                        mostraPedido(orcamentos[this.id]);
+                    });
+                }
                 $('#modalpreload').modal('close');
             }
         }
-        if(usuario.idpermissao == 2){
+        if (usuario.idpermissao == 2) {
             request.open("POST", url + "php/getOrcamentos.php", true);
             request.send();
-        }else if(usuario.idpermissao == 3){
+        } else if (usuario.idpermissao == 3) {
             request.open("POST", url + "php/getOrcamentoFuncionario.php", true);
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             request.send("id=" + usuario.codfuncionario);
-        }else{
+        } else {
             request.open("POST", url + "php/getOrcamentoCliente.php", true);
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             request.send("id=" + usuario.codparticipante);
         }
     }
+    function mostraPedido(orca){
+        orcamento = orca;
+        document.getElementById("pedidoNum").innerHTML="NUMERO: "+orcamento.NET_PKN_SEQUENCIAL;
+        document.getElementById("pedidoCliente").innerHTML="CLIENTE: "+orcamento.NET_A_CLI_NOME.toUpperCase();
+        document.getElementById("pedidoData").innerHTML="DATA: "+dataAtualFormatada(orcamento.NET_D_DATA);
+        $("#modalDadosPedido").modal({dismissible: false});
+        $("#modalDadosPedido").modal("open");
+    }
+    function excluirPedido(){
+        $("#modalDadosPedido").modal("close");
+        $("#modalpreload").modal("close");
+        var verificar = confirm("Deseja excluir o pedido ?");
+        if(verificar == false){
+            return;
+        }
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            mostraOrcamentos();
+        }
+        request.open("GET", url + "php/excluirPedido.php?id=" + orcamento.NET_PKN_SEQUENCIAL, true);
+        request.send();
 
+    }
     function listaProdutosSolicitados() {
         document.getElementById("preloadItens").style.display = "block";
         document.getElementById("produtos").innerHTML = "";
@@ -186,12 +216,12 @@ function initLogin() {
                 for (var i = 0; i < produtos.length; i++) {
                     select += '    <a class="col s12 itemlista itemacumulado" id="' + i + '">' +
                         '<div class="row" style="padding: 5px;"><div class="col s12">' + produtos[i].descricao.substring(0, 40) + '</div></div>'
-                        +'<div class="row"><div class="col m4 l8" ></div>' +
+                        + '<div class="row"><div class="col m4 l8" ></div>' +
                         '<div class="col s3 m2 l1" style="text-align: center">UNIDADE</br>' + produtos[i].unidade + '</div>'
-                        +'<div class="col s3 m2 l1" style="text-align: center">VENDIDO</br>' + produtos[i].qtde + '</div>'
-                        +'<div class="col s3 m2 l1" style="text-align: center">ESTOQUE</br>0</div>'
-                        +'<div class="col s3 m2 l1" style="text-align: center">SALDO</br>' +(0 - produtos[i].qtde) + '</div></div>'
-                        +'</a>';
+                        + '<div class="col s3 m2 l1" style="text-align: center">VENDIDO</br>' + produtos[i].qtde + '</div>'
+                        + '<div class="col s3 m2 l1" style="text-align: center">ESTOQUE</br>0</div>'
+                        + '<div class="col s3 m2 l1" style="text-align: center">SALDO</br>' + (0 - produtos[i].qtde) + '</div></div>'
+                        + '</a>';
                     qtdeAcumulada += produtos[i].qtde;
                 }
                 document.getElementById("preloadItens").style.display = "none";
@@ -322,6 +352,7 @@ function initLogin() {
             var email = document.getElementById("email").value;
             if (email.indexOf("@") >= 0 && email.indexOf(".com") >= 0) {
                 verificaEmail(email);
+
             }
         } else {
             verificaSenha(document.getElementById("password").value);
@@ -359,44 +390,8 @@ function initLogin() {
             document.getElementById("email").focus();
             document.getElementById("lEmail").setAttribute("data-error", "E-mail Invalido");
             document.getElementById("email").setAttribute("class", "validate invalid");
-
         }
     }
-
-    function habilitaPedido() {
-        if (usuario.tipo == "GERENTE") {
-            document.getElementById("criar_orcamento").style.display = "block";
-        } else if (usuario.tipo == "FUNCIONARIO") {
-            document.getElementById("funcionario_orcamento").style.display = "block";
-            document.getElementById("selectCliente").style.display = "block";
-        }
-        document.getElementById("todosOrcamento").style.display = "none";
-    }
-
-    function verificaEmailCadastro() {
-        var email = document.getElementById("emailUser").value;
-        if (email.indexOf("@") >= 0 && email.indexOf(".com") >= 0) {
-            var request = new XMLHttpRequest();
-            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            request.onreadystatechange = function () {
-                if (response != "0") {
-                    document.getElementById("emailUser").focus();
-                    document.getElementById("lEmailUser").setAttribute("data-error", "E-mail já possui cadastro");
-                    document.getElementById("emailUser").setAttribute("class", "validate invalid");
-                    validaEmail = false;
-                } else {
-                    validaEmail = true;
-                }
-            }
-            request.open("POST", url + "php/consultaEmail.php", true);
-            request.send("email=" + email);
-        } else {
-            document.getElementById("emailUser").focus();
-            document.getElementById("lEmailUser").setAttribute("data-error", "E-mail Invalido");
-            document.getElementById("emailUser").setAttribute("class", "validate invalid");
-        }
-    }
-
 //Verifica a Senha
     function verificaSenha(senha) {
         document.getElementById("progress").style.display = "block";
@@ -416,38 +411,7 @@ function initLogin() {
     }
 
 //checa se  tem error de digitação
-    function validaEmailUser(email) {
-        var dominio = email.split("@");
-        var subdominio = dominio[1].split(".");
-        var error_subdominio = [];
-        error_subdominio.push(["", "mail", "gmeil", "gmal", "gml", "gmil", "hotmeil", "hot", "yaho", "yaoo", "yao"], ["con", "cn", "cm", "co"], ["b", "or", "og", "rg"]);
-        var result = 4;
-        for (var i = 0; i < subdominio.length; i++) {
-            if (!error_subdominio[i].indexOf(subdominio[i])) {
-                result = i;
-                break;
-            }
-        }
-        switch (result) {
-            case 0:
-                document.getElementById("emailUser").focus();
-                document.getElementById("lEmailUser").setAttribute("data-error", "Possivel erro de digitação: hotmail,yahoo,gmail");
-                document.getElementById("emailUser").setAttribute("class", "validate invalid");
-                break;
-            case 1:
-                document.getElementById("emailUser").focus();
-                document.getElementById("lEmailUser").setAttribute("data-error", "Possivel erro de digitação: com");
-                document.getElementById("emailUser").setAttribute("class", "validate invalid");
-                break;
-            case 2:
-                document.getElementById("emailUser").focus();
-                document.getElementById("lEmailUser").setAttribute("data-error", "Possivel erro de digitação: br,org");
-                document.getElementById("emailUser").setAttribute("class", "validate invalid");
-                break;
-        }
-
-    }
-
+    
 //inicia a sessao
     function startSession(conectado) {
         var xmlhttp = new XMLHttpRequest();
@@ -460,7 +424,6 @@ function initLogin() {
         xmlhttp.open("GET", url + "php/startSession.php?idusuario=" + usuario.idlogin + "&conexao=" + conectado, true);
         xmlhttp.send();
     }
-
 //verifica se o usuario esta logado
     function verificaLogin() {
         var xmlhttp = new XMLHttpRequest();
@@ -480,10 +443,10 @@ function initLogin() {
                     document.getElementById("fLogin").style.display = "block";
                     document.getElementById("containerLogin").style.display = "block";
                     verificarEmail = false;
-                    document.getElementById("email").addEventListener("keypress", function () {
+                    document.getElementById("email").addEventListener("keypress", function (event) {
                         if (event.keyCode == 13) login();
                     });
-                    document.getElementById("password").addEventListener("keypress", function () {
+                    document.getElementById("password").addEventListener("keypress", function (event) {
                         if (event.keyCode == 13) login();
                     });
                     document.getElementById("logar").addEventListener("click", login);
@@ -496,6 +459,13 @@ function initLogin() {
 
 //logout
     function logout() {
+
+        if(cliente != null){
+            var result = confirm("Orcamento não finalizado,Deseja sair ?");
+            if(result == false){
+                return;
+            }
+        }
         $('.button-collapse').sideNav('hide');
         request = new XMLHttpRequest();
         request.onreadystatechange = function () {
@@ -512,7 +482,7 @@ function initLogin() {
 // Tela de adicionar item
     function habilitaTelaItem() {
         if (cliente != null) {
-            document.getElementById("menu_painel").style.display="none";
+            document.getElementById("menu_painel").style.display = "none";
             document.getElementById("selectCliente").style.display = "none";
             document.getElementById("addItens").style.display = "block";
             document.getElementById("informatacaoCliente").style.display = "block";
@@ -540,6 +510,11 @@ function initLogin() {
             document.getElementById("qtdeProduto").focus();
             return;
         }
+        if(item.produto.valor <= 0){
+            Materialize.toast('PRODUTO NÃO CONTEM PREÇO', 5000);
+            document.getElementById("qtdeProduto").focus();
+            return;
+        }
         if (item.produto != null) {
             item.total = item.produto.valor * item.qtde;
             if (alteracaoItem == true) {
@@ -560,7 +535,7 @@ function initLogin() {
 
             if (web == false) {
                 document.getElementById("submenu").style.display = "block";
-                document.getElementById("totalOrcamento").innerHTML = "Total R$ "+numberToReal(total);
+                document.getElementById("totalOrcamento").innerHTML = "Total R$ " + numberToReal(total);
                 document.getElementById("precoProduto").value = "";
                 document.getElementById("produto_orcamento").value = "";
                 document.getElementById("qtdeProduto").value = "";
@@ -600,9 +575,9 @@ function initLogin() {
         for (var i = 0; i < itensOrcamento.length; i++) {
             var item = itensOrcamento[i];
             itens += "<li style='border:1px solid #5f5c5c' class='itemCliente' id='" + i + "'>";
-            if(i%2 == 0){
+            if (i % 2 == 0) {
                 itens += '<div class="row" style="font-size: 0.75em">';
-            }else{
+            } else {
                 itens += '<div class="row" id="subdescricaoitem" style="font-size: 0.75em">';
             }
             itens += '<div class="col s2" id="descricaoitem">COD</br>' + item.produto.idproduto + '</div>';
@@ -611,7 +586,7 @@ function initLogin() {
             itens += '<div class="col s2"></div>';
             itens += '<div class="col s2">R$ ' + numberToReal(item.produto.valor) + ' </div>';
             itens += '<div class="col s1"> X </div>';
-            itens += '<div class="col s3">'+item.qtde+' '+item.produto.unidade+'</div>';
+            itens += '<div class="col s3">' + mascaraQuantidade(item.qtde) + ' ' + item.produto.unidade + '</div>';
             itens += '<div class="col s1">-</div>';
             itens += '<div class="col s2">R$ ' + numberToReal(itensOrcamento[i].total) + '</div>';
             itens += '</div>';
@@ -623,7 +598,7 @@ function initLogin() {
             itensWeb += '<div class="col s1" >' + item.produto.idproduto + '</div>';
             itensWeb += '<div class="col s4" >' + item.produto.descricao.toUpperCase() + '</div>';
             itensWeb += '<div class="col s1">' + item.produto.unidade + '</div>';
-            itensWeb += '<div class="col s1">' + item.qtde + '</div>';
+            itensWeb += '<div class="col s1">' + mascaraQuantidade(item.qtde) + '</div>';
             itensWeb += '<div class="col s1">' + numberToReal(item.produto.valor) + '</div>';
             itensWeb += '<div class="col s2">' + numberToReal(itensOrcamento[i].total) + '</div>';
             itensWeb += '<div class="col s1"><a class="apagaritem" id="' + i + '"><i class="material-icons ">close</i></a></div>';
@@ -652,10 +627,10 @@ function initLogin() {
         document.getElementById("resumotTotalItens").value = numberToReal(total);
         document.getElementById("datelhe_item").innerHTML = itens;
         document.getElementById("detalheItemWeb").innerHTML = itensWeb;
-        document.getElementById("totalOrcamento").innerHTML = "Total R$ "+numberToReal(total);
+        document.getElementById("totalOrcamento").innerHTML = "Total R$ " + numberToReal(total);
         var acumulador = "";
         for (var i = 0; i < acumulaUnidade.length; i++) {
-            acumulador += "<li class='collection-item'>" + acumulaUnidade[i].unidade + " : " + acumulaUnidade[i].qtde + "</li>";
+            acumulador += "<li class='collection-item'>" + acumulaUnidade[i].unidade + " : " + mascaraQuantidade(acumulaUnidade[i].qtde) + "</li>";
         }
         document.getElementById("resumoQtdeKgItem").innerHTML = acumulador;
         eventItem();
@@ -710,7 +685,8 @@ function initLogin() {
         //Habilita Opções quando clicar no item
         var elems = document.getElementsByClassName("itemCliente"), i;
         for (i = 0; i < elems.length; i++) {
-            document.getElementsByClassName("itemCliente")[i].removeEventListener("click", function () {});
+            document.getElementsByClassName("itemCliente")[i].removeEventListener("click", function () {
+            });
             document.getElementsByClassName("itemCliente")[i].addEventListener("click", function () {
                 for (var j = 0; j < itensOrcamento.length; j++) {
                     if (j == this.id) {
@@ -784,6 +760,7 @@ function initLogin() {
         request.send("dado=" + dado);
 
     }
+
     function alterarOrcamento() {
         $('#modalpreload').modal('open');
         console.log(usuario.codfuncionario);
@@ -811,11 +788,13 @@ function initLogin() {
     }
 
     function limparOrcamento() {
-        listaProdutosSolicitados();
+        if(usuario.idpermissao == 2){
+            listaProdutosSolicitados();
+        }
         cliente = null;
         itensOrcamento = [];
         total = 0;
-        document.getElementById("menu_painel").style.display="block";
+        document.getElementById("menu_painel").style.display = "block";
         document.getElementById("qtdeProduto").value = "";
         document.getElementById("titleModal").innerHTML = "";
         document.getElementById("msgModal").innerHTML = "Orcamento enviado com sucesso";
@@ -840,10 +819,10 @@ function initLogin() {
         document.getElementById("totalOrcamento").innerHTML = "Total R$";
         document.getElementById("resumoQtdeItem").value = itensOrcamento.length;
         document.getElementById("resumotTotalItens").value = numberToReal(total);
-        document.getElementById("btnFinalizaOrcamentoWeb").style.display="block";
-        document.getElementById("btnAlteraOrcamento").style.display="none";
-        document.getElementById("btnFinalizaOrcamento").style.display="block";
-        document.getElementById("btnAlteraOrcaMobile").style.display="none";
+        document.getElementById("btnFinalizaOrcamentoWeb").style.display = "block";
+        document.getElementById("btnAlteraOrcamento").style.display = "none";
+        document.getElementById("btnFinalizaOrcamento").style.display = "block";
+        document.getElementById("btnAlteraOrcaMobile").style.display = "none";
         $('ul.tabs').tabs('select_tab', 'pedidos');
     }
 
@@ -933,9 +912,6 @@ function initLogin() {
         initConfiguracao();
 
     }
-
-    verificaLogin();
-
     function consultaPermissoes() {
         document.getElementById("nomeUser").innerHTML = usuario.nome.toUpperCase();
         if (usuario.idpermissao == 1) {
@@ -946,7 +922,7 @@ function initLogin() {
             document.getElementById("btnPrincipalMobile").style.display = "none";
             document.getElementById("btnPedidosMobile").style.display = "none";
             document.getElementById("btnPedidos").style.display = "none";
-            document.getElementById("selectCliente").style.display = "none";
+            //document.getElementById("selectCliente").style.display = "none";
             document.getElementById("btnConfiguracao").style.display = "none";
             document.getElementById("btnConfiguracaoMobile").style.display = "none";
         }
@@ -954,7 +930,7 @@ function initLogin() {
             document.getElementById("container").style.display = "block";
             document.getElementById("tabs-menu").style.display = "block"
             document.getElementById("funcionario_orcamento").style.display = "block";
-            document.getElementById("selectCliente").style.display = "block";
+            //document.getElementById("selectCliente").style.display = "block";
             document.getElementById("menu_cadastros").style.display = "block";
             document.getElementById("menu_pedidos").style.display = "block";
             document.getElementById("btnConfiguracao").style.display = "block";
@@ -965,7 +941,7 @@ function initLogin() {
             document.getElementById("tabs-menu").style.display = "none";
             $('ul.tabs').tabs('select_tab', 'pedidos');
             document.getElementById("funcionario_orcamento").style.display = "block";
-            document.getElementById("selectCliente").style.display = "block";
+            //document.getElementById("selectCliente").style.display = "block";
             document.getElementById("btnConfiguracao").style.display = "none";
             document.getElementById("btnConfiguracaoMobile").style.display = "none";
         }
@@ -981,7 +957,7 @@ function initLogin() {
                         document.getElementById("funcionario_orcamento").style.display = "block";
                         document.getElementById("btnConfiguracao").style.display = "none";
                         document.getElementById("btnConfiguracaoMobile").style.display = "none";
-                        document.getElementById("selectCliente").style.display = "none";
+                        //document.getElementById("selectCliente").style.display = "none";
 
                         if (window.innerWidth > 900) {
                             document.getElementById("informatacaoCliente").style.display = "block";
@@ -1036,8 +1012,8 @@ function initLogin() {
                     for (var i = 0; i < orcamento.itens.length; i++) {
                         var produto = new Object();
                         produto.idproduto = orcamento.itens[i].PRO_PKN_CODIGO;
-                        produto.descricao =  orcamento.itens[i].descricao;
-                        produto.valor =  orcamento.itens[i].NET_M_VALOR_UNITARIO;
+                        produto.descricao = orcamento.itens[i].descricao;
+                        produto.valor = orcamento.itens[i].NET_M_VALOR_UNITARIO;
                         produto.unidade = orcamento.itens[i].unidade;
 
                         var item = new Object();
@@ -1049,11 +1025,11 @@ function initLogin() {
 
                     }
                     console.log(itensOrcamento);
-                    document.getElementById("btnAlteraOrcamento").style.display="block";
-                    document.getElementById("btnFinalizaOrcamentoWeb").style.display="none";
-                    document.getElementById("btnAlteraOrcaMobile").style.display="block";
-                    document.getElementById("btnFinalizaOrcamento").style.display="none";
-                    document.getElementById("menu_painel").style.display="none";
+                    document.getElementById("btnAlteraOrcamento").style.display = "block";
+                    document.getElementById("btnFinalizaOrcamentoWeb").style.display = "none";
+                    document.getElementById("btnAlteraOrcaMobile").style.display = "block";
+                    document.getElementById("btnFinalizaOrcamento").style.display = "none";
+                    document.getElementById("menu_painel").style.display = "none";
                     document.getElementById("informatacaoCliente").style.display = "block";
                     $('ul.tabs').tabs('select_tab', 'pedidos');
                     atualizaLista("detalheItemWeb", true);
@@ -1102,10 +1078,9 @@ function initLogin() {
                             document.getElementById(autocompete).value = produtoSelecionado.descricao.toUpperCase();
                             document.getElementById(preco).value = numberToReal(produtoSelecionado.valor);
                             document.getElementById(unidade).value = produtoSelecionado.unidade.toString();
-                            if(autocompete == "produto_orcamento"){
-                                console.log("teste");
+                            if (autocompete == "produto_orcamento") {
                                 document.getElementById("qtdeProduto").focus();
-                            }else{
+                            } else {
                                 document.getElementById("qtdeProdutoWeb").focus();
                             }
                         });
@@ -1132,9 +1107,9 @@ function initLogin() {
                                 document.getElementById(autocompete).value = produtoCliente[i].descricao.toUpperCase();
                                 document.getElementById(preco).value = numberToReal(produtoCliente[i].valor);
                                 document.getElementById(unidade).value = produtoCliente[i].unidade.toString();
-                                if(autocompete == "produto_orcamento"){
+                                if (autocompete == "produto_orcamento") {
                                     document.getElementById("qtdeProduto").focus();
-                                }else{
+                                } else {
                                     document.getElementById("qtdeProdutoWeb").focus();
                                 }
 
@@ -1173,7 +1148,8 @@ function initLogin() {
             }
         }
     }
-    function pegaTecla(){
+
+    function pegaTecla() {
         cancelarProduto();
         var tecla = event.keyCode;
         alert(tecla);
@@ -1234,7 +1210,7 @@ function initLogin() {
                                 console.log(cliente);
                                 document.getElementById("autocompletecliente").value = this.innerHTML;
                                 hideKeyBoard();
-                              });
+                            });
                         }
                         document.getElementById("dialogcliente").style.display = "block";
                     } else {
@@ -1244,11 +1220,13 @@ function initLogin() {
             }
             request.open("POST", url + "php/getClientes.php", true);
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            request.send("nome="+document.getElementById("autocompletecliente").value.toUpperCase());
+            request.send("nome=" + document.getElementById("autocompletecliente").value.toUpperCase());
         });
 
         document.getElementById("autocompletecliente").addEventListener("blur", function () {
-            setTimeout(function(){document.getElementById("dialogcliente").style.display = "none";},200);
+            setTimeout(function () {
+                document.getElementById("dialogcliente").style.display = "none";
+            }, 200);
         });
     }
 
@@ -1399,10 +1377,6 @@ function initLogin() {
          });*/
     }
 
-    function mudarCorElemento(nomeElemento, inputColor) {
-        document.getElementById(nomeElemento).style.backgroundColor = document.getElementById(inputColor).value;
-    }
-
     function desativar() {
         $(".menuOpcoes li a").removeClass();
         document.getElementById("configuracao").style.display = "none";
@@ -1436,9 +1410,8 @@ function initLogin() {
 
         limparOrcamento();
     }
-}
+    window.onbeforeunload = function () {
+        return "Os dados do formulário serão perdidos.";
+    }
 
-window.onbeforeunload = function () {
-    return "Os dados do formulário serão perdidos.";
-}
-
+});
