@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
     verificaLogin();
 
 
-
     //Inicia a Configuração de Layout e Eventos
     function initConfiguracao() {
         var request = new XMLHttpRequest();
@@ -50,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     document.getElementById("addItemOrcaWeb").addEventListener("click", function () {
                         addItem("qtdeProdutoWeb", "detalheItemWeb", true)
                     });
-                    document.getElementById("excluirPedido").addEventListener("click",excluirPedido);
+                    document.getElementById("excluirPedido").addEventListener("click", excluirPedido);
                     document.getElementById("btnFinalizaOrcamento").addEventListener("click", mostraFormaPagamento);//Finalizar Orcamento
                     document.getElementById("btnFinalizaOrcamentoWeb").addEventListener("click", mostraFormaPagamento);//Finalizar Orcamento
                     document.getElementById("btnAlteraOrcamento").addEventListener("click", alterarOrcamento);
@@ -80,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                         $(".modalCancelaPedido").modal('close');
                     });
                     opcaoItem();
-                    preencheClientes();
+
                 }
                 if (usuario.idpermissao == 2) {
                     listaProdutosSolicitados();
@@ -126,13 +125,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 orcamentos = JSON.parse(request.responseText);
                 var lista = "";
                 for (var i = 0; i < orcamentos.length; i++) {
-                    lista += "<li class='orcaitem' id='"+i+"'><div class='collapsible-header'>" + orcamentos[i].NET_PKN_SEQUENCIAL + " - " + orcamentos[i].NET_A_CLI_NOME.substr(0, 35) + ".</div></li>";
+                    lista += "<li class='orcaitem' id='" + i + "'><div class='collapsible-header'>" + orcamentos[i].NET_PKN_SEQUENCIAL + " - " + orcamentos[i].NET_A_CLI_NOME.substr(0, 35) + ".</div></li>";
                 }
                 document.getElementById("orcamentos").innerHTML = lista;
                 var elems = document.getElementsByClassName("orcaitem"), i;
                 for (i = 0; i < elems.length; i++) {
-                    document.getElementsByClassName("orcaitem")[i].removeEventListener("click",function(){});
-                    document.getElementsByClassName("orcaitem")[i].addEventListener("click",function(){
+                    document.getElementsByClassName("orcaitem")[i].removeEventListener("click", function () {
+                    });
+                    document.getElementsByClassName("orcaitem")[i].addEventListener("click", function () {
                         mostraPedido(orcamentos[this.id]);
                     });
                 }
@@ -152,19 +152,21 @@ document.addEventListener("DOMContentLoaded", function (event) {
             request.send("id=" + usuario.codparticipante);
         }
     }
-    function mostraPedido(orca){
+
+    function mostraPedido(orca) {
         orcamento = orca;
-        document.getElementById("pedidoNum").innerHTML="NUMERO: "+orcamento.NET_PKN_SEQUENCIAL;
-        document.getElementById("pedidoCliente").innerHTML="CLIENTE: "+orcamento.NET_A_CLI_NOME.toUpperCase();
-        document.getElementById("pedidoData").innerHTML="DATA: "+dataAtualFormatada(orcamento.NET_D_DATA);
+        document.getElementById("pedidoNum").innerHTML = "NUMERO: " + orcamento.NET_PKN_SEQUENCIAL;
+        document.getElementById("pedidoCliente").innerHTML = "CLIENTE: " + orcamento.NET_A_CLI_NOME.toUpperCase();
+        document.getElementById("pedidoData").innerHTML = "DATA: " + dataAtualFormatada(orcamento.NET_D_DATA);
         $("#modalDadosPedido").modal({dismissible: false});
         $("#modalDadosPedido").modal("open");
     }
-    function excluirPedido(){
+
+    function excluirPedido() {
         $("#modalDadosPedido").modal("close");
         $("#modalpreload").modal("close");
         var verificar = confirm("Deseja excluir o pedido ?");
-        if(verificar == false){
+        if (verificar == false) {
             return;
         }
         var request = new XMLHttpRequest();
@@ -175,6 +177,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         request.send();
 
     }
+
     function listaProdutosSolicitados() {
         document.getElementById("preloadItens").style.display = "block";
         document.getElementById("produtos").innerHTML = "";
@@ -392,6 +395,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             document.getElementById("email").setAttribute("class", "validate invalid");
         }
     }
+
 //Verifica a Senha
     function verificaSenha(senha) {
         document.getElementById("progress").style.display = "block";
@@ -411,7 +415,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
 //checa se  tem error de digitação
-    
+
 //inicia a sessao
     function startSession(conectado) {
         var xmlhttp = new XMLHttpRequest();
@@ -424,6 +428,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         xmlhttp.open("GET", url + "php/startSession.php?idusuario=" + usuario.idlogin + "&conexao=" + conectado, true);
         xmlhttp.send();
     }
+
 //verifica se o usuario esta logado
     function verificaLogin() {
         var xmlhttp = new XMLHttpRequest();
@@ -460,9 +465,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
 //logout
     function logout() {
 
-        if(cliente != null){
+        if (cliente != null) {
             var result = confirm("Orcamento não finalizado,Deseja sair ?");
-            if(result == false){
+            if (result == false) {
                 return;
             }
         }
@@ -484,6 +489,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         if (cliente != null) {
             document.getElementById("menu_painel").style.display = "none";
             document.getElementById("selectCliente").style.display = "none";
+            document.getElementById("selecaoCliente").style.display = "none";
             document.getElementById("addItens").style.display = "block";
             document.getElementById("informatacaoCliente").style.display = "block";
             document.getElementById("infoNome").value = cliente.PAR_A_RAZAOSOCIAL;
@@ -510,7 +516,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             document.getElementById("qtdeProduto").focus();
             return;
         }
-        if(item.produto.valor <= 0){
+        if (item.produto.valor <= 0) {
             Materialize.toast('PRODUTO NÃO CONTEM PREÇO', 5000);
             document.getElementById("qtdeProduto").focus();
             return;
@@ -788,17 +794,24 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
     function limparOrcamento() {
-        if(usuario.idpermissao == 2){
+        if (usuario.idpermissao == 2) {
             listaProdutosSolicitados();
         }
         cliente = null;
         itensOrcamento = [];
         total = 0;
+
         document.getElementById("menu_painel").style.display = "block";
         document.getElementById("qtdeProduto").value = "";
+        document.getElementById("pesquisaRazaoSocial").value = "";
         document.getElementById("titleModal").innerHTML = "";
+        document.getElementById("tipoPesquisa1").innerHTML = "";
+        document.getElementById("tipoPesquisa2").innerHTML = "";
+        document.getElementById("tipoPesquisa3").innerHTML = "";
+        document.getElementById("tipoPesquisa4").innerHTML = "";
         document.getElementById("msgModal").innerHTML = "Orcamento enviado com sucesso";
-        document.getElementById("selectCliente").style.display = "block";
+        //document.getElementById("selectCliente").style.display = "block";
+        document.getElementById("selecaoCliente").style.display = "block";
         document.getElementById("addItens").style.display = "none";
         document.getElementById("menu_painel").style.display = "block";
         document.getElementById("datelhe_item").innerHTML = "";
@@ -909,9 +922,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
             $('select').material_select();
             $('#modalpreload').modal('open');
         });
+        preencheClientes();
         initConfiguracao();
 
     }
+
     function consultaPermissoes() {
         document.getElementById("nomeUser").innerHTML = usuario.nome.toUpperCase();
         if (usuario.idpermissao == 1) {
@@ -1187,48 +1202,184 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 //preenche o select com os clientes
     function preencheClientes() {
-        document.getElementById("autocompletecliente").addEventListener("input", function () {
-            request = new XMLHttpRequest();
-            request.onreadystatechange = function () {
-                if (request.readyState == 4 && request.status == 200) {
-                    clientes = [];
-                    clientes = JSON.parse(request.responseText);
-                    var select = "";
-                    for (var i = 0; i < clientes.length; i++) {
-                        select += '<div class="selecionaCliente" id="' + i + '">' + clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase() + '</div>';
-                    }
-                    if (clientes.length > 0) {
-                        document.getElementById("dialogcliente").innerHTML = select;
-                        var elems = document.getElementsByClassName("selecionaCliente"), i;
-                        for (i = 0; i < elems.length; i++) {
-                            document.getElementsByClassName("selecionaCliente")[i].removeEventListener("click", function () {
-                            });
-                            document.getElementsByClassName("selecionaCliente")[i].addEventListener("click", function () {
-                                document.getElementById("dialogcliente").style.display = "none";
-                                limparOrcamento();
-                                cliente = clientes[this.id];
-                                console.log(cliente);
-                                document.getElementById("autocompletecliente").value = this.innerHTML;
-                                hideKeyBoard();
-                            });
-                        }
-                        document.getElementById("dialogcliente").style.display = "block";
-                    } else {
-                        document.getElementById("dialogcliente").style.display = "none";
-                    }
-                }
+        request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 && request.status == 200) {
+                clientes = [];
+                clientes = JSON.parse(request.responseText);
+                autoCompleteCliente("pesquisaRazaoSocial");
+                popularClienteAutoComplete();
             }
-            request.open("POST", url + "php/getClientes.php", true);
-            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            request.send("nome=" + document.getElementById("autocompletecliente").value.toUpperCase());
-        });
-
+        }
+        request.open("POST", url + "php/getClientes.php", true);
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        request.send("nome=" + document.getElementById("autocompletecliente").value.toUpperCase());
         document.getElementById("autocompletecliente").addEventListener("blur", function () {
             setTimeout(function () {
                 document.getElementById("dialogcliente").style.display = "none";
             }, 200);
         });
     }
+
+    var DURACAO_DIGITACAO = 400,
+        digitando = false,
+        tempoUltimaDigitacao;
+
+    function autoCompleteCliente(autocomplete) {
+        document.getElementById(autocomplete).addEventListener("input", function () {
+            atualizaPesquisa(autocomplete);
+        });
+    }
+
+    function atualizaPesquisa(autocomplete) {
+        if (!digitando) {
+            digitando = true;
+            document.getElementById("tipoPesquisa1").innerHTML = "";
+            document.getElementById("tipoPesquisa2").innerHTML = "";
+            document.getElementById("tipoPesquisa3").innerHTML = "";
+            document.getElementById("tipoPesquisa4").innerHTML = "";
+            document.getElementById("preloadPesquisa").style.display = "block";
+        }
+        tempoUltimaDigitacao = (new Date()).getTime();
+
+        setTimeout(function () {
+            var digitacaoTempo = (new Date()).getTime();
+            var diferencaTempo = digitacaoTempo - tempoUltimaDigitacao;
+
+            if (diferencaTempo >= DURACAO_DIGITACAO && digitando) {
+                digitando = false;
+                var razao = "";
+                var nome = "";
+                var doc = "";
+                var local = "";
+                var str = document.getElementById(autocomplete).value;
+                if (str != "") {
+                    for (var i = 0; i < clientes.length; i++) {
+                        var endereco = ' ' + clientes[i].PAR_A_ENDERECO + '' +
+                            ' ' + clientes[i].PAR_A_NUMERO + ' - ' + clientes[i].PAR_A_BAIRRO + '/' +
+                            '' + clientes[i].PAR_A_CIDADE;
+                        if (clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase().indexOf(str.toUpperCase()) >= 0) {
+                            razao += '<div class="col s12 clientePesquisa" id="' + i + '">';
+                            razao += '<div class="col s2">';
+                            razao += '<img class="imgresult circle" src="uploads/default.png">';
+                            razao += '    </div>';
+                            razao += '    <div class="col s10">';
+                            razao += '    <div class="col s12">';
+                            razao += '    <p>' + clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase() + '</p>';
+                            razao += '    </div>';
+                            razao += '    <div class="col s12">';
+                            razao += '    <label>' + clientes[i].PAR_A_LOGRADOURO + '' +
+                                ' ' + clientes[i].PAR_A_ENDERECO + '' +
+                                ' ' + clientes[i].PAR_A_NUMERO + ' - ' + clientes[i].PAR_A_BAIRRO + '/' +
+                                '' + clientes[i].PAR_A_CIDADE + '</br>' +
+                                '' + clientes[i].PAR_A_CNPJ_CPF + '</label>';
+                            razao += '    </div>';
+                            razao += '    </div>';
+                            razao += '</div> ';
+                        }
+                        if (clientes[i].PAR_A_NOME_FANTASIA.toUpperCase().indexOf(str.toUpperCase()) >= 0) {
+                            nome += '<div class="col s12 clientePesquisa" id="' + i + '">';
+                            nome += '<div class="col s2">';
+                            nome += '<img class="imgresult circle" src="uploads/default.png">';
+                            nome += '    </div>';
+                            nome += '    <div class="col s10">';
+                            nome += '    <div class="col s12">';
+                            nome += '    <p>' + clientes[i].PAR_A_NOME.toUpperCase() + '</p>';
+                            nome += '    </div>';
+                            nome += '    <div class="col s12">';
+                            nome += '    <label>' + clientes[i].PAR_A_LOGRADOURO + '' +
+                                ' ' + clientes[i].PAR_A_ENDERECO + '' +
+                                ' ' + clientes[i].PAR_A_NUMERO + ' - ' + clientes[i].PAR_A_BAIRRO + '/' +
+                                '' + clientes[i].PAR_A_CIDADE + '</br>' +
+                                '' + clientes[i].PAR_A_CNPJ_CPF + '</label>';
+                            nome += '    </div>';
+                            nome += '    </div>';
+                            nome += '</div> ';
+                        }
+                        if (endereco.indexOf(str.toUpperCase()) >= 0) {
+                            local += '<div class="col s12 clientePesquisa" id="' + i + '">';
+                            local += '<div class="col s2">';
+                            local += '<img class="imgresult circle" src="uploads/default.png">';
+                            local += '    </div>';
+                            local += '    <div class="col s10">';
+                            local += '    <div class="col s12">';
+                            local += '    <p>' + clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase() + '</p>';
+                            local += '    </div>';
+                            local += '    <div class="col s12">';
+                            local += '    <label>' + clientes[i].PAR_A_LOGRADOURO + '' +
+                                ' ' + clientes[i].PAR_A_ENDERECO + '' +
+                                ' ' + clientes[i].PAR_A_NUMERO + ' - ' + clientes[i].PAR_A_BAIRRO + '/' +
+                                '' + clientes[i].PAR_A_CIDADE + '</br>' +
+                                '' + clientes[i].PAR_A_CNPJ_CPF + '</label>';
+                            local += '    </div>';
+                            local += '    </div>';
+                            local += '</div> ';
+                        }
+                    }
+                }
+                if (clientes.length > 0) {
+                    document.getElementById("preloadPesquisa").style.display = "none";
+                    document.getElementById("tipoPesquisa1").innerHTML = razao;
+                    document.getElementById("tipoPesquisa2").innerHTML = nome;
+                    document.getElementById("tipoPesquisa3").innerHTML = doc;
+                    document.getElementById("tipoPesquisa4").innerHTML = local;
+                    var elems = document.getElementsByClassName("clientePesquisa"), i;
+                    for (i = 0; i < elems.length; i++) {
+                        document.getElementsByClassName("clientePesquisa")[i].removeEventListener("click", function () {
+                        });
+                        document.getElementsByClassName("clientePesquisa")[i].addEventListener("click", function () {
+                            limparOrcamento();
+                            cliente = clientes[this.id];
+                            console.log(cliente);
+                            habilitaTelaItem()
+                            hideKeyBoard();
+                        });
+                    }
+                    document.getElementById("dialogcliente").style.display = "block";
+                } else {
+                    document.getElementById("dialogcliente").style.display = "none";
+                }
+            }
+        }, DURACAO_DIGITACAO);
+    }
+
+    function popularClienteAutoComplete() {
+
+        document.getElementById("autocompletecliente").addEventListener("input", function () {
+            var select = "";
+            for (var i = 0; i < clientes.length; i++) {
+                if (clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase().indexOf(str.toUpperCase()) >= 0) {
+                    select += '<div class="selecionaCliente" id="' + i + '">' + clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase() + '</div>';
+                }
+            }
+            if (clientes.length > 0) {
+                document.getElementById("dialogcliente").innerHTML = select;
+                var elems = document.getElementsByClassName("selecionaCliente"), i;
+                for (i = 0; i < elems.length; i++) {
+                    document.getElementsByClassName("selecionaCliente")[i].removeEventListener("click", function () {
+                    });
+                    document.getElementsByClassName("selecionaCliente")[i].addEventListener("click", function () {
+                        document.getElementById("dialogcliente").style.display = "none";
+                        limparOrcamento();
+                        cliente = clientes[this.id];
+                        console.log(cliente);
+                        document.getElementById("autocompletecliente").value = this.innerHTML;
+                        hideKeyBoard();
+                    });
+                }
+                document.getElementById("dialogcliente").style.display = "block";
+            } else {
+                document.getElementById("dialogcliente").style.display = "none";
+            }
+
+        });
+        document.getElementById("autocompletecliente").addEventListener("blur", function () {
+            setTimeout(function () {
+                document.getElementById("dialogcliente").style.display = "none";
+            }, 200);
+        });
+    }
+
 
     function preencheAutoFuncionario() {
         request = new XMLHttpRequest();
@@ -1410,8 +1561,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         limparOrcamento();
     }
+
     window.onbeforeunload = function () {
         return "Os dados do formulário serão perdidos.";
     }
 
-});
+})
+;

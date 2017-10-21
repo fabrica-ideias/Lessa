@@ -315,6 +315,15 @@
         margin: 0px!important;
 
     }
+    #preloadPesquisa{
+        font-family: Lucida Console,Lucida Sans Typewriter,monaco,Bitstream Vera Sans Mono,monospace;
+        color: #989898;
+        font-size: 1em;
+        background-color: #fff;
+        border-bottom: 1px solid #ddd;
+        padding:10px 30px;
+        display: none;
+    }
     a.tipoPesquisa.active{
         color: #000 !important;
     }
@@ -330,6 +339,11 @@
         padding: 10px !important;
         background-color: #fff;
         border:none;
+    }
+    .resultCliente{
+        position: absolute;
+        max-height: 75%;
+        overflow-y: scroll;
     }
     .clientePesquisa p,.clientePesquisa label , .clientePesquisa img{
         float: left;
@@ -801,6 +815,12 @@
         width: 100%;
     }
     #habilitaOrcamento{
+        display: block;
+    }
+    #selecaoCliente{
+        display: none;
+    }
+    #selectCliente{
         display: block;
     }
 }

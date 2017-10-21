@@ -28,7 +28,20 @@ class Fachada{
 	}
 	function getClientes(){
 		include("conexao.php");
-		$result = mysqli_query($con,"SELECT * FROM TB_PAR_PARTICIPANTE ORDER BY PAR_A_RAZAOSOCIAL ASC") ;
+		$result = mysqli_query($con,"SELECT 
+			PAR_PKN_CODIGO,
+			PAR_A_RAZAOSOCIAL,
+			PAR_A_NOME,
+			PAR_A_NOME_FANTASIA,
+			PAR_A_LOGRADOURO,
+			PAR_A_ENDERECO,
+			PAR_A_NUMERO,
+			PAR_A_BAIRRO,
+			PAR_A_CIDADE,
+			PAR_A_CNPJ_CPF,
+			TAB_PKN_CODIGO
+			
+			FROM TB_PAR_PARTICIPANTE ORDER BY PAR_A_RAZAOSOCIAL ASC") ;
 		$clientes = [];
 		while($dados= mysqli_fetch_array($result)){
 			$clientes[] = $dados;
