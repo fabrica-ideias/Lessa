@@ -34,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     document.getElementById("btnConfiguracaoMobile").addEventListener("click", abrirConfiguracao);//abri as configuração de cores da tela
                     document.getElementById("logoutMobile").addEventListener("click", logout); //Faz logout
                     document.getElementById("btnSalvaUsuario").addEventListener("click", salvaUsuario);// Salva o Usuario
-                    document.getElementById("btnOrcaProximo").addEventListener("click", habilitaTelaItem);//FUNÇÕE DO ORCAMENTO DO FUNCIONARIO
                     document.getElementById("cancelaAddItem").addEventListener("click", function () {
                         document.getElementById("submenu").style.display = "block";
                     });
@@ -288,8 +287,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     function habilitaOrcamento() {
         if (cliente != null) {
-            document.getElementById("selectCliente").style.display = "none";
             document.getElementById("informatacaoCliente").style.display = "block";
+            document.getElementById("opcaoSelecao").style.display = "none";
             document.getElementById("addItensWeb").style.display = "block";
             document.getElementById("infoNome").value = cliente.PAR_A_RAZAOSOCIAL;
             selectProdutoCliente(cliente, "autocompleteproduto", "precoProdutoWeb", "unidadeProdutoWeb", "dialogProduto");
@@ -338,7 +337,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
     function checarTipoUsuario() {
         $("#tipoUsuario").change(function () {
             document.getElementById("dadosUser").style.display = "block";
-            if (document.getElementById("tipoUsuario").value >= 1 && document.getElementById("tipoUsuario").value <= 3) {
+            if (document.getElementById("tipoUsuario").value >= 1 && document.getElementById("tipoUsuario").value <= 3 ||
+                document.getElementById("tipoUsuario").value == 5) {
                 preencheAutoFuncionario();
                 document.getElementById("autofuncionario").style.display = "block";
                 document.getElementById("autocomcliente").style.display = "none";
@@ -488,8 +488,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     function habilitaTelaItem() {
         if (cliente != null) {
             document.getElementById("menu_painel").style.display = "none";
-            document.getElementById("selectCliente").style.display = "none";
-            document.getElementById("selecaoCliente").style.display = "none";
+            document.getElementById("opcaoSelecao").style.display = "none";
             document.getElementById("addItens").style.display = "block";
             document.getElementById("informatacaoCliente").style.display = "block";
             document.getElementById("infoNome").value = cliente.PAR_A_RAZAOSOCIAL;
@@ -811,7 +810,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         document.getElementById("tipoPesquisa4").innerHTML = "";
         document.getElementById("msgModal").innerHTML = "Orcamento enviado com sucesso";
         //document.getElementById("selectCliente").style.display = "block";
-        document.getElementById("selecaoCliente").style.display = "block";
+        document.getElementById("opcaoSelecao").style.display = "block";
         document.getElementById("addItens").style.display = "none";
         document.getElementById("menu_painel").style.display = "block";
         document.getElementById("datelhe_item").innerHTML = "";
@@ -929,6 +928,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     function consultaPermissoes() {
         document.getElementById("nomeUser").innerHTML = usuario.nome.toUpperCase();
+        document.getElementById("btnPrincipal").style.display = "block";
+        document.getElementById("btnPrincipalMobile").style.display = "block";
+        document.getElementById("btnPedidos").style.display = "block";
+        document.getElementById("btnPedidosMobile").style.display = "block";
+        document.getElementById("conteudo_painel").style.display = "block";
+        document.getElementById("funcionario_orcamento").style.display = "block";
+        document.getElementById("btnConfiguracao").style.display = "block";
+        document.getElementById("btnConfiguracaoMobile").style.display = "block";
         if (usuario.idpermissao == 1) {
             document.getElementById("tabs-menu").style.display = "none";
             document.getElementById("conteudo_painel").style.display = "none";
@@ -994,7 +1001,42 @@ document.addEventListener("DOMContentLoaded", function (event) {
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             request.send("codigo=" + usuario.codparticipante);
         }
+        if (usuario.idpermissao == 5) {
+            document.getElementById("tabs-menu").style.display = "none";
+            document.getElementById("btnPrincipal").style.display = "none";
+            document.getElementById("btnPrincipalMobile").style.display = "none";
+            document.getElementById("btnPedidos").style.display = "none";
+            document.getElementById("btnPedidosMobile").style.display = "none";
+            document.getElementById("conteudo_painel").style.display = "none";
+            document.getElementById("funcionario_orcamento").style.display = "none";
+            document.getElementById("btnConfiguracao").style.display = "none";
+            document.getElementById("btnConfiguracaoMobile").style.display = "none";
+            conferirOrcamentos();
+        }
         document.getElementById("container").style.display = "block";
+
+    }
+
+    function conferirOrcamentos() {
+        request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
+                var lis = "";
+                orcamentos = [];
+                orcamentos = JSON.parse(request.responseText);
+                for(var i = 0 ; i < orcamentos.length; i++){
+                    lis += '<li><div class="row"><div class="col s12">';
+                    lis += '<div class="col s2"> 342</div>';
+                    lis += '<div class="col s10"> TESTE JOSE ALMEIDA TESTE</div></div>';
+                    lis += '<div class="col s12 subitem">';
+                    lis += '<div class="col s10"> 14/08/1997</div>';
+                    lis += '<div class="col s2"> STATUS </div></div></div></li>';
+                }
+                document.getElementById("orcamentosConferir").innerHTML = lis;
+            }
+        }
+        request.open("POST", url + "php/getOrcamentos.php", true);
+        request.send();
 
     }
 
