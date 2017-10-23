@@ -1226,6 +1226,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
         tempoUltimaDigitacao;
 
     function autoCompleteCliente(autocomplete) {
+        $('ul.tipo').tabs('select_tab', 'tipoPesquisa1');
+
         document.getElementById(autocomplete).addEventListener("input", function () {
             atualizaPesquisa(autocomplete);
         });
@@ -1258,7 +1260,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                         var endereco = ' ' + clientes[i].PAR_A_ENDERECO + '' +
                             ' ' + clientes[i].PAR_A_NUMERO + ' - ' + clientes[i].PAR_A_BAIRRO + '/' +
                             '' + clientes[i].PAR_A_CIDADE;
-                        if (clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase().indexOf(str.toUpperCase()) >= 0) {
+                        if (clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase().startsWith(str.toUpperCase())) {
                             razao += '<div class="col s12 clientePesquisa" id="' + i + '">';
                             razao += '<div class="col s2">';
                             razao += '<img class="imgresult circle" src="uploads/default.png">';
@@ -1277,7 +1279,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                             razao += '    </div>';
                             razao += '</div> ';
                         }
-                        if (clientes[i].PAR_A_NOME_FANTASIA.toUpperCase().indexOf(str.toUpperCase()) >= 0) {
+                        if (clientes[i].PAR_A_NOME_FANTASIA.toUpperCase().startsWith(str.toUpperCase())) {
                             nome += '<div class="col s12 clientePesquisa" id="' + i + '">';
                             nome += '<div class="col s2">';
                             nome += '<img class="imgresult circle" src="uploads/default.png">';
@@ -1348,7 +1350,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         document.getElementById("autocompletecliente").addEventListener("input", function () {
             var select = "";
             for (var i = 0; i < clientes.length; i++) {
-                if (clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase().indexOf(str.toUpperCase()) >= 0) {
+                if (clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase().startsWith(this.value.toUpperCase())) {
                     select += '<div class="selecionaCliente" id="' + i + '">' + clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase() + '</div>';
                 }
             }
