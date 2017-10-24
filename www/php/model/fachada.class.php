@@ -16,9 +16,9 @@ class Fachada{
 		}
 		return null;
 	}
-	function getUsuarioEmail($email){
+	function getUsuarioEmail($email,$senha){
 		include("conexao.php");
-		$result = mysqli_query($con,"select * from login where email='$email'");
+		$result = mysqli_query($con,"select * from login where email='$email' and senha = '$senha'");
 		if( mysqli_num_rows($result)){
 			$dados =  mysqli_fetch_array($result);
 			echo json_encode($dados);
@@ -144,7 +144,9 @@ class Fachada{
 	}
 	function getProdutoCliente($codigo){
 		include("conexao.php");
-		$result = mysqli_query($con,"SELECT * from TB_PRO_PRODUTO as prod,TB_ITB_PRECO_PAR as itbpreco where itbpreco.TAB_PKN_CODIGO = '$codigo' and prod.PRO_PKN_CODIGO = itbpreco.PRO_PKN_CODIGO ORDER BY PRO_A_DESCRICAO");
+		$result = mysqli_query($con,"SELECT prod.PRO_PKN_CODIGO,prod.PRO_A_DESCRICAO,
+ 				itbpreco.PRO_N_PRECO_VENDA_01_ITB, prod.PRO_A_UNIDADE
+ 				from TB_PRO_PRODUTO as prod,TB_ITB_PRECO_PAR as itbpreco where itbpreco.TAB_PKN_CODIGO = '$codigo' and prod.PRO_PKN_CODIGO = itbpreco.PRO_PKN_CODIGO ORDER BY PRO_A_DESCRICAO");
 		$produtos = array();
 		if(mysqli_num_rows($result) > 0 && $codigo != "null"){
 			while($dados= mysqli_fetch_array($result)){
@@ -157,7 +159,8 @@ class Fachada{
 			}
 			echo json_encode($produtos, JSON_UNESCAPED_UNICODE);
 		}else{
-			$result = mysqli_query($con,"SELECT * FROM `TB_PRO_PRODUTO` ORDER BY `PRO_A_DESCRICAO` ASC");
+			$result = mysqli_query($con,"SELECT PRO_PKN_CODIGO,PRO_A_DESCRICAO,PRO_N_PRECO_VENDA_01,
+ 				PRO_A_UNIDADE FROM `TB_PRO_PRODUTO` ORDER BY `PRO_A_DESCRICAO` ASC");
 			$produtos = array();
 			while($dados= mysqli_fetch_array($result)){
 				$produto = [];

@@ -1,26 +1,12 @@
 document.addEventListener("DOMContentLoaded", function (event) {
-    var verificarEmail = false;
-    var usuario = null;
-    var config = null;
-    var validaEmail = false;
-    var produtoCliente = [];
-    var produtoSelecionado = null;
-    var clientes = [];
-    var funcionarios = [];
-    var orcamentos = [];
-    var orcamento = null;
-    var itensOrcamento = [];
-    var funcionario = null;
-    var cliente = null;
+    var verificarEmail = false, validaEmail = false, alteracaoItem = false;
+    var produtosSolicitados = [], produtoCliente = [], clientes = [], funcionarios = [], orcamentos = [], itensOrcamento = [];
+    var produtoSelecionado = null, orcamento = null, funcionario = null, cliente = null, config = null;
+    ;
+    var indexProduto = 0, total = 0, iniciou = 0;
     var url = "";
-    var indexProduto = 0;
-    var total = 0;
-    var iniciou = 0;
-    var alteracaoItem = false;
 
     verificaLogin();
-
-
     //Inicia a Configuração de Layout e Eventos
     function initConfiguracao() {
         var request = new XMLHttpRequest();
@@ -48,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     document.getElementById("addItemOrcaWeb").addEventListener("click", function () {
                         addItem("qtdeProdutoWeb", "detalheItemWeb", true)
                     });
-                    document.getElementById("excluirPedido").addEventListener("click", excluirPedido);
                     document.getElementById("btnFinalizaOrcamento").addEventListener("click", mostraFormaPagamento);//Finalizar Orcamento
                     document.getElementById("btnFinalizaOrcamentoWeb").addEventListener("click", mostraFormaPagamento);//Finalizar Orcamento
                     document.getElementById("btnAlteraOrcamento").addEventListener("click", alterarOrcamento);
@@ -58,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     document.getElementById("btnPedidos").addEventListener("click", mostraOrcamentos);
                     document.getElementById("btnPedidosMobile").addEventListener("click", mostraOrcamentos);
                     document.getElementById("qtdeProdutoWeb").addEventListener("input", calculaProduto);
+                    document.getElementById("buscaProduto").addEventListener("input", filtraProdutos);
                     document.getElementById("qtdeProdutoWeb").addEventListener("keyup", addPedidoEnter);
                     document.getElementById("qtdeProduto").addEventListener("input", function () {
                         document.getElementById("totalProduto").value = numberToReal(this.value * produtoSelecionado.valor);
@@ -157,23 +143,51 @@ document.addEventListener("DOMContentLoaded", function (event) {
         document.getElementById("pedidoNum").innerHTML = "NUMERO: " + orcamento.NET_PKN_SEQUENCIAL;
         document.getElementById("pedidoCliente").innerHTML = "CLIENTE: " + orcamento.NET_A_CLI_NOME.toUpperCase();
         document.getElementById("pedidoData").innerHTML = "DATA: " + dataAtualFormatada(orcamento.NET_D_DATA);
+        console.log(orcamento.itens);
+        var itens = "";
+        for (var i = 0; i < orcamento.itens.length; i++) {
+            if (i % 2 == 0) {
+                itens += '<li>';
+            } else {
+                itens += '<li class="zebraItem">';
+            }
+            itens += '<div class="row">';
+            itens += '<div class="col s6">' + orcamento.itens[i].descricao + '</div>';
+            itens += '<div class="col s2">' + mascaraQuantidade(orcamento.itens[i].NET_ITEM_QTD) + '</div>';
+            itens += '<div class="col s2">' + numberToReal(orcamento.itens[i].NET_M_VALOR_UNITARIO) + '</div>';
+            itens += '<div class="col s2">' + numberToReal(orcamento.itens[i].NET_ITEM_QTD * orcamento.itens[i].NET_M_VALOR_UNITARIO) + '</div>';
+            itens += '</div>';
+            itens += '</li>';
+        }
+        document.getElementById("itemOrcamentos").innerHTML = itens;
         $("#modalDadosPedido").modal({dismissible: false});
         $("#modalDadosPedido").modal("open");
     }
 
-    function excluirPedido() {
-        $("#modalDadosPedido").modal("close");
-        $("#modalpreload").modal("close");
-        var verificar = confirm("Deseja excluir o pedido ?");
-        if (verificar == false) {
-            return;
+    function filtraProdutos() {
+        if (produtosSolicitados.length > 0) {
+            document.getElementById("preloadBuscaProduto").style.display = "block";
+            var select = "";
+            var qtdeAcumulada = 0;
+            for (var i = 0; i < produtosSolicitados.length; i++) {
+                if (produtosSolicitados[i].descricao.startsWith(document.getElementById("buscaProduto").value.toUpperCase())) {
+                    select += '    <a class="col s12 itemlista itemacumulado" id="' + i + '">' +
+                        '<div class="row" style="padding: 5px;"><div class="col s12">' + produtosSolicitados[i].descricao.substring(0, 40) + '</div></div>'
+                        + '<div class="row"><div class="col m4 l8" ></div>' +
+                        '<div class="col s3 m2 l1" style="text-align: center">UNIDADE</br>' + produtosSolicitados[i].unidade + '</div>'
+                        + '<div class="col s3 m2 l1" style="text-align: center">VENDIDO</br>' + produtosSolicitados[i].qtde + '</div>'
+                        + '<div class="col s3 m2 l1" style="text-align: center">ESTOQUE</br>0</div>'
+                        + '<div class="col s3 m2 l1" style="text-align: center">SALDO</br>' + (0 - produtosSolicitados[i].qtde) + '</div></div>'
+                        + '</a>';
+                    qtdeAcumulada += produtosSolicitados[i].qtde;
+                }
+            }
+            document.getElementById("preloadItens").style.display = "none";
+            document.getElementById("produtos").innerHTML = select;
+            document.getElementById("qtdeItemAcumulado").value = qtdeAcumulada;
+            document.getElementById("preloadBuscaProduto").style.display = "none";
+            mostraPedidoItemSolicitado();
         }
-        var request = new XMLHttpRequest();
-        request.onreadystatechange = function () {
-            mostraOrcamentos();
-        }
-        request.open("GET", url + "php/excluirPedido.php?id=" + orcamento.NET_PKN_SEQUENCIAL, true);
-        request.send();
 
     }
 
@@ -184,101 +198,111 @@ document.addEventListener("DOMContentLoaded", function (event) {
         request.onreadystatechange = function () {
             if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
                 var result = JSON.parse(request.responseText);
-                var produtos = [];
-                for (var i = 0; i < result.length; i++) {
-                    for (var j = 0; j < result[i].itens.length; j++) {
-                        var verifica = false;
-                        for (var k = 0; k < produtos.length; k++) {
-                            if (result[i].itens[j].PRO_PKN_CODIGO == produtos[k].codigo) {
-                                produtos[k].qtde = parseInt(produtos[k].qtde) + parseInt(result[i].itens[j].NET_ITEM_QTD);
-                                if (produtos[k].orcamentos.indexOf(result[i]) <= -1) {
-                                    produtos[k].orcamentos.push(result[i]);
-                                }
-
-                                verifica = true;
-                            }
-                        }
-                        if (verifica == false) {
-                            produtos.push(
-                                {
-                                    codigo: result[i].itens[j].PRO_PKN_CODIGO,
-                                    descricao: result[i].itens[j].descricao,
-                                    qtde: parseInt(result[i].itens[j].NET_ITEM_QTD),
-                                    unidade: result[i].itens[j].unidade,
-                                    orcamentos: [result[i]]
-                                });
-                        }
-                    }
-                }
-                produtos.sort(function (a, b) {
-                    return a.descricao < b.descricao ? -1 : a.descricao > b.descricao ? 1 : 0;
-                });
-                var select = "";
-                var qtdeAcumulada = 0;
-                for (var i = 0; i < produtos.length; i++) {
-                    select += '    <a class="col s12 itemlista itemacumulado" id="' + i + '">' +
-                        '<div class="row" style="padding: 5px;"><div class="col s12">' + produtos[i].descricao.substring(0, 40) + '</div></div>'
-                        + '<div class="row"><div class="col m4 l8" ></div>' +
-                        '<div class="col s3 m2 l1" style="text-align: center">UNIDADE</br>' + produtos[i].unidade + '</div>'
-                        + '<div class="col s3 m2 l1" style="text-align: center">VENDIDO</br>' + produtos[i].qtde + '</div>'
-                        + '<div class="col s3 m2 l1" style="text-align: center">ESTOQUE</br>0</div>'
-                        + '<div class="col s3 m2 l1" style="text-align: center">SALDO</br>' + (0 - produtos[i].qtde) + '</div></div>'
-                        + '</a>';
-                    qtdeAcumulada += produtos[i].qtde;
-                }
-                document.getElementById("preloadItens").style.display = "none";
-                document.getElementById("produtos").innerHTML = select;
-                document.getElementById("qtdeItemAcumulado").value = qtdeAcumulada;
-
-                for (var i = 0; i < produtos.length; i++) {
-                    document.getElementsByClassName("itemacumulado")[i].removeEventListener("click", function () {
-                    });
-                    document.getElementsByClassName("itemacumulado")[i].addEventListener("click", function () {
-                        orcamentos = [];
-                        var pedidos = "";
-                        for (var j = 0; j < produtos[this.id].orcamentos.length; j++) {
-                            var orcamento = produtos[this.id].orcamentos[j];
-                            orcamentos.push(orcamento);
-                            for (var k = 0; k < orcamento.itens.length; k++) {
-                                if (produtos[this.id].codigo == orcamento.itens[k].PRO_PKN_CODIGO) {
-                                    pedidos += '<div class="row zebra"><a class="orcamentoSelecionado" id="' + orcamento.NET_PKN_SEQUENCIAL + '"  style="color:#000">';
-                                    pedidos += '<div class="col s12 m12 l6 subtitleitem"><div class="col s1 m2 l2">' + orcamento.NET_PKN_SEQUENCIAL + '</div>';
-                                    pedidos += '<div class="col s11 m10 l10">' + orcamento.NET_A_CLI_NOME.substring(0, 30) + '</div></div>';
-                                    pedidos += '<div class="col s12 m12 l6 subdetalheitem"><div class="col s9 m10 l10">' + orcamento.itens[k].descricao + '</div>';
-                                    pedidos += '<div class="col s1 m1 l1">' + orcamento.itens[k].NET_ITEM_QTD + '</div></div>';
-                                    pedidos += '</a></div>';
-                                }
-                            }
-                        }
-                        document.getElementById("itemPedido").innerHTML = pedidos;
-                        var elems = document.getElementsByClassName("orcamentoSelecionado"), i;
-                        for (i = 0; i < elems.length; i++) {
-                            document.getElementsByClassName("orcamentoSelecionado")[i].removeEventListener("click", function () {
-                            });
-                            document.getElementsByClassName("orcamentoSelecionado")[i].addEventListener("click", function () {
-                                for (var j = 0; j < orcamentos.length; j++) {
-                                    if (orcamentos[j].NET_PKN_SEQUENCIAL == this.id) {
-                                        var verificar = confirm("Deseja alterar pedido");
-                                        if (verificar == true) {
-                                            $(".modalItemOrcamentos").modal("close");
-                                            alteraOrcamento(orcamentos[j]);
-                                        }
-                                        break;
-                                    }
-
-                                }
-                            });
-                        }
-                        $('.modalItemOrcamentos').modal();
-                        $('.modalItemOrcamentos').modal('open');
-                    });
-                }
+                mostraProdutoSolicitado(result);
             }
         }
         request.open("POST", url + "php/getOrcamentos.php", true);
         request.send();
     }
 
+    function mostraProdutoSolicitado(result) {
+        var produtos = [];
+        for (var i = 0; i < result.length; i++) {
+            for (var j = 0; j < result[i].itens.length; j++) {
+                var verifica = false;
+                for (var k = 0; k < produtos.length; k++) {
+                    if (result[i].itens[j].PRO_PKN_CODIGO == produtos[k].codigo) {
+                        produtos[k].qtde = parseInt(produtos[k].qtde) + parseInt(result[i].itens[j].NET_ITEM_QTD);
+                        if (produtos[k].orcamentos.indexOf(result[i]) <= -1) {
+                            produtos[k].orcamentos.push(result[i]);
+                        }
+
+                        verifica = true;
+                    }
+                }
+                if (verifica == false) {
+                    produtos.push(
+                        {
+                            codigo: result[i].itens[j].PRO_PKN_CODIGO,
+                            descricao: result[i].itens[j].descricao,
+                            qtde: parseInt(result[i].itens[j].NET_ITEM_QTD),
+                            unidade: result[i].itens[j].unidade,
+                            orcamentos: [result[i]]
+                        });
+                }
+            }
+        }
+        produtos.sort(function (a, b) {
+            return a.descricao < b.descricao ? -1 : a.descricao > b.descricao ? 1 : 0;
+        });
+        var select = "";
+        var qtdeAcumulada = 0;
+        produtosSolicitados = produtos;
+        for (var i = 0; i < produtos.length; i++) {
+            select += '    <a class="col s12 itemlista itemacumulado" id="' + i + '">' +
+                '<div class="row" style="padding: 5px;"><div class="col s12">' + produtos[i].descricao.substring(0, 40) + '</div></div>'
+                + '<div class="row"><div class="col m4 l8" ></div>' +
+                '<div class="col s3 m2 l1" style="text-align: center">UNIDADE</br>' + produtos[i].unidade + '</div>'
+                + '<div class="col s3 m2 l1" style="text-align: center">VENDIDO</br>' + produtos[i].qtde + '</div>'
+                + '<div class="col s3 m2 l1" style="text-align: center">ESTOQUE</br>0</div>'
+                + '<div class="col s3 m2 l1" style="text-align: center">SALDO</br>' + (0 - produtos[i].qtde) + '</div></div>'
+                + '</a>';
+            qtdeAcumulada += produtos[i].qtde;
+        }
+        document.getElementById("preloadItens").style.display = "none";
+        document.getElementById("produtos").innerHTML = select;
+        document.getElementById("qtdeItemAcumulado").value = qtdeAcumulada;
+        mostraPedidoItemSolicitado();
+    }
+
+    function mostraPedidoItemSolicitado() {
+        var produtos = produtosSolicitados;
+        for (var i = 0; i < produtos.length; i++) {
+            if (document.getElementsByClassName("itemacumulado")[i] != null) {
+                document.getElementsByClassName("itemacumulado")[i].removeEventListener("click", function () {
+                });
+                document.getElementsByClassName("itemacumulado")[i].addEventListener("click", function () {
+                    orcamentos = [];
+                    var pedidos = "";
+                    for (var j = 0; j < produtos[this.id].orcamentos.length; j++) {
+                        var orcamento = produtos[this.id].orcamentos[j];
+                        orcamentos.push(orcamento);
+                        for (var k = 0; k < orcamento.itens.length; k++) {
+                            if (produtos[this.id].codigo == orcamento.itens[k].PRO_PKN_CODIGO) {
+                                pedidos += '<div class="row zebra"><a class="orcamentoSelecionado" id="' + orcamento.NET_PKN_SEQUENCIAL + '"  style="color:#000">';
+                                pedidos += '<div class="col s12 m12 l6 subtitleitem"><div class="col s1 m2 l2">' + orcamento.NET_PKN_SEQUENCIAL + '</div>';
+                                pedidos += '<div class="col s11 m10 l10">' + orcamento.NET_A_CLI_NOME.substring(0, 30) + '</div></div>';
+                                pedidos += '<div class="col s12 m12 l6 subdetalheitem"><div class="col s9 m10 l10">' + orcamento.itens[k].descricao + '</div>';
+                                pedidos += '<div class="col s1 m1 l1">' + orcamento.itens[k].NET_ITEM_QTD + '</div></div>';
+                                pedidos += '</a></div>';
+                            }
+                        }
+                    }
+                    document.getElementById("itemPedido").innerHTML = pedidos;
+                    var elems = document.getElementsByClassName("orcamentoSelecionado"), i;
+                    for (i = 0; i < elems.length; i++) {
+                        document.getElementsByClassName("orcamentoSelecionado")[i].removeEventListener("click", function () {
+                        });
+                        document.getElementsByClassName("orcamentoSelecionado")[i].addEventListener("click", function () {
+                            for (var j = 0; j < orcamentos.length; j++) {
+                                if (orcamentos[j].NET_PKN_SEQUENCIAL == this.id) {
+                                    var verificar = confirm("Deseja alterar pedido");
+                                    if (verificar == true) {
+                                        $(".modalItemOrcamentos").modal("close");
+                                        alteraOrcamento(orcamentos[j]);
+                                    }
+                                    break;
+                                }
+
+                            }
+                        });
+                    }
+                    $('.modalItemOrcamentos').modal();
+                    $('.modalItemOrcamentos').modal('open');
+                });
+            }
+        }
+    }
 
     function questionarOrcamento() {
         $(".modalCancelaPedido").modal();
@@ -351,44 +375,38 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
     function login() {
-        if (verificarEmail == false) {
-            var email = document.getElementById("email").value;
-            if (email.indexOf("@") >= 0 && email.indexOf(".com") >= 0) {
-                verificaEmail(email);
+        var email = document.getElementById("email").value;
+        var senha = document.getElementById("password").value;
+        if (email.indexOf("@") >= 0 && email.indexOf(".com") >= 0) {
+            verificaEmail(email,senha);
 
-            }
-        } else {
-            verificaSenha(document.getElementById("password").value);
         }
     }
 
 //Verifica o E-mail
-    function verificaEmail(email) {
+    function verificaEmail(email, senha) {
         if (email.indexOf("@") >= 0 && email.indexOf(".com") >= 0) {
             request = new XMLHttpRequest();
             request.onreadystatechange = function () {
                 if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
-                    document.getElementById("progress").style.display = "block";
                     if (this.responseText != "0") {
                         usuario = JSON.parse(this.responseText);
-                        document.getElementById("checkConect").innerHTML = "<p><input type='checkbox' id='manterConectado' /><label for='manterConectado'>Manter conectado</label></p>";
-                        document.getElementById("nameLogin").innerHTML = "<label class='namePerson'>" + usuario.nome.substr(0, 15) + ".</label>";
-                        document.getElementById("progress").style.display = "none";
-                        document.getElementById("fieldEmail").style.display = "none";
-                        document.getElementById("fieldPassword").style.display = "block";
-                        document.getElementById("imgUser").style.backgroundImage = "url('uploads/" + usuario.perfil + "')";
-                        document.getElementById("password").focus();
-                        verificarEmail = true;
+                        //var conexao = document.getElementById("manterConectado").checked;
+                        document.getElementById("checkConect").innerHTML = "";
+                        document.getElementById("email").value = "";
+                        document.getElementById("password").value = "";
+                        document.getElementById("invalidaLogin").style.display = "none";
+                        document.getElementById("containerLogin").style.display = "none";
+                        startSession(false);
+
                     } else {
-                        document.getElementById("progress").style.display = "none";
-                        document.getElementById("lEmail").setAttribute("data-error", "Não foi possível encontrar sua conta");
-                        document.getElementById("email").setAttribute("class", "validate invalid");
+                        document.getElementById("invalidaLogin").style.display = "block";
                     }
                 }
             }
             request.open("POST", url + "php/consultaEmail.php", true);
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            request.send("email=" + email);
+            request.send("email=" + email + "&senha=" + senha);
         } else {
             document.getElementById("email").focus();
             document.getElementById("lEmail").setAttribute("data-error", "E-mail Invalido");
@@ -396,25 +414,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
         }
     }
 
-//Verifica a Senha
-    function verificaSenha(senha) {
-        document.getElementById("progress").style.display = "block";
-        if (usuario.senha == senha) {
-            var conexao = document.getElementById("manterConectado").checked;
-            document.getElementById("checkConect").innerHTML = "";
-            document.getElementById("progress").style.display = "none";
-            document.getElementById("password").value = "";
-            document.getElementById("containerLogin").style.display = "none";
-            startSession(conexao);
-        } else {
-            document.getElementById("password").value = "";
-            document.getElementById("progress").style.display = "none";
-            document.getElementById("password").setAttribute("class", "validate invalid");
-            document.getElementById("password").focus();
-        }
-    }
-
-//checa se  tem error de digitação
 
 //inicia a sessao
     function startSession(conectado) {
@@ -441,10 +440,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 } else {
                     document.title = "Login";
                     document.getElementById("checkConect").innerHTML = "";
-                    document.getElementById("nameLogin").innerHTML = "<h4> Login</h4>";
-                    document.getElementById("progress").style.display = "none";
-                    document.getElementById("fieldEmail").style.display = "block";
-                    document.getElementById("fieldPassword").style.display = "none";
                     document.getElementById("fLogin").style.display = "block";
                     document.getElementById("containerLogin").style.display = "block";
                     verificarEmail = false;
@@ -723,9 +718,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
             document.getElementById("produto_orcamento").value = produtoSelecionado.descricao;
             document.getElementById("qtdeProduto").value = item.qtde;
             document.getElementById("precoProduto").value = numberToReal(produtoSelecionado.valor);
+            document.getElementById("totalProduto").value = numberToReal(produtoSelecionado.valor * item.qtde);
             document.getElementById("unidadeProduto").value = produtoSelecionado.unidade.toString();
             $("#modalSelecionaProduto").modal('open');
             alteracaoItem = true;
+            document.getElementById("qtdeProduto").focus();
         });
     }
 
@@ -1024,7 +1021,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 var lis = "";
                 orcamentos = [];
                 orcamentos = JSON.parse(request.responseText);
-                for(var i = 0 ; i < orcamentos.length; i++){
+                for (var i = 0; i < orcamentos.length; i++) {
                     lis += '<li><div class="row"><div class="col s12">';
                     lis += '<div class="col s2"> 342</div>';
                     lis += '<div class="col s10"> TESTE JOSE ALMEIDA TESTE</div></div>';
@@ -1581,7 +1578,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
         document.getElementById("btnConfiguracao").style.display = "none";
         document.getElementById("btnConfiguracaoMobile").style.display = "none";
         document.getElementById("configuracao").style.display = "none";
-        document.getElementById("selectCliente").style.display = "none";
         document.getElementById("addItens").style.display = "none";
         document.getElementById("totalOrcamento").value = numberToReal(total);
         document.getElementById("precoProduto").value = "";

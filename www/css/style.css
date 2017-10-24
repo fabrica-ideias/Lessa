@@ -13,11 +13,71 @@
 @media (min-width: 0px){
     body {
         font-family: 'Roboto', sans-serif;
-        background-color: #fff;
+        background-color: #fafafa;
         overflow-y: auto;
+    }
+    #logoEmpresa{
+        display: block;
+        background-position: center;
+        background-size: 50%;
+        background-image: url("../assets/icon/logo.png");
+        background-repeat: no-repeat;
+        height: 120px;
+
+    }
+    #form{
+        background-color: #fff;
+        padding: 5px 20px;
+        border: 1px solid #efefef;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        position: absolute;
+        height: auto;
+        right: 0px;
+        left: 0px;
+        margin: auto;
+        top:0%;
+        height: 100%;
+    }
+    #email,#password {
+        background-color: #fafafa;
+        border: 1px solid #efefef;
+        -webkit-border-radius:3px;
+        -moz-border-radius:3px;
+        border-radius:3px;
+        -webkit-box-shadow: none;
+        box-shadow:none;
+        margin: 5px 0px;
+    }
+    #esqueceuSenha{
+        color:#003853;
+        font-size: 0.8em;
+        cursor: pointer;
+    }
+    .preloadBusca{
+        float: right;
+        top: 10px;
+        position: absolute;
+        right: 10px;
+    }
+    #preloadBuscaProduto{
+        display: none;
     }
     .telaConferencia{
         display: none;
+    }
+    .tituloItens{
+        font-size: 0.8em;
+        background-color: #ccc;
+    }
+    .zebraItem{
+        background-color: #e3e3e3;
+    }
+    #itemOrcamentos{
+        font-size: 0.6em;
+        max-height: 350px;
+        overflow-y: auto;
     }
     #orcamentosConferir{
         position: absolute;
@@ -150,8 +210,11 @@
         right: 0px;
 
     }
+    nav{
+        background-color:#607fcc;
+    }
     #subvalores{
-        position: absolute;
+        position: fixed;
         margin-top: 2px;
         right: 0;
         left: 0;
@@ -357,7 +420,8 @@
         color: #000 !important;
     }
     .tabs.tipo .indicator {
-        background-color: #5a7ea2;
+        background-color: #fff;
+        /*background-color: #5a7ea2;*/
     }
 
     .imgresult{
@@ -776,9 +840,9 @@
         font-size: 2em;
     }
     #form {
-        background-color: #e9e9e9;
+        background-color: #fff;
         padding: 2%;
-        border: 1px solid #e7e7e7;
+        border: 1px solid #e9e9e9;
         -webkit-border-radius: 4px;
         -moz-border-radius: 4px;
         border-radius: 4px;
@@ -859,7 +923,18 @@
         display: block;
     }
     #modalDadosPedido{
-        width: 40%;
+        width: 80%;
+    }
+    .modalCancelaPedido {
+        width: 30%;
+    }
+    #logoEmpresa{
+        background-size: 35%;
+    }
+    #form{
+        height:auto;
+        top: 15%;
+        width:30%;
     }
 }
 
