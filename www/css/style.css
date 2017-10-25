@@ -16,6 +16,16 @@
         background-color: #fafafa;
         overflow-y: auto;
     }
+    #containerLogin {
+        display: none;
+    }
+    #apresentacao{
+        display: none;
+    }
+    .tabs.tipo .tab a {
+        color:rgba(159, 159, 159, 0.7);
+        padding: 0 12px;
+    }
     #logoEmpresa{
         display: block;
         background-position: center;
@@ -929,12 +939,30 @@
         width: 30%;
     }
     #logoEmpresa{
-        background-size: 35%;
+        background-size: 40%;
     }
     #form{
-        height:auto;
-        top: 15%;
-        width:30%;
+        position: relative;
+        height: auto;
+        margin-top: 5%;
+        width: 45%;
+        margin-left: 5%;
+        border: 1px solid #e6e6e6;
+    }
+    #apresentacao{
+        display: block;
+    }
+    #painelLogin{
+        margin-top: 2%;
+    }
+    #painelApresentacao{
+        background-color: #fff;
+        width: 249px;
+        height: 442px;
+        position: absolute;
+        float: left;
+        top: 77px;
+        left: 25px;
     }
 }
 

@@ -110,7 +110,23 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 orcamentos = JSON.parse(request.responseText);
                 var lista = "";
                 for (var i = 0; i < orcamentos.length; i++) {
-                    lista += "<li class='orcaitem' id='" + i + "'><div class='collapsible-header'>" + orcamentos[i].NET_PKN_SEQUENCIAL + " - " + orcamentos[i].NET_A_CLI_NOME.substr(0, 35) + ".</div></li>";
+                    var total = 0;
+                    for (var j = 0; j < orcamentos[i].itens.length; j++) {
+                        var item = orcamentos[i].itens[j];
+                        total += (item.NET_ITEM_QTD * item.NET_M_VALOR_UNITARIO);
+                    }
+                    lista += "<li><div class='collapsible-header'>";
+                    lista += "<div class='col s12'>";
+                    lista += "<div class='col s1'>"+orcamentos[i].NET_PKN_SEQUENCIAL+"</div>";
+                    lista += "<div class='col s7'>"+orcamentos[i].NET_A_CLI_NOME+"</div>";
+                    lista += "<div class='col s2'>"+numberToReal(total)+"</div>";
+                    lista += "<div class='col s2'><div class='row'>" +
+                        "<div class='col s4' ><a class='orcaitem' id='" + i + "'><i class='material-icons' >dashboard</i></a></div>" +
+                        "<div class='col s4'><a  class='cancelaPedido' id='" + i + "'><i class='material-icons'>close</i></a></div>" +
+                        "<div class='col s4'><a  class='alteraPedido' id='" + i + "'><i class='material-icons'>edit</i></a></div>" +
+                        "</div>";
+                    lista += "</div>";
+                    lista += "</div></li>";
                 }
                 document.getElementById("orcamentos").innerHTML = lista;
                 var elems = document.getElementsByClassName("orcaitem"), i;
@@ -119,6 +135,32 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     });
                     document.getElementsByClassName("orcaitem")[i].addEventListener("click", function () {
                         mostraPedido(orcamentos[this.id]);
+                    });
+                }
+                elems = document.getElementsByClassName("cancelaPedido"), i;
+                for (i = 0; i < elems.length; i++) {
+                    document.getElementsByClassName("cancelaPedido")[i].removeEventListener("click", function () {
+                    });
+                    document.getElementsByClassName("cancelaPedido")[i].addEventListener("click", function () {
+                        orcamento = orcamentos[this.id];
+                        var result = confirm("Deseja cancelar pedido ?");
+                        if(result == true){
+                            cancelarPedido(orcamento.NET_PKN_SEQUENCIAL);
+                            mostraOrcamentos();
+                        }
+                    });
+                }
+                elems = document.getElementsByClassName("alteraPedido"), i;
+                for (i = 0; i < elems.length; i++) {
+                    document.getElementsByClassName("alteraPedido")[i].removeEventListener("click", function () {
+                    });
+                    document.getElementsByClassName("alteraPedido")[i].addEventListener("click", function () {
+                        var verificar = confirm("Deseja alterar pedido");
+                        if (verificar == true) {
+                            alteraOrcamento(orcamentos[j]);
+                            document.getElementById("conteudo_painel").style.display = "block";
+                            document.getElementById("listaOrcamentos").style.display = "none";
+                        }
                     });
                 }
                 $('#modalpreload').modal('close');
@@ -137,14 +179,23 @@ document.addEventListener("DOMContentLoaded", function (event) {
             request.send("id=" + usuario.codparticipante);
         }
     }
+    function cancelarPedido(id){
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {}
+        }
+        request.open("POST", url + "php/cancelaPedido.php", true);
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        request.send("id=" + id);
+    }
 
     function mostraPedido(orca) {
         orcamento = orca;
         document.getElementById("pedidoNum").innerHTML = "NUMERO: " + orcamento.NET_PKN_SEQUENCIAL;
         document.getElementById("pedidoCliente").innerHTML = "CLIENTE: " + orcamento.NET_A_CLI_NOME.toUpperCase();
         document.getElementById("pedidoData").innerHTML = "DATA: " + dataAtualFormatada(orcamento.NET_D_DATA);
-        console.log(orcamento.itens);
         var itens = "";
+        var total = 0;
         for (var i = 0; i < orcamento.itens.length; i++) {
             if (i % 2 == 0) {
                 itens += '<li>';
@@ -153,12 +204,15 @@ document.addEventListener("DOMContentLoaded", function (event) {
             }
             itens += '<div class="row">';
             itens += '<div class="col s6">' + orcamento.itens[i].descricao + '</div>';
-            itens += '<div class="col s2">' + mascaraQuantidade(orcamento.itens[i].NET_ITEM_QTD) + '</div>';
+            itens += '<div class="col s1">' + mascaraQuantidade(orcamento.itens[i].NET_ITEM_QTD) + '</div>';
+            itens += '<div class="col s1">' + orcamento.itens[i].unidade + '</div>';
             itens += '<div class="col s2">' + numberToReal(orcamento.itens[i].NET_M_VALOR_UNITARIO) + '</div>';
             itens += '<div class="col s2">' + numberToReal(orcamento.itens[i].NET_ITEM_QTD * orcamento.itens[i].NET_M_VALOR_UNITARIO) + '</div>';
             itens += '</div>';
             itens += '</li>';
+            total += orcamento.itens[i].NET_ITEM_QTD * orcamento.itens[i].NET_M_VALOR_UNITARIO;
         }
+        document.getElementById("pedidoTotal").innerHTML = "TOTAL: " +numberToReal(total);
         document.getElementById("itemOrcamentos").innerHTML = itens;
         $("#modalDadosPedido").modal({dismissible: false});
         $("#modalDadosPedido").modal("open");
@@ -450,6 +504,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
                         if (event.keyCode == 13) login();
                     });
                     document.getElementById("logar").addEventListener("click", login);
+                    $('.carousel.carousel-slider').carousel({duration:300,padding:10,fullWidth: true});
+                    if(iniciou == 0){
+                        autoplay();
+                    }
+                    function autoplay() {
+                        $('.carousel').carousel('next');
+                        setTimeout(autoplay, 4500);
+                    }
                 }
             }
         };
@@ -790,9 +852,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
     function limparOrcamento() {
-        if (usuario.idpermissao == 2) {
-            listaProdutosSolicitados();
-        }
         cliente = null;
         itensOrcamento = [];
         total = 0;
@@ -832,7 +891,15 @@ document.addEventListener("DOMContentLoaded", function (event) {
         document.getElementById("btnAlteraOrcamento").style.display = "none";
         document.getElementById("btnFinalizaOrcamento").style.display = "block";
         document.getElementById("btnAlteraOrcaMobile").style.display = "none";
-        $('ul.tabs').tabs('select_tab', 'pedidos');
+        if (usuario.idpermissao == 2) {
+            listaProdutosSolicitados();
+            document.getElementById("tabs-menu").style.display = "block";
+            $('ul.tabs').tabs('select_tab', 'home');
+        }else{
+            $('ul.tabs').tabs('select_tab', 'pedidos');
+            document.getElementById("opcaoSelecao").style.display = "block";
+        }
+
     }
 
 //Salva o usuario
@@ -949,9 +1016,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
             document.getElementById("container").style.display = "block";
             document.getElementById("tabs-menu").style.display = "block"
             document.getElementById("funcionario_orcamento").style.display = "block";
+            document.getElementById("menu_pedidos").style.display = "none";
             //document.getElementById("selectCliente").style.display = "block";
             document.getElementById("menu_cadastros").style.display = "block";
-            document.getElementById("menu_pedidos").style.display = "block";
             document.getElementById("btnConfiguracao").style.display = "block";
             document.getElementById("btnConfiguracaoMobile").style.display = "block";
             $('ul.tabs').tabs('select_tab', 'home');
@@ -1385,16 +1452,37 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
     function popularClienteAutoComplete() {
-
         document.getElementById("autocompletecliente").addEventListener("input", function () {
             var select = "";
+            var qtde = 0;
             for (var i = 0; i < clientes.length; i++) {
-                if (clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase().startsWith(this.value.toUpperCase())) {
-                    select += '<div class="selecionaCliente" id="' + i + '">' + clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase() + '</div>';
+                if(document.getElementById("razao").checked) {
+                    if (clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase().startsWith(this.value.toUpperCase())) {
+                        select += '<div class="selecionaCliente" id="' + i + '">' + clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase() + '</div>';
+                        qtde += 1;
+                    }
+                }
+                if(document.getElementById("cpfcnpj").checked) {
+                    if (clientes[i].PAR_A_CNPJ_CPF.toUpperCase().startsWith(this.value.toUpperCase())) {
+                        select += '<div class="selecionaCliente" id="' + i + '">' + clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase() + '</br><p>'+clientes[i].PAR_A_CNPJ_CPF+'</p></div>';
+                        qtde += 1;
+                    }
+                }
+                if(document.getElementById("fantasia").checked) {
+                    if (clientes[i].PAR_A_NOME_FANTASIA.toUpperCase().startsWith(this.value.toUpperCase())) {
+                        select += '<div class="selecionaCliente" id="' + i + '">' + clientes[i].PAR_A_NOME_FANTASIA.toUpperCase() + '</div>';
+                        qtde += 1;
+                    }
                 }
             }
             if (clientes.length > 0) {
-                document.getElementById("dialogcliente").innerHTML = select;
+                if(qtde > 0 && this.value.toUpperCase().length > 0){
+                    document.getElementById("dialogcliente").innerHTML = select;
+                    document.getElementById("dialogcliente").style.display = "block";
+                }else{
+                    document.getElementById("dialogcliente").innerHTML = "";
+                    document.getElementById("dialogcliente").style.display = "none";
+                }
                 var elems = document.getElementsByClassName("selecionaCliente"), i;
                 for (i = 0; i < elems.length; i++) {
                     document.getElementsByClassName("selecionaCliente")[i].removeEventListener("click", function () {
@@ -1403,16 +1491,29 @@ document.addEventListener("DOMContentLoaded", function (event) {
                         document.getElementById("dialogcliente").style.display = "none";
                         limparOrcamento();
                         cliente = clientes[this.id];
-                        console.log(cliente);
-                        document.getElementById("autocompletecliente").value = this.innerHTML;
+                        document.getElementById("autocompletecliente").value = cliente.PAR_A_RAZAOSOCIAL;
                         hideKeyBoard();
                     });
                 }
-                document.getElementById("dialogcliente").style.display = "block";
+
             } else {
                 document.getElementById("dialogcliente").style.display = "none";
             }
 
+        });
+        document.getElementById("autocompletecliente").addEventListener("keypress", function (event) {
+            if(event.keyCode == 13 ){
+                for (var i = 0; i < clientes.length; i++) {
+                    if (clientes[i].PAR_PKN_CODIGO.startsWith(this.value.toUpperCase())) {
+                        document.getElementById("dialogcliente").style.display = "none";
+                        limparOrcamento();
+                        cliente = clientes[i];
+                        document.getElementById("autocompletecliente").value = cliente.PAR_A_RAZAOSOCIAL;
+                        hideKeyBoard();
+                        break;
+                    }
+                }
+            }
         });
         document.getElementById("autocompletecliente").addEventListener("blur", function () {
             setTimeout(function () {

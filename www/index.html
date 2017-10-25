@@ -22,31 +22,45 @@
 <body>
 <!-- Login -->
 <div class="row" id="containerLogin">
-    <div class="col s12 m4 l4"></div>
-    <div class="col s12 m12 l4" id="form">
-        <form method="POST" class="col s12 m12 l12" id="fLogin">
-            <div class="row">
-                <div class="col s12">
-                    <div class="col s12" id="logoEmpresa"></div>
+    <div class="col s12 m4 l3"></div>
+    <div class="col s12 m4 l8" id="painelLogin">
+        <div class="col s12 m4 l4" id="apresentacao">
+            <div style="position: absolute;">
+                <img src="assets/icon/smart.png">
+                <div id="painelApresentacao"  >
+                    <div class="carousel carousel-slider" style="height: 100%">
+                        <a class="carousel-item"><img src="assets/icon/apresentacao/ap1.png"></a>
+                        <a class="carousel-item"><img src="assets/icon/apresentacao/ap2.png"></a>
+                        <a class="carousel-item"><img src="assets/icon/apresentacao/ap3.png"></a>
                     </div>
-                <div class="col s12">
-                    <input id="email" type="email" class="validate" placeholder="E-mail" required="true"/>
-                </div>
-                <div class="col s12">
-                    <input id="password" type="password" placeholder="Senha" class="validate"/>
                 </div>
             </div>
-            <div class="row">
-                <div class="col s12" id="checkConect" style="margin-bottom: 5px"></div>
-                <a class="col s12 m12 l12 btn blue" id="logar" style="margin-bottom: 5px">ENTRAR</a>
-            </div>
-            <div class="row" id="invalidaLogin" style="text-align: center;color:red;display: none">
-                Usuario ou senha invalido
-            </div>
-            <div class="row" style="text-align: center">
-                <a id="esqueceuSenha" >Esqueceu a senha ?</a>
-            </div>
-        </form>
+        </div>
+        <div class="col s12 m12 l6" id="form">
+            <form method="POST" class="col s12 m12 l12" id="fLogin">
+                <div class="row">
+                    <div class="col s12">
+                        <div class="col s12" id="logoEmpresa"></div>
+                    </div>
+                    <div class="col s12">
+                        <input id="email" type="email" class="validate" placeholder="E-mail" required="true"/>
+                    </div>
+                    <div class="col s12">
+                        <input id="password" type="password" placeholder="Senha" class="validate"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12" id="checkConect" style="margin-bottom: 5px"></div>
+                    <a class="col s12 m12 l12 btn blue" id="logar" style="margin-bottom: 5px">ENTRAR</a>
+                </div>
+                <div class="row" id="invalidaLogin" style="text-align: center;color:red;display: none">
+                    Usuario ou senha invalido
+                </div>
+                <div class="row" style="text-align: center">
+                    <a id="esqueceuSenha">Esqueceu a senha ?</a>
+                </div>
+            </form>
+        </div>
     </div>
     <div class="col s12 m4 l4"></div>
 </div>
@@ -251,15 +265,15 @@
                                     <div class="row">
                                         <div class="col l4"></div>
                                         <p style="float: left;margin-right: 10px">
-                                            <input name="group1" type="radio" id="razao" checked/>
-                                            <label for="razao">NOME</label>
+                                            <input name="buscaCliente" type="radio" id="razao" checked/>
+                                            <label for="razao">NOME/CODIGO  </label>
                                         </p>
                                         <p style="float: left;margin-right: 10px    ">
-                                            <input name="group1" type="radio" id="cpfcnpj" disabled/>
+                                            <input name="buscaCliente" type="radio" id="cpfcnpj" />
                                             <label for="cpfcnpj">CPF/CNPJ</label>
                                         </p>
                                         <p style="float: left;">
-                                            <input name="group1" type="radio" id="fantasia" disabled/>
+                                            <input name="buscaCliente" type="radio" id="fantasia"/>
                                             <label for="fantasia">FANTASIA</label>
                                         </p>
                                     </div>
@@ -514,7 +528,15 @@
         <div class="col s12 m12 l10" id="listaOrcamentos">
             <div class="row">
                 <div class="row desListaPedidos">
-                    PEDIDOS
+                    <div class="col l1">PEDIDO</div>
+                    <div class="col l7">CLIENTE</div>
+                    <div class="col l2">VALOR</div>
+                    <div class="col l2">
+                        <div class="row">
+                            <div class="col l6">CANCELAR</div>
+                            <div class="col l6">ALTERAR</div>
+                        </div>
+                    </div>
                 </div>
                 <ul class="col s12 m12 l10 collapsible" id="orcamentos">
 
@@ -573,7 +595,8 @@
         <div class="row" style="padding: 10px;">
             <p class="col s12" id="pedidoNum">Numero</p>
             <p class="col s12" id="pedidoCliente">Nome</p>
-            <p class="col s12" id="pedidoData">Data</p>
+            <p class="col s6" id="pedidoData">Data</p>
+            <p class="col s6" id="pedidoTotal">Total</p>
         </div>
         <div class="row" style="margin:5px">
             <div class="row tituloItens">
