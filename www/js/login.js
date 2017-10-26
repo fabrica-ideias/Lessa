@@ -1,10 +1,14 @@
 document.addEventListener("DOMContentLoaded", function (event) {
     var verificarEmail = false, validaEmail = false, alteracaoItem = false;
-    var produtosSolicitados = [], produtoCliente = [], clientes = [], funcionarios = [], orcamentos = [], itensOrcamento = [];
+    var produtosSolicitados = [], clientesSolicitado = [], produtoCliente = [], clientes = [], funcionarios = [], orcamentos = [], itensOrcamento = [];
     var produtoSelecionado = null, orcamento = null, funcionario = null, cliente = null, config = null;
-    ;
     var indexProduto = 0, total = 0, iniciou = 0;
     var url = "";
+
+    function autoplay() {
+        $('.carousel').carousel('next');
+        setTimeout(autoplay, 4500);
+    }
 
     verificaLogin();
     //Inicia a Configuração de Layout e Eventos
@@ -14,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
                 config = JSON.parse(this.responseText);
                 if (iniciou == 0) {
+                    autoplay();
                     iniciarConfiguracoes(config);
                     document.getElementById("btnConfiguracao").addEventListener("click", abrirConfiguracao); //tela de configuracao de layout
                     document.getElementById("logout").addEventListener("click", logout); //logout
@@ -22,6 +27,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     document.getElementById("btnSalvaUsuario").addEventListener("click", salvaUsuario);// Salva o Usuario
                     document.getElementById("cancelaAddItem").addEventListener("click", function () {
                         document.getElementById("submenu").style.display = "block";
+                        document.getElementById("totalOrcamento").innerHTML = "Total R$ " + numberToReal(total);
+                        document.getElementById("precoProduto").value = "";
+                        document.getElementById("produto_orcamento").value = "";
+                        document.getElementById("qtdeProduto").value = "";
+                        document.getElementById("unidadeProduto").value = "";
+                        document.getElementById("totalProduto").value = "";
+                        produtoSelecionado = null;
+                        alteracaoItem = false;
                     });
                     document.getElementById("addItem").addEventListener("click", function () {
                         document.getElementById("submenu").style.display = "none";
@@ -34,6 +47,27 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     document.getElementById("addItemOrcaWeb").addEventListener("click", function () {
                         addItem("qtdeProdutoWeb", "detalheItemWeb", true)
                     });
+                    document.getElementsByName("filtragemProduto")
+                    var radioBusca = document.getElementsByName("filtragemProduto"), i;
+                    for (var i = 0; i < radioBusca.length; i++) {
+                        var radio = document.getElementById(document.getElementsByName("filtragemProduto")[i].id);
+                        radio.addEventListener("click", function () {
+                            if (this.id == "buscaProduto") {
+                                listaProdutosSolicitados();
+                            }
+                            if (this.id == "buscaCliente") {
+                                document.getElementById("preloadItens").style.display = "block";
+                                document.getElementById("produtos").innerHTML = "";
+                                document.getElementById("detalheCliente").style.display = "none";
+                                produtosCliente();
+                            }
+                            if (this.id == "buscaPedido") {
+                                document.getElementById("preloadItens").style.display = "block";
+                                document.getElementById("produtos").innerHTML = "";
+                                produtoPorPedido();
+                            }
+                        });
+                    }
                     document.getElementById("btnFinalizaOrcamento").addEventListener("click", mostraFormaPagamento);//Finalizar Orcamento
                     document.getElementById("btnFinalizaOrcamentoWeb").addEventListener("click", mostraFormaPagamento);//Finalizar Orcamento
                     document.getElementById("btnAlteraOrcamento").addEventListener("click", alterarOrcamento);
@@ -43,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     document.getElementById("btnPedidos").addEventListener("click", mostraOrcamentos);
                     document.getElementById("btnPedidosMobile").addEventListener("click", mostraOrcamentos);
                     document.getElementById("qtdeProdutoWeb").addEventListener("input", calculaProduto);
-                    document.getElementById("buscaProduto").addEventListener("input", filtraProdutos);
+                    document.getElementById("busca").addEventListener("input", filtraProdutos);
                     document.getElementById("qtdeProdutoWeb").addEventListener("keyup", addPedidoEnter);
                     document.getElementById("qtdeProduto").addEventListener("input", function () {
                         document.getElementById("totalProduto").value = numberToReal(this.value * produtoSelecionado.valor);
@@ -117,9 +151,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     }
                     lista += "<li><div class='collapsible-header'>";
                     lista += "<div class='col s12'>";
-                    lista += "<div class='col s1'>"+orcamentos[i].NET_PKN_SEQUENCIAL+"</div>";
-                    lista += "<div class='col s7'>"+orcamentos[i].NET_A_CLI_NOME+"</div>";
-                    lista += "<div class='col s2'>"+numberToReal(total)+"</div>";
+                    lista += "<div class='col s1'>" + orcamentos[i].NET_PKN_SEQUENCIAL + "</div>";
+                    lista += "<div class='col s7'>" + orcamentos[i].NET_A_CLI_NOME + "</div>";
+                    lista += "<div class='col s2'>" + numberToReal(total) + "</div>";
                     lista += "<div class='col s2'><div class='row'>" +
                         "<div class='col s4' ><a class='orcaitem' id='" + i + "'><i class='material-icons' >dashboard</i></a></div>" +
                         "<div class='col s4'><a  class='cancelaPedido' id='" + i + "'><i class='material-icons'>close</i></a></div>" +
@@ -144,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     document.getElementsByClassName("cancelaPedido")[i].addEventListener("click", function () {
                         orcamento = orcamentos[this.id];
                         var result = confirm("Deseja cancelar pedido ?");
-                        if(result == true){
+                        if (result == true) {
                             cancelarPedido(orcamento.NET_PKN_SEQUENCIAL);
                             mostraOrcamentos();
                         }
@@ -179,10 +213,12 @@ document.addEventListener("DOMContentLoaded", function (event) {
             request.send("id=" + usuario.codparticipante);
         }
     }
-    function cancelarPedido(id){
+
+    function cancelarPedido(id) {
         var request = new XMLHttpRequest();
         request.onreadystatechange = function () {
-            if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {}
+            if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
+            }
         }
         request.open("POST", url + "php/cancelaPedido.php", true);
         request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -212,7 +248,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             itens += '</li>';
             total += orcamento.itens[i].NET_ITEM_QTD * orcamento.itens[i].NET_M_VALOR_UNITARIO;
         }
-        document.getElementById("pedidoTotal").innerHTML = "TOTAL: " +numberToReal(total);
+        document.getElementById("pedidoTotal").innerHTML = "TOTAL: " + numberToReal(total);
         document.getElementById("itemOrcamentos").innerHTML = itens;
         $("#modalDadosPedido").modal({dismissible: false});
         $("#modalDadosPedido").modal("open");
@@ -221,28 +257,172 @@ document.addEventListener("DOMContentLoaded", function (event) {
     function filtraProdutos() {
         if (produtosSolicitados.length > 0) {
             document.getElementById("preloadBuscaProduto").style.display = "block";
-            var select = "";
-            var qtdeAcumulada = 0;
-            for (var i = 0; i < produtosSolicitados.length; i++) {
-                if (produtosSolicitados[i].descricao.startsWith(document.getElementById("buscaProduto").value.toUpperCase())) {
-                    select += '    <a class="col s12 itemlista itemacumulado" id="' + i + '">' +
-                        '<div class="row" style="padding: 5px;"><div class="col s12">' + produtosSolicitados[i].descricao.substring(0, 40) + '</div></div>'
-                        + '<div class="row"><div class="col m4 l8" ></div>' +
-                        '<div class="col s3 m2 l1" style="text-align: center">UNIDADE</br>' + produtosSolicitados[i].unidade + '</div>'
-                        + '<div class="col s3 m2 l1" style="text-align: center">VENDIDO</br>' + produtosSolicitados[i].qtde + '</div>'
-                        + '<div class="col s3 m2 l1" style="text-align: center">ESTOQUE</br>0</div>'
-                        + '<div class="col s3 m2 l1" style="text-align: center">SALDO</br>' + (0 - produtosSolicitados[i].qtde) + '</div></div>'
-                        + '</a>';
-                    qtdeAcumulada += produtosSolicitados[i].qtde;
+            if (document.getElementById("buscaProduto").checked == true) {
+                var select = "";
+                var qtdeAcumulada = 0;
+                for (var i = 0; i < produtosSolicitados.length; i++) {
+                    if (produtosSolicitados[i].descricao.startsWith(document.getElementById("busca").value.toUpperCase())) {
+                        select += '    <a class="col s12 itemlista itemacumulado" id="' + i + '">' +
+                            '<div class="row" style="padding: 5px;"><div class="col s12">' + produtosSolicitados[i].descricao.substring(0, 40) + '</div></div>'
+                            + '<div class="row"><div class="col m4 l8" ></div>' +
+                            '<div class="col s3 m2 l1" style="text-align: center">UNIDADE</br>' + produtosSolicitados[i].unidade + '</div>'
+                            + '<div class="col s3 m2 l1" style="text-align: center">VENDIDO</br>' + produtosSolicitados[i].qtde + '</div>'
+                            + '<div class="col s3 m2 l1" style="text-align: center">ESTOQUE</br>0</div>'
+                            + '<div class="col s3 m2 l1" style="text-align: center">SALDO</br>' + (0 - produtosSolicitados[i].qtde) + '</div></div>'
+                            + '</a>';
+                        qtdeAcumulada += produtosSolicitados[i].qtde;
+                    }
+                }
+                document.getElementById("preloadItens").style.display = "none";
+                document.getElementById("produtos").innerHTML = select;
+                document.getElementById("qtdeItemAcumulado").value = qtdeAcumulada;
+                mostraPedidoItemSolicitado();
+            }
+            if (document.getElementById("buscaCliente").checked == true) {
+                var lista = "";
+                for (var i = 0; i < clientesSolicitado.length; i++) {
+                    if (clientesSolicitado[i].NET_A_CLI_NOME.startsWith(document.getElementById("busca").value.toUpperCase())) {
+                        lista += "<li class='clienteBusca' id='" + i + "'><div class='row'>";
+                        lista += "<div class='col s1'>" + clientesSolicitado[i].PAR_PKN_CODIGO + "</div>";
+                        lista += "<div class='col s4'>" + clientesSolicitado[i].NET_A_CLI_NOME + "</div>";
+                        lista += "<div class='col s2'>" + dataAtualFormatada(clientesSolicitado[i].NET_D_DATA) + "</div>";
+                        lista += "</div>";
+                        lista += "</div></li>";
+                    }
+                }
+                document.getElementById("produtos").innerHTML = lista;
+                var elems = document.getElementsByClassName("clienteBusca"), i;
+                for (i = 0; i < elems.length; i++) {
+                    document.getElementsByClassName("clienteBusca")[i].removeEventListener("click", function () {
+                    });
+                    document.getElementsByClassName("clienteBusca")[i].addEventListener("click", function () {
+
+                    });
                 }
             }
-            document.getElementById("preloadItens").style.display = "none";
-            document.getElementById("produtos").innerHTML = select;
-            document.getElementById("qtdeItemAcumulado").value = qtdeAcumulada;
             document.getElementById("preloadBuscaProduto").style.display = "none";
-            mostraPedidoItemSolicitado();
         }
 
+    }
+
+    function produtoPorPedido() {
+        request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
+                orcamentos = [];
+                orcamentos = JSON.parse(request.responseText);
+                var lista = "";
+                for (var i = 0; i < orcamentos.length; i++) {
+                    var total = 0;
+                    for (var j = 0; j < orcamentos[i].itens.length; j++) {
+                        var item = orcamentos[i].itens[j];
+                        total += (item.NET_ITEM_QTD * item.NET_M_VALOR_UNITARIO);
+                    }
+                    lista += "<li class='pedidoBusca'><div class='collapsible-header'>";
+                    lista += "<div class='col s12'>";
+                    lista += "<div class='col s1'>" + orcamentos[i].NET_PKN_SEQUENCIAL + "</div>";
+                    lista += "<div class='col s7'>" + orcamentos[i].NET_A_CLI_NOME + "</div>";
+                    lista += "<div class='col s2'>" + numberToReal(total) + "</div>";
+                    lista += "<div class='col s2'>" + dataAtualFormatada(orcamentos[i].NET_D_DATA) + "</div>";
+                    lista += "</div>";
+                    lista += "</div></li>";
+                }
+                var elems = document.getElementsByClassName("pedidoBusca"), i;
+                console.log(elems.length);
+                for (i = 0; i < elems.length; i++) {
+                    document.getElementsByClassName("pedidoBusca")[i].removeEventListener("click", function () {
+                    });
+                    document.getElementsByClassName("pedidoBusca")[i].addEventListener("click", function () {
+                        mostraPedido(orcamentos[this.id]);
+                    });
+                }
+                /*elems = document.getElementsByClassName("alteraPedido"), i;
+                 for (i = 0; i < elems.length; i++) {
+                 document.getElementsByClassName("alteraPedido")[i].removeEventListener("click", function () {
+                 });
+                 document.getElementsByClassName("alteraPedido")[i].addEventListener("click", function () {
+                 var verificar = confirm("Deseja alterar pedido");
+                 if (verificar == true) {
+                 alteraOrcamento(orcamentos[j]);
+                 document.getElementById("conteudo_painel").style.display = "block";
+                 document.getElementById("listaOrcamentos").style.display = "none";
+                 }
+                 });
+                 }*/
+
+                document.getElementById("preloadItens").style.display = "none";
+                document.getElementById("produtos").style.display = "block";
+                document.getElementById("produtos").innerHTML = lista;
+
+            }
+        }
+        request.open("POST", url + "php/getOrcamentos.php", true);
+        request.send();
+    }
+
+    function produtosCliente() {
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
+                orcamentos = [];
+                orcamentos = JSON.parse(request.responseText);
+                console.log(request.responseText);
+                orcamentos.sort(function (a, b) {
+                    return a.NET_A_CLI_NOME < b.NET_A_CLI_NOME ? -1 : a.NET_A_CLI_NOME > b.NET_A_CLI_NOME ? 1 : 0;
+                });
+                var lista = "";
+                var count = 0;
+                for (var i = 0; i < orcamentos.length; i++) {
+                    var existeCliente = false;
+                    for (var j = 0; j < clientesSolicitado.length; j++) {
+                        if (orcamentos[i].PAR_PKN_CODIGO == clientesSolicitado[j].PAR_PKN_CODIGO) {
+                            existeCliente = true;
+                            break;
+                        }
+                    }
+                    if (existeCliente == false) {
+                        lista += "<li class='clienteBusca' id='" + count + "'><div class='row'>";
+                        lista += "<div class='col s1'>" + orcamentos[i].PAR_PKN_CODIGO + "</div>";
+                        lista += "<div class='col s4'>" + orcamentos[i].NET_A_CLI_NOME + "</div>";
+                        lista += "<div class='col s2'>" + dataAtualFormatada(orcamentos[i].NET_D_DATA) + "</div>";
+                        lista += "</div>";
+                        lista += "</div></li>";
+                        clientesSolicitado.push(orcamentos[i]);
+                        count++
+                    }
+                }
+                document.getElementById("preloadItens").style.display = "none";
+                document.getElementById("produtos").style.display = "block";
+                document.getElementById("produtos").innerHTML = lista;
+                var elems = document.getElementsByClassName("clienteBusca"), i;
+                for (i = 0; i < elems.length; i++) {
+                    document.getElementsByClassName("clienteBusca")[i].removeEventListener("click", function () {
+                    });
+                    document.getElementsByClassName("clienteBusca")[i].addEventListener("click", function () {
+                        mostraItemCliente(clientesSolicitado[this.id]);
+                    });
+                }
+
+
+            }
+        }
+        request.open("POST", url + "php/getOrcamentos.php", true);
+        request.send();
+    }
+
+    function mostraItemCliente(clienteSelecionado) {
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 && request.status == 200) {
+                var result = JSON.parse(request.responseText);
+                document.getElementById("detalheCliente").innerHTML = "CLIENTE :" + clienteSelecionado.NET_A_CLI_NOME;
+                document.getElementById("detalheCliente").style.display = "block";
+                mostraProdutoSolicitado(result);
+            }
+        }
+        request.open("POST", "php/getOrcamentoCliente.php");
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        request.send("id=" + clienteSelecionado.PAR_PKN_CODIGO);
     }
 
     function listaProdutosSolicitados() {
@@ -250,7 +430,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         document.getElementById("produtos").innerHTML = "";
         var request = new XMLHttpRequest();
         request.onreadystatechange = function () {
-            if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
+            if (request.readyState == 4 && request.status == 200) {
                 var result = JSON.parse(request.responseText);
                 mostraProdutoSolicitado(result);
             }
@@ -429,11 +609,15 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
     function login() {
+
         var email = document.getElementById("email").value;
         var senha = document.getElementById("password").value;
         if (email.indexOf("@") >= 0 && email.indexOf(".com") >= 0) {
-            verificaEmail(email,senha);
-
+            document.getElementById("logar").style.display = "none";
+            document.getElementById("preloadLogin").style.display = "block";
+            verificaEmail(email, senha);
+        } else {
+            document.getElementById("invalidaLogin").style.display = "block";
         }
     }
 
@@ -442,7 +626,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         if (email.indexOf("@") >= 0 && email.indexOf(".com") >= 0) {
             request = new XMLHttpRequest();
             request.onreadystatechange = function () {
-                if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
+                if (request.readyState == 4 && request.status == 200) {
                     if (this.responseText != "0") {
                         usuario = JSON.parse(this.responseText);
                         //var conexao = document.getElementById("manterConectado").checked;
@@ -456,6 +640,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     } else {
                         document.getElementById("invalidaLogin").style.display = "block";
                     }
+                    document.getElementById("logar").style.display = "block";
+                    document.getElementById("preloadLogin").style.display = "none";
                 }
             }
             request.open("POST", url + "php/consultaEmail.php", true);
@@ -504,13 +690,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
                         if (event.keyCode == 13) login();
                     });
                     document.getElementById("logar").addEventListener("click", login);
-                    $('.carousel.carousel-slider').carousel({duration:300,padding:10,fullWidth: true});
-                    if(iniciou == 0){
+                    $('.carousel.carousel-slider').carousel({duration: 300, padding: 10, fullWidth: true});
+                    if (iniciou == 0) {
                         autoplay();
-                    }
-                    function autoplay() {
-                        $('.carousel').carousel('next');
-                        setTimeout(autoplay, 4500);
                     }
                 }
             }
@@ -626,6 +808,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         document.getElementById("addItemOrcaWeb").innerHTML = "ADICIONAR";
         document.getElementById("autocompleteproduto").disabled = false;
         alteracaoItem = false;
+        produtoSelecionado = null;
     }
 
 
@@ -895,7 +1078,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             listaProdutosSolicitados();
             document.getElementById("tabs-menu").style.display = "block";
             $('ul.tabs').tabs('select_tab', 'home');
-        }else{
+        } else {
             $('ul.tabs').tabs('select_tab', 'pedidos');
             document.getElementById("opcaoSelecao").style.display = "block";
         }
@@ -1027,7 +1210,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             document.getElementById("tabs-menu").style.display = "none";
             $('ul.tabs').tabs('select_tab', 'pedidos');
             document.getElementById("funcionario_orcamento").style.display = "block";
-            //document.getElementById("selectCliente").style.display = "block";
+            document.getElementById("opcaoSelecao").style.display = "block";
             document.getElementById("btnConfiguracao").style.display = "none";
             document.getElementById("btnConfiguracaoMobile").style.display = "none";
         }
@@ -1114,16 +1297,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     document.getElementById("funcionario_orcamento").style.display = "block";
                     document.getElementById("btnConfiguracao").style.display = "none";
                     document.getElementById("btnConfiguracaoMobile").style.display = "none";
-                    document.getElementById("selectCliente").style.display = "none";
-
-                    if (window.innerWidth > 900) {
+                    document.getElementById("opcaoSelecao").style.display = "none";
+                    if (window.innerWidth > 992) {
                         document.getElementById("informatacaoCliente").style.display = "block";
                         document.getElementById("addItensWeb").style.display = "block";
                         document.getElementById("infoNome").value = cliente.PAR_A_RAZAOSOCIAL;
                         selectProdutoCliente(cliente, "autocompleteproduto", "precoProdutoWeb", "unidadeProdutoWeb", "dialogProduto");
                         document.getElementById("autocompleteproduto").focus();
                     } else {
-                        document.getElementById("selectCliente").style.display = "none";
                         document.getElementById("addItens").style.display = "block";
                         document.getElementById("informatacaoCliente").style.display = "block";
                         document.getElementById("infoNome").value = cliente.PAR_A_RAZAOSOCIAL;
@@ -1456,19 +1637,19 @@ document.addEventListener("DOMContentLoaded", function (event) {
             var select = "";
             var qtde = 0;
             for (var i = 0; i < clientes.length; i++) {
-                if(document.getElementById("razao").checked) {
+                if (document.getElementById("razao").checked) {
                     if (clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase().startsWith(this.value.toUpperCase())) {
                         select += '<div class="selecionaCliente" id="' + i + '">' + clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase() + '</div>';
                         qtde += 1;
                     }
                 }
-                if(document.getElementById("cpfcnpj").checked) {
+                if (document.getElementById("cpfcnpj").checked) {
                     if (clientes[i].PAR_A_CNPJ_CPF.toUpperCase().startsWith(this.value.toUpperCase())) {
-                        select += '<div class="selecionaCliente" id="' + i + '">' + clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase() + '</br><p>'+clientes[i].PAR_A_CNPJ_CPF+'</p></div>';
+                        select += '<div class="selecionaCliente" id="' + i + '">' + clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase() + '</br><p>' + clientes[i].PAR_A_CNPJ_CPF + '</p></div>';
                         qtde += 1;
                     }
                 }
-                if(document.getElementById("fantasia").checked) {
+                if (document.getElementById("fantasia").checked) {
                     if (clientes[i].PAR_A_NOME_FANTASIA.toUpperCase().startsWith(this.value.toUpperCase())) {
                         select += '<div class="selecionaCliente" id="' + i + '">' + clientes[i].PAR_A_NOME_FANTASIA.toUpperCase() + '</div>';
                         qtde += 1;
@@ -1476,10 +1657,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 }
             }
             if (clientes.length > 0) {
-                if(qtde > 0 && this.value.toUpperCase().length > 0){
+                if (qtde > 0 && this.value.toUpperCase().length > 0) {
                     document.getElementById("dialogcliente").innerHTML = select;
                     document.getElementById("dialogcliente").style.display = "block";
-                }else{
+                } else {
                     document.getElementById("dialogcliente").innerHTML = "";
                     document.getElementById("dialogcliente").style.display = "none";
                 }
@@ -1502,7 +1683,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         });
         document.getElementById("autocompletecliente").addEventListener("keypress", function (event) {
-            if(event.keyCode == 13 ){
+            if (event.keyCode == 13) {
                 for (var i = 0; i < clientes.length; i++) {
                     if (clientes[i].PAR_PKN_CODIGO.startsWith(this.value.toUpperCase())) {
                         document.getElementById("dialogcliente").style.display = "none";

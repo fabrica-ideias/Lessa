@@ -27,7 +27,7 @@
         <div class="col s12 m4 l4" id="apresentacao">
             <div style="position: absolute;">
                 <img src="assets/icon/smart.png">
-                <div id="painelApresentacao"  >
+                <div id="painelApresentacao">
                     <div class="carousel carousel-slider" style="height: 100%">
                         <a class="carousel-item"><img src="assets/icon/apresentacao/ap1.png"></a>
                         <a class="carousel-item"><img src="assets/icon/apresentacao/ap2.png"></a>
@@ -52,6 +52,21 @@
                 <div class="row">
                     <div class="col s12" id="checkConect" style="margin-bottom: 5px"></div>
                     <a class="col s12 m12 l12 btn blue" id="logar" style="margin-bottom: 5px">ENTRAR</a>
+                    <div id="preloadLogin">
+                        <div class="preloader-wrapper small active">
+                            <div class="spinner-layer spinner-blue-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row" id="invalidaLogin" style="text-align: center;color:red;display: none">
                     Usuario ou senha invalido
@@ -123,9 +138,9 @@
                                     <div class="nav-wrapper">
                                         <form>
                                             <div class="input-field">
-                                                <input id="buscaProduto" type="search" placeholder="BUSCAR POR PRODUTO"
+                                                <input id="busca" type="search" placeholder="PROCURAR POR"
                                                        autocomplete="off" required>
-                                                <label class="label-icon" for="buscaProduto"><i
+                                                <label class="label-icon" for="busca"><i
                                                         class="material-icons">search</i></label>
                                                 <div class="preloader-wrapper small active preloadBusca"
                                                      id="preloadBuscaProduto">
@@ -145,8 +160,32 @@
                                         </form>
                                     </div>
                                 </nav>
+                                <div class="col s12 m4 l4" style="padding: 20px;">
+                                    <p style="float: left;margin-right: 10px;">
+                                        <input name="filtragemProduto" type="radio" id="buscaProduto" checked/>
+                                        <label for="buscaProduto" style="color: #fff;">PRODUTO</label>
+                                    </p>
+                                    <p style="float: left;margin-right: 10px;color: #fff;">
+                                        <input name="filtragemProduto" type="radio" id="buscaCliente"/>
+                                        <label for="buscaCliente" style="color: #fff;">CLIENTE</label>
+                                    </p>
+                                    <p style="float: left;margin-right: 10px;color: #fff;">
+                                        <input name="filtragemProduto" type="radio" id="buscaPedido"/>
+                                        <label for="buscaPedido" style="color: #fff;">PEDIDO</label>
+                                    </p>
+                                </div>
+                                <div class="col  l2 offset-l2" style="color: #042140;background-color: #fff;">
+                                    QTDE ITENS:
+                                <span class="flow-text">
+                                    <input disabled type="text" id="qtdeItemAcumulado" style="
+                                        background-color: #fff;color: #000;text-align: center;font-size: 1.3em;margin:0"/>
+                                </span>
+                                </div>
                             </li>
 
+                        </ul>
+                        <ul class="listaProduto" id="detalheCliente">
+                            CLIENTE : TESTE
                         </ul>
                         <ul class="listaProduto" id="produtos">
                         </ul>
@@ -163,15 +202,6 @@
                                         <div class="circle"></div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row titleItensSolicitados" id="subvalores" style="margin-top: 2px;">
-                            <div class="col s12 l2 offset-l10" style="color:#fff">
-                                QTDE ITENS:
-                                <span class="flow-text">
-                                    <input disabled type="text" id="qtdeItemAcumulado" style="
-                                        background-color: #fff;color: #000;text-align: center;font-size: 1.3em;margin:0"/>
-                                </span>
                             </div>
                         </div>
 
@@ -266,10 +296,10 @@
                                         <div class="col l4"></div>
                                         <p style="float: left;margin-right: 10px">
                                             <input name="buscaCliente" type="radio" id="razao" checked/>
-                                            <label for="razao">NOME/CODIGO  </label>
+                                            <label for="razao">NOME/CODIGO </label>
                                         </p>
                                         <p style="float: left;margin-right: 10px    ">
-                                            <input name="buscaCliente" type="radio" id="cpfcnpj" />
+                                            <input name="buscaCliente" type="radio" id="cpfcnpj"/>
                                             <label for="cpfcnpj">CPF/CNPJ</label>
                                         </p>
                                         <p style="float: left;">
@@ -655,9 +685,9 @@
             </div>
         </div>
         <div class="modal-footer">
-            <a href="#!" id="cancelaAddItem"
+            <a href="#!" id="cancelaAddItem" style="color: red"
                class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
-            <a href="#!" id="addItemOrca" class="modal-action waves-effect waves-green btn-flat">Adicionar</a>
+            <a href="#!" id="addItemOrca" style="color:green" class="modal-action waves-effect waves-green btn-flat">Adicionar</a>
         </div>
     </div>
     <div id="modalFormaPagamento" class="modalFormaPagamento">

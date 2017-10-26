@@ -175,7 +175,7 @@ class Fachada{
 	}
 	function getOrcamentos(){
 		include("conexao.php");
-		$result = mysqli_query($con,"SELECT * FROM NET_MOVIMENTO where STATUS_EXPORTACAO='false' and NET_A_STATUS != 'CANCELADO'");
+		$result = mysqli_query($con,"SELECT * FROM NET_MOVIMENTO where STATUS_EXPORTACAO='false' and NET_A_STATUS = 'DIGITADO' OR NET_A_STATUS = 'PENDENTE'");
 		$orcamentos = array();
 		while($dados= mysqli_fetch_array($result)){
 		    $result2 = mysqli_query($con,"SELECT *  FROM NET_ITEM_MOVIMENTO WHERE NET_PKN_CODIGO='".$dados['NET_PKN_SEQUENCIAL']."'");
