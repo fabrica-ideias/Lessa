@@ -10,6 +10,9 @@
 	$configuracao->setCorConteudo($_POST['cor_conteudo']);
 	$configuracao->setCorMenu($_POST['cor_menu']);
 	$configuracao->setNomeEmpresa($_POST['nome_empresa']);
+	$configuracao->setFilialEmpresa($_POST['filial_empresa']);
+	$configuracao->setFormaPagamento($_POST['forma_pagamento']);
+	$configuracao->setMostraPreco($_POST['mostra_preco']);
 	$fachada = new fachada();
 	$fachada->salvaConfiguracao($configuracao);
 ?>

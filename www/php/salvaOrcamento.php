@@ -2,6 +2,7 @@
 require_once("conexao.php");
 $orcamento = json_decode($_POST['dado']);
 $data = date('Y-m-d');
+$tempoAgora = date('H:i:s');
 if (!mysqli_query($con, "INSERT INTO NET_MOVIMENTO(
 	NET_A_CLI_NOME,
 	NET_A_CPF_CNPJ,
@@ -21,7 +22,8 @@ if (!mysqli_query($con, "INSERT INTO NET_MOVIMENTO(
 	FIL_PKN_CODIGO,
 	 FUN_PKN_CODIGO,
 	 FOR_PKN_CODIGO,
-	 STATUS_EXPORTACAO) 
+	 STATUS_EXPORTACAO,
+	 NET_N_HORA) 
 	VALUES (
 	'" . $orcamento->usuario->PAR_A_RAZAOSOCIAL . "','"
     . $orcamento->usuario->PAR_A_CNPJ_CPF . "','"
@@ -39,7 +41,8 @@ if (!mysqli_query($con, "INSERT INTO NET_MOVIMENTO(
     . $data . "','0','"
     . $orcamento->funcionario . "',
 	'" . $orcamento->forma . "',
-	false)")
+	false,
+	'$tempoAgora')")
 ) {
     echo("Error description: " . mysqli_error($con));
 }

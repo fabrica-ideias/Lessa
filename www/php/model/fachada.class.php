@@ -71,7 +71,11 @@ class Fachada{
 	}
 	function salvaConfiguracao($config){
 		include("conexao.php");
-		mysqli_query($con,"UPDATE configuracao SET cor_fundo = '$config->cor_fundo', cor_conteudo = '$config->cor_conteudo', cor_menu = '$config->cor_menu', nome_empresa='$config->nome_empresa'  WHERE idconfig='1'");
+		mysqli_query($con,"UPDATE configuracao SET cor_fundo = '$config->cor_fundo',
+ 				cor_conteudo = '$config->cor_conteudo', cor_menu = '$config->cor_menu', 
+ 				nome_empresa='$config->nome_empresa' , filial_empresa='$config->filial_empresa',
+ 				forma_pagamento=$config->forma_pagamento,mostra_preco=$config->mostra_preco
+ 				  WHERE idconfig='1'");
 		echo "ok";
 	}
 	function getConfiguracao(){
@@ -195,7 +199,7 @@ class Fachada{
 
 	function getOrcamentosFuncionario($id){
 		include("conexao.php");
-		$result = mysqli_query($con,"SELECT * FROM NET_MOVIMENTO where STATUS_EXPORTACAO='false' and FUN_PKN_CODIGO='$id'");
+		$result = mysqli_query($con,"SELECT * FROM NET_MOVIMENTO where STATUS_EXPORTACAO='false' and FUN_PKN_CODIGO='$id'  and NET_A_STATUS = 'DIGITADO' OR NET_A_STATUS = 'PENDENTE'");
 		$orcamentos = array();
 		while($dados= mysqli_fetch_array($result)){
 			$result2 = mysqli_query($con,"SELECT *  FROM NET_ITEM_MOVIMENTO WHERE NET_PKN_CODIGO='".$dados['NET_PKN_SEQUENCIAL']."'");

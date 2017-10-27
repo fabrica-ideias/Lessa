@@ -16,6 +16,83 @@
         background-color: #fafafa;
         overflow-y: auto;
     }
+    .entradaConfiguracao{
+        max-width:95%;
+        background-color: #fff !important;
+    }
+    #imgApresentacao{
+        float: left;
+        background-color: #d6d5d5;
+        border-radius: 10px;
+        border: 1px solid #aba8a8;
+    }
+    #configuracaoCores{
+        margin-bottom: 10px;
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #b3b3b3;
+    }
+    #configuracaoCores p{
+        float: left;
+    }
+    #logoEmpresaEdit{
+        border: 0;
+        background-color: #d6d5d5;
+        padding: 10px;
+        border-radius: 10px;
+        max-width: 200px;
+    }
+    #tituloProduto{
+        background-color: #001123;
+        border-radius: 10px;
+        text-align: center;
+        padding: 10px;
+
+    }
+    #clienteSelecionado{
+        font-size: 1.5em;
+        text-align: center;
+    }
+    .container-img{
+        position: relative;
+        width: 45%;
+        right: 0;
+        left: 0;
+        margin: auto;
+    }
+    #modalInfo{
+        border-radius: 10px;
+        width: 90%;
+        background-color: #fff !important;
+    }
+    #modalInfoAlteracao{
+        border-radius: 10px;
+        width: 90%;
+        background-color: #fff !important;
+    }
+    #msgModal{
+        text-align: center;
+        font-size: 1.5em;
+        color: #4e4e4e;
+    }
+    #btnSucess{
+        width: 100%;
+        background-color: #73BB5C;
+        text-align: center;
+        color: #fff;
+        font-size: 1.5em;
+    }
+    #btnAlteracao{
+        width: 100%;
+        background-color: #f9a542;
+        text-align: center;
+        color: #fff;
+        font-size: 1.5em;
+    }
+    .qtdeAcumulada{
+        display: none;
+    }
     #detalheCliente{
         position: relative;
         z-index: 100;
@@ -46,6 +123,7 @@
     }
     #logo{
         margin: 10px;
+        height: 50px;
     }
     #logoEmpresa{
         display: block;
@@ -198,7 +276,7 @@
 
     #home {
         padding: 10px;
-        margin-top: 10px;
+        margin-top: -5px;
         border-radius: 10px;
     }
 
@@ -234,7 +312,7 @@
         position: absolute;
         overflow-y: scroll;
         height: 100%;
-        max-height: 70%;
+        max-height: 72%;
         margin-top: 0px;
         padding: 10px !important;
         left:0px;
@@ -394,6 +472,9 @@
         padding: 10px;
         border: 1px solid;
         border-color: #afafaf;
+        border-radius: 10px;
+        margin-top: 10px;
+        box-shadow:2px 2px 13px #807474;
     }
 
     #cancelarOrcamento {
@@ -812,13 +893,27 @@
 }
 /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
 @media (min-width:641px)  and (max-width: 992px) {
+    .imgresult {
+        width: 100px;
+        height: 100px;
+    }
+    .clientePesquisa p{
+        font-size: 2em;
+    }
+    #modalInfo{
+        border-radius: 10px;
+        width: 30%;
+    }
+    #modalInfoAlteracao{
+        border-radius: 10px;
+        width: 30%;
+    }
     #logoEmpresa{
         background-size: 30%;
     }
     .painelOrcamento{
         margin: 0;
     }
-
     #imgUser {
         background-color: #ddd;
         width: 200px !important;
@@ -936,6 +1031,15 @@
 }
 /* hi-res laptops and desktops */
 @media (min-width:993px) {
+
+    #modalInfo{
+        border-radius: 10px;
+        width: 30%;
+    }
+    #modalInfoAlteracao{
+        border-radius: 10px;
+        width: 30%;
+    }
     .listaProduto {
         width: 100%;
         height: auto;

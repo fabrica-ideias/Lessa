@@ -131,15 +131,18 @@
                 <div class="row">
                     <div class="col s12 m12 l12"></div>
                     <div class="col s12 m12 l12">
-                        <ul class="row titleItensSolicitados">
+                        <ul class="row titleItensSolicitados" id="filtragemProduto">
                             <li style="color:#fff;margin:0;background-color: #5a7ea3"
                                 class="collection-item">
                                 <nav class="col s12 m3 l3" style="margin-left: 5px;">
                                     <div class="nav-wrapper">
                                         <form>
                                             <div class="input-field">
-                                                <input id="busca" type="search" placeholder="PROCURAR POR"
-                                                       autocomplete="off" required>
+                                                <div class="col s12 m12 l12 ">
+                                                    <input id="busca" type="search" placeholder="PROCURAR POR"
+                                                           autocomplete="off" required>
+                                                    <i class="material-icons">close</i>
+                                                </div>
                                                 <label class="label-icon" for="busca"><i
                                                         class="material-icons">search</i></label>
                                                 <div class="preloader-wrapper small active preloadBusca"
@@ -161,20 +164,21 @@
                                     </div>
                                 </nav>
                                 <div class="col s12 m4 l4" style="padding: 20px;">
-                                    <p style="float: left;margin-right: 10px;">
+                                    <p style="float: left;margin-right: 5px;">
                                         <input name="filtragemProduto" type="radio" id="buscaProduto" checked/>
                                         <label for="buscaProduto" style="color: #fff;">PRODUTO</label>
                                     </p>
-                                    <p style="float: left;margin-right: 10px;color: #fff;">
+                                    <p style="float: left;margin-right: 5px;color: #fff;">
                                         <input name="filtragemProduto" type="radio" id="buscaCliente"/>
                                         <label for="buscaCliente" style="color: #fff;">CLIENTE</label>
                                     </p>
-                                    <p style="float: left;margin-right: 10px;color: #fff;">
+                                    <p style="float: left;margin-right: 5px;color: #fff;">
                                         <input name="filtragemProduto" type="radio" id="buscaPedido"/>
                                         <label for="buscaPedido" style="color: #fff;">PEDIDO</label>
                                     </p>
                                 </div>
-                                <div class="col  l2 offset-l2" style="color: #042140;background-color: #fff;">
+                                <div class="col  l2 offset-l2 qtdeAcumulada"
+                                     style="color: #042140;background-color: #fff;">
                                     QTDE ITENS:
                                 <span class="flow-text">
                                     <input disabled type="text" id="qtdeItemAcumulado" style="
@@ -185,7 +189,15 @@
 
                         </ul>
                         <ul class="listaProduto" id="detalheCliente">
-                            CLIENTE : TESTE
+                            <div class="row">
+                                <div class="col s12">
+                                    <i class="col s1 material-icons" id="voltaPesquisa">arrow_back</i>
+                                    <p class="col s11" id="clienteSelecionado"></p>
+                                </div>
+                                <div class="col s12" id="tituloProduto">
+                                    PRODUTOS DO CLIENTE
+                                </div>
+                            </div>
                         </ul>
                         <ul class="listaProduto" id="produtos">
                         </ul>
@@ -558,13 +570,13 @@
         <div class="col s12 m12 l10" id="listaOrcamentos">
             <div class="row">
                 <div class="row desListaPedidos">
-                    <div class="col l1">PEDIDO</div>
-                    <div class="col l7">CLIENTE</div>
-                    <div class="col l2">VALOR</div>
-                    <div class="col l2">
+                    <div class="col s1 l1">PEDIDO</div>
+                    <div class="col s7 l7">CLIENTE</div>
+                    <div class="col s2 l2">VALOR</div>
+                    <div class="col s2 l2">
                         <div class="row">
-                            <div class="col l6">CANCELAR</div>
-                            <div class="col l6">ALTERAR</div>
+                            <div class="col s6 l6">CANCELAR</div>
+                            <div class="col s6 l6">ALTERAR</div>
                         </div>
                     </div>
                 </div>
@@ -577,47 +589,97 @@
         <!-- Opções de Configuração de Layout -->
         <div class="col s12 m10 l10">
             <div class="configuracao" id="configuracao">
-                <div class="col s12">
-                    <p>Nome da Empresa</p><input type="text" id="nome_empresa"/>
-                </div>
-                <!--<div class="row">
-                    <div class="file-field input-field">
-                        <div class="btn">
-                            <span>LOGO</span>
+                <div class="row">
+                    <div class="col s12">
+                        <div id="imgApresentacao">
+                            <img id="logoEmpresaEdit"/>
+                        </div>
+                    </div>
+                    <div class="col s6 file-field input-field">
+                        <div class="btn blue">
+                            <span><i class="material-icons">photo</i></span>Alterar logo
                             <input type="file" accept="image/*" class="fileImg" name="file" id="file">
                         </div>
                         <div class="file-path-wrapper">
                             <input type="file" accept="image/*" class="fileImg" name="fileLogo" id="fileLogo">
-                            <input class="file-path validate" type="text" placeholder="Upload one or more files">
+                            <input class="file-path validate" type="text" style="display: none"
+                                   placeholder="Upload one or more files">
                         </div>
                     </div>
-                </div>-->
-                <div class="col s12" style="margin-bottom: 10px">
-                    <div class="col s4">
-                        <p>Cor do Menu</p><input type="color" id="cor_menu"/>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12 m6 l6">
+                        <p>Nome da Empresa</p><input type="text" class="entradaConfiguracao" id="nome_empresa"/>
                     </div>
-                    <div class="col s4">
-                        <p>Cor do Painel</p><input type="color" id="cor_conteudo"/>
+                    <div class="input-field col s12 m6 l6">
+                        <p>Flial</p><input type="text" class="entradaConfiguracao" id="filial_empresa"/>
                     </div>
-                    <div class="col s4">
-                        <p>Cor do Fundo</p><input type="color" id="cor_fundo"/>
+                </div>
+                <div class="row" style="padding: 10px;">
+                    <div class="col s12 l3">
+                        EXIBIR FORMA DE PAGAMENTO
+                        <div class="switch">
+                            <label>
+                                NÃO
+                                <input type="checkbox" id="checkFormaPagamento">
+                                <span class="lever"></span>
+                                SIM
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col s12 l3">
+                        EXIBIR PREÇO PARA CLIENTE
+                        <div class="switch">
+                            <label>
+                                NÃO
+                                <input type="checkbox" id="checkMostraPreco">
+                                <span class="lever"></span>
+                                SIM
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12" id="configuracaoCores">
+                    <div class="col s4 l2">
+                        <p>Cor do Menu:&nbsp;</p><input type="color" id="cor_menu"/>
+                    </div>
+                    <div class="col s4 l2">
+                        <p>Cor do Painel:&nbsp;</p><input type="color" id="cor_conteudo"/>
+                    </div>
+                    <div class="col s4 l2">
+                        <p>Cor do Fundo:&nbsp;</p><input type="color" id="cor_fundo"/>
                     </div>
                 </div>
 
                 <div class="row" style="margin-top: 20px">
                     <div class="col s4"></div>
-                    <button class="col s4 btn" id="btnSalvaConfig">Salvar</button>
+                    <button class="col s4 btn green" id="btnSalvaConfig">Salvar</button>
                 </div>
             </div>
         </div>
     </div>
     <div id="modalInfo" class="modal">
-        <div class="modal-content">
+        <div class="container-img">
+            <img src="assets/icon/sucess.png">
+        </div>
+        <div class="modal-content" style="padding: 0">
             <h4 id="titleModal">Resultado:</h4>
             <p id="msgModal" style='text-align:center'></p>
         </div>
         <div class="modal-footer">
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
+            <a href="#!" id="btnSucess" class="modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
+        </div>
+    </div>
+    <div id="modalInfoAlteracao" class="modal">
+        <div class="container-img">
+            <img src="assets/icon/edit.png" width="150">
+        </div>
+        <div class="modal-content" style="padding: 0">
+            <p  style='text-align:center'>Orcamento alterado com sucesso </p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" id="btnAlteracao" class="modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
         </div>
     </div>
     <div id="modalDadosPedido">
@@ -700,7 +762,7 @@
     </div>
     <div id="modalCancelaPedido" class="modalCancelaPedido">
         <div class=" col s12" style="margin-bottom: 30px;text-align: center">
-            <p>Deseja Cancelar o Pedido ?</p>
+            <p>Deseja retornar ?</p>
         </div>
         <div class="row">
             <div class="col s2 m1 l3"></div>
