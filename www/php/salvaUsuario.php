@@ -9,9 +9,9 @@
   	}
   	$usuario->setNome($_POST['nome']);
 	$usuario->setEmail($_POST['email']);
-	$usuario->setSenha($_POST['senha']);
+	$usuario->setSenha(base64_encode($_POST['senha']));
 	$usuario->setIdPermissao($_POST['permissao']);
-	if($_POST['permissao'] == '2' || $_POST['permissao'] == '3'){
+	if($_POST['permissao'] != 4){
         $usuario->setCodfuncionario($_POST['codusuario']);
     }else{
         $usuario->setCodParticipante($_POST['codusuario']);

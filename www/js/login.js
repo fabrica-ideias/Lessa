@@ -169,13 +169,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     }
                     lista += "<li><div class='collapsible-header'>";
                     lista += "<div class='col s12'>";
-                    lista += "<div class='col s1'>" + orcamentos[i].NET_PKN_SEQUENCIAL + "</div>";
-                    lista += "<div class='col s7'>" + orcamentos[i].NET_A_CLI_NOME + "</div>";
-                    lista += "<div class='col s2'>" + numberToReal(total) + "</div>";
-                    lista += "<div class='col s2'><div class='row'>" +
-                        "<div class='col s4' ><a class='orcaitem' id='" + i + "'><i class='material-icons' >dashboard</i></a></div>" +
-                        "<div class='col s4'><a  class='cancelaPedido' id='" + i + "'><i class='material-icons'>close</i></a></div>" +
-                        "<div class='col s4'><a  class='alteraPedido' id='" + i + "'><i class='material-icons'>edit</i></a></div>" +
+                    lista += "<div class='col s12 l10'><div class='col s9 l9 fontPequena'><div class='col s1 fontPequena text-cinza'>" + orcamentos[i].NET_PKN_SEQUENCIAL + "</div>";
+                    lista += " - " + orcamentos[i].NET_A_CLI_NOME.substring(0, 30) + "<br>" +
+                        "<p class='fontPequena text-cinza'>" + orcamentos[i].NET_A_LOGRADOURO + ' ' + orcamentos[i].NET_A_ENDERECO + "</p></div>";
+                    lista += "<div class='col s3 l2 fontMaior'>" + numberToReal(total) + "</div></div>";
+                    lista += "<div class='col s12 l2'><div class='row'>" +
+                        "<div class='col s2 offset-s6 l4' ><a class='orcaitem' id='" + i + "'><i class='material-icons' >dashboard</i></a></div>" +
+                        "<div class='col s2 l4'><a  class='cancelaPedido' id='" + i + "'><i class='material-icons'>close</i></a></div>" +
+                        "<div class='col s2 l4'><a  class='alteraPedido' id='" + i + "'><i class='material-icons'>edit</i></a></div>" +
                         "</div>";
                     lista += "</div>";
                     lista += "</div></li>";
@@ -195,11 +196,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     });
                     document.getElementsByClassName("cancelaPedido")[i].addEventListener("click", function () {
                         orcamento = orcamentos[this.id];
-                        var result = confirm("Deseja cancelar pedido ?");
-                        if (result == true) {
+                        dialog("Deseja cancelar pedido ?", function () {
                             cancelarPedido(orcamento.NET_PKN_SEQUENCIAL);
                             mostraOrcamentos();
-                        }
+                        }, function () {
+                        });
                     });
                 }
                 elems = document.getElementsByClassName("alteraPedido"), i;
@@ -207,12 +208,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     document.getElementsByClassName("alteraPedido")[i].removeEventListener("click", function () {
                     });
                     document.getElementsByClassName("alteraPedido")[i].addEventListener("click", function () {
-                        var verificar = confirm("Deseja alterar pedido");
-                        if (verificar == true) {
-                            alteraOrcamento(orcamentos[this.id]);
+                        var orca = orcamentos[this.id];
+                        dialog("Deseja alterar pedido ?", function () {
+                            alteraOrcamento(orca);
                             document.getElementById("conteudo_painel").style.display = "block";
                             document.getElementById("listaOrcamentos").style.display = "none";
-                        }
+                        }, function () {
+                        });
                     });
                 }
                 $('#modalpreload').modal('close');
@@ -230,6 +232,153 @@ document.addEventListener("DOMContentLoaded", function (event) {
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             request.send("id=" + usuario.codparticipante);
         }
+    }
+
+    function mostraPedidosConferir() {
+        document.getElementById("voltaConferente").style.display = "none";
+        document.getElementById("descricaoConferir").innerHTML = "PEDIDOS PARA CONFERIR";
+        $('#modalpreload').modal('open');
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
+                orcamentos = [];
+                orcamentos = JSON.parse(request.responseText);
+                var lista = "";
+                for (var i = 0; i < orcamentos.length; i++) {
+                    var total = 0;
+                    var msg = "NÃO CONFERIDO";
+                    for (var j = 0; j < orcamentos[i].itens.length; j++) {
+                        if(orcamentos[i].itens[j].CONFERIDO == 1){
+                            msg = "pendente";
+                        }
+                        var item = orcamentos[i].itens[j];
+                        total += (item.NET_ITEM_QTD * item.NET_M_VALOR_UNITARIO);
+                    }
+                    lista += "<li class='conferirPedido' id='" + i + "'><div class='collapsible-header'>";
+                    lista += "<div class='col s12'>";
+                    lista += "<div class='col s12 l5'><div class='col s1 fontPequena text-cinza'>" + orcamentos[i].NET_PKN_SEQUENCIAL + "</div>";
+                    lista += "<div class='col s11 l9 fontPequena'>" + orcamentos[i].NET_A_CLI_NOME.substring(0, 30) + "<br>" +
+                        "<p class='fontPequena text-cinza'>" + orcamentos[i].NET_A_LOGRADOURO + ' ' + orcamentos[i].NET_A_ENDERECO + "</p></div></div>";
+                    lista += "<div class='col s12 l2 fontMaior' style='text-align: left'>" + dataAtualFormatada(orcamentos[i].NET_D_DATA) + "</div></div>";
+                    lista += "<div class='col s4 l2'><div class='statusPedido "+msg+"'>"+msg.toUpperCase()+"</div></div></div>";
+                    lista += "</div></li>";
+                }
+
+                document.getElementById("pedidoConferir").innerHTML = lista;
+                $('#modalpreload').modal('close');
+                var elems = document.getElementsByClassName("conferirPedido"), i;
+                for (i = 0; i < elems.length; i++) {
+                    document.getElementsByClassName("conferirPedido")[i].removeEventListener("click", function () {
+                    });
+                    document.getElementsByClassName("conferirPedido")[i].addEventListener("click", function () {
+                        mostraItens(orcamentos[this.id]);
+                    });
+
+                }
+            }
+        }
+        request.open("POST", url + "php/getOrcamentos.php", true);
+        request.send();
+    }
+
+    function mostraItens(orca) {
+        document.getElementById("voltaConferente").style.display="block";
+        document.getElementById("voltaConferente").removeEventListener("click",function(){});
+        document.getElementById("voltaConferente").addEventListener("click",function(){
+            mostraPedidosConferir()
+        });
+        document.getElementById("descricaoConferir").innerHTML = "Conferir itens do pedido Nº:" + orca.NET_PKN_SEQUENCIAL;
+        var lista = "";
+        var produtos = [];
+        for (var i = 0; i < orca.itens.length; i++) {
+            var item = orca.itens[i];
+            var verificar = false;
+            for(var j = 0; j < produtos.length;j++){
+                if(produtos[j].PRO_PKN_CODIGO == item.PRO_PKN_CODIGO){
+                    produtos[j].NET_ITEM_QTD = parseFloat(produtos[j].NET_ITEM_QTD)+ parseFloat(item.NET_ITEM_QTD);
+                    verificar = true;
+                    break;
+                }
+            }
+            if(verificar == false){
+                produtos.push(item);
+            }
+        }
+        orca.itens = produtos;
+        for (var i = 0; i < orca.itens.length; i++) {
+            var preload = '<div id="preload' + i + '" style="display: none;" class="preloader-wrapper small active">';
+            preload += '        <div class="spinner-layer spinner-blue-only">';
+            preload += '        <div class="circle-clipper left">';
+            preload += '     <div class="circle"></div>';
+            preload += '    </div><div class="gap-patch">';
+            preload += '   <div class="circle"></div>';
+            preload += '     </div><div class="circle-clipper right">';
+            preload += '     <div class="circle"></div>';
+            preload += '      </div>';
+            preload += '      </div>';
+            preload += '</div>';
+
+            var item = orca.itens[i];
+            lista += "<li class='conferirPedido' id='" + i + "'><div class='collapsible-header'>";
+            lista += "<div class='col s12'>";
+            lista += "<div class='col s12 l12'><div class='col s2 l1'>QTDE</br>" + item.NET_ITEM_QTD +" "+item.unidade+ "</div>";
+            lista += "<div class='col s9 l10'>DESCRIÇÃO</br>" + item.descricao +"</div>";
+            if (converterBoolean(item.CONFERIDO) == true) {
+                lista += "<div class='col s1 l1'>" +
+                    "<input type='checkbox' class='itemconferido' value='" + i + "' checked disabled id='item" + i + "' />" +
+                    "<label for='item" + i + "'></label></div>";
+            } else {
+                lista += "<div class='col s1 l1'>" +
+                    "<input type='checkbox' class='itemconferido'  value='" + i + "'  id='item" + i + "' />" +
+                    "<label id='check" + i + "' for='item" + i + "'></label>" + preload + "</div>";
+            }
+            lista += "</div></li>";
+        }
+        document.getElementById("pedidoConferir").innerHTML = lista;
+        $('#modalpreload').modal('close');
+        var elems = document.getElementsByClassName("itemconferido"), i;
+        for (i = 0; i < elems.length; i++) {
+            document.getElementsByClassName("itemconferido")[i].removeEventListener("click", function () {
+            });
+            document.getElementsByClassName("itemconferido")[i].addEventListener("click", function () {
+                document.getElementById("check" + this.value).style.display = "none";
+                document.getElementById("preload" + this.value).style.display = "block";
+                var index = this.value;
+                var request = new XMLHttpRequest();
+                request.onreadystatechange = function () {
+                    if (request.readyState == 4 && request.status == 200) {
+                        console.log(index);
+                        document.getElementById("check" + index).style.display = "block";
+                        document.getElementById("preload" + index).style.display = "none";
+                        document.getElementById("item"+index).checked = true;
+                        document.getElementById("item"+index).disabled = true;
+                        if(request.responseText == "yes"){
+                            $('#modalNomeMotorista').modal({dismissible: false});
+                            $("#modalNomeMotorista").modal("open");
+                            document.getElementById("btnFinalizaConferencia").removeEventListener("click",function(){});
+                            document.getElementById("btnFinalizaConferencia").addEventListener("click",function(){
+                                salvaNomeMotorista(orca);
+                            });
+                        }
+                    }
+                }
+                request.open("POST", url + "php/conferirItem.php", true);
+                request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                request.send("idpedido=" + orca.NET_PKN_SEQUENCIAL + "&iditem=" +orca.itens[this.value].PRO_PKN_CODIGO+"&idconferente="+usuario.idlogin);;
+            });
+        }
+    }
+    function salvaNomeMotorista(orca){
+        var nome = document.getElementById("nomeMotorista").value;
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 && request.status == 200) {
+                mostraPedidosConferir();
+            }
+        }
+        request.open("POST", url + "php/salvaNomeMotorista.php", true);
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        request.send("idpedido=" + orca.NET_PKN_SEQUENCIAL + "&nome=" +nome);
     }
 
     function cancelarPedido(id) {
@@ -492,13 +641,17 @@ document.addEventListener("DOMContentLoaded", function (event) {
         var qtdeAcumulada = 0;
         produtosSolicitados = produtos;
         for (var i = 0; i < produtos.length; i++) {
+            var saldo = (0 - produtos[i].qtde);
+            if(saldo < 0){
+                saldo = "<p style='color: red;'>"+saldo+"</p>";
+            }
             select += '    <a class="col s12 itemlista itemacumulado" id="' + i + '">' +
                 '<div class="row" style="padding: 5px;"><div class="col s12">' + produtos[i].descricao.substring(0, 40) + '</div></div>'
                 + '<div class="row"><div class="col m4 l8" ></div>' +
                 '<div class="col s3 m2 l1" style="text-align: center">UNIDADE</br>' + produtos[i].unidade + '</div>'
                 + '<div class="col s3 m2 l1" style="text-align: center">VENDIDO</br>' + produtos[i].qtde + '</div>'
                 + '<div class="col s3 m2 l1" style="text-align: center">ESTOQUE</br>0</div>'
-                + '<div class="col s3 m2 l1" style="text-align: center">SALDO</br>' + (0 - produtos[i].qtde) + '</div></div>'
+                + '<div class="col s3 m2 l1" style="text-align: center">SALDO</br>' +saldo + '</div></div>'
                 + '</a>';
             qtdeAcumulada += produtos[i].qtde;
         }
@@ -539,12 +692,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
                         document.getElementsByClassName("orcamentoSelecionado")[i].addEventListener("click", function () {
                             for (var j = 0; j < orcamentos.length; j++) {
                                 if (orcamentos[j].NET_PKN_SEQUENCIAL == this.id) {
-                                    var verificar = confirm("Deseja alterar pedido");
-                                    if (verificar == true) {
+                                    var orca = orcamentos[j];
+                                    dialog("Deseja alterar pedido ?", function () {
                                         document.getElementById("detalheCliente").style.display = "none";
                                         $(".modalItemOrcamentos").modal("close");
-                                        alteraOrcamento(orcamentos[j]);
-                                    }
+                                        alteraOrcamento(orca);
+                                    }, function () {
+                                    });
                                     break;
                                 }
 
@@ -575,32 +729,36 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
     function mostraFormaPagamento() {
-        if (cliente == null) {
-            Materialize.toast('CLIENTE DEVE SER SELECIONADO', 5000);
-            return;
-        }
-        if (itensOrcamento.length == 0) {
-            Materialize.toast('ADICIONE PELO MENOS UM ITEM NO ORCAMENTO', 5000);
-            return;
-        }
-        $('#modalpreload').modal('open');
-        var request = new XMLHttpRequest();
-        request.onreadystatechange = function () {
-            if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
-                var forma = JSON.parse(request.responseText);
-                var options = "<option value='' disabled selected >SELECIONE A FORMA DE PAGAMENTO</option>";
-                for (var i = 0; i < forma.length; i++) {
-                    options += '<option value="' + forma[i].FOR_PKN_CODIGO + '">' + forma[i].FOR_A_DESCRICAO + '</option>';
-                }
-                document.getElementById("selectFormaPagamento").innerHTML = options;
-                $('#modalpreload').modal('close');
-                $('#modalFormaPagamento').modal({dismissible: true});
-                $('#modalFormaPagamento').modal('open');
-                $('select').material_select();
+        if (converterBoolean(config.forma_pagamento) == true) {
+            if (cliente == null) {
+                Materialize.toast('CLIENTE DEVE SER SELECIONADO', 5000);
+                return;
             }
+            if (itensOrcamento.length == 0) {
+                Materialize.toast('ADICIONE PELO MENOS UM ITEM NO ORCAMENTO', 5000);
+                return;
+            }
+            $('#modalpreload').modal('open');
+            var request = new XMLHttpRequest();
+            request.onreadystatechange = function () {
+                if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
+                    var forma = JSON.parse(request.responseText);
+                    var options = "<option value='' disabled selected >SELECIONE A FORMA DE PAGAMENTO</option>";
+                    for (var i = 0; i < forma.length; i++) {
+                        options += '<option value="' + forma[i].FOR_PKN_CODIGO + '">' + forma[i].FOR_A_DESCRICAO + '</option>';
+                    }
+                    document.getElementById("selectFormaPagamento").innerHTML = options;
+                    $('#modalpreload').modal('close');
+                    $('#modalFormaPagamento').modal({dismissible: true});
+                    $('#modalFormaPagamento').modal('open');
+                    $('select').material_select();
+                }
+            }
+            request.open("GET", url + "php/formaPagamento.php?id=" + cliente.PAR_PKN_CODIGO, true);
+            request.send();
+        } else {
+            finalizaOrcamento();
         }
-        request.open("GET", url + "php/formaPagamento.php?id=" + cliente.PAR_PKN_CODIGO, true);
-        request.send();
     }
 
     function iniciarConfiguracoes(config) {
@@ -612,16 +770,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
         document.getElementById("logo").src = "assets/icon/" + config.logo;
         document.title = config.nome_empresa;
         document.getElementById("logoEmpresaEdit").src = "assets/icon/" + config.logo;
-        document.getElementById("checkFormaPagamento").checked = config.forma_pagamento;
-        document.getElementById("checkMostraPreco").checked = config.mostra_preco;
-
+        document.getElementById("checkFormaPagamento").checked = converterBoolean(config.forma_pagamento);
+        document.getElementById("checkMostraPreco").checked = converterBoolean(config.mostra_preco);
     }
 
     function checarTipoUsuario() {
         $("#tipoUsuario").change(function () {
             document.getElementById("dadosUser").style.display = "block";
-            if (document.getElementById("tipoUsuario").value >= 1 && document.getElementById("tipoUsuario").value <= 3 ||
-                document.getElementById("tipoUsuario").value == 5) {
+            if (document.getElementById("tipoUsuario").value != 4) {
                 preencheAutoFuncionario();
                 document.getElementById("autofuncionario").style.display = "block";
                 document.getElementById("autocomcliente").style.display = "none";
@@ -686,7 +842,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
         xmlhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 verificaLogin();
-                console.log("Sessao Iniciada");
             }
         }
         xmlhttp.open("GET", url + "php/startSession.php?idusuario=" + usuario.idlogin + "&conexao=" + conectado, true);
@@ -730,18 +885,21 @@ document.addEventListener("DOMContentLoaded", function (event) {
     function logout() {
 
         if (cliente != null) {
-            var result = confirm("Orcamento não finalizado,Deseja sair ?");
-            if (result == false) {
-                return;
-            }
+            dialog("Orcamento não finalizado,Deseja sair ?", finalizaSessao, function () {
+            });
+        } else {
+            finalizaSessao();
         }
+
+    }
+
+    function finalizaSessao() {
         $('.button-collapse').sideNav('hide');
         request = new XMLHttpRequest();
         request.onreadystatechange = function () {
             if (request.readyState == 4 && request.status == 200) {
                 desativar();
                 verificaLogin();
-                console.log("Verificando Login");
             }
         }
         request.open("POST", url + "php/logout.php", true);
@@ -997,11 +1155,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
     function finalizaOrcamento() {
-        if (document.getElementById("selectFormaPagamento").value == '') {
-            Materialize.toast('SELECIONE UMA FORMA DE PAGAMENTO', 5000);
-            return;
+        if (converterBoolean(config.forma_pagamento) == true) {
+            if (document.getElementById("selectFormaPagamento").value == '') {
+                Materialize.toast('SELECIONE UMA FORMA DE PAGAMENTO', 5000);
+                return;
+            }
+            $("#modalFormaPagamento").modal("close");
         }
-        $("#modalFormaPagamento").modal("close");
         if (cliente == null) {
             Materialize.toast('CLIENTE DEVE SER SELECIONADO', 5000);
             return;
@@ -1018,13 +1178,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
         orcamento.funcionario = usuario.codfuncionario;
         orcamento.total = parseFloat(total);
         orcamento.itens = itensOrcamento;
+        orcamento.filial = config.filial_empresa;
         var dado = JSON.stringify(orcamento);
         request = new XMLHttpRequest();
         request.onreadystatechange = function () {
             if (request.readyState == 4 && request.status == 200) {
                 limparOrcamento();
                 $('#modalpreload').modal('close');
-                $('#modalInfo').modal('open');
+                showDialogConfirm("Pedido enviado com sucesso !");
             }
         }
         request.open("POST", url + "php/salvaOrcamento.php", true);
@@ -1128,7 +1289,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         form_data.append('senha', document.getElementById('senhaUserNovo').value);
         form_data.append('permissao', document.getElementById('tipoUsuario').value);
 
-        if (document.getElementById("tipoUsuario").value >= 1 && document.getElementById("tipoUsuario").value <= 3) {
+        if (document.getElementById("tipoUsuario").value != 4) {
             form_data.append('nome', funcionario.FUN_A_NOME);
             form_data.append('codusuario', funcionario.FUN_PKN_CODIGO);
         }
@@ -1209,6 +1370,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         document.getElementById("funcionario_orcamento").style.display = "block";
         document.getElementById("btnConfiguracao").style.display = "block";
         document.getElementById("btnConfiguracaoMobile").style.display = "block";
+        document.getElementById("conferente").style.display = "none";
         if (usuario.idpermissao == 0) {
             document.getElementById("nomeUser").innerHTML = usuario.nome.toUpperCase();
             document.getElementById("btnPrincipal").style.display = "none";
@@ -1297,32 +1459,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
             document.getElementById("funcionario_orcamento").style.display = "none";
             document.getElementById("btnConfiguracao").style.display = "none";
             document.getElementById("btnConfiguracaoMobile").style.display = "none";
-            conferirOrcamentos();
+            document.getElementById("conferente").style.display = "block";
+            mostraPedidosConferir();
         }
         document.getElementById("container").style.display = "block";
-
-    }
-
-    function conferirOrcamentos() {
-        request = new XMLHttpRequest();
-        request.onreadystatechange = function () {
-            if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
-                var lis = "";
-                orcamentos = [];
-                orcamentos = JSON.parse(request.responseText);
-                for (var i = 0; i < orcamentos.length; i++) {
-                    lis += '<li><div class="row"><div class="col s12">';
-                    lis += '<div class="col s2"> 342</div>';
-                    lis += '<div class="col s10"> TESTE JOSE ALMEIDA TESTE</div></div>';
-                    lis += '<div class="col s12 subitem">';
-                    lis += '<div class="col s10"> 14/08/1997</div>';
-                    lis += '<div class="col s2"> STATUS </div></div></div></li>';
-                }
-                document.getElementById("orcamentosConferir").innerHTML = lis;
-            }
-        }
-        request.open("POST", url + "php/getOrcamentos.php", true);
-        request.send();
 
     }
 
@@ -1389,7 +1529,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
         request.onreadystatechange = function () {
             if (request.readyState == 4 && request.status == 200) {
                 produtoCliente = JSON.parse(request.responseText);
-                console.log(produtoCliente.length);
                 var qtde = 0;
                 document.getElementById(autocompete).removeEventListener("input", function () {
                 });
@@ -1660,7 +1799,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
                         document.getElementsByClassName("clientePesquisa")[i].addEventListener("click", function () {
                             limparOrcamento();
                             cliente = clientes[this.id];
-                            console.log(cliente);
                             habilitaTelaItem()
                             hideKeyBoard();
                         });
@@ -1861,24 +1999,28 @@ document.addEventListener("DOMContentLoaded", function (event) {
             document.getElementsByTagName("body")[0].style.backgroundColor = this.value;
         });
         document.getElementById("btnSalvaConfig").addEventListener("click", function () {
-            var file_data = document.getElementById("fileLogo").files[0];
-            var form_data = new FormData();
-            form_data.append('file', file_data);
-            form_data.append('cor_fundo', document.getElementById("cor_fundo").value);
-            form_data.append('cor_conteudo', document.getElementById("cor_conteudo").value);
-            form_data.append('cor_menu', document.getElementById("cor_menu").value);
-            form_data.append('nome_empresa', document.getElementById("nome_empresa").value);
-            form_data.append('filial_empresa', document.getElementById("filial_empresa").value);
-            form_data.append("forma_pagamento",document.getElementById("checkFormaPagamento").checked);
-            form_data.append("mostra_preco",document.getElementById("checkMostraPreco").checked);
-            var request = new XMLHttpRequest();
-            request.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    console.log(request.responseText)
+            dialog("Confirmar Alteração ?", function () {
+                var file_data = document.getElementById("fileLogo").files[0];
+                var form_data = new FormData();
+                form_data.append('file', file_data);
+                form_data.append('cor_fundo', document.getElementById("cor_fundo").value);
+                form_data.append('cor_conteudo', document.getElementById("cor_conteudo").value);
+                form_data.append('cor_menu', document.getElementById("cor_menu").value);
+                form_data.append('nome_empresa', document.getElementById("nome_empresa").value);
+                form_data.append('filial_empresa', document.getElementById("filial_empresa").value);
+                form_data.append("forma_pagamento", document.getElementById("checkFormaPagamento").checked);
+                form_data.append("mostra_preco", document.getElementById("checkMostraPreco").checked);
+                var request = new XMLHttpRequest();
+                request.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        showDialogConfirm("Configuraçao alterada com sucesso !");
+                    }
                 }
-            }
-            request.open("POST", url + "php/salvaConfiguracao.php");
-            request.send(form_data);
+                request.open("POST", url + "php/salvaConfiguracao.php");
+                request.send(form_data);
+
+            }, function () {
+            });
         });
         document.getElementById("fileLogo").addEventListener("change", function () {
             var img;

@@ -570,15 +570,9 @@
         <div class="col s12 m12 l10" id="listaOrcamentos">
             <div class="row">
                 <div class="row desListaPedidos">
-                    <div class="col s1 l1">PEDIDO</div>
-                    <div class="col s7 l7">CLIENTE</div>
+                    <div class="col s1 l1">Nº</div>
+                    <div class="col s9 l7">CLIENTE</div>
                     <div class="col s2 l2">VALOR</div>
-                    <div class="col s2 l2">
-                        <div class="row">
-                            <div class="col s6 l6">CANCELAR</div>
-                            <div class="col s6 l6">ALTERAR</div>
-                        </div>
-                    </div>
                 </div>
                 <ul class="col s12 m12 l10 collapsible" id="orcamentos">
 
@@ -612,7 +606,7 @@
                     <div class="input-field col s12 m6 l6">
                         <p>Nome da Empresa</p><input type="text" class="entradaConfiguracao" id="nome_empresa"/>
                     </div>
-                    <div class="input-field col s12 m6 l6">
+                    <div class="input-field col s3 m2 l2">
                         <p>Flial</p><input type="text" class="entradaConfiguracao" id="filial_empresa"/>
                     </div>
                 </div>
@@ -659,16 +653,35 @@
             </div>
         </div>
     </div>
+    <div id="conferente">
+        <div class="row">
+            <div class="col s12" id="menuPedidos" >
+                <i class="material-icons" id="voltaConferente">arrow_back</i>
+                <p id="descricaoConferir">PEDIDOS PARA CONFERIR</p>
+                <ul class="collection" id="pedidoConferir">
+
+                </ul>
+            </div>
+        </div>
+    </div>
     <div id="modalInfo" class="modal">
         <div class="container-img">
             <img src="assets/icon/sucess.png">
         </div>
         <div class="modal-content" style="padding: 0">
-            <h4 id="titleModal">Resultado:</h4>
+            <h4 id="titleModal"></h4>
             <p id="msgModal" style='text-align:center'></p>
         </div>
         <div class="modal-footer">
             <a href="#!" id="btnSucess" class="modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
+        </div>
+    </div>
+    <div id="modalNomeMotorista" class="modal">
+        <div class="modal-content" style="padding: 0">
+            <input type="text" id="nomeMotorista" placeholder="INFORME O NOME DO MOTORISTA"/>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" id="btnFinalizaConferencia" class="modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
         </div>
     </div>
     <div id="modalInfoAlteracao" class="modal">
@@ -676,7 +689,7 @@
             <img src="assets/icon/edit.png" width="150">
         </div>
         <div class="modal-content" style="padding: 0">
-            <p  style='text-align:center'>Orcamento alterado com sucesso </p>
+            <p style='text-align:center'>Orcamento alterado com sucesso </p>
         </div>
         <div class="modal-footer">
             <a href="#!" id="btnAlteracao" class="modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
@@ -826,5 +839,14 @@
         </div>
     </div>
 </div>
+
+<div id="dialog">
+    <p id="msgDialog">Teste</p>
+    <div class="row">
+        <button class="col s6 btn green" id="btnConfirm">SIM</button>
+        <button class="col s6 btn red" id="btnNotConfirm">NÃO</button>
+    </div>
+</div>
+
 </body>
 </html>

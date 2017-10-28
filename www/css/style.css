@@ -16,6 +16,66 @@
         background-color: #fafafa;
         overflow-y: auto;
     }
+    #btnFinalizaConferencia{
+        width: 100%;
+        text-align: center;
+        background-color: #4bc14b;
+        color: #fff;
+    }
+    #modalNomeMotorista{
+        width: 90%;
+    }
+    .pendente{
+        background-color: #de8b14;
+    }
+    .fontPequena{
+        font-size: 0.90em;
+    }
+    #descricaoConferir{
+        text-align: center;
+    }
+    .statusPedido{
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        text-align: center;
+    }
+    #conferente{
+        display: none;
+    }
+    #menuPedidos{
+
+        background-color: #dae1e4;
+        border: 1px solid #efefef;
+        position: absolute;
+        height: 85%;
+        margin-top: 5px;
+        border-radius: 10px;
+    }
+    #pedidoConferir{
+        padding: 5px;
+        position: absolute;
+        max-height:  95%;
+        overflow-y: auto;
+        width: 100%;
+    }
+    #dialog{
+        display: none;
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: 10%;
+        margin: auto;
+        width: 90%;
+        background-color: #fff;
+        -webkit-border-radius:4px;
+        -moz-border-radius:4px;
+        border-radius:4px;
+    }
+    #msgDialog{
+        text-align: center;
+        padding:20px;
+    }
     .entradaConfiguracao{
         max-width:95%;
         background-color: #fff !important;
@@ -302,6 +362,14 @@
     .cinza {
         background-color: #ccc;
 
+    }
+    .text-cinza{
+        color:#6d6d6d !important;
+    }
+    .fontMaior{
+        font-size: 1.5em;
+        padding: 5px 0px !important;
+        text-align: right;
     }
 
     #listaOrcamentos {
@@ -893,6 +961,9 @@
 }
 /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
 @media (min-width:641px)  and (max-width: 992px) {
+    #modalNomeMotorista{
+        width: 60%;
+    }
     .imgresult {
         width: 100px;
         height: 100px;
@@ -1031,7 +1102,15 @@
 }
 /* hi-res laptops and desktops */
 @media (min-width:993px) {
-
+    #modalNomeMotorista{
+        width: 40%;
+    }
+    #dialog{
+        width: 40%;
+    }
+    .container-img {
+        width: 30%;
+    }
     #modalInfo{
         border-radius: 10px;
         width: 30%;

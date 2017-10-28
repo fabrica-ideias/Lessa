@@ -38,7 +38,7 @@ if (!mysqli_query($con, "INSERT INTO NET_MOVIMENTO(
     . $orcamento->usuario->PAR_A_EMAIL . "','DIGITADO', '"
     . $orcamento->usuario->PAR_A_OBS_FINANCEIRA . "', '"
     . $orcamento->usuario->PAR_PKN_CODIGO . "','"
-    . $data . "','0','"
+    . $data . "','".$orcamento->filial."','"
     . $orcamento->funcionario . "',
 	'" . $orcamento->forma . "',
 	false,

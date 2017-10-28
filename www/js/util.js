@@ -157,4 +157,32 @@ function dataAtualFormatada(d){
     return dia+"/"+mes+"/"+ano;
 }
 
+function converterBoolean(log){
+    if(log == 1){
+        return true;
+    }
+    return false;
+}
+
+function dialog(msg, confirm, notconfirm){
+    document.getElementById("btnConfirm").removeEventListener("click",function(){});
+    document.getElementById("btnNotConfirm").removeEventListener("click",function(){});
+    $("#dialog").modal();
+    $("#dialog").modal("open");
+    document.getElementById("msgDialog").innerHTML = msg;
+    document.getElementById("btnConfirm").addEventListener("click",function(){
+        $("#dialog").modal("close");
+        confirm();
+    });
+    document.getElementById("btnNotConfirm").addEventListener("click",function(){
+        $("#dialog").modal("close");
+        notconfirm();
+    });
+}
+function showDialogConfirm(msg){
+    $("#modalInfo").modal();
+    $("#modalInfo").modal("open");
+    document.getElementById("msgModal").innerHTML = msg;
+
+}
 
