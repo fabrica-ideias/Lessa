@@ -1,0 +1,99 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "cordova-plugin-ionic-keyboard",
+        "scope": null,
+        "escapedName": "cordova-plugin-ionic-keyboard",
+        "name": "cordova-plugin-ionic-keyboard",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "C:\\xampp\\htdocs\\app_lessa\\node_modules"
+    ]
+  ],
+  "_from": "cordova-plugin-ionic-keyboard@latest",
+  "_id": "cordova-plugin-ionic-keyboard@1.0.5",
+  "_inCache": true,
+  "_location": "/cordova-plugin-ionic-keyboard",
+  "_nodeVersion": "0.12.3",
+  "_npmUser": {
+    "name": "lotterfriends",
+    "email": "npm@lotterfriends.net"
+  },
+  "_npmVersion": "2.9.1",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "cordova-plugin-ionic-keyboard",
+    "scope": null,
+    "escapedName": "cordova-plugin-ionic-keyboard",
+    "name": "cordova-plugin-ionic-keyboard",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-plugin-ionic-keyboard/-/cordova-plugin-ionic-keyboard-1.0.5.tgz",
+  "_shasum": "b4c43125438ccde0e246215b09b297d173e22cae",
+  "_shrinkwrap": null,
+  "_spec": "cordova-plugin-ionic-keyboard",
+  "_where": "C:\\xampp\\htdocs\\app_lessa\\node_modules",
+  "author": {
+    "name": "Ionic"
+  },
+  "bugs": {
+    "url": "https://github.com/lottefriends/cordova-plugin-ionic-keyboard/issues"
+  },
+  "cordova": {
+    "id": "cordova-plugin-ionic-keyboard",
+    "platforms": [
+      "android",
+      "ios",
+      "blackberry10",
+      "wp8",
+      "windows"
+    ]
+  },
+  "dependencies": {},
+  "deprecated": "official coming soon",
+  "description": "Cordova Keyboard Plugin",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "b4c43125438ccde0e246215b09b297d173e22cae",
+    "tarball": "https://registry.npmjs.org/cordova-plugin-ionic-keyboard/-/cordova-plugin-ionic-keyboard-1.0.5.tgz"
+  },
+  "gitHead": "25278ba0f3809d1c7b3564f894395a76e9b621e9",
+  "homepage": "https://github.com/lottefriends/cordova-plugin-ionic-keyboard#readme",
+  "issue": "https://github.com/lotterfriends/cordova-plugin-ionic-keyboard/issues",
+  "keywords": [
+    "cordova",
+    "keyboard",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-blackberry10",
+    "cordova-wp8",
+    "cordova-windows"
+  ],
+  "license": "Apache 2.0",
+  "maintainers": [
+    {
+      "name": "lotterfriends",
+      "email": "npm@lotterfriends.net"
+    }
+  ],
+  "name": "cordova-plugin-ionic-keyboard",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lottefriends/cordova-plugin-ionic-keyboard.git"
+  },
+  "scripts": {},
+  "version": "1.0.5"
+}
