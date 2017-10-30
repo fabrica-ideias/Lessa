@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", function (event) {
     var verificarEmail = false, validaEmail = false, alteracaoItem = false;
-    var produtosSolicitados = [], clientesSolicitado = [], produtoCliente = [], clientes = [], funcionarios = [], orcamentos = [], itensOrcamento = [];
+    var produtosSolicitados = [], clientesSolicitado = [], produtoCliente = [], clientes = [], funcionarios = [],
+        orcamentos = [], itensOrcamento = [];
     var produtoSelecionado = null, orcamento = null, funcionario = null, cliente = null, config = null;
     var indexProduto = 0, total = 0, iniciou = 0;
-    var url = "";
+    var url = "", escolha = "1";
 
     function autoplay() {
         $('.carousel').carousel('next');
@@ -11,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
     verificaLogin();
+
     //Inicia a Configuração de Layout e Eventos
     function initConfiguracao() {
         var request = new XMLHttpRequest();
@@ -19,6 +21,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 config = JSON.parse(this.responseText);
                 if (iniciou == 0) {
                     autoplay();
+                    document.getElementById("esqueceuSenha").addEventListener("click",function(){
+                        $("#modalEsqueceuSenha").modal();
+                        $("#modalEsqueceuSenha").modal("open");
+                    });
+                    document.getElementById("btnEnviarEmail").addEventListener("click",function(){
+                        verificaEnvioEmail(document.getElementById("emailUsuario").value);
+                    });
                     iniciarConfiguracoes(config);
                     document.getElementById("btnConfiguracao").addEventListener("click", abrirConfiguracao); //tela de configuracao de layout
                     document.getElementById("logout").addEventListener("click", logout); //logout
@@ -58,27 +67,34 @@ document.addEventListener("DOMContentLoaded", function (event) {
                         addItem("qtdeProdutoWeb", "detalheItemWeb", true)
                     });
                     document.getElementsByName("filtragemProduto")
-                    var radioBusca = document.getElementsByName("filtragemProduto"), i;
+                    var radioBusca = document.getElementsByClassName("filtragemProduto"), i;
                     for (var i = 0; i < radioBusca.length; i++) {
-                        var radio = document.getElementById(document.getElementsByName("filtragemProduto")[i].id);
+                        var radio = document.getElementById(document.getElementsByClassName("filtragemProduto")[i].id);
                         radio.addEventListener("click", function () {
                             document.getElementById("detalheCliente").style.display = "none";
                             if (this.id == "buscaProduto") {
                                 listaProdutosSolicitados();
+                                escolha = "1";
                             }
                             if (this.id == "buscaCliente") {
                                 document.getElementById("preloadItens").style.display = "block";
                                 document.getElementById("produtos").innerHTML = "";
                                 document.getElementById("detalheCliente").style.display = "none";
+                                escolha = "2";
                                 produtosCliente();
                             }
                             if (this.id == "buscaPedido") {
                                 document.getElementById("preloadItens").style.display = "block";
                                 document.getElementById("produtos").innerHTML = "";
                                 produtoPorPedido();
+                                escolha = "3";
                             }
                         });
                     }
+                    document.getElementById("sairPesquisa").addEventListener("click",function(){
+                        document.getElementById("busca").value = "";
+                        filtraProdutos();
+                    });
                     document.getElementById("voltaPesquisa").addEventListener("click", function () {
                         document.getElementById("preloadItens").style.display = "block";
                         document.getElementById("filtragemProduto").style.display = "block";
@@ -248,7 +264,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     var total = 0;
                     var msg = "NÃO CONFERIDO";
                     for (var j = 0; j < orcamentos[i].itens.length; j++) {
-                        if(orcamentos[i].itens[j].CONFERIDO == 1){
+                        if (orcamentos[i].itens[j].CONFERIDO == 1) {
                             msg = "pendente";
                         }
                         var item = orcamentos[i].itens[j];
@@ -260,7 +276,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     lista += "<div class='col s11 l9 fontPequena'>" + orcamentos[i].NET_A_CLI_NOME.substring(0, 30) + "<br>" +
                         "<p class='fontPequena text-cinza'>" + orcamentos[i].NET_A_LOGRADOURO + ' ' + orcamentos[i].NET_A_ENDERECO + "</p></div></div>";
                     lista += "<div class='col s12 l2 fontMaior' style='text-align: left'>" + dataAtualFormatada(orcamentos[i].NET_D_DATA) + "</div></div>";
-                    lista += "<div class='col s4 l2'><div class='statusPedido "+msg+"'>"+msg.toUpperCase()+"</div></div></div>";
+                    lista += "<div class='col s4 l2'><div class='statusPedido " + msg + "'>" + msg.toUpperCase() + "</div></div></div>";
                     lista += "</div></li>";
                 }
 
@@ -282,9 +298,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
     function mostraItens(orca) {
-        document.getElementById("voltaConferente").style.display="block";
-        document.getElementById("voltaConferente").removeEventListener("click",function(){});
-        document.getElementById("voltaConferente").addEventListener("click",function(){
+        document.getElementById("voltaConferente").style.display = "block";
+        document.getElementById("voltaConferente").removeEventListener("click", function () {
+        });
+        document.getElementById("voltaConferente").addEventListener("click", function () {
             mostraPedidosConferir()
         });
         document.getElementById("descricaoConferir").innerHTML = "Conferir itens do pedido Nº:" + orca.NET_PKN_SEQUENCIAL;
@@ -293,14 +310,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
         for (var i = 0; i < orca.itens.length; i++) {
             var item = orca.itens[i];
             var verificar = false;
-            for(var j = 0; j < produtos.length;j++){
-                if(produtos[j].PRO_PKN_CODIGO == item.PRO_PKN_CODIGO){
-                    produtos[j].NET_ITEM_QTD = parseFloat(produtos[j].NET_ITEM_QTD)+ parseFloat(item.NET_ITEM_QTD);
+            for (var j = 0; j < produtos.length; j++) {
+                if (produtos[j].PRO_PKN_CODIGO == item.PRO_PKN_CODIGO) {
+                    produtos[j].NET_ITEM_QTD = parseFloat(produtos[j].NET_ITEM_QTD) + parseFloat(item.NET_ITEM_QTD);
                     verificar = true;
                     break;
                 }
             }
-            if(verificar == false){
+            if (verificar == false) {
                 produtos.push(item);
             }
         }
@@ -321,8 +338,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
             var item = orca.itens[i];
             lista += "<li class='conferirPedido' id='" + i + "'><div class='collapsible-header'>";
             lista += "<div class='col s12'>";
-            lista += "<div class='col s12 l12'><div class='col s2 l1'>QTDE</br>" + item.NET_ITEM_QTD +" "+item.unidade+ "</div>";
-            lista += "<div class='col s9 l10'>DESCRIÇÃO</br>" + item.descricao +"</div>";
+            lista += "<div class='col s12 l12'><div class='col s2 l1'>QTDE</br>" + item.NET_ITEM_QTD + " " + item.unidade + "</div>";
+            lista += "<div class='col s9 l10'>DESCRIÇÃO</br>" + item.descricao + "</div>";
             if (converterBoolean(item.CONFERIDO) == true) {
                 lista += "<div class='col s1 l1'>" +
                     "<input type='checkbox' class='itemconferido' value='" + i + "' checked disabled id='item" + i + "' />" +
@@ -350,13 +367,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
                         console.log(index);
                         document.getElementById("check" + index).style.display = "block";
                         document.getElementById("preload" + index).style.display = "none";
-                        document.getElementById("item"+index).checked = true;
-                        document.getElementById("item"+index).disabled = true;
-                        if(request.responseText == "yes"){
+                        document.getElementById("item" + index).checked = true;
+                        document.getElementById("item" + index).disabled = true;
+                        if (request.responseText == "yes") {
                             $('#modalNomeMotorista').modal({dismissible: false});
                             $("#modalNomeMotorista").modal("open");
-                            document.getElementById("btnFinalizaConferencia").removeEventListener("click",function(){});
-                            document.getElementById("btnFinalizaConferencia").addEventListener("click",function(){
+                            document.getElementById("btnFinalizaConferencia").removeEventListener("click", function () {
+                            });
+                            document.getElementById("btnFinalizaConferencia").addEventListener("click", function () {
                                 salvaNomeMotorista(orca);
                             });
                         }
@@ -364,11 +382,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 }
                 request.open("POST", url + "php/conferirItem.php", true);
                 request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                request.send("idpedido=" + orca.NET_PKN_SEQUENCIAL + "&iditem=" +orca.itens[this.value].PRO_PKN_CODIGO+"&idconferente="+usuario.idlogin);;
+                request.send("idpedido=" + orca.NET_PKN_SEQUENCIAL + "&iditem=" + orca.itens[this.value].PRO_PKN_CODIGO + "&idconferente=" + usuario.idlogin);
+                ;
             });
         }
     }
-    function salvaNomeMotorista(orca){
+
+    function salvaNomeMotorista(orca) {
         var nome = document.getElementById("nomeMotorista").value;
         var request = new XMLHttpRequest();
         request.onreadystatechange = function () {
@@ -378,7 +398,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         }
         request.open("POST", url + "php/salvaNomeMotorista.php", true);
         request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        request.send("idpedido=" + orca.NET_PKN_SEQUENCIAL + "&nome=" +nome);
+        request.send("idpedido=" + orca.NET_PKN_SEQUENCIAL + "&nome=" + nome);
     }
 
     function cancelarPedido(id) {
@@ -424,11 +444,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
     function filtraProdutos() {
         if (produtosSolicitados.length > 0) {
             document.getElementById("preloadBuscaProduto").style.display = "block";
-            if (document.getElementById("buscaProduto").checked == true) {
+            if (escolha == "1") {
                 var select = "";
                 var qtdeAcumulada = 0;
                 for (var i = 0; i < produtosSolicitados.length; i++) {
-                    if (produtosSolicitados[i].descricao.startsWith(document.getElementById("busca").value.toUpperCase())) {
+                    if (produtosSolicitados[i].descricao.startsWith(document.getElementById("busca").value.toUpperCase()) ) {
                         select += '    <a class="col s12 itemlista itemacumulado" id="' + i + '">' +
                             '<div class="row" style="padding: 5px;"><div class="col s12">' + produtosSolicitados[i].descricao.substring(0, 40) + '</div></div>'
                             + '<div class="row"><div class="col m4 l8" ></div>' +
@@ -445,13 +465,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 document.getElementById("qtdeItemAcumulado").value = qtdeAcumulada;
                 mostraPedidoItemSolicitado();
             }
-            if (document.getElementById("buscaCliente").checked == true) {
+            if (escolha == "2") {
                 var lista = "";
                 for (var i = 0; i < clientesSolicitado.length; i++) {
-                    if (clientesSolicitado[i].NET_A_CLI_NOME.startsWith(document.getElementById("busca").value.toUpperCase())) {
+                    if (clientesSolicitado[i].NET_A_CLI_NOME.startsWith(document.getElementById("busca").value.toUpperCase()) ||
+                        clientesSolicitado[i].PAR_PKN_CODIGO.startsWith(document.getElementById("busca").value.toUpperCase())) {
                         lista += "<li class='clienteBusca' id='" + i + "'><div class='row'>";
                         lista += "<div class='col s1'>" + clientesSolicitado[i].PAR_PKN_CODIGO + "</div>";
-                        lista += "<div class='col s4'>" + clientesSolicitado[i].NET_A_CLI_NOME + "</div>";
+                        lista += "<div class='col s4'>-" + clientesSolicitado[i].NET_A_CLI_NOME + "</div>";
                         lista += "<div class='col s2'>" + dataAtualFormatada(clientesSolicitado[i].NET_D_DATA) + "</div>";
                         lista += "</div>";
                         lista += "</div></li>";
@@ -549,8 +570,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     }
                     if (existeCliente == false) {
                         lista += "<li class='clienteBusca' id='" + count + "'><div class='row'>";
-                        lista += "<div class='col s1'>" + orcamentos[i].PAR_PKN_CODIGO + "</div>";
-                        lista += "<div class='col s4'>" + orcamentos[i].NET_A_CLI_NOME + "</div>";
+                        lista += "<div class='col s2'>" + orcamentos[i].PAR_PKN_CODIGO + "</div>";
+                        lista += "<div class='col s8'>" + orcamentos[i].NET_A_CLI_NOME + "</div>";
                         lista += "<div class='col s2'>" + dataAtualFormatada(orcamentos[i].NET_D_DATA) + "</div>";
                         lista += "</div>";
                         lista += "</div></li>";
@@ -642,8 +663,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
         produtosSolicitados = produtos;
         for (var i = 0; i < produtos.length; i++) {
             var saldo = (0 - produtos[i].qtde);
-            if(saldo < 0){
-                saldo = "<p style='color: red;'>"+saldo+"</p>";
+            if (saldo < 0) {
+                saldo = "<p style='color: red;'>" + saldo + "</p>";
             }
             select += '    <a class="col s12 itemlista itemacumulado" id="' + i + '">' +
                 '<div class="row" style="padding: 5px;"><div class="col s12">' + produtos[i].descricao.substring(0, 40) + '</div></div>'
@@ -651,7 +672,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 '<div class="col s3 m2 l1" style="text-align: center">UNIDADE</br>' + produtos[i].unidade + '</div>'
                 + '<div class="col s3 m2 l1" style="text-align: center">VENDIDO</br>' + produtos[i].qtde + '</div>'
                 + '<div class="col s3 m2 l1" style="text-align: center">ESTOQUE</br>0</div>'
-                + '<div class="col s3 m2 l1" style="text-align: center">SALDO</br>' +saldo + '</div></div>'
+                + '<div class="col s3 m2 l1" style="text-align: center">SALDO</br>' + saldo + '</div></div>'
                 + '</a>';
             qtdeAcumulada += produtos[i].qtde;
         }
@@ -677,7 +698,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                             if (produtos[this.id].codigo == orcamento.itens[k].PRO_PKN_CODIGO) {
                                 pedidos += '<div class="row zebra"><a class="orcamentoSelecionado" id="' + orcamento.NET_PKN_SEQUENCIAL + '"  style="color:#000">';
                                 pedidos += '<div class="col s12 m12 l6 subtitleitem"><div class="col s1 m2 l2">' + orcamento.NET_PKN_SEQUENCIAL + '</div>';
-                                pedidos += '<div class="col s11 m10 l10">' + orcamento.NET_A_CLI_NOME.substring(0, 30) + '</div></div>';
+                                pedidos += '<div class="col s11 m10 l10">&nbsp;-&nbsp;' + orcamento.NET_A_CLI_NOME.substring(0, 30) + '</div></div>';
                                 pedidos += '<div class="col s12 m12 l6 subdetalheitem"><div class="col s9 m10 l10">' + orcamento.itens[k].descricao + '</div>';
                                 pedidos += '<div class="col s1 m1 l1">' + orcamento.itens[k].NET_ITEM_QTD + '</div></div>';
                                 pedidos += '</a></div>';
@@ -872,6 +893,15 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     document.getElementById("logar").addEventListener("click", login);
                     $('.carousel.carousel-slider').carousel({duration: 300, padding: 10, fullWidth: true});
                     if (iniciou == 0) {
+                        document.getElementById("esqueceuSenha").addEventListener("click",function(){
+                            $("#modalEsqueceuSenha").modal({dismissible:false});
+                            $("#modalEsqueceuSenha").modal("open");
+                            document.getElementById("modalEsqueceuSenha").style.borderRadius = "10px";
+                            document.getElementById("modalEsqueceuSenha").style.top = "5px !important";
+                        });
+                        document.getElementById("btnEnviarEmail").addEventListener("click",function(){
+                            verificaEnvioEmail(document.getElementById("emailUsuario").value);
+                        });
                         autoplay();
                     }
                 }
@@ -879,6 +909,23 @@ document.addEventListener("DOMContentLoaded", function (event) {
         };
         xmlhttp.open("POST", url + "php/checkSession.php", true);
         xmlhttp.send();
+    }
+
+    function verificaEnvioEmail(email){
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function(){
+            if(request.readyState == 4 && request.status == 200){
+                if(request.responseText == "ENVIADO"){
+                    $("#modalEsqueceuSenha").modal("close");
+                    showDialogConfirm("SUA SENHA FOI ENVIADA PARA SEU EMAIL");
+                    document.getElementById("emailUsuario").value = "";
+                }else{
+                    showDialogError("Usuario não encontrado !");
+                }
+            }
+        }
+        request.open("GET", url + "php/recuperaSenha.php?email="+email, true);
+        request.send();
     }
 
 //logout
@@ -1171,7 +1218,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
             return;
         }
         $('#modalpreload').modal('open');
-        console.log(usuario.codfuncionario);
         var orcamento = new Object();
         orcamento.forma = $("#selectFormaPagamento").val();
         orcamento.usuario = cliente;
@@ -1576,6 +1622,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 document.getElementById(autocompete).addEventListener("keypress", function (e) {
                     if (e.keyCode == 13) {
                         if (document.getElementById(autocompete).value === '') {
+                            Materialize.removeAll();
                             Materialize.toast('INFORME A DESCRICÃO OU CODIGO DO PRODUTO!', 5000);
                             document.getElementById("autocompleteproduto").value = "";
                             document.getElementById("autocompleteproduto").focus();
@@ -1710,7 +1757,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
             document.getElementById("preloadPesquisa").style.display = "block";
         }
         tempoUltimaDigitacao = (new Date()).getTime();
-
         setTimeout(function () {
             var digitacaoTempo = (new Date()).getTime();
             var diferencaTempo = digitacaoTempo - tempoUltimaDigitacao;
@@ -1745,6 +1791,25 @@ document.addEventListener("DOMContentLoaded", function (event) {
                             razao += '    </div>';
                             razao += '    </div>';
                             razao += '</div> ';
+                        }
+                        if (clientes[i].PAR_A_CNPJ_CPF.toUpperCase().startsWith(str.toUpperCase())) {
+                            doc += '<div class="col s12 clientePesquisa" id="' + i + '">';
+                            doc += '<div class="col s2">';
+                            doc += '<img class="imgresult circle" src="uploads/default.png">';
+                            doc += '    </div>';
+                            doc += '    <div class="col s10">';
+                            doc += '    <div class="col s12">';
+                            doc += '    <p>' + clientes[i].PAR_A_NOME.toUpperCase() + '</p>';
+                            doc += '    </div>';
+                            doc += '    <div class="col s12">';
+                            doc += '    <label>' + clientes[i].PAR_A_LOGRADOURO + '' +
+                                ' ' + clientes[i].PAR_A_ENDERECO + '' +
+                                ' ' + clientes[i].PAR_A_NUMERO + ' - ' + clientes[i].PAR_A_BAIRRO + '/' +
+                                '' + clientes[i].PAR_A_CIDADE + '</br>' +
+                                '' + clientes[i].PAR_A_CNPJ_CPF + '</label>';
+                            doc += '    </div>';
+                            doc += '    </div>';
+                            doc += '</div> ';
                         }
                         if (clientes[i].PAR_A_NOME_FANTASIA.toUpperCase().startsWith(str.toUpperCase())) {
                             nome += '<div class="col s12 clientePesquisa" id="' + i + '">';
@@ -1812,59 +1877,58 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
     function popularClienteAutoComplete() {
-        document.getElementById("autocompletecliente").addEventListener("input", function () {
-            var select = "";
-            var qtde = 0;
-            for (var i = 0; i < clientes.length; i++) {
-                if (document.getElementById("razao").checked) {
-                    if (clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase().startsWith(this.value.toUpperCase())) {
-                        select += '<div class="selecionaCliente" id="' + i + '">' + clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase() + '</div>';
-                        qtde += 1;
+        autocomplete(document.getElementById("autocompletecliente"), function () {
+                var descricao  = document.getElementById("autocompletecliente").value;
+                var select = "";
+                var qtde = 0;
+                for (var i = 0; i < clientes.length; i++) {
+                    if (document.getElementById("razao").checked) {
+                        if (clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase().startsWith(descricao.toUpperCase())) {
+                            select += '<div class="selecionaCliente" id="' + i + '">' + clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase() + '</div>';
+                            qtde += 1;
+                        }
+                    }
+                    if (document.getElementById("cpfcnpj").checked) {
+                        if (clientes[i].PAR_A_CNPJ_CPF.toUpperCase().startsWith(descricao.toUpperCase())) {
+                            select += '<div class="selecionaCliente" id="' + i + '">' + clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase() + '</br><p>' + clientes[i].PAR_A_CNPJ_CPF + '</p></div>';
+                            qtde += 1;
+                        }
+                    }
+                    if (document.getElementById("fantasia").checked) {
+                        if (clientes[i].PAR_A_NOME_FANTASIA.toUpperCase().startsWith(descricao.toUpperCase())) {
+                            select += '<div class="selecionaCliente" id="' + i + '">' + clientes[i].PAR_A_NOME_FANTASIA.toUpperCase() + '</div>';
+                            qtde += 1;
+                        }
                     }
                 }
-                if (document.getElementById("cpfcnpj").checked) {
-                    if (clientes[i].PAR_A_CNPJ_CPF.toUpperCase().startsWith(this.value.toUpperCase())) {
-                        select += '<div class="selecionaCliente" id="' + i + '">' + clientes[i].PAR_A_RAZAOSOCIAL.toUpperCase() + '</br><p>' + clientes[i].PAR_A_CNPJ_CPF + '</p></div>';
-                        qtde += 1;
+                if (clientes.length > 0) {
+                    if (qtde > 0 && descricao.toUpperCase().length > 0) {
+                        document.getElementById("dialogcliente").innerHTML = select;
+                        document.getElementById("dialogcliente").style.display = "block";
+                    } else {
+                        document.getElementById("dialogcliente").innerHTML = "";
+                        document.getElementById("dialogcliente").style.display = "none";
                     }
-                }
-                if (document.getElementById("fantasia").checked) {
-                    if (clientes[i].PAR_A_NOME_FANTASIA.toUpperCase().startsWith(this.value.toUpperCase())) {
-                        select += '<div class="selecionaCliente" id="' + i + '">' + clientes[i].PAR_A_NOME_FANTASIA.toUpperCase() + '</div>';
-                        qtde += 1;
+                    var elems = document.getElementsByClassName("selecionaCliente"), i;
+                    for (i = 0; i < elems.length; i++) {
+                        document.getElementsByClassName("selecionaCliente")[i].removeEventListener("click", function () {
+                        });
+                        document.getElementsByClassName("selecionaCliente")[i].addEventListener("click", function () {
+                            document.getElementById("dialogcliente").style.display = "none";
+                            limparOrcamento();
+                            cliente = clientes[this.id];
+                            document.getElementById("autocompletecliente").value = cliente.PAR_A_RAZAOSOCIAL;
+                            hideKeyBoard();
+                        });
                     }
-                }
-            }
-            if (clientes.length > 0) {
-                if (qtde > 0 && this.value.toUpperCase().length > 0) {
-                    document.getElementById("dialogcliente").innerHTML = select;
-                    document.getElementById("dialogcliente").style.display = "block";
+
                 } else {
-                    document.getElementById("dialogcliente").innerHTML = "";
                     document.getElementById("dialogcliente").style.display = "none";
                 }
-                var elems = document.getElementsByClassName("selecionaCliente"), i;
-                for (i = 0; i < elems.length; i++) {
-                    document.getElementsByClassName("selecionaCliente")[i].removeEventListener("click", function () {
-                    });
-                    document.getElementsByClassName("selecionaCliente")[i].addEventListener("click", function () {
-                        document.getElementById("dialogcliente").style.display = "none";
-                        limparOrcamento();
-                        cliente = clientes[this.id];
-                        document.getElementById("autocompletecliente").value = cliente.PAR_A_RAZAOSOCIAL;
-                        hideKeyBoard();
-                    });
-                }
 
-            } else {
-                document.getElementById("dialogcliente").style.display = "none";
-            }
-
-        });
-        document.getElementById("autocompletecliente").addEventListener("keypress", function (event) {
-            if (event.keyCode == 13) {
+            }, function () {
                 for (var i = 0; i < clientes.length; i++) {
-                    if (clientes[i].PAR_PKN_CODIGO == this.value) {
+                    if (clientes[i].PAR_PKN_CODIGO == document.getElementById("autocompletecliente").value) {
                         document.getElementById("dialogcliente").style.display = "none";
                         limparOrcamento();
                         cliente = clientes[i];
@@ -1873,25 +1937,23 @@ document.addEventListener("DOMContentLoaded", function (event) {
                         break;
                     }
                 }
-            }
-        });
-        document.getElementById("autocompletecliente").addEventListener("blur", function () {
-            setTimeout(function () {
+
+            },
+            function () {
                 document.getElementById("dialogcliente").style.display = "none";
-            }, 200);
-        });
+            });
     }
 
-
     function preencheAutoFuncionario() {
-        request = new XMLHttpRequest();
+        var request = new XMLHttpRequest();
         request.onreadystatechange = function () {
             if (request.readyState == 4 && request.status == 200) {
                 funcionarios = [];
                 funcionarios = JSON.parse(this.responseText);
                 var qtde = 0;
-                document.getElementById("autocompletefuncionario").addEventListener("input", function () {
-                    this.value = this.value.toUpperCase();
+                autocomplete(document.getElementById("autocompletefuncionario"),
+                    function () {
+                    this.value = document.getElementById("autocompletefuncionario").value.toUpperCase();
                     var select = "";
                     var str = document.getElementById("autocompletefuncionario").value;
                     qtde = 0;
@@ -1900,7 +1962,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
                             select += '<div class="selecionaFuncionario" id="' + i + '">' + funcionarios[i].FUN_A_NOME.toUpperCase() + '</div>';
                             qtde++;
                         }
-
                     }
                     document.getElementById("dialogfuncionario").innerHTML = select;
                     if (qtde > 0) {
@@ -1918,12 +1979,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
                             document.getElementById("autocompletefuncionario").value = funcionario.FUN_A_NOME;
                         });
                     }
-                });
-                document.getElementById("autocompletefuncionario").addEventListener("blur", function () {
-                    setTimeout(function () {
+                },function(){},
+                    function () {
                         document.getElementById("dialogfuncionario").style.display = "none";
-                    }, 200);
-                });
+                    });
             }
         }
         request.open("POST", url + "php/getFuncionarios.php", true);
@@ -2073,6 +2132,4 @@ document.addEventListener("DOMContentLoaded", function (event) {
     window.onbeforeunload = function () {
         return "Os dados do formulário serão perdidos.";
     }
-
-})
-;
+});

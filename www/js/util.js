@@ -17,6 +17,7 @@ function numberToReal(num) {
     numero[0] = numero[0].split(/(?=(?:...)*$)/).join('.');
     return numero.join(',');
 }
+
 function mascaraQuantidade(num) {
     var numero = parseFloat(num);
     var numero = numero.toFixed(3).split('.');
@@ -57,6 +58,7 @@ function formataCampo(campo, Mascara, evento) {
         return true;
     }
 }
+
 function verificaNovoEmail(email) {
     if (email.indexOf("@") < 0 || email.indexOf(".com") < 0) {
         Materialize.toast('E-MAIL INVALIDO', 4000);
@@ -64,15 +66,16 @@ function verificaNovoEmail(email) {
     }
     return true;
 }
-function hideKeyBoard(){
+
+function hideKeyBoard() {
     var field = document.createElement('input');
     field.className = "keyfocus";
     field.setAttribute('type', 'text');
     document.body.appendChild(field);
 
-    setTimeout(function() {
+    setTimeout(function () {
         field.focus();
-        setTimeout(function() {
+        setTimeout(function () {
             field.setAttribute('style', 'display:none;');
         }, 1);
     }, 50);
@@ -114,6 +117,7 @@ function verificaEmailCadastro(email) {
         document.getElementById("emailUser").setAttribute("class", "validate invalid");
     }
 }
+
 function validaEmailUser(email) {
     var dominio = email.split("@");
     var subdominio = dominio[1].split(".");
@@ -145,44 +149,71 @@ function validaEmailUser(email) {
     }
 
 }
-function dataAtualFormatada(d){
+
+function dataAtualFormatada(d) {
     var data = new Date(d);
     var dia = data.getDate();
     if (dia.toString().length == 1)
-        dia = "0"+dia;
-    var mes = data.getMonth()+1;
+        dia = "0" + dia;
+    var mes = data.getMonth() + 1;
     if (mes.toString().length == 1)
-        mes = "0"+mes;
+        mes = "0" + mes;
     var ano = data.getFullYear();
-    return dia+"/"+mes+"/"+ano;
+    return dia + "/" + mes + "/" + ano;
 }
 
-function converterBoolean(log){
-    if(log == 1){
+function converterBoolean(log) {
+    if (log == 1) {
         return true;
     }
     return false;
 }
 
-function dialog(msg, confirm, notconfirm){
-    document.getElementById("btnConfirm").removeEventListener("click",function(){});
-    document.getElementById("btnNotConfirm").removeEventListener("click",function(){});
+function dialog(msg, confirm, notconfirm) {
+    document.getElementById("btnConfirm").removeEventListener("click", function () {
+    });
+    document.getElementById("btnNotConfirm").removeEventListener("click", function () {
+    });
     $("#dialog").modal();
     $("#dialog").modal("open");
     document.getElementById("msgDialog").innerHTML = msg;
-    document.getElementById("btnConfirm").addEventListener("click",function(){
+    document.getElementById("btnConfirm").addEventListener("click", function () {
         $("#dialog").modal("close");
         confirm();
     });
-    document.getElementById("btnNotConfirm").addEventListener("click",function(){
+    document.getElementById("btnNotConfirm").addEventListener("click", function () {
         $("#dialog").modal("close");
         notconfirm();
     });
 }
-function showDialogConfirm(msg){
+
+function showDialogConfirm(msg) {
     $("#modalInfo").modal();
     $("#modalInfo").modal("open");
     document.getElementById("msgModal").innerHTML = msg;
 
 }
 
+function showDialogError(msg) {
+    $("#modalError").modal();
+    $("#modalError").modal("open");
+    document.getElementById("msgError").innerHTML = msg;
+    document.getElementById("modalError").style.marginTop = "5%";
+    document.getElementById("modalError").style.borderRadius = "10px";
+}
+
+function autocomplete(elementAuto,funcaoFiltragem,funcaoEnter,funcaoFocusLost) {
+    elementAuto.addEventListener("input", function () {
+        funcaoFiltragem();
+    });
+    elementAuto.addEventListener("keypress", function (event) {
+        if (event.keyCode == 13) {
+            funcaoEnter();
+        }
+    });
+    elementAuto.addEventListener("blur", function () {
+        setTimeout(function () {
+            funcaoFocusLost();
+        }, 200);
+    });
+}

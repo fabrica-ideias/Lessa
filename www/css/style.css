@@ -16,6 +16,13 @@
         background-color: #fafafa;
         overflow-y: auto;
     }
+    #modalError{
+        width: 80%;
+    }
+    .tabs .tab .filtragemProduto:hover, .tabs .tab .filtragemProduto.active {
+        background-color: transparent;
+        color: #000;
+    }
     #btnFinalizaConferencia{
         width: 100%;
         text-align: center;
@@ -411,9 +418,7 @@
         background-color: #fff;
     }
     .titleItensSolicitados{
-        background-color: #5a7ea3;
         text-align: center;
-        padding: 10px;
         border-radius: 1px;
         margin-bottom: 7px;
         box-shadow: 4px 2px 1px #c1bdbd;
@@ -961,6 +966,9 @@
 }
 /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
 @media (min-width:641px)  and (max-width: 992px) {
+    #modalError{
+        width: 35%;
+    }
     #modalNomeMotorista{
         width: 60%;
     }
@@ -1102,6 +1110,10 @@
 }
 /* hi-res laptops and desktops */
 @media (min-width:993px) {
+    #modalError{
+        width: 25%;
+        padding: 10px;
+    }
     #modalNomeMotorista{
         width: 40%;
     }
@@ -1174,9 +1186,6 @@
 }
 
 @media screen and (max-width: 995px) {
-    .listaProduto{
-        max-height: 55%;
-    }
     .zebra{
         padding:0px;
     }

@@ -134,14 +134,14 @@
                         <ul class="row titleItensSolicitados" id="filtragemProduto">
                             <li style="color:#fff;margin:0;background-color: #5a7ea3"
                                 class="collection-item">
-                                <nav class="col s12 m3 l3" style="margin-left: 5px;">
+                                <nav class="col s12" style="margin-bottom: 2px">
                                     <div class="nav-wrapper">
                                         <form>
                                             <div class="input-field">
                                                 <div class="col s12 m12 l12 ">
                                                     <input id="busca" type="search" placeholder="PROCURAR POR"
                                                            autocomplete="off" required>
-                                                    <i class="material-icons">close</i>
+                                                    <i id="sairPesquisa" class="material-icons">close</i>
                                                 </div>
                                                 <label class="label-icon" for="busca"><i
                                                         class="material-icons">search</i></label>
@@ -163,24 +163,30 @@
                                         </form>
                                     </div>
                                 </nav>
-                                <div class="col s12 m4 l4" style="padding: 20px;">
-                                    <p style="float: left;margin-right: 5px;">
-                                        <input name="filtragemProduto" type="radio" id="buscaProduto" checked/>
-                                        <label for="buscaProduto" style="color: #fff;">PRODUTO</label>
-                                    </p>
-                                    <p style="float: left;margin-right: 5px;color: #fff;">
-                                        <input name="filtragemProduto" type="radio" id="buscaCliente"/>
-                                        <label for="buscaCliente" style="color: #fff;">CLIENTE</label>
-                                    </p>
-                                    <p style="float: left;margin-right: 5px;color: #fff;">
-                                        <input name="filtragemProduto" type="radio" id="buscaPedido"/>
-                                        <label for="buscaPedido" style="color: #fff;">PEDIDO</label>
-                                    </p>
+                                <div class="col s12 m4 l4">
+                                    <ul class="tabs tipo">
+                                        <li class="tab col s4">
+                                            <a href="#test1" class="filtragemProduto active" id="buscaProduto">
+                                                <i class="material-icons">shopping_cart</i>
+                                            </a>
+                                        </li>
+                                        <li class="tab col s4">
+                                            <a href="#test2" class="filtragemProduto" id="buscaCliente">
+                                                <i class="material-icons">person</i>
+                                            </a>
+                                        </li>
+                                        <li class="tab col s4">
+                                            <a href="#test4" class="filtragemProduto" id="buscaPedido">
+                                                <i class="material-icons">content_paste</i>
+                                            </a>
+                                        </li>
+                                    </ul>
+
                                 </div>
                                 <div class="col  l2 offset-l2 qtdeAcumulada"
                                      style="color: #042140;background-color: #fff;">
                                     QTDE ITENS:
-                                <span class="flow-text">
+                                    <span class="flow-text">
                                     <input disabled type="text" id="qtdeItemAcumulado" style="
                                         background-color: #fff;color: #000;text-align: center;font-size: 1.3em;margin:0"/>
                                 </span>
@@ -232,7 +238,7 @@
                             <div id="opcaoSelecao">
                                 <div class="row" id="selecaoCliente">
                                     <div class="row" style="background-color: #fff">
-                                        <div class="col s12">
+                                        <div class="col s12" style="padding: 0px 10px">
                                             <input class="pesquisaCliente" type="text" id="pesquisaRazaoSocial"
                                                    placeholder="Pesquisar" autocomplete="off">
                                         </div>
@@ -250,7 +256,9 @@
                                                 </a>
                                             </li>
                                             <li class="tab col s3">
-                                                <a class="tipoPesquisa" href="#tipoPesquisa3">DOC</a>
+                                                <a class="tipoPesquisa" href="#tipoPesquisa3">
+                                                    <i class="material-icons">assignment_ind</i>
+                                                </a>
                                             </li>
                                             <li class="tab col s3">
                                                 <a class="tipoPesquisa" href="#tipoPesquisa4">
@@ -655,25 +663,13 @@
     </div>
     <div id="conferente">
         <div class="row">
-            <div class="col s12" id="menuPedidos" >
+            <div class="col s12" id="menuPedidos">
                 <i class="material-icons" id="voltaConferente">arrow_back</i>
                 <p id="descricaoConferir">PEDIDOS PARA CONFERIR</p>
                 <ul class="collection" id="pedidoConferir">
 
                 </ul>
             </div>
-        </div>
-    </div>
-    <div id="modalInfo" class="modal">
-        <div class="container-img">
-            <img src="assets/icon/sucess.png">
-        </div>
-        <div class="modal-content" style="padding: 0">
-            <h4 id="titleModal"></h4>
-            <p id="msgModal" style='text-align:center'></p>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" id="btnSucess" class="modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
         </div>
     </div>
     <div id="modalNomeMotorista" class="modal">
@@ -793,8 +789,8 @@
                 <a class="modal-action modal-close" style="top:10px;color: #fff;position: absolute;right: 20px;"
                    type="button"><i class="material-icons">close</i></a>
             </div>
-            <div class="col s2 m1 l1">PEDIDO</div>
-            <div class="col s10 m5 l5">CLIENTE</div>
+            <div class="col s2 m1 l1">PEDIDOS</div>
+            <div class="col s10 m5 l5"></div>
             <div class="col s12 m12 l6 titleMobileItem">
                 <div class="col s8 m9 l8">PRODUTO</div>
                 <div class="col s2 m3 l4">QUANTIDADE</div>
@@ -847,6 +843,43 @@
         <button class="col s6 btn red" id="btnNotConfirm">NÃO</button>
     </div>
 </div>
-
+<div id="modalEsqueceuSenha" class="modal">
+    <div class="modal-content" style="padding-bottom: 0">
+        <h4>Recuperar Senha</h4>
+        <div class="row">
+            <p>Podemos ajudar você a recuperar sua senha enviando para o endereço de email vinculado à conta de
+                acesso.</p>
+        </div>
+        <input type="text" id="emailUsuario" placeholder="INFORME O SEU E-MAIL"/>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" id="btnEnviarEmail" class="modal-action waves-effect waves-green btn-flat">ENVIAR</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">CANCELAR</a>
+    </div>
+</div>
+<div id="modalInfo" class="modal">
+    <div class="container-img">
+        <img src="assets/icon/sucess.png">
+    </div>
+    <div class="modal-content" style="padding: 0">
+        <h4 id="titleModal"></h4>
+        <p id="msgModal" style='text-align:center'></p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" id="btnSucess" class="modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
+    </div>
+</div>
+<div id="modalError" class="modal">
+    <a href="#!" style="float: right" class="modal-action modal-close waves-effect waves-green btn-flat ">
+        <i class="material-icons">close</i>
+    </a>
+    <div class="container-img">
+        <img src="assets/icon/not-user.png">
+    </div>
+    <div class="modal-content" style="padding-bottom: 0">
+        <h4 id="titleError"></h4>
+        <p id="msgError" style='text-align:center'></p>
+    </div>
+</div>
 </body>
 </html>
